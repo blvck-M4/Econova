@@ -4,11 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="762bf436-e0f2-48da-9114-9583e32920ed" name="Changes" comment="Fichier html et css setup&#10;-Gabriel">
+    <list default="true" id="762bf436-e0f2-48da-9114-9583e32920ed" name="Changes" comment="Home Page">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/members/static/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/members/static/css/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/members/templates/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/members/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/members/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -75,7 +72,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "org.jetbrains.plugins.github.ui.GithubSettingsConfigurable",
+    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -107,7 +104,7 @@
       <option name="port" value="8000" />
       <option name="host" value="localhost" />
       <option name="additionalOptions" value="" />
-      <option name="browserUrl" value="" />
+      <option name="browserUrl" value="http://localhost:8000" />
       <option name="runTestServer" value="false" />
       <option name="runNoReload" value="false" />
       <option name="useCustomRunCommand" value="false" />
@@ -139,7 +136,12 @@
       <workItem from="1738637837357" duration="216000" />
       <workItem from="1738638279722" duration="5434000" />
       <workItem from="1738775742096" duration="94000" />
-      <workItem from="1738783232604" duration="1362000" />
+      <workItem from="1738783232604" duration="3757000" />
+      <workItem from="1738791533464" duration="2214000" />
+      <workItem from="1738854836642" duration="44000" />
+      <workItem from="1738856756080" duration="523000" />
+      <workItem from="1739220976800" duration="1967000" />
+      <workItem from="1739388729498" duration="2601000" />
     </task>
     <task id="LOCAL-00001" summary="Read me/  LICENSE.txt">
       <option name="closed" value="true" />
@@ -181,7 +183,23 @@
       <option name="project" value="LOCAL" />
       <updated>1738643587063</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Home Page">
+      <option name="closed" value="true" />
+      <created>1738784682403</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1738784682403</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Home Page">
+      <option name="closed" value="true" />
+      <created>1738784833558</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1738784833558</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -202,7 +220,8 @@
     <MESSAGE value="Read me/  LICENSE.txt" />
     <MESSAGE value="Templates" />
     <MESSAGE value="Fichier html et css setup&#10;-Gabriel" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fichier html et css setup&#10;-Gabriel" />
+    <MESSAGE value="Home Page" />
+    <option name="LAST_COMMIT_MESSAGE" value="Home Page" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/EcoNova$urls.coverage" NAME="urls Coverage Results" MODIFIED="1738637946628" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/djangoProject1" />
