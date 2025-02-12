@@ -20,7 +20,7 @@ body {
 
 .menu-btn {
     background: #ffacac;
-    color: black;
+    color: red;
     border-radius: 25px;
     font-size: 30px; /* Taille des barres */
     height: 55px;
