@@ -1,15 +1,12 @@
 body {
-    background: rgb(43, 43, 0);
+    background: rgb(43, 43, 43);
     font-family: 'Poppins', sans-serif; /* Appliquer la police Poppins à tout le corps */
     color: white;
     margin: 0;
     padding: 0;
-    overflow-x: hidden;
-    height: 4000px;
 }
 
 .header {
-    background-color: rgb(43, 43, 43);
     display: flex;
     justify-content: space-between; /* Espace entre tous les éléments */
     align-items: center;
@@ -70,24 +67,20 @@ button {
 
 
 .slogan {
-    width: 100%; /* Réduit la largeur */
+    width: 500px; /* Réduit la largeur */
     height: 700px;
     text-align: left; /* Alignement à gauche */
     padding: 10px;
     font-size: 50px;
     margin-left: 50px;
     margin-top: 300px;
-    display: flex;
-    flex-direction: row;
-}
 
-.slogan-text {
-    width: 30%;
-    height: 75%;
-    margin-top: 50px;
 }
 .logoSlogan {
-    width: 70%; /* Réduit la largeur */
-    height: auto;
-    margin-right: 100px;
+    width: 800px; /* Réduit la largeur */
+    height: 600px;
+    margin-left: 500px;
+    margin-top: -500px;
 }
+
+
