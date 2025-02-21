@@ -4,9 +4,12 @@ body {
     color: white;
     margin: 0;
     padding: 0;
+    overflow-x: hidden;
+    height: 4000px;
 }
 
 .header {
+    background-color: rgb(43, 43, 43);
     display: flex;
     justify-content: space-between; /* Espace entre tous les éléments */
     align-items: center;
@@ -19,10 +22,9 @@ body {
 }
 
 .menu-btn {
-    background: #ffacac;
-    color: black;
+    color: white;
     border-radius: 25px;
-    font-size: 30px; /* Taille des barres */
+    font-size: 40px; /* Taille des barres */
     height: 55px;
     width: 75px;
     border: none;
@@ -30,7 +32,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-right: 20px; /* Espacement entre le bouton et le logo */
+    margin-right: 50px; /* Espacement entre le bouton et le logo */
     font-weight: bold;
 }
 
@@ -56,100 +58,36 @@ body {
 }
 
 button {
-    background: #ffacac;
-    color: black;
+    background: rgb(43,43,43);
+    color: white;
     border-radius: 25px;
     font-size: 15px;
     height: 45px;
     width: 130px;
-    border: none;
     cursor: pointer;
-}
-
-.login {
-    background: rgb(43, 43, 43);
     border: 2px solid white;
-    color: white;
 }
 
-.contact-btn {
-    background: rgb(43, 43, 43); /* Fond sombre pour le bouton */
-    color: white; /* Texte blanc */
-    border-radius: 25px;
-    font-size: 15px;
-    height: 45px; /* Hauteur du bouton */
-    width: 65px; /* Largeur du bouton */
-    border: none;
-    cursor: pointer;
-    font-weight: bold;
-}
 
 .slogan {
-    text-align: center;
-    font-size: 30px;
-    color: white;
-    margin-top: 250px; /* Espacement entre l'en-tête et le slogan */
-    font-weight: 400;
-    letter-spacing: 1px; /* Espacement léger entre les lettres */
-    opacity: 0.8; /* Transparence pour un effet plus élégant */
-}
-
-/* Container de la barre de recherche */
-.search-container {
+    width: 100%; /* Réduit la largeur */
+    height: 700px;
+    text-align: left; /* Alignement à gauche */
+    padding: 10px;
+    font-size: 50px;
+    margin-left: 50px;
+    margin-top: 300px;
     display: flex;
-    justify-content: center; /* Centrer la barre de recherche */
-    align-items: center;
-    margin-top: 150px; /* Espacement sous le slogan */
-    transition: all 0.3s ease; /* Transition pour l'agrandissement de l'ovale */
+    flex-direction: row;
 }
 
-/* Barre de recherche ovale */
-.search-input {
-    padding: 12px 30px;
-    width: 400px; /* Largeur de l'ovale */
-    background: #f0f0f0; /* Gris pâle */
-    color: #333; /* Texte gris foncé pour contraste */
-    border: 2px solid white; /* Bordure blanche initiale */
-    border-radius: 50px; /* Forme ovale */
-    font-size: 20px;
-    transition: all 0.3s ease; /* Transition pour l'agrandissement et la couleur de bordure */
+.slogan-text {
+    width: 30%;
+    height: 75%;
+    margin-top: 50px;
 }
-
-/* Conteneur pour l'icône loupe */
-.search-icon {
-    background-color: #ff66c4; /* Fond rose */
-    border-radius: 50%; /* Forme ovale */
-    width: 50px;
-    height: 50.5px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-left: -50px; /* Pour superposer l'icône sur la barre */
-    cursor: pointer;
-}
-
-/* Icône de la loupe */
-.search-icon i {
-    color: white; /* Couleur de la loupe */
-    font-size: 20px;
-}
-
-/* Effet au focus de la barre de recherche */
-.search-input:focus {
-    outline: none;
-    background: #e6e6e6; /* Gris plus clair au focus */
-    border-color: #ff66c4; /* Bordure rose au focus */
-    width: 500px; /* L'ovale s'agrandit au focus */
-}
-
-/* Effet au survol de la barre de recherche et agrandissement */
-.search-container:hover .search-input {
-    width: 500px; /* L'ovale s'agrandit au survol */
-    border-color: #ff66c4; /* Changer la couleur de la bordure au survol */
-}
-
-/* Réduire la taille de la barre lorsque la souris quitte */
-.search-container:not(:hover) .search-input {
-    width: 400px; /* Revenir à la taille normale */
-    border-color: white; /* Bordure blanche quand la souris n'est pas dessus */
+.logoSlogan {
+    width: 70%; /* Réduit la largeur */
+    height: auto;
+    margin-right: 100px;
 }
