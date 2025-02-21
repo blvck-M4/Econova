@@ -1,114 +1,34 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-size: 100%;
-}
-html {
-  width: 100vw;
-  height: 1fr;
-  overflow-x: hidden;
-  margin-left: 0;
-  bottom: 0;
-
-}
 body {
     background: #212121;
-    font-family: 'Poppins', sans-serif; /* Appliquer la police Poppins à tout le corps */
     color: white;
 }
-/*HEADER*/
-.header {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    justify-content: center;
-    align-items: center;
-    position: fixed;
-    left: 0;
-    top: 0;
-    width: 100%;
-    padding: 20px 54px;
-    z-index: 10;
-}
-.logoSite{
-    display: flex;
-    justify-content: left;
-    align-items: center;
-}
-.menu{
-    display: flex;
-    justify-content: right;
-    align-items: center;
-}
-.menu-btn {
-    color: white;
-    border-radius: 25px;
-    font-size: 30px; /* Taille des barres */
-    width: 75px;
-    border: none;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-weight: bold;
-    margin-left: 10px;
-}
 
-.logoSite img{
-    width: 120px; /* Taille de l'images */
-    height: 80px;
-}
 
-.econova-text {
-    font-size: 30px;
-    font-weight: 600; /* Poids plus élevé pour le texte */
-    margin-left: 5px; /* Espacement entre le logo et le texte */
-    letter-spacing: 1px; /* Espacement entre les lettres pour un effet plus élégant */
-}
-
-.buttons {
-    display: flex;
-    gap: 15px;
-    margin-left: auto; /* Alignement des boutons à droite */
-    margin-right: 30px; /* Ajuster si nécessaire */
-    align-items: center;
-}
-
-button {
-    background: rgb(43,43,43);
-    color: white;
-    border-radius: 25px;
-    font-size: 15px;
-    height: 45px;
-    width: 130px;
-    cursor: pointer;
-    border: 2px solid white;
-}
 /*PAGE DE PRÉSENTATION*/
 .shadow{
     width: 90vw;
     height: 230px;
     position: absolute;
-    filter: blur(600px);
     background-color: #D9D9D9;
-    z-index: -1;
 }
 #shadow1{
     top: -100%;
+    filter: blur(600px);
 }
 #shadow2{
     bottom: -100%;
+    filter: blur(600px);
 }
 .presentation {
     display: flex;
     justify-content: left;
     align-items: center;
     position: relative;
-    height: 100vh;
+    height: 110vh;
     width: 100%;
     padding: 0 54px;
     background-color: #2B2B2B;
-    z-index: -1;
+    overflow: hidden;
 
 }
 .logoSlogan{
@@ -125,7 +45,22 @@ button {
     width: 600px; /* Réduit la largeur */
     text-align: left; /* Alignement à gauche */
     padding: 10px;
-    font-size: 60px;
+    font-size: 65px;
+    .btn-slogan{
+        background: rgb(43,43,43);
+        color: white;
+        border-radius: 25px;
+        font-size: 15px;
+        height: 45px;
+        width: 130px;
+        cursor: pointer;
+        border: 2px solid white;
+        transition: 0.1s ease-in-out;
+    }
+    .btn-slogan:hover{
+        background-color: #FE66C4;
+        color: white;
+    }
 
 }
 /*DESCRIPTION CHATBOT*/
@@ -133,8 +68,7 @@ button {
     height: 100vh;
     width: 100%;
     padding: 0 54px;
-    background-color: #2B2B2B;
-    z-index: -100000;
+    background-color: #212121;
 
 }
 
@@ -142,6 +76,7 @@ button {
 .education{
     height: 480px;
     width: 100%;
+    background-color: #212121;
     .education-infos{
         transform: translateX(-85px);
         width: 100%;
@@ -162,6 +97,7 @@ button {
 }
 /*OUTILS FINANCIERS*/
 .outils{
+    background: #212121;
     padding: 250px 81px;
     .outils-infos{
         height: 600px;
@@ -180,14 +116,25 @@ footer {
     height: 573px;
     width: 100%;
     padding: 0 54px;
+    overflow: hidden;
+}
+#shadow3{
+    bottom: -100%;
+    filter: blur(400px);
 }
 /*COPYRIGHTS*/
 .copyrights {
     bottom: 0;
     left: 0;
     width: 100%;
-    padding: 10px;
+    padding: 30px;
     background-color: #212121;
     color: white;
     font-size: 15px;
+    font-weight: 200;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }
