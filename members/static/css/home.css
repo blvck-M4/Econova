@@ -1,86 +1,140 @@
 body {
-    background: rgb(43, 43, 0);
-    font-family: 'Poppins', sans-serif; /* Appliquer la police Poppins à tout le corps */
+    background: #212121;
     color: white;
-    margin: 0;
-    padding: 0;
 }
 
-.header {
+
+/*PAGE DE PRÉSENTATION*/
+.shadow{
+    width: 90vw;
+    height: 230px;
+    position: absolute;
+    background-color: #D9D9D9;
+}
+#shadow1{
+    top: -100%;
+    filter: blur(600px);
+}
+#shadow2{
+    bottom: -100%;
+    filter: blur(600px);
+}
+.presentation {
     display: flex;
-    justify-content: space-between; /* Espace entre tous les éléments */
+    justify-content: left;
     align-items: center;
-    padding: 0 20px;
+    position: relative;
+    height: 110vh;
     width: 100%;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 10;
-}
+    padding: 0 54px;
+    background-color: #2B2B2B;
+    overflow: hidden;
 
-.menu-btn {
-    color: white;
-    border-radius: 25px;
-    font-size: 40px; /* Taille des barres */
-    height: 55px;
-    width: 75px;
-    border: none;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-right: 50px; /* Espacement entre le bouton et le logo */
-    font-weight: bold;
 }
-
-.logoSite {
-    width: 200px; /* Taille de l'images */
+.logoSlogan{
+    width: 70vw;
     height: auto;
-    margin-left: 20px; /* Déplacer légèrement l'images vers la droite */
+    position: absolute;
+    right: 0;
+    top: 60px;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
 }
-
-.econova-text {
-    font-size: 45px;
-    font-weight: 600; /* Poids plus élevé pour le texte */
-    margin-left: 5px; /* Espacement entre le logo et le texte */
-    letter-spacing: 1px; /* Espacement entre les lettres pour un effet plus élégant */
-}
-
-.buttons {
-    display: flex;
-    gap: 15px;
-    margin-left: auto; /* Alignement des boutons à droite */
-    margin-right: 30px; /* Ajuster si nécessaire */
-    align-items: center;
-}
-
-button {
-    background: rgb(43,43,43);
-    color: white;
-    border-radius: 25px;
-    font-size: 15px;
-    height: 45px;
-    width: 130px;
-    cursor: pointer;
-    border: 2px solid white;
-}
-
-
 .slogan {
-    width: 500px; /* Réduit la largeur */
-    height: 700px;
+    width: 600px; /* Réduit la largeur */
     text-align: left; /* Alignement à gauche */
     padding: 10px;
-    font-size: 50px;
-    margin-left: 50px;
-    margin-top: 300px;
+    font-size: 65px;
+    .btn-slogan{
+        background: rgb(43,43,43);
+        color: white;
+        border-radius: 25px;
+        font-size: 15px;
+        height: 45px;
+        width: 130px;
+        cursor: pointer;
+        border: 2px solid white;
+        transition: 0.1s ease-in-out;
+    }
+    .btn-slogan:hover{
+        background-color: #FE66C4;
+        color: white;
+    }
 
 }
-.logoSlogan {
-    width: 800px; /* Réduit la largeur */
-    height: 600px;
-    margin-left: 500px;
-    margin-top: -500px;
+/*DESCRIPTION CHATBOT*/
+.nova{
+    height: 100vh;
+    width: 100%;
+    padding: 0 54px;
+    background-color: #212121;
+
 }
 
+/*EDUCATION FINANCIERE*/
+.education{
+    height: 480px;
+    width: 100%;
+    background-color: #212121;
+    .education-infos{
+        transform: translateX(-85px);
+        width: 100%;
+        height: 100%;
+        background-color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        border-radius: 25px;
+        img{
+            height: 100%;
+            transform: translateX(85px);
+            align-self: flex-end;
 
+        }
+    }
+}
+/*OUTILS FINANCIERS*/
+.outils{
+    background: #212121;
+    padding: 250px 81px;
+    .outils-infos{
+        height: 600px;
+        width: 100%
+    }
+}
+
+/*FOOTER*/
+footer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    background-color: #2B2B2B;
+    height: 573px;
+    width: 100%;
+    padding: 0 54px;
+    overflow: hidden;
+}
+#shadow3{
+    bottom: -100%;
+    filter: blur(400px);
+}
+/*COPYRIGHTS*/
+.copyrights {
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 30px;
+    background-color: #212121;
+    color: white;
+    font-size: 15px;
+    font-weight: 200;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
