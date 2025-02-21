@@ -14,38 +14,46 @@
 
 <body>
 
-  <div class="header">
+  <header class="header">
+      <div class="logoSite">
+          <img src="{% static 'images/Logo EcoNova.png' %}" alt="Logo ÉcoNova Finance" class="logoSite">
+          <h2 class="econova-text">ÉcoNova</h2>
+      </div>
 
-    <img src="{% static 'images/logoImage.png' %}" alt="Logo ÉcoNova Finance" class="logoSite">
-
-    <span class="econova-text">ÉcoNova Finance</span>
-
-        <div class="buttons">
-
-            <button class="get-started"><strong> Connexion </strong> </button>
-
+        <div class="menu">
+            <button class="connexion"><strong> Connexion </strong> </button>
+            <button class="menu-btn">
+                &#9776;
+            </button>
         </div>
 
-      <button class="menu-btn">
-        &#9776;
-     </button>
+  </header>
 
-  </div>
-
-  <div>
-
-  </div>
-
+  <section class="presentation">
+      <div class="shadow" id="shadow1"></div>
     <div class="slogan">
-        <p>Votre gestion financière, aussi simple qu'un clic !</p>
-
-        <img src="{% static 'images/logoGraphique.png' %}" alt="Logo Graphique Page1" class="logoSlogan">
-
+        <h1>Votre gestion financière, aussi simple qu'un clic !</h1>
     </div>
 
-    <div class="nova">
+      <div class="shadow" id="shadow2"></div>
+  </section>
+  <img src="{% static 'images/logoGraphique.png' %}" alt="Logo Graphique Page1"
+           class="logoSlogan">
+
+    <section class="nova">
         <h1> NOVA </h1>
-    </div>
+    </section>
+    <section class="education">
+        <div class="education-infos">
+            <img src="{% static 'images/educationIMG.png' %}" alt="Logo Graphique Page2"
+        </div>
+    </section>
+    <section class="outils">
+        <div class="outils-infos"></div>
+    </section>
+
+    <footer></footer>
+    <section class="copyrights"></section>
 </body>
 
 </html>
