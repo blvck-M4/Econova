@@ -8,7 +8,9 @@
     <title>ÉcoNova Finance</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet"> <!-- Importation de la police Poppins -->
     <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="icon" href="{% static 'images/Logo EcoNova.png' %}">
 
 </head>
 
@@ -16,23 +18,28 @@
 
   <header class="header">
       <div class="logoSite">
-          <img src="{% static 'images/Logo EcoNova.png' %}" alt="Logo ÉcoNova Finance" class="logoSite">
+          <a href="/members"><img src="{% static 'images/Logo EcoNova.png' %}" alt="Logo ÉcoNova Finance" class="logoSite"></a>
           <h2 class="econova-text">ÉcoNova</h2>
       </div>
 
         <div class="menu">
-            <button class="connexion"><strong> Connexion </strong> </button>
-            <button class="menu-btn">
-                &#9776;
-            </button>
+            <button class="connexion">Se connecter</button>
+            <button class="rejoindre">Rejoindre </button>
+            <div class="menu-btn">
+                <div class="btn-line"></div>
+                <div class="btn-line"></div>
+                <div class="btn-line"></div>
+            </div>
         </div>
 
   </header>
-
+  <div class="chatbot">
+      <img src="{% static 'images/chatbot.svg' %}" alt="Logo ÉcoNova Finance">
+  </div>
   <section class="presentation">
-      <div class="shadow" id="shadow1"></div>
     <div class="slogan">
         <h1>Votre gestion financière, aussi simple qu'un clic !</h1>
+        <button class="btn-slogan">Commencer</button>
     </div>
 
       <div class="shadow" id="shadow2"></div>
@@ -45,15 +52,21 @@
     </section>
     <section class="education">
         <div class="education-infos">
-            <img src="{% static 'images/educationIMG.png' %}" alt="Logo Graphique Page2"
+            <img src="{% static 'images/educationIMG.png' %}" alt="Logo Graphique Page2">
         </div>
     </section>
     <section class="outils">
         <div class="outils-infos"></div>
     </section>
 
-    <footer></footer>
-    <section class="copyrights"></section>
+    <footer>
+
+        <div class="shadow" id="shadow3"></div>
+    </footer>
+    <section class="copyrights">
+        <h3>© 2025 NOVA. Tous droits réservés.</h3>
+        <h3> Créé par Micheal Gyan, Gabriel-Ngoma Riendeau, Samy Baouche, Mohammed El Ouaabani et Nancy Bechara.</h3>
+    </section>
 </body>
 
 </html>
