@@ -18,13 +18,14 @@
 
   <header class="header">
       <div class="logoSite">
-          <a href="/members"><img src="{% static 'images/Logo EcoNova.png' %}" alt="Logo ÉcoNova Finance" class="logoSite"></a>
+          <a href="/members"><img src="{% static 'images/Logo EcoNova.png' %}" alt="Logo ÉcoNova Finance"
+                                   class="logoSite"></a>
           <h2 class="econova-text">ÉcoNova</h2>
       </div>
 
         <div class="menu">
-            <button class="connexion">Se connecter</button>
-            <button class="rejoindre">Rejoindre </button>
+            <a href="connexion"><button class="connexion">Se connecter</button></a>
+            <button class="rejoindre">S'inscrire</button>
             <div class="menu-btn">
                 <div class="btn-line"></div>
                 <div class="btn-line"></div>
@@ -39,7 +40,7 @@
   <section class="presentation">
     <div class="slogan">
         <h1>Votre gestion financière, aussi simple qu'un clic !</h1>
-        <button class="btn-slogan">Commencer</button>
+        <a href="connexion"><button class="btn-slogan">Commencer</button></a>
     </div>
 
       <div class="shadow" id="shadow2"></div>
