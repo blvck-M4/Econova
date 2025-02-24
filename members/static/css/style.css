@@ -1,3 +1,131 @@
-h1{
-    font-size: 120px;
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Prompt:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-size: 100%;
 }
+html {
+  width: 100vw;
+  height: 1fr;
+  overflow-x: hidden;
+  margin-left: 0;
+  bottom: 0;
+
+}
+/*ChatBot*/
+.chatbot{
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 100px;
+    height: 1fr;
+    cursor: pointer;
+    img{
+        width: 70px;
+        transition: 0.2s ease-in-out;
+        filter: drop-shadow(0 0px 5px rgba(0, 0, 0, 0.21));
+    }
+    img:hover{
+        transform: scale(1.1);
+        filter: drop-shadow(0 0px 15px rgba(0, 0, 0, 0.21));
+    }
+    z-index: 10;
+}
+/*HEADER*/
+.header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    padding: 20px 54px;
+    z-index: 10;
+    button {
+        background: transparent;
+        color: white;
+        border-radius: 25px;
+        font-size: 15px;
+        height: 45px;
+        width: 130px;
+        cursor: pointer;
+        border: 2px solid white;
+        transition: 0.2s ease-in-out;
+    }
+    .rejoindre{
+        margin-left: 10px;
+        background: #FE66F4;
+    }
+    .rejoindre:hover{
+        background: transparent;
+    }
+    .connexion:hover{
+        background: #FE66F4;
+    }
+}
+.logoSite{
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    img{
+        width: 100px; /* Taille de l'images */
+        height: 60px;
+    }
+    .econova-text {
+        color: white;
+        font-size: 30px;
+        font-weight: 600; /* Poids plus élevé pour le texte */
+        letter-spacing: 1px; /* Espacement entre les lettres pour un effet plus élégant */
+        mix-blend-mode: difference;
+
+    }
+}
+.menu{
+    display: flex;
+    justify-content: right;
+    align-items: center;
+}
+.menu-btn {
+    color: white;
+    font-size: 30px; /* Taille des barres */
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-left: 50px;
+    .btn-line {
+        width: 35px;
+        height: 3px;
+        background: white;
+        margin: 5px;
+        transition: 0.3s ease-in-out;
+        border-radius: 5px;
+    }
+}
+
+
+
+h1{
+    font-family: "Ubuntu", serif;
+    font-weight: bold;
+    font-style: normal;
+}
+h2, button{
+  font-family: "Prompt", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+h3{
+  font-family: "Prompt", serif;
+  font-weight: 300;
+  font-style: normal;
+}
+
+
