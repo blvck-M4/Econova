@@ -97,14 +97,106 @@ body {
 }
 /*OUTILS FINANCIERS*/
 .outils{
-    background: #212121;
     padding: 250px 81px;
     .outils-infos{
         height: 600px;
-        width: 100%
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .info{
+            cursor: pointer;
+            width: 400px;
+            height: 430px;
+            border-radius: 15px;
+            margin: 0 30px;
+            background: #212121;
+            transition: 0.2s ease-in-out;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            padding: 30px;
+            text-align: center;
+            h2{
+                font-size: 25px;
+                line-height: 25px;
+                color: #FFA1DB;
+            }
+            h3{
+                margin-top: 20px;
+            }
+        }
     }
 }
+@property --angle {
+    syntax: '<angle>';
+    initial-value: 0deg;
+    inherits: false;
+}
+#info3::before, #info3::after{
+    --angle: 90deg;
+}
+#info2::before, #info2::after{
+    --angle: 180deg;
+}
+.info::before, .info::after{
+    content: "";
+    position: absolute;
+    width: 395px;
+    height: 430px;
+    z-index: -1;
+    transform: scale(1.01);
+    border-radius: 15px;
+    transition: 0.5s ease-in-out;
+    background-image: conic-gradient(from var(--angle), transparent 70%, #FE66C4);
+}
+#info1:hover::before, #info1:hover::after{
+    transition: 0.5s ease-in-out;
+    animation: 3s spin1 linear infinite;
+}
+#info2:hover::before, #info2:hover::after{
+    transition: 0.5s ease-in-out;
+    animation: 3s spin2 linear infinite;
+}
+#info3:hover::before, #info3:hover::after{
+    transition: 0.5s ease-in-out;
+    animation: 3s spin3 linear infinite;
+}
+.info:hover{
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 60px 40px -7px;
+}
 
+@keyframes spin1 {
+    from {
+        --angle: 0deg;
+    }
+    to {
+        --angle: 360deg;
+    }
+}
+@keyframes spin2 {
+    from {
+        --angle: 180deg;
+    }
+    to {
+        --angle: 540deg;
+    }
+}
+@keyframes spin3 {
+    from {
+        --angle: 90deg;
+    }
+    to {
+        --angle: 450deg;
+    }
+}
+.info::after{
+    filter: blur(1rem);
+    opacity: 0.5;
+}
 /*FOOTER*/
 footer {
     display: grid;
