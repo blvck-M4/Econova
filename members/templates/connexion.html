@@ -12,21 +12,23 @@
     <section class="connexion">
         <div class="form">
             <h1>CONNEXION</h1>
-            <h3>Tu n’as pas encore de compte? <a href="/members" style="color: #0051FF">Crée un compte</a></h3>
-            <form action="">
-                <h2>Nom d'utilisateur ou Email</h2>
-                <input type="text" placeholder="">
+            <h3>Tu n’as pas encore de compte? <a href="/members/connexion" style="color: #0051FF">Crée un compte</a></h3>
+            <form action="" method="post">
+                {% csrf_token %}
+                <h2>Nom d'utilisateur</h2>
+                <input type="text" name="username" placeholder="">
                 <h2>Mot de passe</h2>
-                <input type="password" placeholder="">
+                <input type="password" name="password" placeholder="">
                 <input type="submit" value="Se connecter">
             </form>
+            <a href="/members"><img src="{% static 'images/Logo EcoNova.png' %}" alt=""></a>
         </div>
         <div class="connexion-infos">
             <div class="infos">
                 <h2>En vous inscrivant sur NOVA, vous accédez à des outils personnalisés pour gérer votre budget, suivre vos investissements et optimiser vos décisions financières. Profitez d’un suivi en temps réel, de conseils adaptés et d’une expérience sécurisée pour bâtir un avenir financier serein. Rejoignez-nous dès aujourd’hui !</h2>
                 <h1>Créez votre compte et prenez le contrôle de vos finances !</h1>
             </div>
-            <img src="{% static 'images/argentIMG.svg' %}" alt="">
+            <div class="imgRejoindre"><img src="{% static 'images/argentIMG.svg' %}" alt=""></div>
             <div class="shadow"></div>
         </div>
     </section>
