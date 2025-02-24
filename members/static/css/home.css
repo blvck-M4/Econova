@@ -1,5 +1,5 @@
 body {
-    background: #212121;
+    background: #1b1b1b;
     color: white;
 }
 
@@ -10,10 +10,6 @@ body {
     height: 230px;
     position: absolute;
     background-color: #D9D9D9;
-}
-#shadow1{
-    top: -100%;
-    filter: blur(600px);
 }
 #shadow2{
     bottom: -100%;
@@ -27,7 +23,7 @@ body {
     height: 110vh;
     width: 100%;
     padding: 0 54px;
-    background-color: #2B2B2B;
+    background-color: #212121;
     overflow: hidden;
 
 }
@@ -40,6 +36,18 @@ body {
     -moz-user-select: none;
     -webkit-user-select: none;
     user-select: none;
+    animation: Apparait 1s ease;
+
+}
+@keyframes Apparait {
+    from {
+        opacity: 0;
+        transform: translateX(140%);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(00%);
+    }
 }
 .slogan {
     width: 600px; /* Réduit la largeur */
@@ -77,9 +85,10 @@ body {
     height: 480px;
     width: 100%;
     background-color: #212121;
+    display: flex;
     .education-infos{
         transform: translateX(-85px);
-        width: 100%;
+        width: 100vw;
         height: 100%;
         background-color: white;
         display: flex;
@@ -87,12 +96,40 @@ body {
         align-items: center;
         flex-direction: column;
         border-radius: 25px;
-        img{
-            height: 100%;
-            transform: translateX(85px);
-            align-self: flex-end;
-
+        animation: autoSlide;
+        animation-timeline: view(60% auto);
+        h2{
+            font-size: 30px;
         }
+    }
+    img{
+        right: 0;
+        position: absolute;
+        height: 480px;
+        align-self: flex-end;
+        animation: autoShow;
+        animation-timeline: view(80% auto);
+
+    }
+}
+        @keyframes autoShow {
+            from {
+                opacity: 0;
+                transform: translateX(185px) scale(0.3);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0) scale(1);
+            }
+        }
+@keyframes autoSlide {
+    from {
+        opacity: 0;
+        transform: translateX(-100%) ;
+    }
+    to {
+        opacity: 1;
+        transform: translateX(-85px);
     }
 }
 /*OUTILS FINANCIERS*/
@@ -105,12 +142,11 @@ body {
         justify-content: center;
         align-items: center;
         .info{
-            cursor: pointer;
             width: 400px;
             height: 430px;
             border-radius: 15px;
             margin: 0 30px;
-            background: #212121;
+            background: #1b1b1b;
             transition: 0.2s ease-in-out;
 
             display: flex;
@@ -145,7 +181,7 @@ body {
 .info::before, .info::after{
     content: "";
     position: absolute;
-    width: 395px;
+    width: 400px;
     height: 430px;
     z-index: -1;
     transform: scale(1.01);
@@ -204,7 +240,7 @@ footer {
     justify-content: center;
     align-items: center;
     position: relative;
-    background-color: #2B2B2B;
+    background-color: #212121;
     height: 573px;
     width: 100%;
     padding: 0 54px;
@@ -212,7 +248,8 @@ footer {
 }
 #shadow3{
     bottom: -100%;
-    filter: blur(400px);
+    filter: blur(300px);
+    background-color: rgba(254, 102, 196, 0.78);
 }
 /*COPYRIGHTS*/
 .copyrights {
