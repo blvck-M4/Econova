@@ -18,14 +18,18 @@
 
   <header class="header">
       <div class="logoSite">
-          <a href="/members"><img src="{% static 'images/Logo EcoNova.png' %}" alt="Logo ÉcoNova Finance"
+          <a href="members"><img src="{% static 'images/Logo EcoNova.png' %}" alt="Logo ÉcoNova Finance"
                                    class="logoSite"></a>
           <h2 class="econova-text">ÉcoNova</h2>
       </div>
 
         <div class="menu">
-            <a href="connexion"><button class="connexion">Se connecter</button></a>
-            <button class="rejoindre">S'inscrire</button>
+            {% if not user.is_authenticated %}
+            	<a href="connexion"><button class="connexion">Se connecter</button></a>
+                <a href="rejoindre"><button class="rejoindre">Rejoindre</button></a>
+            {% else %}
+                <a href="deconnexion"><button class="deconnexion">Se déconnecter</button></a>
+            {% endif %}
             <div class="menu-btn">
                 <div class="btn-line"></div>
                 <div class="btn-line"></div>
@@ -41,6 +45,7 @@
     <div class="slogan">
         <h1>Votre gestion financière, aussi simple qu'un clic !</h1>
         <a href="connexion"><button class="btn-slogan">Commencer</button></a>
+        <h2>Bienvenue {{ user.username }}</h2>
     </div>
 
       <div class="shadow" id="shadow2"></div>
@@ -52,9 +57,8 @@
         <h1> NOVA </h1>
     </section>
     <section class="education">
-        <div class="education-infos">
-            <img src="{% static 'images/educationIMG.png' %}" alt="Logo Graphique Page2">
-        </div>
+        <div class="education-infos"></div>
+        <img src="{% static 'images/educationIMG.png' %}" alt="Logo Graphique Page2">
     </section>
     <section class="outils">
         <div class="outils-infos">
