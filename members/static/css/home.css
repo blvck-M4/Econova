@@ -37,7 +37,6 @@ body {
     -webkit-user-select: none;
     user-select: none;
     animation: Apparait 1s ease;
-
 }
 @keyframes Apparait {
     from {
@@ -54,6 +53,7 @@ body {
     text-align: left; /* Alignement à gauche */
     padding: 10px;
     font-size: 65px;
+    z-index: 2;
     .btn-slogan{
         background: rgb(43,43,43);
         color: white;
@@ -72,10 +72,11 @@ body {
 
 }
 /*DESCRIPTION CHATBOT*/
+
 .nova{
-    height: 1fr;
+    height: 100%;
     width: 100%;
-    padding: 300px 74px;
+    padding: 200px 5vw;
     h1{
         font-size: 70px;
         margin-bottom: 100px;
@@ -85,7 +86,7 @@ body {
     }
     .nova-infos{
         width: 100%;
-        height: 100%;
+        height: 90vh;
         padding: 100px;
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -93,8 +94,7 @@ body {
         align-items: center;
         background-color: #212121;
         border-radius: 25px;
-        box-shadow: rgba(0, 0, 0, 0.2) 0px 18px 50px -10px;
-        animation: chatbot;
+box-shadow: rgba(16, 16, 28, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(2, 9, 14, 0.35) 0px -2px 6px 0px inset;        animation: chatbot;
         animation-timeline: view(80% auto);
         h2{
             font-size: 20px;
@@ -149,6 +149,15 @@ body {
             font-size: 30px;
         }
     }
+    .lottie-container-education{
+        right: 0;
+        position: absolute;
+        height: 750px;
+        transform: translateY(100px) translateX(80px);
+        align-self: flex-end;
+        animation: autoShow;
+        animation-timeline: view(80% auto);
+    }
     img{
         right: 0;
         position: absolute;
@@ -181,10 +190,9 @@ body {
 }
 /*OUTILS FINANCIERS*/
 .outils{
-    padding: 250px 81px;
+    padding: 250px 0;
     .outils-infos{
         height: 600px;
-        width: 100%;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -213,6 +221,10 @@ body {
             }
         }
     }
+}
+.lottie-container-outils{
+    width: 120px;
+    margin-top: 20px;
 }
 @property --angle {
     syntax: '<angle>';
