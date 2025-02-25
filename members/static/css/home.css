@@ -73,18 +73,65 @@ body {
 }
 /*DESCRIPTION CHATBOT*/
 .nova{
-    height: 100vh;
+    height: 1fr;
     width: 100%;
-    padding: 0 54px;
-    background-color: #212121;
+    padding: 300px 74px;
+    h1{
+        font-size: 70px;
+        margin-bottom: 100px;
+        letter-spacing: 3px;
+        animation: nova;
+        animation-timeline: view(30% auto);
+    }
+    .nova-infos{
+        width: 100%;
+        height: 100%;
+        padding: 100px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        justify-content: center;
+        align-items: center;
+        background-color: #212121;
+        border-radius: 25px;
+        box-shadow: rgba(0, 0, 0, 0.2) 0px 18px 50px -10px;
+        animation: chatbot;
+        animation-timeline: view(80% auto);
+        h2{
+            font-size: 20px;
+        }
+    }
+}
+@keyframes nova {
+    from {
+        opacity: 0;
+        transform: translateY(100px) translateX(100px) scale(1.5);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) translateX(0) scale(1);
+    }
 
+}
+@keyframes chatbot {
+    from {
+        opacity: 0;
+        border-radius: 0;
+        box-shadow: none;
+        transform: scale(0.3);
+    }
+    to {
+        opacity: 1;
+        border-radius: 25px;
+        box-shadow: rgba(0, 0, 0, 0.2) 0px 18px 50px -10px;
+        transform: translateY(0) scale(1);
+    }
 }
 
 /*EDUCATION FINANCIERE*/
 .education{
     height: 480px;
     width: 100%;
-    background-color: #212121;
+    background-color: #1b1b1b;
     display: flex;
     .education-infos{
         transform: translateX(-85px);
@@ -97,7 +144,7 @@ body {
         flex-direction: column;
         border-radius: 25px;
         animation: autoSlide;
-        animation-timeline: view(60% auto);
+        animation-timeline: view(70% auto);
         h2{
             font-size: 30px;
         }
@@ -112,24 +159,24 @@ body {
 
     }
 }
-        @keyframes autoShow {
-            from {
-                opacity: 0;
-                transform: translateX(185px) scale(0.3);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0) scale(1);
-            }
-        }
-@keyframes autoSlide {
+@keyframes autoShow {
     from {
         opacity: 0;
-        transform: translateX(-100%) ;
+        transform: translateX(185px) scale(0.3);
     }
     to {
         opacity: 1;
-        transform: translateX(-85px);
+        transform: translateX(0) scale(1);
+    }
+}
+@keyframes autoSlide {
+    from {
+        opacity: 0;
+        transform: translateX(-100%) scale(0.3);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(-85px) translateY(0) scale(1);
     }
 }
 /*OUTILS FINANCIERS*/
@@ -257,7 +304,7 @@ footer {
     left: 0;
     width: 100%;
     padding: 30px;
-    background-color: #212121;
+    background-color: #1b1b1b;
     color: white;
     font-size: 15px;
     font-weight: 200;

@@ -9,39 +9,42 @@
     <link rel="icon" href="{% static 'images/Logo EcoNova.png' %}">
 </head>
 <body>
-    <section class="connexion">
+    <a href="/members" class="retour"><img src="{% static 'images/retour.svg' %}" alt=""></a>
+    <section class="rejoindre">
+    <img class="cercle" src="{% static 'images/quart-cercle.svg' %}" alt="Quart de cercle">
         <div class="form">
-            <h1>REJOINDRE</h1>
+            <div class="logo">
+                  <a href="/members"><img src="{% static 'images/Logo EcoNova.png' %}" alt="Logo ÉcoNova Finance"></a>
+                  <h2>EcoNova</h2>
+            </div>
+            <h2>Créer un compte</h2>
+            <h3>Tu as déjà un compte? <a href="/members/connexion" style="color: #0051FF">Connecte-toi</a></h3>
             {% for message in messages %}
-                <h1>{{ message }}</h1>
+                <h3>{{ message }}</h3>
             {% endfor %}
 
             <form action="" method="post">
                 {% csrf_token %}
-                <h2>Prénom</h2>
-                <input type="text" name="prenom" placeholder="">
-                <h2>Nom de famille</h2>
-                <input type="text" name="nom_de_famille" placeholder="">
-                <h2>Email</h2>
-                <input type="text" name="email" placeholder="">
-                <h2>Nom d'utilisateur</h2>
-                <input type="text" name="utilisateur" placeholder="">
-                <h2>Mot de passe</h2>
-                <input type="password" name="mot_de_passe" placeholder="">
-                <h2>Répète le mot de passe</h2>
-                <input type="password" name="mot_de_passe2" placeholder="">
+                <input type="text" name="utilisateur" placeholder="Nom d'utilisateur">
+                <div>
+                    <input type="text" name="prenom" placeholder="Prénom">
+                    <input type="text" name="nom_de_famille" placeholder="Nom de famille">
+                </div>
+                <input type="text" name="email" placeholder="Courriel">
+                <div>
+                    <input type="password" name="mot_de_passe" placeholder="Mot de passe">
+                    <input type="password" name="mot_de_passe2" placeholder="Répète le mot de passe">
+                </div>
                 <input type="submit" value="Nous rejoindre">
             </form>
-            <a href="/members"><img src="{% static 'images/Logo EcoNova.png' %}" alt=""></a>
         </div>
-        <div class="connexion-infos">
-            <div class="infos">
-                <h2>En vous inscrivant sur NOVA, vous accédez à des outils personnalisés pour gérer votre budget, suivre vos investissements et optimiser vos décisions financières. Profitez d’un suivi en temps réel, de conseils adaptés et d’une expérience sécurisée pour bâtir un avenir financier serein. Rejoignez-nous dès aujourd’hui !</h2>
-                <h1>Créez votre compte et prenez le contrôle de vos finances !</h1>
-            </div>
-            <div class="imgRejoindre"><img src="{% static 'images/argentIMG.svg' %}" alt=""></div>
-            <div class="shadow"></div>
+        <div class="rejoindre-image">
+            <img src="{% static 'images/greeting.svg' %}" alt="">
         </div>
     </section>
+
+    <footer>
+        <a href="https://iconscout.com/illustrations/business-deal" class="text-underline font-size-sm" target="_blank">business deal</a> by <a href="https://iconscout.com/contributors/delesign" class="text-underline font-size-sm" target="_blank">Delesign Graphics</a>
+    </footer>
 </body>
 </html>
