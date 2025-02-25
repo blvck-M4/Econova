@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="icon" href="{% static 'images/Logo EcoNova.png' %}">
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.12.2/lottie.min.js"></script>
 </head>
 
 <body>
@@ -67,6 +67,16 @@
     <section class="education">
         <div class="education-infos"></div>
         <img src="{% static 'images/educationIMG.png' %}" alt="Logo Graphique Page2">
+       <!--<div id="lottie-container4" class="lottie-container-education"></div>
+        <script>
+            var animation = lottie.loadAnimation({
+                container: document.getElementById('lottie-container4'),
+                renderer: 'svg',
+                loop: true,
+                autoplay: true,
+                path: "{% static 'json/Payment Done.json' %}"
+            });
+        </script>-->
     </section>
     <section class="outils">
         <div class="outils-infos">
@@ -75,22 +85,57 @@
                 <h2>Financier Anticipez Vos Finances</h2>
                 <h3>Faites des choix éclairés avec notre simulateur financier. Estimez votre budget, vos économies ou
                     vos investissements en quelques clics et prenez le contrôle de votre avenir financier dès maintenant.</h3>
+                <div id="lottie-container1" class="lottie-container-outils"></div>
+                <script>
+                    var animation = lottie.loadAnimation({
+                        container: document.getElementById('lottie-container1'),
+                        renderer: 'svg',
+                        loop: true,
+                        autoplay: true,
+                        path: "{% static 'json/Rocket_custom_icon.json' %}"
+                    });
+                </script>
             </div>
             <div class="info" id="info2">
                 <h2>Suivi Financier</h2>
                 <h2>Gardez le Contrôle de Votre Argent</h2>
                 <h3>Suivez vos revenus, dépenses et objectifs financiers en temps réel. Avec notre outil de suivi financier, visualisez vos finances en un coup d’œil et optimisez votre gestion au quotidien.</h3>
+                <div id="lottie-container2" class="lottie-container-outils"></div>
+                <script>
+                    var animation = lottie.loadAnimation({
+                        container: document.getElementById('lottie-container2'),
+                        renderer: 'svg',
+                        loop: true,
+                        autoplay: true,
+                        path: "{% static 'json/Compass_custom_icon.json' %}"
+                    });
+                </script>
             </div>
             <div class="info" id="info3">
                 <h2>Bourse</h2>
                 <h2>Investissez en Toute Confiance</h2>
                 <h3>Suivez les marchés, analysez les tendances et prenez des décisions éclairées. Avec notre outil Bourse, accédez à des informations en temps réel pour optimiser vos investissements.</h3>
+                <div id="lottie-container3" class="lottie-container-outils"></div>
+                <script>
+                    var animation = lottie.loadAnimation({
+                        container: document.getElementById('lottie-container3'),
+                        renderer: 'svg',
+                        loop: true,
+                        autoplay: true,
+                        path: "{% static 'json/Analytics_custom_icon.json' %}"
+                    });
+                </script>
             </div>
         </div>
     </section>
 
     <footer>
 
+        <h3>Icons by https://unicornicons.com</h3>
+        <!--
+        <a href="https://iconscout.com/lottie-animations/payment-done" class="text-underline font-size-sm"
+            target="_blank">Payment Done</a> by <a href="https://iconscout.com/contributors/tanjilmah" class="text-underline font-size-sm">Animaio Studio</a> on <a href="https://iconscout.com" class="text-underline font-size-sm">IconScout</a>
+        -->
         <div class="shadow" id="shadow3"></div>
     </footer>
     <section class="copyrights">

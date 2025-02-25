@@ -123,6 +123,7 @@ html{
         flex-direction: column;
         h2{
            font-size: 18px;
+            margin-bottom: 0;
         }
         input{
             width: 100%;
