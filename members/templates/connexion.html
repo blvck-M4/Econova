@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link rel="stylesheet" href="{% static 'css/connexion.css' %}">
     <link rel="icon" href="{% static 'images/Logo EcoNova.png' %}">
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 </head>
 <body>
     <section class="connexion">
@@ -36,9 +37,12 @@
                 <h2>En vous inscrivant sur NOVA, vous accédez à des outils personnalisés pour gérer votre budget, suivre vos investissements et optimiser vos décisions financières. Profitez d’un suivi en temps réel, de conseils adaptés et d’une expérience sécurisée pour bâtir un avenir financier serein. Rejoignez-nous dès aujourd’hui !</h2>
                 <h1>Créez votre compte et prenez le contrôle de vos finances !</h1>
             </div>
-            <div class="imgRejoindre"><img src="{% static 'images/argentIMG.svg' %}" alt=""></div>
+            <div class="imgRejoindre" id="lottie">
+                <img src="{% static 'images/argentIMG.svg' %}" alt="">
+            </div>
             <div class="shadow"></div>
         </div>
     </section>
+
 </body>
 </html>
