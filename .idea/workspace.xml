@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="762bf436-e0f2-48da-9114-9583e32920ed" name="Changes" comment="Fichier html et css setup&#10;-Gabriel">
+    <list default="true" id="762bf436-e0f2-48da-9114-9583e32920ed" name="Changes" comment="Page de connexion et d'inscription (html/css)">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/members/static/css/home.css" beforeDir="false" afterPath="$PROJECT_DIR$/members/static/css/home.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,6 +24,9 @@
         <option value="CSS File" />
       </list>
     </option>
+  </component>
+  <component name="Git.Merge.Settings">
+    <option name="BRANCH" value="origin/1-brache-gabriel" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
@@ -54,38 +57,70 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
-    &quot;Django Server.djangoProject1.executor&quot;: &quot;Run&quot;,
-    &quot;Python.manage.executor&quot;: &quot;Run&quot;,
-    &quot;Python.settings.executor&quot;: &quot;Run&quot;,
-    &quot;Python.urls.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenDjangoStructureViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/gabri/PycharmProjects/Econova&quot;,
-    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;org.jetbrains.plugins.github.ui.GithubSettingsConfigurable&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "DefaultHtmlFileTemplate": "HTML File",
+    "Django Server.djangoProject1.executor": "Run",
+    "Python.manage.executor": "Run",
+    "Python.settings.executor": "Run",
+    "Python.urls.executor": "Run",
+    "RunOnceActivity.OpenDjangoStructureViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "1-brache-gabriel",
+    "last_opened_file_path": "C:/Users/gabri/PycharmProjects/Econova/members/static/json",
+    "list.type.of.created.stylesheet": "CSS",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable",
+    "ts.external.directory.path": "C:\\Program Files\\JetBrains\\PyCharm 2024.3.2\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\gabri\PycharmProjects\Econova\members\static\json" />
+      <recent name="C:\Users\gabri\PycharmProjects\Econova\members\static\json-animation" />
+      <recent name="C:\Users\gabri\PycharmProjects\Econova" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\gabri\PycharmProjects\Econova\members\static\json" />
+      <recent name="C:\Users\gabri\PycharmProjects\Econova\members\static\json animation" />
+      <recent name="C:\Users\gabri\PycharmProjects\Econova\members\static\images" />
       <recent name="C:\Users\gabri\PycharmProjects\Econova\members\static\image" />
       <recent name="C:\Users\gabri\PycharmProjects\Econova\members\static\css" />
-      <recent name="C:\Users\gabri\PycharmProjects\Econova\members\static" />
-      <recent name="C:\Users\6251532\OneDrive - Collège de Bois-de-Boulogne\djangoProject1" />
     </key>
   </component>
   <component name="RunManager">
+    <configuration default="true" type="Python.DjangoServer" factoryName="Django server">
+      <module name="EcoNova" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="SDK_NAME" value="Python 3.13" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="launchJavascriptDebuger" value="false" />
+      <option name="port" value="8000" />
+      <option name="host" value="" />
+      <option name="additionalOptions" value="" />
+      <option name="browserUrl" value="" />
+      <option name="runTestServer" value="false" />
+      <option name="runNoReload" value="false" />
+      <option name="useCustomRunCommand" value="false" />
+      <option name="customRunCommand" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="djangoProject1" type="Python.DjangoServer" factoryName="Django server">
       <module name="EcoNova" />
       <option name="ENV_FILES" value="" />
@@ -96,6 +131,7 @@
         <env name="DJANGO_SETTINGS_MODULE" value="djangoProject1.settings" />
       </envs>
       <option name="SDK_HOME" value="" />
+      <option name="SDK_NAME" value="Python 3.13" />
       <option name="WORKING_DIRECTORY" value="" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
@@ -115,8 +151,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-d6986cc7102b-822845ee3bb5-JavaScript-PY-243.23654.177" />
-        <option value="bundled-python-sdk-91d3a02ef49d-43b77aa2d136-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-243.23654.177" />
+        <option value="bundled-js-predefined-d6986cc7102b-76f8388c3a79-JavaScript-PY-243.24978.54" />
+        <option value="bundled-python-sdk-91e3b7efe1d4-466328ff949b-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-243.24978.54" />
       </set>
     </attachedChunks>
   </component>
@@ -137,6 +173,7 @@
       <workItem from="1738638279722" duration="5434000" />
       <workItem from="1738775742096" duration="94000" />
       <workItem from="1738783232604" duration="1362000" />
+      <workItem from="1740281359638" duration="70428000" />
     </task>
     <task id="LOCAL-00001" summary="Read me/  LICENSE.txt">
       <option name="closed" value="true" />
@@ -194,7 +231,39 @@
       <option name="project" value="LOCAL" />
       <updated>1739395051737</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Page de connexion html/css">
+      <option name="closed" value="true" />
+      <created>1740287531325</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1740287531325</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Page de connexion et section outils de home html/css">
+      <option name="closed" value="true" />
+      <created>1740406208065</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1740406208065</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Page de connexion et d'inscription (Base de données)">
+      <option name="closed" value="true" />
+      <created>1740432551569</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1740432551569</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Page de connexion et d'inscription (html/css)">
+      <option name="closed" value="true" />
+      <created>1740505220835</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1740505220835</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -215,7 +284,11 @@
     <MESSAGE value="Read me/  LICENSE.txt" />
     <MESSAGE value="Templates" />
     <MESSAGE value="Fichier html et css setup&#10;-Gabriel" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fichier html et css setup&#10;-Gabriel" />
+    <MESSAGE value="Page de connexion html/css" />
+    <MESSAGE value="Page de connexion et section outils de home html/css" />
+    <MESSAGE value="Page de connexion et d'inscription (Base de données)" />
+    <MESSAGE value="Page de connexion et d'inscription (html/css)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Page de connexion et d'inscription (html/css)" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/EcoNova$urls.coverage" NAME="urls Coverage Results" MODIFIED="1738637946628" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/djangoProject1" />

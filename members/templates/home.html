@@ -8,40 +8,149 @@
     <title>ÉcoNova Finance</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet"> <!-- Importation de la police Poppins -->
     <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-
+    <link rel="icon" href="{% static 'images/Logo EcoNova.png' %}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.12.2/lottie.min.js"></script>
 </head>
 
 <body>
 
-  <div class="header">
-    <button class="menu-btn">
-        &#9776;
-    </button>
-    <img src="{% static 'images/logoImage.png' %}" alt="Logo ÉcoNova Finance" class="logoSite">
-    <span class="econova-text">ÉcoNova Finance</span>
+  <header class="header">
+      <div class="logoSite">
+          <a href="members"><img src="{% static 'images/Logo EcoNova.png' %}" alt="Logo ÉcoNova Finance"
+                                   class="logoSite"></a>
+          <h2 class="econova-text">EcoNova</h2>
+      </div>
 
-        <div class="buttons">
-
-            <button class="login"><strong>S'inscrire</strong> </button>
-            <button class="get-started"><strong>Se Connecter</strong> </button>
+        <div class="menu">
+            {% if not user.is_authenticated %}
+            	<a href="connexion"><button class="connexion">Se connecter</button></a>
+                <a href="rejoindre"><button class="rejoindre">Rejoindre</button></a>
+            {% else %}
+                <a href="deconnexion"><button class="deconnexion">Se déconnecter</button></a>
+            {% endif %}
+            <div class="menu-btn">
+                <div class="btn-line" id="btn-line1"></div>
+                <div class="btn-line" id="btn-line2"></div>
+                <div class="btn-line" id="btn-line3"></div>
+            </div>
         </div>
+
+    <div class="menu-slide">
+                <h2>Bienvenue {{ user.username }}</h2>
     </div>
 
-
+  </header>
+  <div class="chatbot">
+      <img src="{% static 'images/chatbot2.png' %}" alt="Logo ÉcoNova Finance">
+  </div>
+  <section class="presentation">
     <div class="slogan">
-        <p>Le site qui rend vos finances aussi simples qu'un clic !</p>
+        <h1>Votre gestion financière, aussi simple qu'un clic !</h1>
+        <a href="connexion"><button class="btn-slogan">Commencer</button></a>
     </div>
 
-       <!-- Barre de recherche ovale avec une loupe -->
-<div class="search-container">
-    <input type="text" class="search-input" placeholder="Rechercher..." id="searchBox">
-    <div class="search-icon">
-        <i class="fa fa-search"></i> <!-- Icône loupe de FontAwesome -->
-    </div>
-</div>
+      <div class="shadow" id="shadow2"></div>
+  </section>
+  <img src="{% static 'images/logoGraphique.png' %}" alt="Logo Graphique Page1"
+           class="logoSlogan">
 
+    <section class="nova">
+        <h1> NOVA </h1>
+        <div class="nova-infos">
+            <div class="desc">
+
+            </div>
+            <div class="bot_img">
+                <img src="{% static 'images/call-center-7040784 1.svg' %}" alt="chatbot image description">
+            </div>
+        </div>
+    </section>
+    <section class="education">
+        <div class="education-infos"></div>
+        <img src="{% static 'images/educationIMG.png' %}" alt="Logo Graphique Page2">
+       <!--<div id="lottie-container4" class="lottie-container-education"></div>
+        <script>
+            var animation = lottie.loadAnimation({
+                container: document.getElementById('lottie-container4'),
+                renderer: 'svg',
+                loop: true,
+                autoplay: true,
+                path: "{% static 'json/Payment Done.json' %}"
+            });
+        </script>-->
+    </section>
+    <section class="outils">
+        <h1>OUTILS FINANCIERS</h1>
+        <div class="outils-infos">
+            <div class="info" id="info1">
+                <h2>Simulateur</h2>
+                <h2>Financier Anticipez Vos Finances</h2>
+                <h3>Faites des choix éclairés avec notre simulateur financier. Estimez votre budget, vos économies ou
+                    vos investissements en quelques clics et prenez le contrôle de votre avenir financier dès maintenant.</h3>
+                <div id="lottie-container1" class="lottie-container-outils"></div>
+                <script>
+                    var animation = lottie.loadAnimation({
+                        container: document.getElementById('lottie-container1'),
+                        renderer: 'svg',
+                        loop: true,
+                        autoplay: true,
+                        path: "{% static 'json/Rocket_custom_icon.json' %}"
+                    });
+                </script>
+            </div>
+            <div class="info" id="info2">
+                <h2>Suivi Financier</h2>
+                <h2>Gardez le Contrôle de Votre Argent</h2>
+                <h3>Suivez vos revenus, dépenses et objectifs financiers en temps réel. Avec notre outil de suivi financier, visualisez vos finances en un coup d’œil et optimisez votre gestion au quotidien.</h3>
+                <div id="lottie-container2" class="lottie-container-outils"></div>
+                <script>
+                    var animation = lottie.loadAnimation({
+                        container: document.getElementById('lottie-container2'),
+                        renderer: 'svg',
+                        loop: true,
+                        autoplay: true,
+                        path: "{% static 'json/Compass_custom_icon.json' %}"
+                    });
+                </script>
+            </div>
+            <div class="info" id="info3">
+                <h2>Bourse</h2>
+                <h2>Investissez en Toute Confiance</h2>
+                <h3>Suivez les marchés, analysez les tendances et prenez des décisions éclairées. Avec notre outil Bourse, accédez à des informations en temps réel pour optimiser vos investissements.</h3>
+                <div id="lottie-container3" class="lottie-container-outils"></div>
+                <script>
+                    var animation = lottie.loadAnimation({
+                        container: document.getElementById('lottie-container3'),
+                        renderer: 'svg',
+                        loop: true,
+                        autoplay: true,
+                        path: "{% static 'json/Analytics_custom_icon.json' %}"
+                    });
+                </script>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+
+        <h3>Icons by https://unicornicons.com</h3>
+        <!--
+        <a href="https://iconscout.com/lottie-animations/payment-done" class="text-underline font-size-sm"
+            target="_blank">Payment Done</a> by <a href="https://iconscout.com/contributors/tanjilmah" class="text-underline font-size-sm">Animaio Studio</a> on <a href="https://iconscout.com" class="text-underline font-size-sm">IconScout</a>
+        -->
+        <div class="shadow" id="shadow3"></div>
+    </footer>
+    <section class="copyrights">
+        <h3>© 2025 NOVA. Tous droits réservés.</h3>
+        <h3> Créé par Micheal Gyan, Gabriel-Ngoma Riendeau, Samy Baouche, Mohammed El Ouaabani et Nancy Bechara.</h3>
+    </section>
+
+
+    <script src="{% static "js/app.js" %}"></script>
 </body>
+
 
 </html>
 
