@@ -1,11 +1,29 @@
 html{
     width: 100%;
-    height: 100%;
-    overflow-y: scroll;
-    background-color: white;
 }
-body{
-    overflow-y: hidden;
+.logoSite{
+    .econova-text {
+        color: rgba(0, 0, 0, 0.7);
+    }
+}
+.menu-btn{
+    .btn-line {
+        background: black;
+    }
+}
+.x_active {
+    .btn-line {
+        background: white;
+    }
+}
+.rejoindre{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 1fr;
+    padding: 100px 0;
+    background-color: #f4f4f4;
 }
 .retour{
     position: absolute;
@@ -17,54 +35,75 @@ body{
         cursor: pointer;
     }
 }
-.gris{
-    position: absolute;
+.rejoindre-infos{
+    overflow: hidden;
     width: 100%;
-    height: 400px;
-    background-color: #F0F0F0;
-    z-index: -1;
-    top: 0;
-    left: 0;
-}
-.rejoindre{
-    display: grid;
-    grid-template-columns: 700px 700px;
+    height: 100%;
+    display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%;
-    height: 110vh;
-    overflow: hidden;
-
-    .logo{
+    flex-direction: column;
+    .infos{
+        width: 461px;
+        height: 1fr;
+        background-color: white;
+        display: flex;
+        flex-direction: column;
+        padding: 30px 60px 280px 60px;
+        box-shadow: 4px 0 35.4px rgba(0,0,0,0.5);
+        z-index: 2;
+        h2{
+            padding: 10px;
+            font-size: 15px;
+            letter-spacing: 0.5px;
+            z-index: 3;
+        }
+        h1{
+            font-size: 30px;
+            margin-top: 10px;
+            z-index: 3;
+        }
+    }
+    .imgRejoindre{
+        position: relative;
+        height: 0px;
         width: 100%;
         display: flex;
         justify-content: center;
-        align-items: center;
-        margin-bottom: 50px;
-        transform: translateX(-13px);
-        h2{
-            font-size: 25px;
-            font-weight: 600;
-            color: rgba(0, 0, 0, 0.5);
-            margin-top: 20px;
-        }
-        a img{
-            width: 80px;
-            height: 50px;
-        }
+        align-items: flex-end;
+    }
+    img{
+        position: relative;
+        width: 600px;
+        transform: translateY(40px);
+        z-index: 2;
+    }
+    .shadow{
+        position: absolute;
+        width: 1096px;
+        height: 606px;
+        bottom: 0;
+        background-color: rgba(254, 102, 244, 0.15);
+        z-index: 1;
+        transform: translateY(50%);
+        border-radius: 50%;
+        filter: blur(400px);
     }
 }
-
 .form{
-    width: 100%;
-    height: 100%;
+    background-color: white;
+    width: 700px;
+    height: 650px;
     z-index: 2;
+box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
+    padding: 120px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    transform: translateX(80px);
-    h2{
+    text-align: center;
+    border-radius: 15px;
+    h1{
         font-size: 25px;
         margin-bottom: 20px;
     }
@@ -74,45 +113,41 @@ body{
     form{
         width: 100%;
         display: flex;
-        align-items: flex-start;
+        align-items: center;
+        justify-content: center;
         flex-direction: column;
-
+        h2{
+           align-self: flex-start;
+           font-size: 14px;
+            margin-bottom: 0;
+        }
         div{
-            width: 100%;
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            input:nth-child(1) {
-                margin-right: 10px;
+            input:first-child{
+                margin-right: 5px;
+            }
+            input:last-child{
+                margin-left: 5px;
             }
         }
         input{
             width: 100%;
-            margin: 10px 0;
+            margin: 15px 0;
             padding: 10px 20px;
-            border-radius: 15px;
-            background-color: #ffffff;
+            background-color: rgba(240, 240, 240, 0.8);
             border: none;
             font-family: "Prompt", serif;
             font-weight: 300;
             font-style: normal;
-            border: solid rgba(0, 0, 0, 0.32) 1px;
-        }
-        input::placeholder{
-            font-size: 15px;
-            font-family: "Prompt", serif;
-            font-weight: 300;
-            font-style: normal;
+            border-radius: 10px;
         }
         input[type="submit"]{
             background-color: #FE66C4;
             color: white;
             cursor: pointer;
             transition: 0.2s ease-in-out;
-            border: none;
             margin-top: 30px;
             width: 150px;
-            align-self: center;
         }
         input[type="submit"]:hover{
             background-color: #FE66F4;
@@ -125,29 +160,6 @@ body{
     }
 
 }
-
-
-.rejoindre-image{
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    img{
-        width: 100%;
-        transform: translateX(-80px) scale(1.1);
-    }
-}
-
-.cercle{
-    width: 564px;
-    height: 512px;
-    position: absolute;
-    bottom: -20%;
-    left: 0;
-    z-index: -10;
-}
-
 footer{
     height: 10vh;
     width: 100%;

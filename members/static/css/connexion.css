@@ -95,7 +95,7 @@ html{
     width: 700px;
     height: 550px;
     z-index: 2;
-box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 50px;
+box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
     padding: 120px;
     display: flex;
     flex-direction: column;

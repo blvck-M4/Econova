@@ -21,22 +21,26 @@ def rejoindre(request):
         utilisateur = request.POST['utilisateur']
         mot_de_passe = request.POST['mot_de_passe']
         mot_de_passe2 = request.POST['mot_de_passe2']
-        if mot_de_passe == mot_de_passe2:
-            if User.objects.filter(email=email).exists():
-                messages.info(request, 'Email déjà utilisé')
-                return redirect('rejoindre')
-            elif User.objects.filter(username=utilisateur).exists():
-                messages.info(request, "Nom d'utilisateur déjà utilisé")
-                return redirect('rejoindre')
-            else:
-                user = User.objects.create_user(username=utilisateur, password=mot_de_passe, email=email, first_name=prenom, last_name=nom_de_famille)
-                user.save()
-                if user is not None:
-                    auth.login(request, user)
-                    return redirect('members')
+        if len(mot_de_passe) > 8:
+            if mot_de_passe == mot_de_passe2:
+                if User.objects.filter(email=email).exists():
+                    messages.info(request, 'Email déjà utilisé')
+                    return redirect('rejoindre')
+                elif User.objects.filter(username=utilisateur).exists():
+                    messages.info(request, "Nom d'utilisateur déjà utilisé")
+                    return redirect('rejoindre')
+                else:
+                    user = User.objects.create_user(username=utilisateur, password=mot_de_passe, email=email, first_name=prenom, last_name=nom_de_famille)
+                    user.save()
+                    if user is not None:
+                        auth.login(request, user)
+                        return redirect('members')
 
+            else:
+                messages.info(request, "Les deux mots de passe ne sont pas identiques")
+                return redirect('rejoindre')
         else:
-            messages.info(request, "Les deux mots de passe ne sont pas identiques")
+            messages.info(request, "Mot de passe trop court")
             return redirect('rejoindre')
 
 
