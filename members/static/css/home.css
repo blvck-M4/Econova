@@ -5,6 +5,9 @@ body {
 
 
 /*PAGE DE PRÉSENTATION*/
+.lottie-container-presentation{
+    width: 700px;
+}
 .shadow{
     width: 90vw;
     height: 230px;

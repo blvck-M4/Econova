@@ -50,11 +50,21 @@
         <h1>Votre gestion financière, aussi simple qu'un clic !</h1>
         <a href="connexion"><button class="btn-slogan">Commencer</button></a>
     </div>
+      <div id="lottie-container4" class="lottie-container-presentation"></div>
+                <script>
+                    var animation = lottie.loadAnimation({
+                        container: document.getElementById('lottie-container4'),
+                        renderer: 'svg',
+                        loop: true,
+                        autoplay: true,
+                        path: "{% static 'json/Growth Analysis (2).json' %}"
+                    });
+                </script>
 
       <div class="shadow" id="shadow2"></div>
   </section>
-  <img src="{% static 'images/logoGraphique.png' %}" alt="Logo Graphique Page1"
-           class="logoSlogan">
+  <!--<img src="{% static 'images/logoGraphique.png' %}" alt="Logo Graphique Page1"
+           class="logoSlogan">-->
 
     <section class="nova">
         <h1> NOVA </h1>
@@ -145,11 +155,10 @@
 
     <footer>
 
-        <h3>Icons by https://unicornicons.com</h3>
-        <!--
-        <a href="https://iconscout.com/lottie-animations/payment-done" class="text-underline font-size-sm"
-            target="_blank">Payment Done</a> by <a href="https://iconscout.com/contributors/tanjilmah" class="text-underline font-size-sm">Animaio Studio</a> on <a href="https://iconscout.com" class="text-underline font-size-sm">IconScout</a>
-        -->
+        <div>
+            <h3>Icons by https://unicornicons.com</h3>
+            <a href="https://iconscout.com/lottie-animations/growth-analysis" class="text-underline font-size-sm" target="_blank">Growth Analysis</a> by <a href="https://iconscout.com/contributors/nanoagency" class="text-underline font-size-sm">nanoagency</a> on <a href="https://iconscout.com" class="text-underline font-size-sm">IconScout</a>
+        </div>
         <div class="shadow" id="shadow3"></div>
     </footer>
     <section class="copyrights">
