@@ -54,16 +54,18 @@ body {
     padding: 10px;
     font-size: 65px;
     z-index: 2;
+
     .btn-slogan{
         background: rgb(43,43,43);
         color: white;
         border-radius: 25px;
         font-size: 15px;
-        height: 45px;
-        width: 130px;
+        height: 55px;
+        width: 150px;
         cursor: pointer;
         border: 2px solid white;
         transition: 0.1s ease-in-out;
+
     }
     .btn-slogan:hover{
         background-color: #FE66C4;
@@ -73,45 +75,89 @@ body {
 }
 /*DESCRIPTION CHATBOT*/
 
-.nova{
+.nova {
     height: 100%;
     width: 100%;
     padding: 200px 5vw;
-    h1{
-        font-size: 100px;
-        margin-bottom: 100px;
-        letter-spacing: 3px;
-        animation: nova;
-        animation-timeline: view(30% auto);
-    }
-    .nova-infos{
-        width: 100%;
-        height: 90vh;
-        padding: 100px;
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        justify-content: center;
-        align-items: center;
-        background-color: #212121;
-        border-radius: 25px;
-box-shadow: rgba(16, 16, 28, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(2, 9, 14, 0.35) 0px -2px 6px 0px inset;        animation: chatbot;
-        animation-timeline: view(80% auto);
-        h2{
-            font-size: 20px;
-        }
-    }
+    text-align: center;
 }
+
+.nova h1 {
+    font-size: 100px;
+    margin-bottom: 50px;
+    letter-spacing: 5px;
+    animation: nova;
+    animation-timeline: view(30% auto);
+}
+
+.nova-infos {
+    width: 100%;
+    height: auto;
+    padding: 100px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    background-color: #212121;
+    border-radius: 25px;
+    box-shadow: rgba(16, 16, 28, 0.25) 0px 50px 100px -20px,
+                rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
+                rgba(2, 9, 14, 0.35) 0px -2px 6px 0px inset;
+    animation: chatbot;
+    animation-timeline: view(80% auto);
+}
+
+.description_Nova {
+    color: white;
+    padding-right: 50px;
+}
+
+.description_Nova h2 {
+    font-size: 40px;
+    color: #FFA1DB; /* Rose */
+    margin-bottom: 75px;
+}
+
+.description_Nova h3 {
+    font-size: 18px;
+    line-height: 1.6;
+    color: white;
+}
+
+.chat-btn {
+    background: transparent;
+        color: white;
+        border-radius: 25px;
+        font-size: 18px;
+        height: 50px;
+        width: 200px;
+        cursor: pointer;
+        border: 2px solid white;
+        transition: 0.2s ease-in-out;
+        margin-top: 50px;
+
+}
+
+.chat-btn:hover {
+    background-color: #FE66C4;
+
+}
+
+.bot_img img {
+    max-width: 100%;
+    height: auto;
+}
+
 @keyframes nova {
     from {
         opacity: 0;
-        transform: translateY(100px) translateX(100px) scale(1.5);
+        transform: translateY(100px)  scale(1.5);
     }
     to {
         opacity: 1;
         transform: translateY(0) translateX(0) scale(1);
     }
-
 }
+
 @keyframes chatbot {
     from {
         opacity: 0;
@@ -126,6 +172,7 @@ box-shadow: rgba(16, 16, 28, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 
         transform: translateY(0) scale(1);
     }
 }
+
 
 /*EDUCATION FINANCIERE*/
 .education{
