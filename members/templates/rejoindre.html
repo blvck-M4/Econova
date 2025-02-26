@@ -1,0 +1,50 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Connexion</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/rejoindre.css' %}">
+    <link rel="icon" href="{% static 'images/Logo EcoNova.png' %}">
+</head>
+<body>
+    <a href="/members" class="retour"><img src="{% static 'images/retour.svg' %}" alt=""></a>
+    <section class="rejoindre">
+    <img class="cercle" src="{% static 'images/quart-cercle.svg' %}" alt="Quart de cercle">
+        <div class="form">
+            <div class="logo">
+                  <a href="/members"><img src="{% static 'images/Logo EcoNova.png' %}" alt="Logo ÉcoNova Finance"></a>
+                  <h2>EcoNova</h2>
+            </div>
+            <h2>Créer un compte</h2>
+            <h3>Tu as déjà un compte? <a href="/members/connexion" style="color: #0051FF">Connecte-toi</a></h3>
+            {% for message in messages %}
+                <h3>{{ message }}</h3>
+            {% endfor %}
+
+            <form action="" method="post">
+                {% csrf_token %}
+                <input type="text" name="utilisateur" placeholder="Nom d'utilisateur">
+                <div>
+                    <input type="text" name="prenom" placeholder="Prénom">
+                    <input type="text" name="nom_de_famille" placeholder="Nom de famille">
+                </div>
+                <input type="text" name="email" placeholder="Courriel">
+                <div>
+                    <input type="password" name="mot_de_passe" placeholder="Mot de passe">
+                    <input type="password" name="mot_de_passe2" placeholder="Répète le mot de passe">
+                </div>
+                <input type="submit" value="Nous rejoindre">
+            </form>
+        </div>
+        <div class="rejoindre-image">
+            <img src="{% static 'images/greeting.svg' %}" alt="">
+        </div>
+    </section>
+
+    <footer>
+        <a href="https://iconscout.com/illustrations/business-deal" class="text-underline font-size-sm" target="_blank">business deal</a> by <a href="https://iconscout.com/contributors/delesign" class="text-underline font-size-sm" target="_blank">Delesign Graphics</a>
+    </footer>
+</body>
+</html>
