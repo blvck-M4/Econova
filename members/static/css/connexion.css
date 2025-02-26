@@ -92,8 +92,8 @@ html{
 }
 .form{
     background-color: white;
-    width: 600px;
-    height: 700px;
+    width: 700px;
+    height: 550px;
     z-index: 2;
 box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 50px;
     padding: 120px;
@@ -103,7 +103,7 @@ box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 50px;
     align-items: center;
     text-align: center;
     border-radius: 15px;
-    h2{
+    h1{
         font-size: 25px;
         margin-bottom: 20px;
     }
@@ -125,12 +125,12 @@ box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 50px;
             width: 100%;
             margin: 15px 0;
             padding: 10px 20px;
-            background-color: #F0F0F0;
+            background-color: rgba(240, 240, 240, 0.8);
             border: none;
             font-family: "Prompt", serif;
             font-weight: 300;
             font-style: normal;
-            border-radius: 15px;
+            border-radius: 10px;
         }
         input[type="submit"]{
             background-color: #FE66C4;

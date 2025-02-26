@@ -13,7 +13,7 @@
 <body>
 <header class="header">
       <div class="logoSite">
-          <a href="members"><img src="{% static 'images/Logo EcoNova.png' %}" alt="Logo ÉcoNova Finance"
+          <a href="/"><img src="{% static 'images/Logo EcoNova.png' %}" alt="Logo ÉcoNova Finance"
                                    class="logoSite"></a>
           <h2 class="econova-text">EcoNova</h2>
       </div>
@@ -32,8 +32,8 @@
 </header>
     <section class="connexion">
         <div class="form">
-            <h2>Connecte-toi</h2>
-            <h3>Tu n’as pas encore de compte? <a href="/members/rejoindre" style="color: #0051FF">Crée un compte</a></h3>
+            <h1>Connecte-toi</h1>
+            <h3>Tu n’as pas encore de compte? <a href="rejoindre" style="color: #0051FF">Crée un compte</a></h3>
             {% for message in messages %}
                 <h1>{{ message }}</h1>
             {% endfor %}
@@ -57,6 +57,10 @@
             </div>
             <div class="shadow"></div>
         </div>-->
+    </section>
+    <section class="copyrights">
+        <h3>© 2025 NOVA. Tous droits réservés.</h3>
+        <h3> Créé par Micheal Gyan, Gabriel-Ngoma Riendeau, Samy Baouche, Mohammed El Ouaabani et Nancy Bechara.</h3>
     </section>
 
     <script src="{% static "js/app.js" %}"></script>

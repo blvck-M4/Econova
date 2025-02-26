@@ -9,16 +9,16 @@
     <link rel="icon" href="{% static 'images/Logo EcoNova.png' %}">
 </head>
 <body>
-    <a href="/members" class="retour"><img src="{% static 'images/retour.svg' %}" alt=""></a>
+    <a href="/" class="retour"><img src="{% static 'images/retour.svg' %}" alt=""></a>
     <section class="rejoindre">
     <img class="cercle" src="{% static 'images/quart-cercle.svg' %}" alt="Quart de cercle">
         <div class="form">
             <div class="logo">
-                  <a href="/members"><img src="{% static 'images/Logo EcoNova.png' %}" alt="Logo ÉcoNova Finance"></a>
+                  <a href="/"><img src="{% static 'images/Logo EcoNova.png' %}" alt="Logo ÉcoNova Finance"></a>
                   <h2>EcoNova</h2>
             </div>
             <h2>Créer un compte</h2>
-            <h3>Tu as déjà un compte? <a href="/members/connexion" style="color: #0051FF">Connecte-toi</a></h3>
+            <h3>Tu as déjà un compte? <a href="connexion" style="color: #0051FF">Connecte-toi</a></h3>
             {% for message in messages %}
                 <h3>{{ message }}</h3>
             {% endfor %}

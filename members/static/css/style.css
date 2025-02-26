@@ -185,4 +185,18 @@ h3{
   font-style: normal;
 }
 
-
+.copyrights {
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 30px;
+    background-color: #1b1b1b;
+    color: white;
+    font-size: 15px;
+    font-weight: 200;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
