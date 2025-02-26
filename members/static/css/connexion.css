@@ -1,37 +1,29 @@
 html{
     width: 100%;
-    height: 100vh;
-    overflow-y: hidden;
 }
-    .logo{
-        width: 100%;
-        height: 1fr;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-        margin-bottom: 50px;
-        transform: translateX(-13px);
-        h2{
-            font-size: 25px;
-            font-weight: 600;
-            color: rgba(0, 0, 0, 0.5);
-            margin-top: 20px;
-        }
-        a img{
-            width: 80px;
-            height: 50px;
-        }
+.logoSite{
+    .econova-text {
+        color: rgba(0, 0, 0, 0.7);
     }
+}
+.menu-btn{
+    .btn-line {
+        background: black;
+    }
+}
+.x_active {
+    .btn-line {
+        background: white;
+    }
+}
 .connexion{
-    background: #1b1b1b;
-    display: grid;
-    grid-template-columns: 45% 55%;
+    display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 100vh;
-    overflow-y: scroll;
+    height: 1fr;
+    padding: 100px 0;
+    background-color: #f4f4f4;
 }
 .retour{
     position: absolute;
@@ -100,15 +92,17 @@ html{
 }
 .form{
     background-color: white;
-    width: 100%;
-    height: 100%;
+    width: 600px;
+    height: 700px;
     z-index: 2;
-    box-shadow: 0 4px 35.4px rgba(0,0,0,0.5);
-    padding: 0 80px;
+box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 50px;
+    padding: 120px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    text-align: center;
+    border-radius: 15px;
     h2{
         font-size: 25px;
         margin-bottom: 20px;
@@ -119,27 +113,32 @@ html{
     form{
         width: 100%;
         display: flex;
-        align-items: flex-start;
+        align-items: center;
+        justify-content: center;
         flex-direction: column;
         h2{
-           font-size: 18px;
+           align-self: flex-start;
+           font-size: 14px;
             margin-bottom: 0;
         }
         input{
             width: 100%;
             margin: 15px 0;
-            padding: 20px;
+            padding: 10px 20px;
             background-color: #F0F0F0;
             border: none;
             font-family: "Prompt", serif;
             font-weight: 300;
             font-style: normal;
+            border-radius: 15px;
         }
         input[type="submit"]{
             background-color: #FE66C4;
             color: white;
             cursor: pointer;
             transition: 0.2s ease-in-out;
+            margin-top: 30px;
+            width: 150px;
         }
         input[type="submit"]:hover{
             background-color: #FE66F4;

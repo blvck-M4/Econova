@@ -4,20 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="762bf436-e0f2-48da-9114-9583e32920ed" name="Changes" comment="Page de connexion et d'inscription (html/css)">
-      <change afterPath="$PROJECT_DIR$/members/static/json/Analytics_custom_icon.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/members/static/json/Compass_custom_icon.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/members/static/json/Payment Done.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/members/static/json/Rocket_custom_icon.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/EcoNova.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/EcoNova.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="762bf436-e0f2-48da-9114-9583e32920ed" name="Changes" comment="Animation - Home (CSS)">
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/members/static/css/connexion.css" beforeDir="false" afterPath="$PROJECT_DIR$/members/static/css/connexion.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/members/static/css/home.css" beforeDir="false" afterPath="$PROJECT_DIR$/members/static/css/home.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/members/static/css/rejoindre.css" beforeDir="false" afterPath="$PROJECT_DIR$/members/static/css/rejoindre.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/members/static/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/members/static/css/style.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/members/templates/connexion.html" beforeDir="false" afterPath="$PROJECT_DIR$/members/templates/connexion.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/members/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/members/templates/home.html" afterDir="false" />
     </list>
@@ -70,30 +62,30 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "DefaultHtmlFileTemplate": "HTML File",
-    "Django Server.djangoProject1.executor": "Run",
-    "Python.manage.executor": "Run",
-    "Python.settings.executor": "Run",
-    "Python.urls.executor": "Run",
-    "RunOnceActivity.OpenDjangoStructureViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "master",
-    "last_opened_file_path": "C:/Users/gabri/PycharmProjects/Econova/members/static/json",
-    "list.type.of.created.stylesheet": "CSS",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable",
-    "ts.external.directory.path": "C:\\Program Files\\JetBrains\\PyCharm 2024.3.2\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;Django Server.djangoProject1.executor&quot;: &quot;Run&quot;,
+    &quot;Python.manage.executor&quot;: &quot;Run&quot;,
+    &quot;Python.settings.executor&quot;: &quot;Run&quot;,
+    &quot;Python.urls.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenDjangoStructureViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/gabri/PycharmProjects/Econova/members/static/json&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Program Files\\JetBrains\\PyCharm 2024.3.2\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\gabri\PycharmProjects\Econova\members\static\json" />
@@ -186,7 +178,9 @@
       <workItem from="1738638279722" duration="5434000" />
       <workItem from="1738775742096" duration="94000" />
       <workItem from="1738783232604" duration="1362000" />
-      <workItem from="1740281359638" duration="70428000" />
+      <workItem from="1740281359638" duration="71620000" />
+      <workItem from="1740531394021" duration="5825000" />
+      <workItem from="1740540152989" duration="7203000" />
     </task>
     <task id="LOCAL-00001" summary="Read me/  LICENSE.txt">
       <option name="closed" value="true" />
@@ -276,7 +270,31 @@
       <option name="project" value="LOCAL" />
       <updated>1740505220835</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Page de connexion, d'inscription (html/css) et ajout de fichiers json">
+      <option name="closed" value="true" />
+      <created>1740517315074</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1740517315074</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Home - menu (js/css)">
+      <option name="closed" value="true" />
+      <created>1740536448551</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1740536448551</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Animation - Home (CSS)">
+      <option name="closed" value="true" />
+      <created>1740588087287</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1740588087287</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -301,7 +319,10 @@
     <MESSAGE value="Page de connexion et section outils de home html/css" />
     <MESSAGE value="Page de connexion et d'inscription (Base de données)" />
     <MESSAGE value="Page de connexion et d'inscription (html/css)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Page de connexion et d'inscription (html/css)" />
+    <MESSAGE value="Page de connexion, d'inscription (html/css) et ajout de fichiers json" />
+    <MESSAGE value="Home - menu (js/css)" />
+    <MESSAGE value="Animation - Home (CSS)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Animation - Home (CSS)" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/EcoNova$urls.coverage" NAME="urls Coverage Results" MODIFIED="1738637946628" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/djangoProject1" />
