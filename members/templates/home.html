@@ -31,11 +31,15 @@
                 <a href="deconnexion"><button class="deconnexion">Se déconnecter</button></a>
             {% endif %}
             <div class="menu-btn">
-                <div class="btn-line"></div>
-                <div class="btn-line"></div>
-                <div class="btn-line"></div>
+                <div class="btn-line" id="btn-line1"></div>
+                <div class="btn-line" id="btn-line2"></div>
+                <div class="btn-line" id="btn-line3"></div>
             </div>
         </div>
+
+    <div class="menu-slide">
+                <h2>Bienvenue {{ user.username }}</h2>
+    </div>
 
   </header>
   <div class="chatbot">
@@ -45,7 +49,6 @@
     <div class="slogan">
         <h1>Votre gestion financière, aussi simple qu'un clic !</h1>
         <a href="connexion"><button class="btn-slogan">Commencer</button></a>
-        <h2>Bienvenue {{ user.username }}</h2>
     </div>
 
       <div class="shadow" id="shadow2"></div>
@@ -79,6 +82,7 @@
         </script>-->
     </section>
     <section class="outils">
+        <h1>OUTILS FINANCIERS</h1>
         <div class="outils-infos">
             <div class="info" id="info1">
                 <h2>Simulateur</h2>
@@ -142,7 +146,11 @@
         <h3>© 2025 NOVA. Tous droits réservés.</h3>
         <h3> Créé par Micheal Gyan, Gabriel-Ngoma Riendeau, Samy Baouche, Mohammed El Ouaabani et Nancy Bechara.</h3>
     </section>
+
+
+    <script src="{% static "js/app.js" %}"></script>
 </body>
+
 
 </html>
 

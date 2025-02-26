@@ -78,7 +78,7 @@ body {
     width: 100%;
     padding: 200px 5vw;
     h1{
-        font-size: 70px;
+        font-size: 100px;
         margin-bottom: 100px;
         letter-spacing: 3px;
         animation: nova;
@@ -190,7 +190,18 @@ box-shadow: rgba(16, 16, 28, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 
 }
 /*OUTILS FINANCIERS*/
 .outils{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
     padding: 250px 0;
+    h1:nth-child(1){
+        margin-bottom: 100px;
+        font-size: 100px;
+        animation: outils-animation;
+        animation-timeline: view(60% auto);
+    }
     .outils-infos{
         height: 600px;
         display: flex;
@@ -216,10 +227,23 @@ box-shadow: rgba(16, 16, 28, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 
                 line-height: 25px;
                 color: #FFA1DB;
             }
+            h2:nth-child(1){
+                margin-bottom: 10px;
+            }
             h3{
                 margin-top: 20px;
             }
         }
+    }
+}
+@keyframes outils-animation {
+    from {
+        opacity: 0;
+        transform: translateY(100px) scale(0.3);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
     }
 }
 .lottie-container-outils{
@@ -245,19 +269,15 @@ box-shadow: rgba(16, 16, 28, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 
     z-index: -1;
     transform: scale(1.01);
     border-radius: 15px;
-    transition: 0.5s ease-in-out;
     background-image: conic-gradient(from var(--angle), transparent 70%, #FE66C4);
 }
 #info1:hover::before, #info1:hover::after{
-    transition: 0.5s ease-in-out;
     animation: 3s spin1 linear infinite;
 }
 #info2:hover::before, #info2:hover::after{
-    transition: 0.5s ease-in-out;
     animation: 3s spin2 linear infinite;
 }
 #info3:hover::before, #info3:hover::after{
-    transition: 0.5s ease-in-out;
     animation: 3s spin3 linear infinite;
 }
 .info:hover{
