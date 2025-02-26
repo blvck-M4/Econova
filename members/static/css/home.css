@@ -164,7 +164,6 @@ box-shadow: rgba(16, 16, 28, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 
         height: 480px;
         align-self: flex-end;
         animation: autoShow;
-        animation-timeline: view(80% auto);
 
     }
 }
