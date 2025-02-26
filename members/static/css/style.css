@@ -47,6 +47,7 @@ html {
 }
 /*HEADER*/
 .header {
+    background: #1b1b1b;
     display: grid;
     grid-template-columns: 1fr 1fr;
     justify-content: center;
