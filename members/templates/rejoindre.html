@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link rel="stylesheet" href="{% static 'css/rejoindre.css' %}">
     <link rel="icon" href="{% static 'images/Logo EcoNova.png' %}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.12.2/lottie.min.js"></script>
 </head>
 <body>
 <header class="header">
@@ -35,18 +36,28 @@
             {% for message in messages %}
                 <h3>{{ message }}</h3>
             {% endfor %}
+            <div id="lottie-container5" class="lottie-container-signup"></div>
+            <script>
+                var animation = lottie.loadAnimation({
+                    container: document.getElementById('lottie-container5'),
+                    renderer: 'svg',
+                    loop: true,
+                    autoplay: true,
+                    path: "{% static 'json/Sign up 1.json' %}"
+                });
+            </script>
 
             <form action="" method="post">
                 {% csrf_token %}
-                <input type="text" name="utilisateur" placeholder="Nom d'utilisateur">
+                <input type="text" name="utilisateur" placeholder="Nom d'utilisateur" required>
                 <div>
-                    <input type="text" name="prenom" placeholder="Prénom">
-                    <input type="text" name="nom_de_famille" placeholder="Nom de famille">
+                    <input type="text" name="prenom" placeholder="Prénom" required>
+                    <input type="text" name="nom_de_famille" placeholder="Nom de famille" required>
                 </div>
-                <input type="text" name="email" placeholder="Courriel">
+                <input type="text" name="email" placeholder="Courriel" required>
                 <div>
-                    <input type="password" name="mot_de_passe" placeholder="Mot de passe">
-                    <input type="password" name="mot_de_passe2" placeholder="Répète le mot de passe">
+                    <input type="password" name="mot_de_passe" placeholder="Mot de passe" required>
+                    <input type="password" name="mot_de_passe2" placeholder="Répète le mot de passe" required>
                 </div>
                 <input type="submit" value="Nous rejoindre">
             </form>

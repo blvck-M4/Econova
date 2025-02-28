@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link rel="stylesheet" href="{% static 'css/questionnaire.css' %}">
     <link rel="icon" href="{% static 'images/Logo EcoNova.png' %}">
-    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.12.2/lottie.min.js"></script>
 </head>
 
 <body>
@@ -32,12 +32,24 @@
 </header>
     <section class="questionnaire">
         <div class="questions">
-            <h2>Bienvenue, {{ user.username }}, dans le questionnaire de profil financier !</h2>
-            <h3>Afin de vous offrir des conseils personnalisés et adaptés à vos besoins, nous vous demandons de
-                répondre à quelques questions simples. Cela nous permettra de mieux comprendre votre situation financière, vos objectifs et votre tolérance au risque.
-                <br>Vos réponses sont confidentielles et utilisées uniquement pour améliorer votre expérience sur notre
-                     plateforme.
-                <br>Prenez votre temps et répondez honnêtement. Nous vous guiderons tout au long du processus.</h3>
+            <h1>Bienvenue, {{ user.username }}, dans le questionnaire de profil financier !</h1>
+            <div class="form-animation">
+                <div id="lottie-container7" class="lottie-container-form"></div>
+                <script>
+                    var animation = lottie.loadAnimation({
+                        container: document.getElementById('lottie-container7'),
+                        renderer: 'svg',
+                        loop: true,
+                        autoplay: true,
+                        path: "{% static 'json/form.json' %}"
+                    });
+                </script>
+            </div>
+            <h2>Quel est votre profil financier ?</h2>
+            <h3 class="infos-questionnaire">Avant de définir vos objectifs financiers, il est important de
+            comprendre votre situation
+                et vos
+                attentes. Cela comprend votre capacité à accepter des risques, votre horizon de placement et vos objectifs financiers. Remplissez ce questionnaire pour mieux comprendre votre profil financier, ainsi que les types d’investissements qui vous conviennent le mieux. Cela servira également de point de départ pour des discussions avec un conseiller financier.</h3>
 
             <form action="" method="post">
                 {% csrf_token %}
@@ -55,12 +67,23 @@
                     <div><input type="radio" name="age" value="55-64"><h3>55-64</h3></div>
                     <div><input type="radio" name="age" value="65+"><h3>65+</h3></div>
                 </div>
-
                 <div class="question">
                     <h2>Quel est votre sexe?</h2>
                     <div><input type="radio" name="sexe" value="Homme"><h3>Homme</h3></div>
                     <div><input type="radio" name="sexe" value="Femme"><h3>Femme</h3></div>
                     <div><input type="radio" name="sexe" value="Autre"><h3>Autre</h3></div>
+
+                </div>
+                <div class="question">
+                    <h2>Termes et conditions</h2>
+                    <div><input type="checkbox" name="conditions" required><h3>En soumettant ce questionnaire,
+                    vous
+                    acceptez nos
+                    termes
+                    et
+                    conditions ainsi que
+                    notre
+                        politique de confidentialité.</h3></div>
 
                     <input type="submit" value="Envoyer">
                 </div>

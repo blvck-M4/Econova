@@ -7,7 +7,8 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link rel="stylesheet" href="{% static 'css/connexion.css' %}">
     <link rel="icon" href="{% static 'images/Logo EcoNova.png' %}">
-    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.12.2/lottie.min.js"></script>
+
 </head>
 
 <body>
@@ -37,7 +38,16 @@
             {% for message in messages %}
                 <h1>{{ message }}</h1>
             {% endfor %}
-
+            <div id="lottie-container6" class="lottie-container-signin"></div>
+            <script>
+                var animation = lottie.loadAnimation({
+                    container: document.getElementById('lottie-container6'),
+                    renderer: 'svg',
+                    loop: true,
+                    autoplay: true,
+                    path: "{% static 'json/Sign in.json' %}"
+                });
+            </script>
             <form action="" method="post">
                 {% csrf_token %}
                 <h2>Nom d'utilisateur</h2>

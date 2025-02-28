@@ -5,11 +5,15 @@ from django.contrib import messages
 from django.http import HttpResponse
 from django.template import loader
 from .models import Member
+
+conditions_termes = False;
 def members(request):
     urilisateurs = User.objects.all().values()
+    member = Member.objects.all().values()
     template = loader.get_template('home.html')
     context = {
-        'urilisateurs': urilisateurs
+        'urilisateurs': urilisateurs,
+        'conditions_termes': conditions_termes,
     }
     return HttpResponse(template.render(context, request))
 
@@ -71,4 +75,18 @@ def questionnaire(request):
     context = {
         'urilisateurs': urilisateurs
     }
+    global conditions_termes
+
+    if request.method == 'POST':
+        conditions = request.POST['conditions']
+        if conditions == 'on':
+            user = request.user
+            member = Member(utilisateur=user)
+            member.save()
+            print(member)
+            conditions_termes = True;
+            return redirect('members')
+        else:
+            conditions_termes = False;
+            return redirect('questionnaire')
     return HttpResponse(template.render(context, request))
