@@ -7,5 +7,6 @@ urlpatterns = [
     path('rejoindre', views.rejoindre, name='rejoindre'),
 
     path('deconnexion', views.deconnexion, name='deconnexion'),
+    path('questionnaire', views.questionnaire, name='questionnaire'),
 
 ]

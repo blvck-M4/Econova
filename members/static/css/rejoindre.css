@@ -123,6 +123,7 @@ box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
         }
         div{
             display: flex;
+            width: 100%;
             input:first-child{
                 margin-right: 5px;
             }
@@ -131,6 +132,7 @@ box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
             }
         }
         input{
+            font-size: 13px;
             width: 100%;
             margin: 15px 0;
             padding: 10px 20px;

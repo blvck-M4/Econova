@@ -1,0 +1,81 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Questionnaire</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/questionnaire.css' %}">
+    <link rel="icon" href="{% static 'images/Logo EcoNova.png' %}">
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+</head>
+
+<body>
+<header class="header">
+      <div class="logoSite">
+          <a href="/"><img src="{% static 'images/Logo EcoNova.png' %}" alt="Logo ÉcoNova Finance"
+                                   class="logoSite"></a>
+          <h2 class="econova-text">EcoNova</h2>
+      </div>
+
+        <div class="menu">
+            <div class="menu-btn">
+                <div class="btn-line" id="btn-line1"></div>
+                <div class="btn-line" id="btn-line2"></div>
+                <div class="btn-line" id="btn-line3"></div>
+            </div>
+        </div>
+
+    <div class="menu-slide">
+        <h2>Bienvenue {{ user.username }}</h2>
+    </div>
+</header>
+    <section class="questionnaire">
+        <div class="questions">
+            <h2>Bienvenue, {{ user.username }}, dans le questionnaire de profil financier !</h2>
+            <h3>Afin de vous offrir des conseils personnalisés et adaptés à vos besoins, nous vous demandons de
+                répondre à quelques questions simples. Cela nous permettra de mieux comprendre votre situation financière, vos objectifs et votre tolérance au risque.
+                <br>Vos réponses sont confidentielles et utilisées uniquement pour améliorer votre expérience sur notre
+                     plateforme.
+                <br>Prenez votre temps et répondez honnêtement. Nous vous guiderons tout au long du processus.</h3>
+
+            <form action="" method="post">
+                {% csrf_token %}
+                <div class="question visible">
+                    <h2>Entrer votre date de naissance</h2>
+                    <input type="date" name="date_de_naissance" placeholder="Date de naissance">
+                </div>
+
+                <div class="question" >
+                    <h2>Quel est votre âge?</h2>
+                    <div><input type="radio" name="age" value="18-24"><h3>18-24</h3></div>
+                    <div><input type="radio" name="age" value="25-34"><h3>25-34</h3></div>
+                    <div><input type="radio" name="age" value="35-44"><h3>35-44</h3></div>
+                    <div><input type="radio" name="age" value="45-54"><h3>45-54</h3></div>
+                    <div><input type="radio" name="age" value="55-64"><h3>55-64</h3></div>
+                    <div><input type="radio" name="age" value="65+"><h3>65+</h3></div>
+                </div>
+
+                <div class="question">
+                    <h2>Quel est votre sexe?</h2>
+                    <div><input type="radio" name="sexe" value="Homme"><h3>Homme</h3></div>
+                    <div><input type="radio" name="sexe" value="Femme"><h3>Femme</h3></div>
+                    <div><input type="radio" name="sexe" value="Autre"><h3>Autre</h3></div>
+
+                    <input type="submit" value="Envoyer">
+                </div>
+            </form>
+            <div class="nav-questionnaire">
+                <button class="retour">Retour</button>
+                <button class="suivant">Suivant</button>
+            </div>
+        </div>
+    </section>
+    <section class="copyrights">
+        <h3>© 2025 NOVA. Tous droits réservés.</h3>
+        <h3> Créé par Micheal Gyan, Gabriel-Ngoma Riendeau, Samy Baouche, Mohammed El Ouaabani et Nancy Bechara.</h3>
+    </section>
+
+    <script src="{% static "js/app.js" %}"></script>
+</body>
+</html>

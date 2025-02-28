@@ -34,7 +34,7 @@ def rejoindre(request):
                     user.save()
                     if user is not None:
                         auth.login(request, user)
-                        return redirect('members')
+                        return redirect('questionnaire')
 
             else:
                 messages.info(request, "Les deux mots de passe ne sont pas identiques")
@@ -64,3 +64,11 @@ def connexion(request):
 def deconnexion(request):
     auth.logout(request)
     return redirect('members')
+
+def questionnaire(request):
+    urilisateurs = User.objects.all().values()
+    template = loader.get_template('questionnaire.html')
+    context = {
+        'urilisateurs': urilisateurs
+    }
+    return HttpResponse(template.render(context, request))
