@@ -8,5 +8,6 @@ urlpatterns = [
 
     path('deconnexion', views.deconnexion, name='deconnexion'),
     path('questionnaire', views.questionnaire, name='questionnaire'),
+    path('profil', views.profil, name='profil'),
 
 ]

@@ -1,0 +1,65 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>ÉcoNova Finance</title>
+    <link rel="stylesheet" href="{% static 'css/profil.css' %}">
+    <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+    <link rel="icon" href="{% static 'images/Logo EcoNova.png' %}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.12.2/lottie.min.js"></script>
+</head>
+<body>
+    <!--Menu à gauche-->
+    <section class="menu">
+        <div class="logoSite">
+          <a href=""><img src="{% static 'images/Logo EcoNova.png' %}" alt="Logo ÉcoNova Finance"
+                                   class="logoSite"></a>
+          <h2 class="econova-text">EcoNova</h2>
+        </div>
+        <div class="onglets">
+            <a href="" class="page-principale active onglet">
+                <h2>Page principale</h2>
+            </a>
+            <div class="onglet-outils onglet">
+                <h2>Outils Financiers</h2>
+            </div>
+
+            <div class="outils" id="outils">
+                <a href="" class="onglet-suivi onglet">
+                    <h2>Suivi</h2>
+                </a>
+                <a href="" class="onglet-bourse onglet">
+                    <h2>Bourse</h2>
+                </a>
+                <a href="" class="onglet-simulation onglet">
+                    <h2>Simulation</h2>
+                </a>
+                <a href="" class="onglet-nova onglet">
+                    <h2>NOVA</h2>
+                </a>
+            </div>
+        </div>
+        <a href="" class="onglet-dictionnaire onglet">
+            <h2>Dictionnaire Financier</h2>
+        </a>
+        <a href="" class="onglet-parametres onglet">
+            <h2>Paramètres</h2>
+        </a>
+    </section>
+
+    <section class="profil tableau-bord">
+        <h1>Test</h1>
+    </section>
+
+        <script>
+        console.log("ok");
+        onglet_outils = document.querySelector('.onglet-outils');
+        outils = document.querySelector('.outils');
+        onglet_outils.addEventListener('click', ()=>{
+            outils.classList.toggle("visible");
+            console.log("ok");
+        });
+    </script>
+</body>
+</html>

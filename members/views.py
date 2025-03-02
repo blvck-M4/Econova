@@ -9,7 +9,6 @@ from .models import Member
 conditions_termes = False;
 def members(request):
     urilisateurs = User.objects.all().values()
-    member = Member.objects.all().values()
     template = loader.get_template('home.html')
     context = {
         'urilisateurs': urilisateurs,
@@ -89,4 +88,13 @@ def questionnaire(request):
         else:
             conditions_termes = False;
             return redirect('questionnaire')
+    return HttpResponse(template.render(context, request))
+
+def profil(request):
+    template = loader.get_template('profil.html')
+    members = Member.objects.all().values()
+    context = {
+        'members': members
+    }
+
     return HttpResponse(template.render(context, request))
