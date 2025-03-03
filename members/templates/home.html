@@ -18,14 +18,13 @@
 
   <header class="header">
       <div class="logoSite">
-          <a href=""><img src="{% static 'images/Logo EcoNova.png' %}" alt="Logo ÉcoNova Finance"
-                                   class="logoSite"></a>
+          <a href=""><img src="{% static 'images/Logo EcoNova.png' %}" alt="Logo ÉcoNova Finance" class="logoSite"></a>
           <h2 class="econova-text">EcoNova</h2>
       </div>
 
         <div class="menu">
             {% if not user.is_authenticated %}
-            	<a href="connexion"><button class="connexion">Se connecter</button></a>
+            	<a href="connexion"><button class="connexion">Connexion</button></a>
                 <a href="rejoindre"><button class="rejoindre">Rejoindre</button></a>
             {% else %}
                 <a href="deconnexion"><button class="deconnexion">Se déconnecter</button></a>
@@ -42,6 +41,8 @@
     </div>
 
   </header>
+
+
   <div class="chatbot">
       <img src="{% static 'images/chatbot2.png' %}" alt="Logo ÉcoNova Finance">
   </div>
@@ -87,20 +88,33 @@
             </div>
         </div>
     </section>
-    <section class="education">
-        <div class="education-infos"></div>
-        <img src="{% static 'images/educationIMG.png' %}" alt="Logo Graphique Page2">
-       <!--<div id="lottie-container4" class="lottie-container-education"></div>
-        <script>
-            var animation = lottie.loadAnimation({
-                container: document.getElementById('lottie-container4'),
-                renderer: 'svg',
-                loop: true,
-                autoplay: true,
-                path: "{% static 'json/Payment Done.json' %}"
-            });
-        </script>-->
-    </section>
+
+
+   <section class="education">
+    <div class="education-infos">
+        <div class="education-text">
+            <h2>ÉDUCATION FINANCIÈRE</h2>
+            <h3>
+                Améliorez votre compréhension de l’argent avec des ressources claires et accessibles.
+                De la gestion budgétaire aux stratégies d’investissement, notre espace Éducation Financière
+                vous guide pour faire des choix éclairés et sécuriser votre avenir financier.
+            </h3>
+        </div>
+    </div>
+    <img src="{% static 'images/educationIMG.png' %}" alt="Logo Graphique Page2">
+    <!--<div id="lottie-container4" class="lottie-container-education"></div>
+    <script>
+        var animation = lottie.loadAnimation({
+            container: document.getElementById('lottie-container4'),
+            renderer: 'svg',
+            loop: true,
+            autoplay: true,
+            path: "{% static 'json/Payment Done.json' %}"
+        });
+    </script>-->
+</section>
+
+
     <section class="outils">
         <h1>OUTILS FINANCIERS</h1>
         <div class="outils-infos">
@@ -153,17 +167,46 @@
         </div>
     </section>
 
-    <footer>
+     <footer>
 
-        <div>
-            <h3>Icons by https://unicornicons.com</h3>
-            <a href="https://iconscout.com/lottie-animations/growth-analysis" class="text-underline font-size-sm" target="_blank">Growth Analysis</a> by <a href="https://iconscout.com/contributors/nanoagency" class="text-underline font-size-sm">nanoagency</a> on <a href="https://iconscout.com" class="text-underline font-size-sm">IconScout</a>
-        </div>
-        <div class="shadow" id="shadow3"></div>
-    </footer>
+    <div class="footer-logoNova">
+        <a href=""><img src="{% static 'images/Logo EcoNova.png' %}" alt="Logo ÉcoNova Finance" class="logoSite"></a>
+
+        <h1>NOVA – Votre gestion financière, aussi simple qu'un clic !</h1>
+
+        <h3>Avec NOVA, Naviguez facilement entre outils de suivi et simulations, Optimisez vos finances,
+            développez une Vision stratégique et profitez d’un Accompagnement personnalisé.
+            Budget, épargne, investissement : maîtrisez votre avenir financier en toute confiance.</h3>
+    </div>
+    <!-- Liste verticale alignée à droite -->
+    <div class="liste-onglets">
+        <ul>
+            <h2>Simulateur</h2>
+            <h2>Suivi Financier</h2>
+            <h2>Bourse</h2>
+            <h2>Nova</h2>
+            <h3>Éducation Financière</h3>
+
+            <button class="connexion">Connexion</button>
+        </ul>
+    </div>
+
+    <div class="shadow" id="shadow3"></div>
+</footer>
+
+
     <section class="copyrights">
         <h3>© 2025 NOVA. Tous droits réservés.</h3>
         <h3> Créé par Micheal Gyan, Gabriel-Ngoma Riendeau, Samy Baouche, Mohammed El Ouaabani et Nancy Bechara.</h3>
+
+
+        <div class="sources-animation" >
+        <h3>Icons by https://unicornicons.com</h3>
+            <a href="https://iconscout.com/lottie-animations/growth-analysis" class="text-underline font-size-sm"
+               target="_blank">Growth Analysis</a> by <a href="https://iconscout.com/contributors/nanoagency" class="text-underline font-size-sm">
+            nanoagency</a> on <a href="https://iconscout.com" class="text-underline font-size-sm">IconScout</a>
+        </div>
+
     </section>
 
 
