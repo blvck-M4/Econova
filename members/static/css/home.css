@@ -20,7 +20,7 @@ body {
 }
 .presentation {
     display: flex;
-    justify-content: left;
+    justify-content: center;
     align-items: center;
     position: relative;
     height: 110vh;
@@ -68,6 +68,7 @@ body {
         cursor: pointer;
         border: 2px solid white;
         transition: 0.1s ease-in-out;
+        margin-top: 100px;
 
     }
     .btn-slogan:hover{
@@ -195,10 +196,25 @@ body {
         border-radius: 25px;
         animation: autoSlide;
         animation-timeline: view(70% auto);
+
         h2{
-            font-size: 30px;
+            font-size: 40px;
+            margin-bottom: 50px;
+            margin-top: -75px;
+            margin-left: 150px;
+            color: black;
+        }
+        h3{
+            font-size: 24px;
+            line-height: 1.6;
+            text-align: center;
+            max-width: 800px;
+            padding: 0 20px;
+            margin-right: 400px;
+            color: black;
         }
     }
+
     .lottie-container-education{
         right: 0;
         position: absolute;
@@ -237,6 +253,9 @@ body {
         transform: translateX(-85px) translateY(0) scale(1);
     }
 }
+
+
+
 /*OUTILS FINANCIERS*/
 .outils{
     display: flex;
@@ -361,6 +380,8 @@ body {
     filter: blur(1rem);
     opacity: 0.5;
 }
+
+
 /*FOOTER*/
 footer {
     display: grid;
@@ -394,4 +415,61 @@ footer {
     justify-content: center;
     align-items: center;
     text-align: center;
+    line-height: 1.6;
+    a {
+        color: #FE66F4;
+        text-decoration: none;
+    }
+    h3 {
+        margin-top: 10px;
+    }
+    .source-animation {
+        margin-top: 25px;
+    }
+}
+
+
+.footer-logoNova .logoSite {
+    width: 250px;
+    height: auto;
+    margin-bottom: 20px;
+    margin-left: 280px;
+}
+
+.footer-logoNova h1 {
+    margin-top: 50px;
+    text-align: center;
+    font-size: 30px;
+
+}
+
+.footer-logoNova h3 {
+    margin-top: 30px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.liste-onglets {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+    margin-top: 30px;
+    margin-left: 50px;
+    font-size: 28px;
+    line-height: 2.5;
+}
+.connexion {
+    padding: 10px 20px; /* Ajoute de l'espace à l'intérieur du bouton */
+    border: 2px solid white; /* Bordure blanche */
+    background-color: #FE66F4; /* Fond rose */
+    color: white; /* Texte blanc */
+    font-size: 16px; /* Taille de la police */
+    cursor: pointer; /* Change le curseur en main */
+    border-radius: 25px; /* Arrondir les bords */
+    transition: background-color 0.3s ease; /* Transition douce pour l'effet de survol */
+}
+
+.connexion:hover {
+    background-color: rgb(43, 43, 43); /* Couleur de fond sur hover */
 }
