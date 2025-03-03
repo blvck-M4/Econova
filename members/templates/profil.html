@@ -4,13 +4,49 @@
 <head>
     <meta charset="UTF-8">
     <title>ÉcoNova Finance</title>
-    <link rel="stylesheet" href="{% static 'css/profil.css' %}">
     <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+    <link rel="stylesheet" href="{% static 'css/profil.css' %}">
     <link rel="icon" href="{% static 'images/Logo EcoNova.png' %}">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.12.2/lottie.min.js"></script>
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 </head>
+{% for member in members %}
+{% if member.utilisateur == user.username %}
 <body>
     <!--Menu à gauche-->
+    <lottie-player class="icon-profile" id="icon-profile" src="{% static 'json/dashboard-icon/User_custom_icon.json' %}"
+                       hover></lottie-player>
+    <div class="menu-profil menu-hide" id="menu-profil">
+        <div class="menu-profil-section1">
+            <img src="{% static 'images/dashboard-icon/profil-icon.svg' %}" alt="Icon de profil">
+            <h2>
+                {{ member.utilisateur }}
+            </h2>
+            <h3>{{ member.email }}</h3>
+
+        </div>
+        <div class="menu-profil-section2">
+            <a href="profil" class="">
+                <img src="{% static 'images/dashboard-icon/profil.svg' %}" alt="Icon de profil">
+                <h2>Mon profil</h2>
+            </a>
+            <a href="" class="">
+                <img src="{% static 'images/dashboard-icon/parametre.svg' %}" alt="Icon de parametre">
+                <h2>Paramètres</h2>
+            </a>
+            <a href="" class="">
+                <img src="{% static 'images/dashboard-icon/moon.svg' %}" alt="Icon de mode sombre">
+                <h2>Mode sombre</h2>
+            </a>
+        </div>
+        <div class="menu-profil-section3">
+            <a href="deconnexion" class="">
+                <img src="{% static 'images/dashboard-icon/logout-svgrepo-com 1.svg' %}" alt="Icon de déconnexion">
+                <h2>Se déconnecter</h2>
+            </a>
+        </div>
+    </div>
+
     <section class="menu">
         <div class="logoSite">
           <a href=""><img src="{% static 'images/Logo EcoNova.png' %}" alt="Logo ÉcoNova Finance"
@@ -18,11 +54,14 @@
           <h2 class="econova-text">EcoNova</h2>
         </div>
         <div class="onglets">
-            <a href="" class="page-principale active onglet">
+            <a href="" class="page-principale onglet">
+                <lottie-player src="{% static 'json/dashboard-icon/Home_custom_icon.json' %}" hover></lottie-player>
                 <h2>Page principale</h2>
             </a>
             <div class="onglet-outils onglet">
-                <h2>Outils Financiers</h2>
+                <lottie-player src="{% static 'json/dashboard-icon/Wrench_custom_icon.json' %}" hover></lottie-player>
+                <h2 class="titre-outil">Outils Financiers</h2>
+                <img src="{% static 'images/dashboard-icon/triangle.svg' %}" class="triangle"></img>
             </div>
 
             <div class="outils" id="outils">
@@ -41,25 +80,113 @@
             </div>
         </div>
         <a href="" class="onglet-dictionnaire onglet">
+            <lottie-player src="{% static 'json/dashboard-icon/Arrow left_custom_icon.json' %}" hover></lottie-player>
             <h2>Dictionnaire Financier</h2>
         </a>
         <a href="" class="onglet-parametres onglet">
+            <lottie-player src="{% static 'json/dashboard-icon/Settings_custom_icon.json' %}" hover></lottie-player>
             <h2>Paramètres</h2>
         </a>
     </section>
 
-    <section class="profil tableau-bord">
-        <h1>Test</h1>
+    <section class="tableau-bord">
+        <div class="logo-profil">
+            <div class="logo-icon"><img src="{% static 'images/dashboard-icon/profil-icon.svg' %}" alt="Icon de profil"></div>
+            <div class="modifier-logoIcon">
+                <lottie-player src="{% static 'json/dashboard-icon/Pencil_custom_icon.json' %}" hover></lottie-player>
+                <h2>Modifier</h2>
+            </div>
+            <h1>
+                {{ member.utilisateur }}
+            </h1>
+            <a href="" class="modifier-utilisateur"><h3>Changer le nom d'utilisateur</h3></a>
+        </div>
+        <div id="animation-profil" class="animation-profil"></div>
+        <script>
+            var animation = lottie.loadAnimation({
+                container: document.getElementById('animation-profil'),
+                renderer: 'svg',
+                loop: true,
+                autoplay: true,
+                path: "{% static 'json/Animation-profil.json' %}"
+            });
+        </script>
+
+        <div class="infos1">
+            <div class="nom">
+                <h1>Nom Complet</h1>
+                <h2>{{ member.prenom }} {{ member.nom_de_famille }}</h2>
+                <a href=""><h3>Changer votre nom</h3></a>
+            </div>
+            <div class="email">
+                <h1>Courriel</h1>
+                <h2>{{ member.email }}</h2>
+                <a href=""><h3>Changer le courriel</h3></a>
+            </div>
+            <div class="date-naissance">
+                <h1>Date de naissance</h1>
+                <h2>12/01/1999</h2>
+                <a href=""><h3>Changer le courriel</h3></a>
+            </div>
+            <div class="adresse">
+                <h1>Adresse</h1>
+                <h2>1010 rue Pierrot, H5K 7G9, Montréal, Québec</h2>
+                <a href=""><h3>Changer l'adresse</h3></a>
+            </div>
+            <div class="telephone">
+                <h1>Numéro de téléphone</h1>
+                <h2>999-999-9999</h2>
+                <a href=""><h3>Changer la date de naissance</h3></a>
+            </div>
+            <div class="sexe">
+                <h1>Genre</h1>
+                <h2>Non défini</h2>
+                <a href=""><h3>Changer le genre</h3></a>
+            </div>
+        </div>
+        <div class="mot-de-passe">
+            <h1>Mot de passe</h1>
+            <a href=""><h3>Changer le mot de passe</h3></a>
+        </div>
+        <div class="infos2">
+            <div class="profil-financier">
+                <h1>Profil financier</h1>
+                <h2>Conservateur</h2>
+                <a href=""><h3>Refaire le questionnaire</h3></a>
+            </div>
+            <div class="supprimer">
+                <h1>Compte</h1>
+                <a href=""><h3>Supprimer le compte</h3></a>
+            </div>
+        </div>
     </section>
 
-        <script>
+    <script>
         console.log("ok");
         onglet_outils = document.querySelector('.onglet-outils');
         outils = document.querySelector('.outils');
+        triangle = document.querySelector('.triangle');
         onglet_outils.addEventListener('click', ()=>{
             outils.classList.toggle("visible");
-            console.log("ok");
+            triangle.classList.toggle("rotate");
         });
+
+        icon_profile = document.querySelector('.icon-profile');
+        menu_profil = document.querySelector('.menu-profil');
+
+        icon_profile.addEventListener('click', ()=>{
+                menu_profil.classList.toggle("menu-hide");
+                console.log("ok");
+        });
+
+        document.addEventListener('click', e=>{
+            if(!menu_profil.contains(e.target) && icon_profile != e.target){
+                menu_profil.classList.add("menu-hide");
+            }
+        });
+
     </script>
 </body>
+{% endif %}
+{% endfor %}
 </html>

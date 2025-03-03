@@ -92,8 +92,10 @@ def questionnaire(request):
 
 def profil(request):
     template = loader.get_template('profil.html')
-    members = Member.objects.all().values()
+    urilisateurs = User.objects.all().values()
+    members = Member.objects.all()
     context = {
+        'urilisateurs': urilisateurs,
         'members': members
     }
 

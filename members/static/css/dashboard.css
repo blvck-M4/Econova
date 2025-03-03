@@ -6,6 +6,9 @@
   box-sizing: border-box;
   font-size: 100%;
 }
+html{
+    background-color: #f4f4f4;
+}
 h1{
     font-family: "Ubuntu", serif;
     font-weight: bold;
@@ -22,7 +25,96 @@ h3, input::placeholder{
   font-weight: 300;
   font-style: normal;
 }
+.icon-profile{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 10;
+    background-color: #FE66F4;
+    cursor: pointer;
+}
+.menu-profil{
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    width: 280px;
+    height: 430px;
+    background-color: white;
+    z-index: 10;
+    top: 60px;
+    right: 60px;
+    border-radius: 15px;
+    padding: 10px;
+    transition: 0.2s ease-in-out;
 
+    .menu-profil-section1{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 165px;
+        width: 100%;
+        border: 1px solid #E0E0E0;
+        border-radius: 15px;
+        img{
+            width: 70px;
+            height: 70px;
+            margin-bottom: 20px;
+            filter: invert(95%) sepia(0%) saturate(19%) hue-rotate(124deg) brightness(95%) contrast(84%);
+        }
+    }
+    .menu-profil-section2{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        margin-top: 20px;
+        a:hover{
+            background-color: #E0E0E0;
+        }
+    }
+    .menu-profil-section3{
+        display: flex;
+        align-items: center;
+        width: 100%;
+        margin-top: 40px;
+        border-top: 1px solid #E0E0E0;
+        border-bottom: 1px solid #E0E0E0;
+    }
+    a{
+        display: flex;
+        align-items: center;
+        justify-content: start;
+        width: 100%;
+        height: 1fr;
+        padding: 10px;
+        transition: 0.2s ease-in-out;
+        text-decoration: none;
+        color: black;
+        img{
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+        }
+    }
+    h2{
+        font-size: 15px;
+    }
+    h3{
+        font-size: 12px;
+    }
+
+}
+.menu-hide{
+    transform: translateY(-100%) translateX(100%) scale(0);
+    opacity: 0;
+    transition: 0.2s ease-in-out;
+}
 .menu{
     width: 300px;
     background-color: #212121;
@@ -48,13 +140,19 @@ h3, input::placeholder{
         width: 100%;
         height: 70px;
         align-items: center;
-        font-size: 15px;
+        justify-content: left;
+        font-size: 12px;
         padding: 20px;
         color: white;
         cursor: pointer;
         transition: 0.2s ease-in-out;
         &:hover{
             background-color: #373737;
+        }
+        lottie-player{
+            width: 40px;
+            height: 40px;
+            margin-right: 10px;
         }
     }
 
@@ -74,7 +172,22 @@ h3, input::placeholder{
         flex-direction: column;
         align-items: center;
         width: 100%;
+        padding-left: 20px;
     }
+    .onglet-outils{
+        display: flex;
+        align-items: center;
+        h2{
+            margin-right: 15px;
+        }
+        .triangle{
+            width: 7px;
+        }
+    }
+    .rotate{
+        transform: rotate(180deg);
+    }
+
     .onglet-parametres{
         justify-self: flex-end;
 
@@ -98,6 +211,6 @@ h3, input::placeholder{
 .tableau-bord{
     padding-left: 300px;
     width: 100%;
-    height: 100vh;
-    background-color: #f4f4f4;
+    height: 1fr;
+    color: black;
 }

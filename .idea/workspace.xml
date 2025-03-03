@@ -4,20 +4,28 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="762bf436-e0f2-48da-9114-9583e32920ed" name="Changes" comment="html et css&#10;-Gabriel">
-      <change afterPath="$PROJECT_DIR$/members/static/css/questionnaire.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/members/templates/questionnaire.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/EcoNova.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/EcoNova.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="762bf436-e0f2-48da-9114-9583e32920ed" name="Changes" comment="Dashboard et profil html, css&#10;-Gabriel">
+      <change afterPath="$PROJECT_DIR$/members/static/images/dashboard-icon/logout-svgrepo-com 1.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/members/static/images/dashboard-icon/moon.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/members/static/images/dashboard-icon/parametre.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/members/static/images/dashboard-icon/profil-icon.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/members/static/images/dashboard-icon/profil.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/members/static/images/dashboard-icon/triangle.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/members/static/json/Animation-profil.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/members/static/json/dashboard-icon/Arrow left_custom_icon.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/members/static/json/dashboard-icon/Home_custom_icon.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/members/static/json/dashboard-icon/Pencil_custom_icon.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/members/static/json/dashboard-icon/Settings_custom_icon.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/members/static/json/dashboard-icon/User_custom_icon.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/members/static/json/dashboard-icon/Wrench_custom_icon.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/members/static/json/profil.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/members/static/css/rejoindre.css" beforeDir="false" afterPath="$PROJECT_DIR$/members/static/css/rejoindre.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/members/static/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/members/static/css/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/members/static/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/members/static/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/members/static/css/dashboard.css" beforeDir="false" afterPath="$PROJECT_DIR$/members/static/css/dashboard.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/members/static/css/profil.css" beforeDir="false" afterPath="$PROJECT_DIR$/members/static/css/profil.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/members/static/images/profil.svg" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/members/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/members/templates/home.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/members/templates/rejoindre.html" beforeDir="false" afterPath="$PROJECT_DIR$/members/templates/rejoindre.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/members/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/members/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/members/templates/profil.html" beforeDir="false" afterPath="$PROJECT_DIR$/members/templates/profil.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/members/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/members/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -91,11 +99,11 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\gabri\OneDrive\Documents\GitHub\Econova\members\static\images\dashboard-icon" />
+      <recent name="C:\Users\gabri\OneDrive\Documents\GitHub\Econova\members\static\json\dashboard-icon" />
+      <recent name="C:\Users\gabri\OneDrive\Documents\GitHub\Econova\members\static\images" />
       <recent name="C:\Users\gabri\OneDrive\Documents\GitHub\Econova\members\static\json" />
       <recent name="C:\Users\gabri\PycharmProjects\Econova\members\static\image" />
-      <recent name="C:\Users\gabri\PycharmProjects\Econova\members\static\css" />
-      <recent name="C:\Users\gabri\PycharmProjects\Econova\members\static" />
-      <recent name="C:\Users\6251532\OneDrive - Collège de Bois-de-Boulogne\djangoProject1" />
     </key>
   </component>
   <component name="RunManager">
@@ -151,7 +159,7 @@
       <workItem from="1738638279722" duration="5434000" />
       <workItem from="1738775742096" duration="94000" />
       <workItem from="1738783232604" duration="1362000" />
-      <workItem from="1740599955996" duration="19261000" />
+      <workItem from="1740599955996" duration="74603000" />
     </task>
     <task id="LOCAL-00001" summary="Read me/  LICENSE.txt">
       <option name="closed" value="true" />
@@ -233,7 +241,31 @@
       <option name="project" value="LOCAL" />
       <updated>1740606795571</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Questionnaire&#10;-Gabriel">
+      <option name="closed" value="true" />
+      <created>1740714706082</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1740714706082</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Questionnaire&#10;-Gabriel">
+      <option name="closed" value="true" />
+      <created>1740781875591</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1740781875591</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Dashboard et profil html, css&#10;-Gabriel">
+      <option name="closed" value="true" />
+      <created>1740926017668</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1740926017668</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -255,7 +287,9 @@
     <MESSAGE value="Templates" />
     <MESSAGE value="Fichier html et css setup&#10;-Gabriel" />
     <MESSAGE value="html et css&#10;-Gabriel" />
-    <option name="LAST_COMMIT_MESSAGE" value="html et css&#10;-Gabriel" />
+    <MESSAGE value="Questionnaire&#10;-Gabriel" />
+    <MESSAGE value="Dashboard et profil html, css&#10;-Gabriel" />
+    <option name="LAST_COMMIT_MESSAGE" value="Dashboard et profil html, css&#10;-Gabriel" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/EcoNova$urls.coverage" NAME="urls Coverage Results" MODIFIED="1738637946628" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/djangoProject1" />
