@@ -13,7 +13,7 @@
 {% for member in members %}
 {% if member.utilisateur == user.username %}
 <body>
-    <!--Menu à gauche-->
+    <!--Menu du bouton en haut à droite-->
     <lottie-player class="icon-profile" id="icon-profile" src="{% static 'json/dashboard-icon/User_custom_icon.json' %}"
                        hover></lottie-player>
     <div class="menu-profil menu-hide" id="menu-profil">
@@ -47,9 +47,10 @@
         </div>
     </div>
 
+<!--Menu à gauche-->
     <section class="menu">
         <div class="logoSite">
-          <a href=""><img src="{% static 'images/Logo EcoNova.png' %}" alt="Logo ÉcoNova Finance"
+          <a href="/"><img src="{% static 'images/Logo EcoNova.png' %}" alt="Logo ÉcoNova Finance"
                                    class="logoSite"></a>
           <h2 class="econova-text">EcoNova</h2>
         </div>
@@ -89,6 +90,7 @@
         </a>
     </section>
 
+    <!--Tableau de bord (SECTION DU MILIEU)-->
     <section class="tableau-bord">
         <div class="logo-profil">
             <div class="logo-icon"><img src="{% static 'images/dashboard-icon/profil-icon.svg' %}" alt="Icon de profil"></div>
@@ -161,6 +163,7 @@
         </div>
     </section>
 
+    <!--Javascript de la page-->
     <script>
         console.log("ok");
         onglet_outils = document.querySelector('.onglet-outils');

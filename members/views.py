@@ -84,7 +84,7 @@ def questionnaire(request):
             member.save()
             print(member)
             conditions_termes = True;
-            return redirect('members')
+            return redirect('profil')
         else:
             conditions_termes = False;
             return redirect('questionnaire')
