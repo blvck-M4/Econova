@@ -1,3 +1,4 @@
+//Afficher les onglets des outils financiers
 onglet_outils = document.querySelector('.onglet-outils');
 outils = document.querySelector('.outils');
 triangle = document.querySelector('.triangle');
@@ -6,6 +7,7 @@ onglet_outils.addEventListener('click', ()=>{
     triangle.classList.toggle("rotate");
 });
 
+//Afficher le menu du profil
 icon_profile = document.querySelector('.icon-profile');
 menu_profil = document.querySelector('.menu-profil');
 
@@ -21,7 +23,7 @@ document.addEventListener('click', e=>{
 
 
 
-
+//Dans la page profil, afficher la page pour modifier l'information sélectionné
 document.addEventListener("DOMContentLoaded", () => {
     const input1 = document.getElementById('input1');
     const input2 = document.getElementById('input2');

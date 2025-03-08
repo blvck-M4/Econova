@@ -1,29 +1,52 @@
 html{
     background-color: white;
 }
+
+.chat-box::-webkit-scrollbar {
+        width: 13px;
+}
+
+.chat-box::-webkit-scrollbar-track {
+        border-radius: 10px;
+        background-color: transparent;
+        border: none;
+}
+ .chat-box::-webkit-scrollbar-thumb {
+         border-radius: 10px;
+         border: 3px solid transparent;
+         background-clip: content-box;
+         background-color: #dfdfdf;
+ }
 .chat-box {
         height: 500px;
         width: 100%;
-        padding: 10px;
+        padding: 15px;
         overflow: auto;
         display: none;
 }
+
 .bot_visibilité{
         display: flex;
         flex-direction: column;
+
 }
 .user-message {
         width: fit-content;
         min-width: 300px;
+        max-width: 80%;
         align-self: flex-end;
         padding: 10px;
         background-color: #F1F1F1;
         border-radius: 10px;
         margin-bottom: 20px;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        white-space: normal;
 }
 .bot-message {
         text-align: left;
         width: 80%;
+        margin-bottom: 20px;
 }
 .bienvenue{
         display: flex;
@@ -47,7 +70,7 @@ html{
         display: none;
 }
 .chatbot{
-        padding: 100px 100px 100px 400px;
+        padding: 100px 100px 0px 400px;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -58,6 +81,7 @@ html{
 
 
 .message-utilisateur{
+        transform: translateY(-15px);
         width: 600px;
         padding: 10px;
         background-color: #F1F1F1;

@@ -12,9 +12,17 @@ import os
 from google import genai
 from google.genai import types
 from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
 
 
+@csrf_exempt
 def reponseBot(request):
+    historique = request.session.get('historique', [])
+    if user_logged_in:
+        user = request.user
+        utilisateur = user.username
+    else:
+        utilisateur = 'anonyme'
     if request.method == "POST":
         user_message = request.POST.get("message")
         client = genai.Client(
@@ -22,13 +30,12 @@ def reponseBot(request):
         )
 
         model = "gemini-2.0-flash"
+        historique.append({"role": "user", "text": user_message})
         contents = [
-            types.Content(
-                role="user",
-                parts=[
-                    types.Part.from_text(text=user_message),
-                ],
-            ),
+            types.Content(role=message["role"] if message["role"] == "user" else "model", parts=[types.Part.from_text(
+                text=message["text"])])
+            for message in historique
+
         ]
         generate_content_config = types.GenerateContentConfig(
             temperature=1,
@@ -60,7 +67,11 @@ def reponseBot(request):
             response_mime_type="text/plain",
             system_instruction=[
                 types.Part.from_text(text="""Tu es NOVA, un conseiller financier virtuel intelligent conçu pour 
-                accompagner les utilisateurs d’EcoNova dans la gestion et l’optimisation de leurs finances personnelles. Propulsé par l’intelligence artificielle, NOVA analyse les habitudes financières des utilisateurs et leur propose des stratégies adaptées à leur profil et à leurs objectifs d’investissement."""),
+                accompagner """+utilisateur+""", un utilisateur d’EcoNova dans la gestion et l’optimisation de ses 
+                finances personnelles. Propulsé par l’intelligence artificielle, NOVA analyse les habitudes financières des utilisateurs et 
+                leur propose des stratégies adaptées à leur profil et à leurs objectifs d’investissement. Ne donne 
+                pas des réponses trop longues (plus de 500 mots) à part si c'est nécessaire. Quand une 
+                question ne fait pas de sens répond avec de l'humour."""),
             ],
         )
         reponse = ""
@@ -69,7 +80,9 @@ def reponseBot(request):
             contents=contents,
             config=generate_content_config,
         ):
-            reponse += chunk.text +" "
+            reponse += chunk.text
+        historique.append({"role": "model", "text": reponse})
+        request.session['historique'] = historique
         return JsonResponse({"response": reponse})
 
 def members(request):
@@ -196,7 +209,6 @@ def profil(request):
                     if user is not None:
                         auth.login(request, user)
                         return redirect('tableau-bord/profil')
-                    print(user.password)
                 user.save()
                 member.save()
         return redirect('profil')
