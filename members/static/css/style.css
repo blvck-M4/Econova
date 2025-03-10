@@ -290,6 +290,23 @@ html {
     }
     .logoSite{
         justify-self: flex-end;
+        .econova-text{
+            color: white;
+        }
+    }
+}
+.liste-onglets {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    list-style: none;
+    margin-left: 150px;
+    font-size: 15px;
+    line-height: 2.5;
+
+    a {
+        text-decoration: none;
+        color: white;
     }
 }
 .x_active{

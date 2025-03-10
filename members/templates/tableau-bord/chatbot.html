@@ -3,7 +3,7 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Nova</title>
+    <title>ÉcoNova Finance</title>
     <link rel="stylesheet" href="{% static 'css/tableau-bord/dashboard.css' %}">
     <link rel="stylesheet" href="{% static 'css/tableau-bord/chatbot.css' %}">
     <link rel="icon" href="{% static 'images/Logo EcoNova.png' %}">
@@ -142,7 +142,14 @@ N’hésite pas à me poser toutes tes questions, je suis là pour t’aider !</
                     chat_box.appendChild(message_element_erreur)
                 }
             })
+            scrollToBottom()
 
+        }
+        function scrollToBottom() {
+            let chatBox = document.getElementById("chat-box");
+            setTimeout(() => {
+                chatBox.scrollTop = chatBox.scrollHeight;
+            }, 1100);
         }
 
         function enter(){

@@ -71,7 +71,8 @@ def reponseBot(request):
                 finances personnelles. Propulsé par l’intelligence artificielle, NOVA analyse les habitudes financières des utilisateurs et 
                 leur propose des stratégies adaptées à leur profil et à leurs objectifs d’investissement. Ne donne 
                 pas des réponses trop longues (plus de 500 mots) à part si c'est nécessaire. Quand une 
-                question ne fait pas de sens répond avec de l'humour."""),
+                question ne fait pas de sens répond avec de l'humour. Répond avec des points numérotés quand c'est 
+                nécessaire et laisse des lignes entre différent point."""),
             ],
         )
         reponse = ""
