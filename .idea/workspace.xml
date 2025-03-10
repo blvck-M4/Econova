@@ -5,27 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="762bf436-e0f2-48da-9114-9583e32920ed" name="Changes" comment="Dashboard et profil html, css&#10;-Gabriel">
-      <change afterPath="$PROJECT_DIR$/members/static/images/dashboard-icon/logout-svgrepo-com 1.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/members/static/images/dashboard-icon/moon.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/members/static/images/dashboard-icon/parametre.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/members/static/images/dashboard-icon/profil-icon.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/members/static/images/dashboard-icon/profil.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/members/static/images/dashboard-icon/triangle.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/members/static/json/Animation-profil.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/members/static/json/dashboard-icon/Arrow left_custom_icon.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/members/static/json/dashboard-icon/Home_custom_icon.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/members/static/json/dashboard-icon/Pencil_custom_icon.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/members/static/json/dashboard-icon/Settings_custom_icon.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/members/static/json/dashboard-icon/User_custom_icon.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/members/static/json/dashboard-icon/Wrench_custom_icon.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/members/static/json/profil.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/members/static/css/bourse.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/members/templates/bourse.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/members/static/css/dashboard.css" beforeDir="false" afterPath="$PROJECT_DIR$/members/static/css/dashboard.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/members/static/css/profil.css" beforeDir="false" afterPath="$PROJECT_DIR$/members/static/css/profil.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/members/static/images/profil.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/members/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/members/templates/home.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/members/templates/profil.html" beforeDir="false" afterPath="$PROJECT_DIR$/members/templates/profil.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/djangoProject1/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/djangoProject1/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/members/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/members/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/members/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/members/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -48,7 +33,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="master" />
+        <entry key="$PROJECT_DIR$" value="Gabriel" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -62,7 +47,7 @@
   <component name="GithubPullRequestsUISettings"><![CDATA[{
   "selectedUrlAndAccountId": {
     "url": "https://github.com/blvck-M4/Econova.git",
-    "accountId": "02121a2b-30c6-4b1e-8cb0-c56f58d98129"
+    "accountId": "09798d79-c37a-480f-9329-b756aaeed9cc"
   }
 }]]></component>
   <component name="ProjectColorInfo">{
@@ -74,29 +59,29 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "DefaultHtmlFileTemplate": "HTML File",
-    "Django Server.djangoProject1.executor": "Run",
-    "Python.manage.executor": "Run",
-    "Python.settings.executor": "Run",
-    "Python.urls.executor": "Run",
-    "RunOnceActivity.OpenDjangoStructureViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "Gabriel",
-    "last_opened_file_path": "C:/Users/gabri/PycharmProjects/Econova",
-    "list.type.of.created.stylesheet": "CSS",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "org.jetbrains.plugins.github.ui.GithubSettingsConfigurable",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;Django Server.djangoProject1.executor&quot;: &quot;Run&quot;,
+    &quot;Python.manage.executor&quot;: &quot;Run&quot;,
+    &quot;Python.settings.executor&quot;: &quot;Run&quot;,
+    &quot;Python.urls.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenDjangoStructureViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Samy&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/gabri/PycharmProjects/Econova&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;org.jetbrains.plugins.github.ui.GithubSettingsConfigurable&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\gabri\OneDrive\Documents\GitHub\Econova\members\static\images\dashboard-icon" />
@@ -117,7 +102,7 @@
         <env name="DJANGO_SETTINGS_MODULE" value="djangoProject1.settings" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="SDK_NAME" value="Python 3.13 (DjangoProject1)" />
+      <option name="SDK_NAME" value="Python 3.13 (Econova)" />
       <option name="WORKING_DIRECTORY" value="" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
@@ -160,6 +145,7 @@
       <workItem from="1738775742096" duration="94000" />
       <workItem from="1738783232604" duration="1362000" />
       <workItem from="1740599955996" duration="74603000" />
+      <workItem from="1741296447977" duration="411000" />
     </task>
     <task id="LOCAL-00001" summary="Read me/  LICENSE.txt">
       <option name="closed" value="true" />
