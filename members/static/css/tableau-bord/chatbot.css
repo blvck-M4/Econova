@@ -23,6 +23,7 @@ html{
         padding: 15px;
         overflow: auto;
         display: none;
+        padding-bottom: 150px;
 }
 
 .bot_visibilité{

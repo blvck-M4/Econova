@@ -3,13 +3,14 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>ÉcoNova Finance</title>
+    <title>Bourse - Recherche D'Actions</title>
     <link rel="stylesheet" href="{% static 'css/tableau-bord/dashboard.css' %}">
     <link rel="stylesheet" href="{% static 'css/tableau-bord/chatbot.css' %}">
+    <link rel="stylesheet" href="{% static 'css/tableau-bord/bourse.css' %}">
     <link rel="icon" href="{% static 'images/Logo EcoNova.png' %}">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.12.2/lottie.min.js"></script>
     <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
 <!--Menu du profil (bouton en haut à droite)-->
@@ -68,7 +69,7 @@
                 <a href="" class="onglet-suivi onglet">
                     <h2>Suivi</h2>
                 </a>
-                <a href="bourse" class="onglet-bourse onglet">
+                <a href="" class="onglet-bourse onglet">
                     <h2>Bourse</h2>
                 </a>
                 <a href="" class="onglet-simulation onglet">
@@ -88,88 +89,67 @@
             <h2>Paramètres</h2>
         </a>
     </section>
+    <section class="tableau-bord bourse">
+        <nav>
+            <a href="{% url 'bourse' %}" class="active">Bourse</a>
+        </nav>
 
-    <section class="tableau-bord chatbot">
+        <div class="container">
+            <h1> Recherche d'actions</h1>
 
-        <div class="bienvenue" id="page-bienvenue">
-            <h1>Bonjour {{ user.username }}, je suis Nova, ton assistant IA personnalisé !</h1>
-            <h2>Je suis ton assistant financier intelligent, là pour t’aider à gérer ton argent, booster tes investissements, et te donner des conseils qui collent à tes projets. Que tu cherches à suivre tes dépenses, optimiser tes économies ou prévoir ton avenir financier, je suis là pour ça !
-N’hésite pas à me poser toutes tes questions, je suis là pour t’aider !</h2>
-        </div>
-        <div class="chat-box" id="chat-box"></div>
+            <!-- Formulaire de recherche -->
+            <form method="GET" action="{% url 'bourse' %}">
+                <input type="text" name="symbol" placeholder="Ex: AAPL, TSLA, MSFT..." required>
+                <button type="submit"> Rechercher</button>
+            </form>
 
-        <div class="message-utilisateur">
-            <textarea onclick="enter()" type="text" id="user-input" placeholder="Pose ta question ici ..." ></textarea>
-            <button id="envoyer-message" onclick="envoyerMessage()"><img src="{% static 'images/dashboard-icon/Arrow right.svg' %}"></button>
+            <!-- Affichage des informations de l'action -->
+            {% if stock_data %}
+                <div class="stock-info">
+                    <h2>{{ stock_data.name }} ({{ stock_data.symbol }})</h2>
+                    <p><strong>Dernier prix :</strong> ${{ stock_data.last_price }}</p>
+                    <p class="{% if stock_data.change > 0 %}positive{% else %}negative{% endif %}">
+                        <strong>Variation :</strong> {{ stock_data.change }} ({{ stock_data.percent_change }}%)
+                    </p>
+                </div>
+
+                <!-- Graphique des prix -->
+                <div class="chart-container">
+                    <canvas id="stockChart"></canvas>
+                </div>
+            {% endif %}
         </div>
     </section>
 
     <script>
-        function envoyerMessage(){
-            page_bienvenue = document.getElementById('page-bienvenue')
-            /*Zone du chat*/
-            chat_box = document.getElementById('chat-box')
-            /*Message de l'utilisateur et du bot*/
-            message_element_utilisateur = document.createElement("h2")
-            message_element_utilisateur.classList.add("user-message")
-            message_element_bot = document.createElement("h2")
-            message_element_bot.classList.add("bot-message")
-            /*Message d'erreur*/
-            message_element_erreur = document.createElement("h2")
-            message_element_erreur.innerHTML = "Erreur"
+        {% if stock_data and stock_data.prices %}
+            var labels = {{ stock_data.dates|safe }};
+            var prices = {{ stock_data.prices|safe }};
 
-            /*Envoyer le message de l'utilisateur dans la zone de chat*/
-            message_utilisateur = document.getElementById('user-input').value
-            if (message_utilisateur.trim() ==='') return;
-
-            message_element_utilisateur.innerHTML = message_utilisateur
-            chat_box.appendChild(message_element_utilisateur)
-            document.getElementById('user-input').value = ""
-
-            /*Faire disparaitre la page de bienvenue*/
-            page_bienvenue.classList.add('disparait')
-            chat_box.classList.add('bot_visibilité')
-
-            let loader = document.createElement("loader");
-            loader.ael
-            loader.classList.add("load-visible");
-    chat_box.appendChild(loader);
-            /*Envoyer la réponse du bot dans la zone de chat*/
-            $.ajax({
-                type: 'POST',
-                url: 'reponseBot',
-                data: {message: message_utilisateur, csrfmiddlewaretoken: '{{ csrf_token }}'},
-                success: function (reponse){
-                    loader.remove()
-                    message_element_bot.innerHTML = reponse.response
-                    chat_box.appendChild(message_element_bot)
+            var ctx = document.getElementById('stockChart').getContext('2d');
+            var stockChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Prix ($)',
+                        data: prices,
+                        borderColor: '#FF4F8B',
+                        backgroundColor: 'rgba(255, 79, 139, 0.2)',
+                        borderWidth: 2,
+                        fill: true
+                    }]
                 },
-                error: function (){
-                    chat_box.appendChild(message_element_erreur)
-                }
-            })
-            scrollToBottom()
-
-        }
-        function scrollToBottom() {
-            let chatBox = document.getElementById("chat-box");
-            setTimeout(() => {
-                chatBox.scrollTo({
-                  top: chatBox.scrollHeight,
-                  behavior: "smooth"
-                });
-            }, 100);
-        }
-
-        function enter(){
-            document.getElementById("user-input").addEventListener("keyup", function(event) {
-                event.preventDefault();
-                if (event.keyCode === 13) {
-                    document.getElementById("envoyer-message").click();
-                    console.log('test')
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: { grid: { color: '#555' } },
+                        y: { grid: { color: '#555' } }
+                    }
                 }
             });
-        }
+        {% endif %}
     </script>
     <script src="{% static 'js/tableau-bord.js' %}"></script>
 

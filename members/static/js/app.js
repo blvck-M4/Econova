@@ -61,8 +61,11 @@ function envoyerMessage(){
 function scrollToBottom() {
     let chatBox = document.getElementById("chat-box");
     setTimeout(() => {
-        chatBox.scrollTop = chatBox.scrollHeight;
-    }, 1100);
+        chatBox.scrollTo({
+          top: chatBox.scrollHeight,
+          behavior: "smooth"
+        });
+    }, 100);
 }
 function enter(){
     document.getElementById("user-input").addEventListener("keyup", function(event) {

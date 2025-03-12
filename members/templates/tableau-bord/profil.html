@@ -11,7 +11,7 @@
     <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 </head>
 <body>
-    <!--Menu du bouton en haut à droite-->
+    <!--Menu du profil (bouton en haut à droite)-->
     <lottie-player class="icon-profile" id="icon-profile" src="{% static 'json/dashboard-icon/User_custom_icon.json' %}"
                        hover></lottie-player>
     <div class="menu-profil menu-hide" id="menu-profil">
@@ -38,7 +38,7 @@
             </a>
         </div>
         <div class="menu-profil-section3">
-            <a href="deconnexion" class="">
+            <a href="/deconnexion" class="">
                 <img src="{% static 'images/dashboard-icon/logout-svgrepo-com 1.svg' %}" alt="Icon de déconnexion">
                 <h2>Se déconnecter</h2>
             </a>
@@ -67,7 +67,7 @@
                 <a href="" class="onglet-suivi onglet">
                     <h2>Suivi</h2>
                 </a>
-                <a href="" class="onglet-bourse onglet">
+                <a href="bourse" class="onglet-bourse onglet">
                     <h2>Bourse</h2>
                 </a>
                 <a href="" class="onglet-simulation onglet">

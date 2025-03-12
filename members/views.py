@@ -5,86 +5,24 @@ from django.contrib import messages
 from django.http import HttpResponse
 from django.template import loader
 from .models import Member
+from django.conf import settings
+import requests
 conditions_termes = False
-from dotenv import load_dotenv
-load_dotenv()
-import os
-from google import genai
-from google.genai import types
+
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
-
+from .services import nova_ai
 
 @csrf_exempt
 def reponseBot(request):
-    historique = request.session.get('historique', [])
     if user_logged_in:
         user = request.user
         utilisateur = user.username
     else:
         utilisateur = 'anonyme'
-    if request.method == "POST":
-        user_message = request.POST.get("message")
-        client = genai.Client(
-            api_key=os.getenv("GEMINI_API_KEY"),
-        )
 
-        model = "gemini-2.0-flash"
-        historique.append({"role": "user", "text": user_message})
-        contents = [
-            types.Content(role=message["role"] if message["role"] == "user" else "model", parts=[types.Part.from_text(
-                text=message["text"])])
-            for message in historique
-
-        ]
-        generate_content_config = types.GenerateContentConfig(
-            temperature=1,
-            top_p=0.95,
-            top_k=64,
-            max_output_tokens=8192,
-            safety_settings=[
-                types.SafetySetting(
-                    category="HARM_CATEGORY_HARASSMENT",
-                    threshold="BLOCK_ONLY_HIGH",  # Block few
-                ),
-                types.SafetySetting(
-                    category="HARM_CATEGORY_HATE_SPEECH",
-                    threshold="BLOCK_ONLY_HIGH",  # Block few
-                ),
-                types.SafetySetting(
-                    category="HARM_CATEGORY_SEXUALLY_EXPLICIT",
-                    threshold="BLOCK_ONLY_HIGH",  # Block few
-                ),
-                types.SafetySetting(
-                    category="HARM_CATEGORY_DANGEROUS_CONTENT",
-                    threshold="BLOCK_ONLY_HIGH",  # Block few
-                ),
-                types.SafetySetting(
-                    category="HARM_CATEGORY_CIVIC_INTEGRITY",
-                    threshold="BLOCK_ONLY_HIGH",  # Block few
-                ),
-            ],
-            response_mime_type="text/plain",
-            system_instruction=[
-                types.Part.from_text(text="""Tu es NOVA, un conseiller financier virtuel intelligent conçu pour 
-                accompagner """+utilisateur+""", un utilisateur d’EcoNova dans la gestion et l’optimisation de ses 
-                finances personnelles. Propulsé par l’intelligence artificielle, NOVA analyse les habitudes financières des utilisateurs et 
-                leur propose des stratégies adaptées à leur profil et à leurs objectifs d’investissement. Ne donne 
-                pas des réponses trop longues (plus de 500 mots) à part si c'est nécessaire. Quand une 
-                question ne fait pas de sens répond avec de l'humour. Répond avec des points numérotés quand c'est 
-                nécessaire et laisse des lignes entre différent point."""),
-            ],
-        )
-        reponse = ""
-        for chunk in client.models.generate_content_stream(
-            model=model,
-            contents=contents,
-            config=generate_content_config,
-        ):
-            reponse += chunk.text
-        historique.append({"role": "model", "text": reponse})
-        request.session['historique'] = historique
-        return JsonResponse({"response": reponse})
+    reponse = nova_ai.reponseBot(request, utilisateur)
+    return JsonResponse({"response": reponse})
 
 def members(request):
     urilisateurs = User.objects.all().values()
@@ -224,6 +162,40 @@ def chatbot(request):
     }
     return render(request, 'tableau-bord/chatbot.html', context)
 
+# Clé API Alpha Vantage (ajoute ta clé API dans settings.py)
+ALPHA_VANTAGE_API_KEY = settings.ALPHA_VANTAGE_API_KEY
+def bourse(request):
+    stock_data = None  # Par défaut, pas de données
 
+    if 'symbol' in request.GET:
+        symbol = request.GET['symbol'].upper()
 
+        # Récupération des données depuis Alpha Vantage
+        url = f"https://www.alphavantage.co/query"
+        params = {
+            "function": "TIME_SERIES_DAILY",
+            "symbol": symbol,
+            "apikey": ALPHA_VANTAGE_API_KEY,
+            "outputsize": "compact"
+        }
+
+        response = requests.get(url, params=params)
+        data = response.json()
+
+        if "Time Series (Daily)" in data:
+            time_series = data["Time Series (Daily)"]
+            dates = list(time_series.keys())[:30]  # Récupère les 30 derniers jours
+            prices = [float(time_series[date]["4. close"]) for date in dates]
+
+            stock_data = {
+                "symbol": symbol,
+                "name": symbol,  # Alpha Vantage n'a pas de champ 'nom', mais tu peux le compléter
+                "last_price": prices[0],  # Dernier prix
+                "change": round(prices[0] - prices[1], 2),
+                "percent_change": round(((prices[0] - prices[1]) / prices[1]) * 100, 2),
+                "dates": dates[::-1],  # Inverser pour afficher dans le bon ordre
+                "prices": prices[::-1]
+            }
+
+    return render(request, "tableau-bord/bourse.html", {"stock_data": stock_data})
 
