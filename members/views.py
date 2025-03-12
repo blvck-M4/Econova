@@ -11,7 +11,7 @@ conditions_termes = False
 
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
-from .services import nova_ai
+from .services import nova_ai, bourse_data
 
 @csrf_exempt
 def reponseBot(request):
@@ -34,7 +34,6 @@ def members(request):
     return HttpResponse(template.render(context, request))
 
 def rejoindre(request):
-
     if request.method == 'POST':
         prenom = request.POST['prenom']
         nom_de_famille = request.POST['nom_de_famille']
@@ -98,6 +97,7 @@ def supprimer(request):
     return redirect('members')
 
 def questionnaire(request):
+    members = Member.objects.all()
     urilisateurs = User.objects.all().values()
     template = loader.get_template('questionnaire.html')
     context = {
@@ -105,10 +105,13 @@ def questionnaire(request):
     }
     global conditions_termes
     if request.method == 'POST':
+        date_naissance = request.POST['date_naissance']
         conditions = request.POST['conditions']
         if conditions == 'on':
             user = request.user
-            member = Member(utilisateur=user)
+            member = members.filter(utilisateur=user.username)
+            if member is not None:
+                member.date_naissance = date_naissance
             member.save()
             conditions_termes = True;
             return redirect('tableau-bord/profil')
@@ -156,46 +159,16 @@ def profil(request):
     return render(request, 'tableau-bord/profil.html', context)
 
 def chatbot(request):
-    urilisateurs = User.objects.all().values()
+    utilisateurs = User.objects.all().values()
     context = {
-        'urilisateurs': urilisateurs,
+        'utilisateurs': utilisateurs,
     }
     return render(request, 'tableau-bord/chatbot.html', context)
 
 # Clé API Alpha Vantage (ajoute ta clé API dans settings.py)
 ALPHA_VANTAGE_API_KEY = settings.ALPHA_VANTAGE_API_KEY
 def bourse(request):
-    stock_data = None  # Par défaut, pas de données
-
-    if 'symbol' in request.GET:
-        symbol = request.GET['symbol'].upper()
-
-        # Récupération des données depuis Alpha Vantage
-        url = f"https://www.alphavantage.co/query"
-        params = {
-            "function": "TIME_SERIES_DAILY",
-            "symbol": symbol,
-            "apikey": ALPHA_VANTAGE_API_KEY,
-            "outputsize": "compact"
-        }
-
-        response = requests.get(url, params=params)
-        data = response.json()
-
-        if "Time Series (Daily)" in data:
-            time_series = data["Time Series (Daily)"]
-            dates = list(time_series.keys())[:30]  # Récupère les 30 derniers jours
-            prices = [float(time_series[date]["4. close"]) for date in dates]
-
-            stock_data = {
-                "symbol": symbol,
-                "name": symbol,  # Alpha Vantage n'a pas de champ 'nom', mais tu peux le compléter
-                "last_price": prices[0],  # Dernier prix
-                "change": round(prices[0] - prices[1], 2),
-                "percent_change": round(((prices[0] - prices[1]) / prices[1]) * 100, 2),
-                "dates": dates[::-1],  # Inverser pour afficher dans le bon ordre
-                "prices": prices[::-1]
-            }
+    stock_data = bourse_data.stock_data(request)
 
     return render(request, "tableau-bord/bourse.html", {"stock_data": stock_data})
 

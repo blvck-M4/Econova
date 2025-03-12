@@ -1,3 +1,4 @@
+from django.conf import settings
 from dotenv import load_dotenv
 load_dotenv()
 import os
@@ -5,7 +6,7 @@ from google import genai
 from google.genai import types
 
 client = genai.Client(
-            api_key=os.getenv('GEMINI_API_KEY'),
+            api_key=settings.GEMINI_API_KEY,
         )
 model = "gemini-2.0-flash"
 generate_content_config = types.GenerateContentConfig(
