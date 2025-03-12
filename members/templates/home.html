@@ -12,6 +12,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="icon" href="{% static 'images/Logo EcoNova.png' %}">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.12.2/lottie.min.js"></script>
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 </head>
 
 <body>
@@ -29,6 +32,7 @@
             {% else %}
                 <a href="deconnexion"><button class="deconnexion">Se déconnecter</button></a>
             {% endif %}
+
             <div class="menu-btn">
                 <div class="btn-line" id="btn-line1"></div>
                 <div class="btn-line" id="btn-line2"></div>
@@ -37,19 +41,80 @@
         </div>
 
     <div class="menu-slide">
-        <h2>Bienvenue {{ user.username }}</h2>
+        {% if user.is_authenticated %}
+            <h2 class="navigation">Bienvenue {{ user.username }}</h2>
+            <div class="liste-onglets">
+                <ul>
+                    <h2><a href="">Simulateur</a></h2>
+                    <h2><a href="">Suivi Financier</a></h2>
+                    <h2><a href="tableau-bord/bourse">Bourse</a></h2>
+                    <h2><a href="tableau-bord/chatbot">Nova</a></h2>
+                    <h2><a href="">Éducation Financière</a></h2>
+                </ul>
+            </div>
+            <div class="menu-connexion">
+                <a href="deconnexion"><button class="deconnexion">Se déconnecter</button></a>
+                <a href="tableau-bord/profil">
+                    <h3 class="tableau-bord">Tableau de bord</h3>
+                    <lottie-player src="{% static 'json/dashboard-icon/Arrow left_custom_icon.json' %}"  loop hover></lottie-player>
+                </a>
+            </div>
+        {% else %}
+            <h2 class="navigation">NAVIGATION</h2>
+            <div class="liste-onglets">
+                <ul>
+                    <h2><a href="">Simulateur</a></h2>
+                    <h2><a href="">Suivi Financier</a></h2>
+                    <h2><a href="">Bourse</a></h2>
+                    <h2><a href="">Nova</a></h2>
+                    <h2><a href="">Éducation Financière</a></h2>
+                </ul>
+            </div>
+            <div class="menu-connexion">
+                <a href="connexion"><button class="connexion">Connexion</button></a>
+                <a href="rejoindre"><button class="rejoindre">Rejoindre</button></a>
+            </div>
+        {% endif %}
+        <h3>Avec NOVA, Naviguez facilement entre outils de suivi et simulations, Optimisez vos finances, développez une Vision stratégique et profitez d’un Accompagnement personnalisé. Budget, épargne, investissement : maîtrisez votre avenir financier en toute confiance.</h3>
+        <div class="logoSite">
+            <a href=""><img src="{% static 'images/Logo EcoNova.png' %}" alt="Logo ÉcoNova Finance" class="logoSite"></a>
+            <h2 class="econova-text">EcoNova</h2>
+        </div>
     </div>
 
   </header>
 
 
-  <div class="chatbot">
+  <div id="nova-bouton" class="chatbot" onclick="envoyerMessage()">
       <img src="{% static 'images/chatbot2.png' %}" alt="Logo ÉcoNova Finance">
   </div>
+  <section class="chat-section" id="chat-section">
+      <div id="chat-box" class="chat-box">
+          {% if user.is_authenticated %}
+          	<h2 class="bot-message">Bonjour {{ user.username }}, je suis NOVA, ton conseiller financier virtuel chez
+              EcoNova. Je suis là pour t'aider à gérer et optimiser tes finances personnelles grâce à l'intelligence artificielle. 😊</h2>
+          {% else %}
+              <h2 class="bot-message">Bonjour, je suis NOVA, le conseiller financier virtuel chez
+              EcoNova. Je suis là pour aider les utilisateurs à gérer et optimiser leurs finances personnelles grâce à
+                  l'intelligence artificielle. 😊</h2>
+          {% endif %}
+
+      </div>
+      <div class="message-utilisateur">
+            <textarea onclick="enter()" type="text" id="user-input" placeholder="Pose ta question ici ..." ></textarea>
+            <button id="envoyer-message" onclick="envoyerMessage()"><img src="{% static 'images/dashboard-icon/Arrow right.svg' %}"></button>
+        </div>
+  </section>
   <section class="presentation">
     <div class="slogan">
         <h1>Votre gestion financière, aussi simple qu'un clic !</h1>
-        <a href="connexion"><button class="btn-slogan">Commencer</button></a>
+        {% if not user.is_authenticated %}
+            <a href="connexion"><button class="btn-slogan">Commencer</button></a>
+        {% elif conditions_termes %}
+            <a href="tableau-bord/profil"><button class="btn-slogan">Commencer</button></a>
+        {% else %}
+            <a href="questionnaire"><button class="btn-slogan">Commencer</button></a>
+        {% endif %}
     </div>
       <div id="lottie-container4" class="lottie-container-presentation"></div>
                 <script>
@@ -64,8 +129,6 @@
 
       <div class="shadow" id="shadow2"></div>
   </section>
-  <!--<img src="{% static 'images/logoGraphique.png' %}" alt="Logo Graphique Page1"
-           class="logoSlogan">-->
 
     <section class="nova">
         <h1> NOVA </h1>
@@ -81,7 +144,11 @@
                 rapidement à des réponses à vos questions financières, le tout en un seul endroit.
                 Nova est là pour vous aider, à tout moment et où que vous soyez !</h3>
 
-            <button class="chat-btn"> Discuter avec Nova</button>
+                {% if user.is_authenticated %}
+                    <a href="tableau-bord/chatbot"><button class="chat-btn">Discuter avec Nova</button></a>
+                {% else %}
+                    <a href=""><button class="chat-btn">Discuter avec Nova</button></a>
+                {% endif %}
         </div>
             <div class="bot_img">
                 <img src="{% static 'images/call-center-7040784 1.svg' %}" alt="chatbot image description">
@@ -93,25 +160,15 @@
    <section class="education">
     <div class="education-infos">
         <div class="education-text">
-            <h2>ÉDUCATION FINANCIÈRE</h2>
-            <h3>
+            <h1>ÉDUCATION FINANCIÈRE</h1>
+            <h2>
                 Améliorez votre compréhension de l’argent avec des ressources claires et accessibles.
                 De la gestion budgétaire aux stratégies d’investissement, notre espace Éducation Financière
                 vous guide pour faire des choix éclairés et sécuriser votre avenir financier.
-            </h3>
+            </h2>
         </div>
     </div>
     <img src="{% static 'images/educationIMG.png' %}" alt="Logo Graphique Page2">
-    <!--<div id="lottie-container4" class="lottie-container-education"></div>
-    <script>
-        var animation = lottie.loadAnimation({
-            container: document.getElementById('lottie-container4'),
-            renderer: 'svg',
-            loop: true,
-            autoplay: true,
-            path: "{% static 'json/Payment Done.json' %}"
-        });
-    </script>-->
 </section>
 
 
@@ -167,32 +224,46 @@
         </div>
     </section>
 
-     <footer>
+  <footer>
 
     <div class="footer-logoNova">
-        <a href=""><img src="{% static 'images/Logo EcoNova.png' %}" alt="Logo ÉcoNova Finance" class="logoSite"></a>
-
-        <h1>NOVA – Votre gestion financière, aussi simple qu'un clic !</h1>
+        <div>
+            <a href=""><img src="{% static 'images/Logo EcoNova.png' %}" alt="Logo ÉcoNova Finance"
+                            class="logoFooter"></a>
+            <h1>NOVA – Votre gestion financière, aussi simple qu'un clic !</h1>
+        </div>
 
         <h3>Avec NOVA, Naviguez facilement entre outils de suivi et simulations, Optimisez vos finances,
             développez une Vision stratégique et profitez d’un Accompagnement personnalisé.
             Budget, épargne, investissement : maîtrisez votre avenir financier en toute confiance.</h3>
     </div>
     <!-- Liste verticale alignée à droite -->
-    <div class="liste-onglets">
-        <ul>
-            <h2>Simulateur</h2>
-            <h2>Suivi Financier</h2>
-            <h2>Bourse</h2>
-            <h2>Nova</h2>
-            <h3>Éducation Financière</h3>
-
-            <button class="connexion">Connexion</button>
-        </ul>
-    </div>
+    {% if user.is_authenticated %}
+            <div class="liste-onglets">
+                <ul>
+                    <h2><a href="">Simulateur</a></h2>
+                    <h2><a href="">Suivi Financier</a></h2>
+                    <h2><a href="tableau-bord/bourse">Bourse</a></h2>
+                    <h2><a href="tableau-bord/chatbot">Nova</a></h2>
+                    <h2><a href="">Éducation Financière</a></h2>
+                    <a href="deconnexion"><button class="connexion">Se déconnecter</button></a>
+                </ul>
+            </div>
+        {% else %}
+            <div class="liste-onglets">
+                <ul>
+                    <h2><a href="">Simulateur</a></h2>
+                    <h2><a href="">Suivi Financier</a></h2>
+                    <h2><a href="">Bourse</a></h2>
+                    <h2><a href="">Nova</a></h2>
+                    <h2><a href="">Éducation Financière</a></h2>
+                    <a href="connexion"><button class="connexion">Connexion</button></a>
+                </ul>
+            </div>
+        {% endif %}
 
     <div class="shadow" id="shadow3"></div>
-</footer>
+  </footer>
 
 
     <section class="copyrights">
