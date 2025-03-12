@@ -29,6 +29,7 @@ class Member(models.Model):
     dette_hypotheque = models.BooleanField(default=False)
     dette_autre = models.BooleanField(default=False)
 
+
     tolerance_risque = models.CharField(max_length=255, null=True, blank=True)
 
 
