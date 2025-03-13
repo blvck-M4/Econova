@@ -13,17 +13,6 @@ from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from .services import nova_ai, bourse_data
 
-@csrf_exempt
-def reponseBot(request):
-    if user_logged_in:
-        user = request.user
-        utilisateur = user.username
-    else:
-        utilisateur = 'anonyme'
-
-    reponse = nova_ai.reponseBot(request, utilisateur)
-    return JsonResponse({"response": reponse})
-
 def members(request):
     urilisateurs = User.objects.all().values()
     template = loader.get_template('home.html')
@@ -85,17 +74,6 @@ def connexion(request):
 
     return render(request, 'connexion.html')
 
-def deconnexion(request):
-    auth.logout(request)
-    return redirect('members')
-def supprimer(request):
-    members = Member.objects.all()
-    for member in members:
-        if member.utilisateur == request.user.username:
-            member.delete()
-    auth.get_user(request).delete()
-    return redirect('members')
-
 def questionnaire(request):
     members = Member.objects.all()
     urilisateurs = User.objects.all().values()
@@ -119,6 +97,26 @@ def questionnaire(request):
             conditions_termes = False;
             return redirect('questionnaire')
     return HttpResponse(template.render(context, request))
+
+def conditions(request):
+    urilisateurs = User.objects.all().values()
+    template = loader.get_template('conditions.html')
+    context = {
+        'urilisateurs': urilisateurs,
+    }
+    return HttpResponse(template.render(context, request))
+
+#Pages du Tableau de bord
+def page_principale(request):
+    utilisateurs = User.objects.all()
+    members = Member.objects.all()
+    context = {
+        'utilisateurs': utilisateurs,
+        'members': members,
+    }
+
+    return render(request, 'tableau-bord/page-principale.html',context)
+
 
 def profil(request):
     urilisateurs = User.objects.all().values()
@@ -169,6 +167,29 @@ def chatbot(request):
 ALPHA_VANTAGE_API_KEY = settings.ALPHA_VANTAGE_API_KEY
 def bourse(request):
     stock_data = bourse_data.stock_data(request)
-
+    print(stock_data)
     return render(request, "tableau-bord/bourse.html", {"stock_data": stock_data})
 
+
+#Fonctionnalités
+def deconnexion(request):
+    auth.logout(request)
+    return redirect('members')
+def supprimer(request):
+    members = Member.objects.all()
+    for member in members:
+        if member.utilisateur == request.user.username:
+            member.delete()
+    auth.get_user(request).delete()
+    return redirect('members')
+
+@csrf_exempt
+def reponseBot(request):
+    if user_logged_in:
+        user = request.user
+        utilisateur = user.username
+    else:
+        utilisateur = 'anonyme'
+
+    reponse = nova_ai.reponseBot(request, utilisateur)
+    return JsonResponse({"response": reponse})

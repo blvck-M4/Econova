@@ -4,6 +4,7 @@ ALPHA_VANTAGE_API_KEY = settings.ALPHA_VANTAGE_API_KEY
 def stock_data(request):
     stock_data = None  # Par défaut, pas de données
     if 'symbol' in request.GET:
+        print('TEST')
         symbol = request.GET['symbol'].upper()
 
         # Récupération des données depuis Alpha Vantage
@@ -32,5 +33,6 @@ def stock_data(request):
                 "dates": dates[::-1],  # Inverser pour afficher dans le bon ordre
                 "prices": prices[::-1]
             }
+            print(stock_data)
 
         return stock_data

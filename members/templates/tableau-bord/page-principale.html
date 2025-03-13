@@ -1,16 +1,14 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Bourse - Recherche D'Actions</title>
+    <title>Page principale</title>
     <link rel="stylesheet" href="{% static 'css/tableau-bord/dashboard.css' %}">
-    <link rel="stylesheet" href="{% static 'css/tableau-bord/chatbot.css' %}">
-    <link rel="stylesheet" href="{% static 'css/tableau-bord/bourse.css' %}">
+    <link rel="stylesheet" href="{% static 'css/tableau-bord/page-principale.css' %}">
     <link rel="icon" href="{% static 'images/Logo EcoNova.png' %}">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.12.2/lottie.min.js"></script>
     <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
 <!--Menu du profil (bouton en haut à droite)-->
@@ -69,7 +67,7 @@
                 <a href="" class="onglet-suivi onglet">
                     <h2>Suivi</h2>
                 </a>
-                <a href="" class="onglet-bourse onglet">
+                <a href="bourse" class="onglet-bourse onglet">
                     <h2>Bourse</h2>
                 </a>
                 <a href="" class="onglet-simulation onglet">
@@ -89,69 +87,8 @@
             <h2>Paramètres</h2>
         </a>
     </section>
-    <section class="tableau-bord bourse">
-        <nav>
-            <a href="{% url 'bourse' %}" class="active">Bourse</a>
-        </nav>
+    <section class="tableau-bord"></section>
 
-        <div class="container">
-            <h1> Recherche d'actions</h1>
-
-            <!-- Formulaire de recherche -->
-            <form method="GET" action="{% url 'bourse' %}">
-                <input type="text" name="symbol" placeholder="Ex: AAPL, TSLA, MSFT..." required>
-                <button type="submit"> Rechercher</button>
-            </form>
-
-            <!-- Affichage des informations de l'action -->
-            {% if stock_data %}
-                <div class="stock-info">
-                    <h2>{{ stock_data.name }} ({{ stock_data.symbol }})</h2>
-                    <p><strong>Dernier prix :</strong> ${{ stock_data.last_price }}</p>
-                    <p class="{% if stock_data.change > 0 %}positive{% else %}negative{% endif %}">
-                        <strong>Variation :</strong> {{ stock_data.change }} ({{ stock_data.percent_change }}%)
-                    </p>
-                </div>
-
-                <!-- Graphique des prix -->
-                <div class="chart-container">
-                    <canvas id="stockChart"></canvas>
-                </div>
-            {% endif %}
-        </div>
-    </section>
-
-    <script>
-        {% if stock_data and stock_data.prices %}
-            var labels = {{ stock_data.dates|safe }};
-            var prices = {{ stock_data.prices|safe }};
-
-            var ctx = document.getElementById('stockChart').getContext('2d');
-            var stockChart = new Chart(ctx, {
-                type: 'line',
-                data: {
-                    labels: labels,
-                    datasets: [{
-                        label: 'Prix ($)',
-                        data: prices,
-                        borderColor: '#FF4F8B',
-                        backgroundColor: 'rgba(255, 79, 139, 0.2)',
-                        borderWidth: 2,
-                        fill: true
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    scales: {
-                        x: { grid: { color: '#555' } },
-                        y: { grid: { color: '#555' } }
-                    }
-                }
-            });
-        {% endif %}
-    </script>
     <script src="{% static 'js/tableau-bord.js' %}"></script>
-
 </body>
 </html>
