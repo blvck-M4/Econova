@@ -25,7 +25,7 @@ def reponseBot(request):
     return JsonResponse({"response": reponse})
 
 def members(request):
-    urilisateurs = User.objects.all().values()
+    utilisateurs = User.objects.all().values()
     template = loader.get_template('home.html')
     context = {
         'urilisateurs': urilisateurs,
