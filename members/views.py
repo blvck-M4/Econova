@@ -1,3 +1,5 @@
+from os import utime
+
 from django.contrib.auth import user_logged_in
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User, auth
@@ -101,7 +103,7 @@ def questionnaire(request):
     utilisateurs = User.objects.all().values()
     template = loader.get_template('questionnaire.html')
     context = {
-        'urilisateurs': urilisateurs
+        'utilisateurs': utilisateurs
     }
     global conditions_termes
     if request.method == 'POST':
@@ -118,10 +120,10 @@ def questionnaire(request):
     return HttpResponse(template.render(context, request))
 
 def profil(request):
-    urilisateurs = User.objects.all().values()
+    utilisateurs = User.objects.all().values()
     members = Member.objects.all()
     context = {
-        'urilisateurs': urilisateurs,
+        'utilisateurs': utilisateurs,
         'members': members
     }
 
@@ -151,7 +153,6 @@ def profil(request):
                 user.save()
                 member.save()
         return redirect('profil')
-
 
     return render(request, 'tableau-bord/profil.html', context)
 
@@ -198,4 +199,5 @@ def bourse(request):
             }
 
     return render(request, "tableau-bord/bourse.html", {"stock_data": stock_data})
+
 
