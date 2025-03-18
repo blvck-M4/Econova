@@ -98,7 +98,7 @@ def supprimer(request):
     return redirect('members')
 
 def questionnaire(request):
-    urilisateurs = User.objects.all().values()
+    utilisateurs = User.objects.all().values()
     template = loader.get_template('questionnaire.html')
     context = {
         'urilisateurs': urilisateurs
