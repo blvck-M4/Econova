@@ -130,17 +130,13 @@ N’hésite pas à me poser toutes tes questions, je suis là pour t’aider !</
             page_bienvenue.classList.add('disparait')
             chat_box.classList.add('bot_visibilité')
 
-            let loader = document.createElement("loader");
-            loader.ael
-            loader.classList.add("load-visible");
-    chat_box.appendChild(loader);
+
             /*Envoyer la réponse du bot dans la zone de chat*/
             $.ajax({
                 type: 'POST',
                 url: 'reponseBot',
                 data: {message: message_utilisateur, csrfmiddlewaretoken: '{{ csrf_token }}'},
                 success: function (reponse){
-                    loader.remove()
                     message_element_bot.innerHTML = reponse.response
                     chat_box.appendChild(message_element_bot)
                 },
