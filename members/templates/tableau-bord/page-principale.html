@@ -87,7 +87,71 @@
             <h2>Paramètres</h2>
         </a>
     </section>
-    <section class="tableau-bord"></section>
+    <section class="tableau-bord principale">
+        <h1 class="titre">Bienvenue {{ user.username }} sur EcoNova</h1>
+        <div class="sections">
+            <div class="suivi-resume resume">
+                <div class="video">
+                    <video autoplay muted loop>
+                      <source src="{% static 'videos/chatbot_recording.mp4' %}" type="video/mp4">
+                    </video>
+                </div>
+                <div class="infos">
+                    <h2>Suivi Financier<br>Gardez le Contrôle de Votre Argent</h2>
+                    <h3>Suivez vos revenus, dépenses et objectifs financiers en temps réel. Avec notre outil de suivi financier, visualisez vos finances en un coup d’œil et optimisez votre gestion au quotidien.</h3>
+                    <a href="">
+                        <h3>Lancer vous</h3>
+                        <img src="{% static 'images/dashboard-icon/fleche-droite.svg' %}">
+                    </a>
+                </div>
+            </div>
+            <div class="bourse-resume resume">
+                <div class="video">
+                    <video autoplay muted loop>
+                      <source src="{% static 'videos/bourse_recording.mp4' %}" type="video/mp4">
+                    </video>
+                </div>
+                <div class="infos">
+                    <h2>Bourse<br>Investissez en Toute Confiance</h2>
+                    <h3>Suivez les marchés, analysez les tendances et prenez des décisions éclairées. Avec notre outil Bourse, accédez à des informations en temps réel pour optimiser vos investissements.</h3>
+                    <a href="bourse">
+                        <h3>Lancer vous</h3>
+                        <img src="{% static 'images/dashboard-icon/fleche-droite.svg' %}">
+                    </a>
+                </div>
+            </div>
+            <div class="simulation-resume resume">
+                <div class="video">
+                    <video autoplay muted loop>
+                      <source src="{% static 'videos/chatbot_recording.mp4' %}" type="video/mp4">
+                    </video>
+                </div>
+                <div class="infos">
+                    <h2>Simulateur Financier<br>Anticipez Vos Finances</h2>
+                    <h3>Faites des choix éclairés avec notre simulateur financier. Estimez votre budget, vos économies ou vos investissements en quelques clics et prenez le contrôle de votre avenir financier dès maintenant.</h3>
+                    <a href="">
+                        <h3>Lancer vous</h3>
+                        <img src="{% static 'images/dashboard-icon/fleche-droite.svg' %}">
+                    </a>
+                </div>
+            </div>
+            <div class="chatbot-resume resume">
+                <div class="video">
+                    <video autoplay muted loop>
+                      <source src="{% static 'videos/chatbot_recording.mp4' %}" type="video/mp4">
+                    </video>
+                </div>
+                <div class="infos">
+                    <h2>Nova<br>Votre assistant financier 24/7</h2>
+                    <h3>Obtenez des conseils de budgétisation en temps réel, suivez vos dépenses, recevez des recommandations d'épargne personnalisées et accédez rapidement à des réponses à vos questions financières, le tout en un seul endroit. Nova est là pour vous aider, à tout moment et où que vous soyez !</h3>
+                    <a href="chatbot">
+                        <h3>Lancer vous</h3>
+                        <img src="{% static 'images/dashboard-icon/fleche-droite.svg' %}">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <script src="{% static 'js/tableau-bord.js' %}"></script>
 </body>
