@@ -28,7 +28,7 @@ def members(request):
     utilisateurs = User.objects.all().values()
     template = loader.get_template('home.html')
     context = {
-        'urilisateurs': urilisateurs,
+        'utilisateurs': utilisateurs,
         'conditions_termes': conditions_termes,
     }
     return HttpResponse(template.render(context, request))
