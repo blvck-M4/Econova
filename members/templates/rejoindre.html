@@ -12,12 +12,18 @@
 <body>
 <header class="header">
       <div class="logoSite">
-          <a href="/"><img src="{% static 'images/Logo EcoNova.png' %}" alt="Logo ÉcoNova Finance"
-                                   class="logoSite"></a>
+          <a href=""><img src="{% static 'images/Logo EcoNova.png' %}" alt="Logo ÉcoNova Finance" class="logoSite"></a>
           <h2 class="econova-text">EcoNova</h2>
       </div>
 
         <div class="menu">
+            {% if not user.is_authenticated %}
+            	<a href="connexion"><button class="connexion">Connexion</button></a>
+                <a href="rejoindre"><button class="rejoindre">Rejoindre</button></a>
+            {% else %}
+                <a href="deconnexion"><button class="deconnexion">Se déconnecter</button></a>
+            {% endif %}
+
             <div class="menu-btn">
                 <div class="btn-line" id="btn-line1"></div>
                 <div class="btn-line" id="btn-line2"></div>
@@ -28,38 +34,45 @@
     <div class="menu-slide">
         {% if user.is_authenticated %}
             <h2 class="navigation">Bienvenue {{ user.username }}</h2>
-        {% else %}
-            <h2 class="navigation">NAVIGATION</h2>
-        {% endif %}
-
-        <div class="liste-onglets">
-            <ul>
-                <h2><a href="">Simulateur</a></h2>
-                <h2><a href="">Suivi Financier</a></h2>
-                <h2><a href="">Bourse</a></h2>
-                <h2><a href="">Nova</a></h2>
-                <h2><a href="">Éducation Financière</a></h2>
-            </ul>
-        </div>
-        <div class="menu-connexion">
-            {% if not user.is_authenticated %}
-                <a href="connexion"><button class="connexion">Connexion</button></a>
-                <a href="rejoindre"><button class="rejoindre">Rejoindre</button></a>
-            {% else %}
+            <div class="liste-onglets">
+                <ul>
+                    <h2><a href="tableau-bord/simulation">Simulateur</a></h2>
+                    <h2><a href="">Suivi Financier</a></h2>
+                    <h2><a href="tableau-bord/bourse">Bourse</a></h2>
+                    <h2><a href="tableau-bord/chatbot">Nova</a></h2>
+                    <h2><a href="">Éducation Financière</a></h2>
+                </ul>
+            </div>
+            <div class="menu-connexion">
                 <a href="deconnexion"><button class="deconnexion">Se déconnecter</button></a>
-                <a href="tableau-bord/profil">
+                <a href="tableau-bord/page-principale">
                     <h3 class="tableau-bord">Tableau de bord</h3>
                     <lottie-player src="{% static 'json/dashboard-icon/Arrow left_custom_icon.json' %}"  loop hover></lottie-player>
                 </a>
-            {% endif %}
-
-        </div>
+            </div>
+        {% else %}
+            <h2 class="navigation">NAVIGATION</h2>
+            <div class="liste-onglets">
+                <ul>
+                    <h2><a href="">Simulateur</a></h2>
+                    <h2><a href="">Suivi Financier</a></h2>
+                    <h2><a href="">Bourse</a></h2>
+                    <h2><a href="">Nova</a></h2>
+                    <h2><a href="">Éducation Financière</a></h2>
+                </ul>
+            </div>
+            <div class="menu-connexion">
+                <a href="connexion"><button class="connexion">Connexion</button></a>
+                <a href="rejoindre"><button class="rejoindre">Rejoindre</button></a>
+            </div>
+        {% endif %}
         <h3>Avec NOVA, Naviguez facilement entre outils de suivi et simulations, Optimisez vos finances, développez une Vision stratégique et profitez d’un Accompagnement personnalisé. Budget, épargne, investissement : maîtrisez votre avenir financier en toute confiance.</h3>
         <div class="logoSite">
             <a href=""><img src="{% static 'images/Logo EcoNova.png' %}" alt="Logo ÉcoNova Finance" class="logoSite"></a>
             <h2 class="econova-text">EcoNova</h2>
         </div>
     </div>
+
 </header>
     <section class="rejoindre-section">
         <div class="form">

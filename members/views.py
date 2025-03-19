@@ -100,7 +100,7 @@ def questionnaire(request):
                 member.date_naissance = date_naissance
             member.save()
             conditions_termes = True;
-            return redirect('tableau-bord/profil')
+            return redirect('tableau-bord/page-principale')
         else:
             conditions_termes = False;
             return redirect('questionnaire')
@@ -169,6 +169,12 @@ def chatbot(request):
         'utilisateurs': utilisateurs,
     }
     return render(request, 'tableau-bord/chatbot.html', context)
+def simulation(request):
+    utilisateurs = User.objects.all().values()
+    context = {
+        'utilisateurs': utilisateurs,
+    }
+    return render(request, 'tableau-bord/simulation.html', context)
 
 # Clé API Alpha Vantage (ajoute ta clé API dans settings.py)
 ALPHA_VANTAGE_API_KEY = settings.ALPHA_VANTAGE_API_KEY
