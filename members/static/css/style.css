@@ -67,6 +67,7 @@ html {
         width: 100%;
         height: 100%;
         padding: 15px;
+        padding-bottom: 50px;
     }
     .chat-box::-webkit-scrollbar {
         width: 13px;
@@ -244,6 +245,8 @@ html {
     right: 0;
     width: 450px;
     height: 100vh;
+    height: 100dvh;
+
     transform: translateX(100%);
     background-color: #1b1b1b;
     transition: 0.2s ease-in;
@@ -290,6 +293,23 @@ html {
     }
     .logoSite{
         justify-self: flex-end;
+        .econova-text{
+            color: white;
+        }
+    }
+}
+.liste-onglets {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    list-style: none;
+    margin-left: 150px;
+    font-size: 15px;
+    line-height: 2.5;
+
+    a {
+        text-decoration: none;
+        color: white;
     }
 }
 .x_active{

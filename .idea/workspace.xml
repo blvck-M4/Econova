@@ -4,29 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="762bf436-e0f2-48da-9114-9583e32920ed" name="Changes" comment="Dashboard et profil html, css&#10;-Gabriel">
-      <change afterPath="$PROJECT_DIR$/members/static/images/dashboard-icon/logout-svgrepo-com 1.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/members/static/images/dashboard-icon/moon.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/members/static/images/dashboard-icon/parametre.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/members/static/images/dashboard-icon/profil-icon.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/members/static/images/dashboard-icon/profil.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/members/static/images/dashboard-icon/triangle.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/members/static/json/Animation-profil.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/members/static/json/dashboard-icon/Arrow left_custom_icon.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/members/static/json/dashboard-icon/Home_custom_icon.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/members/static/json/dashboard-icon/Pencil_custom_icon.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/members/static/json/dashboard-icon/Settings_custom_icon.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/members/static/json/dashboard-icon/User_custom_icon.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/members/static/json/dashboard-icon/Wrench_custom_icon.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/members/static/json/profil.json" afterDir="false" />
+    <list default="true" id="762bf436-e0f2-48da-9114-9583e32920ed" name="Changes" comment="Variables dans le model member">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/members/static/css/dashboard.css" beforeDir="false" afterPath="$PROJECT_DIR$/members/static/css/dashboard.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/members/static/css/profil.css" beforeDir="false" afterPath="$PROJECT_DIR$/members/static/css/profil.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/members/static/images/profil.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/members/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/members/templates/home.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/members/templates/profil.html" beforeDir="false" afterPath="$PROJECT_DIR$/members/templates/profil.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/members/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/members/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/members/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/members/models.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,6 +20,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Python Script" />
+        <option value="JavaScript File" />
         <option value="HTML File" />
         <option value="CSS File" />
       </list>
@@ -62,7 +43,7 @@
   <component name="GithubPullRequestsUISettings"><![CDATA[{
   "selectedUrlAndAccountId": {
     "url": "https://github.com/blvck-M4/Econova.git",
-    "accountId": "02121a2b-30c6-4b1e-8cb0-c56f58d98129"
+    "accountId": "d13859bd-9431-4aa1-b7ee-774830cf58df"
   }
 }]]></component>
   <component name="ProjectColorInfo">{
@@ -84,8 +65,9 @@
     "RunOnceActivity.OpenDjangoStructureViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.pycharm.django.structure.promotion.once.per.project": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "Gabriel",
+    "git-widget-placeholder": "#28 on Micheal",
     "last_opened_file_path": "C:/Users/gabri/PycharmProjects/Econova",
     "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
@@ -100,10 +82,10 @@
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\gabri\OneDrive\Documents\GitHub\Econova\members\static\images\dashboard-icon" />
+      <recent name="C:\Users\gabri\OneDrive\Documents\GitHub\Econova\members\static\css\tableau-bord" />
+      <recent name="C:\Users\gabri\OneDrive\Documents\GitHub\Econova\members\templates\tableau-bord" />
       <recent name="C:\Users\gabri\OneDrive\Documents\GitHub\Econova\members\static\json\dashboard-icon" />
       <recent name="C:\Users\gabri\OneDrive\Documents\GitHub\Econova\members\static\images" />
-      <recent name="C:\Users\gabri\OneDrive\Documents\GitHub\Econova\members\static\json" />
-      <recent name="C:\Users\gabri\PycharmProjects\Econova\members\static\image" />
     </key>
   </component>
   <component name="RunManager">
@@ -117,7 +99,6 @@
         <env name="DJANGO_SETTINGS_MODULE" value="djangoProject1.settings" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="SDK_NAME" value="Python 3.13 (DjangoProject1)" />
       <option name="WORKING_DIRECTORY" value="" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
@@ -137,8 +118,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-d6986cc7102b-76f8388c3a79-JavaScript-PY-243.24978.54" />
-        <option value="bundled-python-sdk-91e3b7efe1d4-466328ff949b-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-243.24978.54" />
+        <option value="bundled-js-predefined-d6986cc7102b-deb605915726-JavaScript-PY-243.22562.220" />
+        <option value="bundled-python-sdk-0fc6c617c4bd-9a18a617cbe4-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-243.22562.220" />
       </set>
     </attachedChunks>
   </component>
@@ -159,7 +140,12 @@
       <workItem from="1738638279722" duration="5434000" />
       <workItem from="1738775742096" duration="94000" />
       <workItem from="1738783232604" duration="1362000" />
-      <workItem from="1740599955996" duration="74603000" />
+      <workItem from="1740599955996" duration="76444000" />
+      <workItem from="1741019099681" duration="40894000" />
+      <workItem from="1741135566788" duration="1879000" />
+      <workItem from="1741142929149" duration="42391000" />
+      <workItem from="1741615525854" duration="3191000" />
+      <workItem from="1741812134202" duration="3930000" />
     </task>
     <task id="LOCAL-00001" summary="Read me/  LICENSE.txt">
       <option name="closed" value="true" />
@@ -265,7 +251,55 @@
       <option name="project" value="LOCAL" />
       <updated>1740926017668</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Dashboard et profil html, css, js">
+      <option name="closed" value="true" />
+      <created>1740985116180</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1740985116180</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Menu de la page d'accueil">
+      <option name="closed" value="true" />
+      <created>1741030986990</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1741030986990</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Page profil et chatbot (API et design html, css, js) dans le tableau de bord">
+      <option name="closed" value="true" />
+      <created>1741323567186</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1741323567186</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Historique de conversation du chatbot">
+      <option name="closed" value="true" />
+      <created>1741474387915</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1741474387915</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Historique de conversation du chatbot">
+      <option name="closed" value="true" />
+      <created>1741619398129</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1741619398129</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Variables dans le model member">
+      <option name="closed" value="true" />
+      <created>1741815399842</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1741815399842</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -289,7 +323,12 @@
     <MESSAGE value="html et css&#10;-Gabriel" />
     <MESSAGE value="Questionnaire&#10;-Gabriel" />
     <MESSAGE value="Dashboard et profil html, css&#10;-Gabriel" />
-    <option name="LAST_COMMIT_MESSAGE" value="Dashboard et profil html, css&#10;-Gabriel" />
+    <MESSAGE value="Dashboard et profil html, css, js" />
+    <MESSAGE value="Menu de la page d'accueil" />
+    <MESSAGE value="Page profil et chatbot (API et design html, css, js) dans le tableau de bord" />
+    <MESSAGE value="Historique de conversation du chatbot" />
+    <MESSAGE value="Variables dans le model member" />
+    <option name="LAST_COMMIT_MESSAGE" value="Variables dans le model member" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/EcoNova$urls.coverage" NAME="urls Coverage Results" MODIFIED="1738637946628" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/djangoProject1" />

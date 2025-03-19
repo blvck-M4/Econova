@@ -48,7 +48,6 @@ function envoyerMessage(){
         url: '/tableau-bord/reponseBot',
         data: {message: message_utilisateur, csrfmiddlewaretoken: '{{ csrf_token }}'},
         success: function (reponse){
-            console.log('test')
             message_element_bot.innerHTML = reponse.response
             chat_box.appendChild(message_element_bot)
         },
@@ -56,9 +55,18 @@ function envoyerMessage(){
             chat_box.appendChild(message_element_erreur)
         }
     })
+    scrollToBottom()
 
 }
-
+function scrollToBottom() {
+    let chatBox = document.getElementById("chat-box");
+    setTimeout(() => {
+        chatBox.scrollTo({
+          top: chatBox.scrollHeight,
+          behavior: "smooth"
+        });
+    }, 100);
+}
 function enter(){
     document.getElementById("user-input").addEventListener("keyup", function(event) {
         event.preventDefault();

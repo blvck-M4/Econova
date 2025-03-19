@@ -18,11 +18,12 @@ html{
          background-color: #dfdfdf;
  }
 .chat-box {
-        height: 500px;
+        height: 70dvh;
         width: 100%;
         padding: 15px;
         overflow: auto;
         display: none;
+        padding-bottom: 150px;
 }
 
 .bot_visibilité{
@@ -53,6 +54,7 @@ html{
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        height: 70dvh;
         h1{
                 font-size: 35px;
                 margin-bottom: 100px;
