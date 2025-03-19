@@ -1,17 +1,26 @@
+import json
+from collections import defaultdict
+from os import utime
+
 from django.contrib.auth import user_logged_in
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User, auth
 from django.contrib import messages
 from django.http import HttpResponse
 from django.template import loader
-from .models import Member
+
+from .forms import MonthlyRevenueForm
+from .models import Member, MonthlyRevenue
 from django.conf import settings
+from flask import Flask, render_template
 import requests
+
 conditions_termes = False
 
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from .services import nova_ai
+
 
 @csrf_exempt
 def reponseBot(request):
@@ -24,17 +33,18 @@ def reponseBot(request):
     reponse = nova_ai.reponseBot(request, utilisateur)
     return JsonResponse({"response": reponse})
 
+
 def members(request):
-    urilisateurs = User.objects.all().values()
+    utilisateurs = User.objects.all().values()
     template = loader.get_template('home.html')
     context = {
-        'urilisateurs': urilisateurs,
+        'utilisateurs': utilisateurs,
         'conditions_termes': conditions_termes,
     }
     return HttpResponse(template.render(context, request))
 
-def rejoindre(request):
 
+def rejoindre(request):
     if request.method == 'POST':
         prenom = request.POST['prenom']
         nom_de_famille = request.POST['nom_de_famille']
@@ -51,7 +61,8 @@ def rejoindre(request):
                     messages.info(request, "Nom d'utilisateur déjà utilisé")
                     return redirect('rejoindre')
                 else:
-                    user = User.objects.create_user(username=utilisateur, password=mot_de_passe, email=email, first_name=prenom, last_name=nom_de_famille)
+                    user = User.objects.create_user(username=utilisateur, password=mot_de_passe, email=email,
+                                                    first_name=prenom, last_name=nom_de_famille)
                     user.save()
                     if user is not None:
                         auth.login(request, user)
@@ -64,15 +75,15 @@ def rejoindre(request):
             messages.info(request, "Mot de passe trop court")
             return redirect('rejoindre')
 
-
     return render(request, 'rejoindre.html')
+
 
 def connexion(request):
     if request.method == 'POST':
         utilisateur = request.POST['utilisateur']
         mot_de_passe = request.POST['mot_de_passe']
         for user in User.objects.all():
-            print(user.username +' '+user.password)
+            print(user.username + ' ' + user.password)
         user = auth.authenticate(username=utilisateur, password=mot_de_passe)
 
         if user is not None:
@@ -86,9 +97,12 @@ def connexion(request):
 
     return render(request, 'connexion.html')
 
+
 def deconnexion(request):
     auth.logout(request)
     return redirect('members')
+
+
 def supprimer(request):
     members = Member.objects.all()
     for member in members:
@@ -97,11 +111,12 @@ def supprimer(request):
     auth.get_user(request).delete()
     return redirect('members')
 
+
 def questionnaire(request):
-    urilisateurs = User.objects.all().values()
+    utilisateurs = User.objects.all().values()
     template = loader.get_template('questionnaire.html')
     context = {
-        'urilisateurs': urilisateurs
+        'utilisateurs': utilisateurs
     }
     global conditions_termes
     if request.method == 'POST':
@@ -117,11 +132,12 @@ def questionnaire(request):
             return redirect('questionnaire')
     return HttpResponse(template.render(context, request))
 
+
 def profil(request):
-    urilisateurs = User.objects.all().values()
+    utilisateurs = User.objects.all().values()
     members = Member.objects.all()
     context = {
-        'urilisateurs': urilisateurs,
+        'utilisateurs': utilisateurs,
         'members': members
     }
 
@@ -152,8 +168,8 @@ def profil(request):
                 member.save()
         return redirect('profil')
 
-
     return render(request, 'tableau-bord/profil.html', context)
+
 
 def chatbot(request):
     urilisateurs = User.objects.all().values()
@@ -162,8 +178,11 @@ def chatbot(request):
     }
     return render(request, 'tableau-bord/chatbot.html', context)
 
+
 # Clé API Alpha Vantage (ajoute ta clé API dans settings.py)
 ALPHA_VANTAGE_API_KEY = settings.ALPHA_VANTAGE_API_KEY
+
+
 def bourse(request):
     stock_data = None  # Par défaut, pas de données
 
@@ -199,3 +218,55 @@ def bourse(request):
 
     return render(request, "tableau-bord/bourse.html", {"stock_data": stock_data})
 
+
+def chart_view(request):
+    # Récupérer l'instance du membre correspondant en utilisant le nom d'utilisateur.
+    try:
+        member = Member.objects.get(utilisateur=request.user.username)
+    except Member.DoesNotExist:
+        member = None
+
+    context = {}  # Assurez-vous que le contexte est toujours défini.
+
+    if request.method == "POST":
+        form = MonthlyRevenueForm(request.POST)
+        if form.is_valid() and member is not None:
+            # Extraire les données nettoyées
+            month = form.cleaned_data['month']
+            revenue = form.cleaned_data['revenue']
+
+            # Mettre à jour ou créer l'enregistrement MonthlyRevenue pour le mois et le membre donnés.
+            MonthlyRevenue.objects.update_or_create(
+                member=member,
+                month=month,
+                defaults={'revenue': revenue}
+            )
+            # Rediriger pour éviter la resoumission lors du rafraîchissement.
+            return redirect('revenue_dashboard')
+        else:
+            # Si le formulaire n'est pas valide, passez le formulaire au contexte.
+            context['form'] = form
+    else:
+        form = MonthlyRevenueForm()
+        context['form'] = form
+
+    # Filtrer les entrées de revenus pour le membre actuel (si elles existent)
+    revenue_entries = MonthlyRevenue.objects.filter(member=member) if member else []
+
+    # Agréger les revenus par mois
+    revenue_by_month = defaultdict(float)
+    for entry in revenue_entries:
+        month_str = entry.month.strftime('%Y-%m')
+        revenue_by_month[month_str] += float(entry.revenue)
+
+    sorted_months = sorted(revenue_by_month.keys())
+    labels = sorted_months
+    values = [revenue_by_month[month] for month in sorted_months]
+
+    chart_data = {
+        "labels": labels,
+        "values": values,
+    }
+
+    context['chart_data'] = json.dumps(chart_data)  # Toujours définir context['chart_data']
+    return render(request, 'chart.html', context)
