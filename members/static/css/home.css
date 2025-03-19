@@ -418,17 +418,6 @@ footer {
 }
 
 .liste-onglets {
-    display: flex;
-    justify-content: left;
-    align-items: center;
-    list-style: none;
-    margin-left: 150px;
-    font-size: 15px;
-    line-height: 2.5;
-    a{
-        text-decoration: none;
-        color: white;
-    }
     .connexion {
         padding: 7px 20px; /* Ajoute de l'espace à l'intérieur du bouton */
         margin-top: 20px;
