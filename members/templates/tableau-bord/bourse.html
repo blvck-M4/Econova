@@ -119,6 +119,13 @@
                 </div>
             {% endif %}
         </div>
+
+    {% if stock_data %}
+        <div class="conseils">
+            <h1>Conseils de Nova pour </h1>
+            <h2>{{ conseil | safe }}</h2>
+        </div>
+    {% endif %}
     </section>
 
     <script>

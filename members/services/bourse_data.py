@@ -33,6 +33,6 @@ def stock_data(request):
                 "dates": dates[::-1],  # Inverser pour afficher dans le bon ordre
                 "prices": prices[::-1]
             }
-            print(stock_data)
+            print(stock_data.get('dates'))
 
         return stock_data
