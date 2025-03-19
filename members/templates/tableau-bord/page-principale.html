@@ -1,16 +1,14 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Bourse - Recherche D'Actions</title>
+    <title>Page principale</title>
     <link rel="stylesheet" href="{% static 'css/tableau-bord/dashboard.css' %}">
-    <link rel="stylesheet" href="{% static 'css/tableau-bord/chatbot.css' %}">
-    <link rel="stylesheet" href="{% static 'css/tableau-bord/bourse.css' %}">
+    <link rel="stylesheet" href="{% static 'css/tableau-bord/page-principale.css' %}">
     <link rel="icon" href="{% static 'images/Logo EcoNova.png' %}">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.12.2/lottie.min.js"></script>
     <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
 <!--Menu du profil (bouton en haut à droite)-->
@@ -69,7 +67,7 @@
                 <a href="" class="onglet-suivi onglet">
                     <h2>Suivi</h2>
                 </a>
-                <a href="" class="onglet-bourse onglet">
+                <a href="bourse" class="onglet-bourse onglet">
                     <h2>Bourse</h2>
                 </a>
                 <a href="" class="onglet-simulation onglet">
@@ -89,76 +87,72 @@
             <h2>Paramètres</h2>
         </a>
     </section>
-    <section class="tableau-bord bourse">
-        <nav>
-            <a href="{% url 'bourse' %}" class="active">Bourse</a>
-        </nav>
-
-        <div class="container">
-            <h1> Recherche d'actions</h1>
-
-            <!-- Formulaire de recherche -->
-            <form method="GET" action="{% url 'bourse' %}">
-                <input type="text" name="symbol" placeholder="Ex: AAPL, TSLA, MSFT..." required>
-                <button type="submit"> Rechercher</button>
-            </form>
-
-            <!-- Affichage des informations de l'action -->
-            {% if stock_data %}
-                <div class="stock-info">
-                    <h2>{{ stock_data.name }} ({{ stock_data.symbol }})</h2>
-                    <p><strong>Dernier prix :</strong> ${{ stock_data.last_price }}</p>
-                    <p class="{% if stock_data.change > 0 %}positive{% else %}negative{% endif %}">
-                        <strong>Variation :</strong> {{ stock_data.change }} ({{ stock_data.percent_change }}%)
-                    </p>
+    <section class="tableau-bord principale">
+        <h1 class="titre">Bienvenue {{ user.username }} sur EcoNova</h1>
+        <div class="sections">
+            <div class="suivi-resume resume">
+                <div class="video">
+                    <video autoplay muted loop>
+                      <source src="{% static 'videos/chatbot_recording.mp4' %}" type="video/mp4">
+                    </video>
                 </div>
-
-                <!-- Graphique des prix -->
-                <div class="chart-container">
-                    <canvas id="stockChart"></canvas>
+                <div class="infos">
+                    <h2>Suivi Financier<br>Gardez le Contrôle de Votre Argent</h2>
+                    <h3>Suivez vos revenus, dépenses et objectifs financiers en temps réel. Avec notre outil de suivi financier, visualisez vos finances en un coup d’œil et optimisez votre gestion au quotidien.</h3>
+                    <a href="">
+                        <h3>Lancer vous</h3>
+                        <img src="{% static 'images/dashboard-icon/fleche-droite.svg' %}">
+                    </a>
                 </div>
-            {% endif %}
+            </div>
+            <div class="bourse-resume resume">
+                <div class="video">
+                    <video autoplay muted loop>
+                      <source src="{% static 'videos/bourse_recording.mp4' %}" type="video/mp4">
+                    </video>
+                </div>
+                <div class="infos">
+                    <h2>Bourse<br>Investissez en Toute Confiance</h2>
+                    <h3>Suivez les marchés, analysez les tendances et prenez des décisions éclairées. Avec notre outil Bourse, accédez à des informations en temps réel pour optimiser vos investissements.</h3>
+                    <a href="bourse">
+                        <h3>Lancer vous</h3>
+                        <img src="{% static 'images/dashboard-icon/fleche-droite.svg' %}">
+                    </a>
+                </div>
+            </div>
+            <div class="simulation-resume resume">
+                <div class="video">
+                    <video autoplay muted loop>
+                      <source src="{% static 'videos/chatbot_recording.mp4' %}" type="video/mp4">
+                    </video>
+                </div>
+                <div class="infos">
+                    <h2>Simulateur Financier<br>Anticipez Vos Finances</h2>
+                    <h3>Faites des choix éclairés avec notre simulateur financier. Estimez votre budget, vos économies ou vos investissements en quelques clics et prenez le contrôle de votre avenir financier dès maintenant.</h3>
+                    <a href="">
+                        <h3>Lancer vous</h3>
+                        <img src="{% static 'images/dashboard-icon/fleche-droite.svg' %}">
+                    </a>
+                </div>
+            </div>
+            <div class="chatbot-resume resume">
+                <div class="video">
+                    <video autoplay muted loop>
+                      <source src="{% static 'videos/chatbot_recording.mp4' %}" type="video/mp4">
+                    </video>
+                </div>
+                <div class="infos">
+                    <h2>Nova<br>Votre assistant financier 24/7</h2>
+                    <h3>Obtenez des conseils de budgétisation en temps réel, suivez vos dépenses, recevez des recommandations d'épargne personnalisées et accédez rapidement à des réponses à vos questions financières, le tout en un seul endroit. Nova est là pour vous aider, à tout moment et où que vous soyez !</h3>
+                    <a href="chatbot">
+                        <h3>Lancer vous</h3>
+                        <img src="{% static 'images/dashboard-icon/fleche-droite.svg' %}">
+                    </a>
+                </div>
+            </div>
         </div>
-
-    {% if stock_data %}
-        <div class="conseils">
-            <h1>Conseils de Nova pour </h1>
-            <h2>{{ conseil | safe }}</h2>
-        </div>
-    {% endif %}
     </section>
 
-    <script>
-        {% if stock_data and stock_data.prices %}
-            var labels = {{ stock_data.dates|safe }};
-            var prices = {{ stock_data.prices|safe }};
-
-            var ctx = document.getElementById('stockChart').getContext('2d');
-            var stockChart = new Chart(ctx, {
-                type: 'line',
-                data: {
-                    labels: labels,
-                    datasets: [{
-                        label: 'Prix ($)',
-                        data: prices,
-                        borderColor: '#FF4F8B',
-                        backgroundColor: 'rgba(255, 79, 139, 0.2)',
-                        borderWidth: 2,
-                        fill: true
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    scales: {
-                        x: { grid: { color: '#555' } },
-                        y: { grid: { color: '#555' } }
-                    }
-                }
-            });
-        {% endif %}
-    </script>
     <script src="{% static 'js/tableau-bord.js' %}"></script>
-
 </body>
 </html>

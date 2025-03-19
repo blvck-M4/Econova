@@ -12,27 +12,12 @@ from django.template import loader
 from .forms import MonthlyRevenueForm
 from .models import Member, MonthlyRevenue
 from django.conf import settings
-from flask import Flask, render_template
 import requests
-
 conditions_termes = False
 
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
-from .services import nova_ai
-
-
-@csrf_exempt
-def reponseBot(request):
-    if user_logged_in:
-        user = request.user
-        utilisateur = user.username
-    else:
-        utilisateur = 'anonyme'
-
-    reponse = nova_ai.reponseBot(request, utilisateur)
-    return JsonResponse({"response": reponse})
-
+from .services import nova_ai, bourse_data
 
 def members(request):
     utilisateurs = User.objects.all().values()
@@ -43,8 +28,8 @@ def members(request):
     }
     return HttpResponse(template.render(context, request))
 
-
 def rejoindre(request):
+
     if request.method == 'POST':
         prenom = request.POST['prenom']
         nom_de_famille = request.POST['nom_de_famille']
@@ -61,8 +46,7 @@ def rejoindre(request):
                     messages.info(request, "Nom d'utilisateur déjà utilisé")
                     return redirect('rejoindre')
                 else:
-                    user = User.objects.create_user(username=utilisateur, password=mot_de_passe, email=email,
-                                                    first_name=prenom, last_name=nom_de_famille)
+                    user = User.objects.create_user(username=utilisateur, password=mot_de_passe, email=email, first_name=prenom, last_name=nom_de_famille)
                     user.save()
                     if user is not None:
                         auth.login(request, user)
@@ -75,15 +59,15 @@ def rejoindre(request):
             messages.info(request, "Mot de passe trop court")
             return redirect('rejoindre')
 
-    return render(request, 'rejoindre.html')
 
+    return render(request, 'rejoindre.html')
 
 def connexion(request):
     if request.method == 'POST':
         utilisateur = request.POST['utilisateur']
         mot_de_passe = request.POST['mot_de_passe']
         for user in User.objects.all():
-            print(user.username + ' ' + user.password)
+            print(user.username +' '+user.password)
         user = auth.authenticate(username=utilisateur, password=mot_de_passe)
 
         if user is not None:
@@ -97,22 +81,8 @@ def connexion(request):
 
     return render(request, 'connexion.html')
 
-
-def deconnexion(request):
-    auth.logout(request)
-    return redirect('members')
-
-
-def supprimer(request):
-    members = Member.objects.all()
-    for member in members:
-        if member.utilisateur == request.user.username:
-            member.delete()
-    auth.get_user(request).delete()
-    return redirect('members')
-
-
 def questionnaire(request):
+    members = Member.objects.all()
     utilisateurs = User.objects.all().values()
     template = loader.get_template('questionnaire.html')
     context = {
@@ -120,10 +90,13 @@ def questionnaire(request):
     }
     global conditions_termes
     if request.method == 'POST':
+        date_naissance = request.POST['date_naissance']
         conditions = request.POST['conditions']
         if conditions == 'on':
             user = request.user
-            member = Member(utilisateur=user)
+            member = members.filter(utilisateur=user.username)
+            if member is not None:
+                member.date_naissance = date_naissance
             member.save()
             conditions_termes = True;
             return redirect('tableau-bord/profil')
@@ -131,6 +104,25 @@ def questionnaire(request):
             conditions_termes = False;
             return redirect('questionnaire')
     return HttpResponse(template.render(context, request))
+
+def conditions(request):
+    urilisateurs = User.objects.all().values()
+    template = loader.get_template('conditions.html')
+    context = {
+        'urilisateurs': urilisateurs,
+    }
+    return HttpResponse(template.render(context, request))
+
+#Pages du Tableau de bord
+def page_principale(request):
+    utilisateurs = User.objects.all()
+    members = Member.objects.all()
+    context = {
+        'utilisateurs': utilisateurs,
+        'members': members,
+    }
+
+    return render(request, 'tableau-bord/page-principale.html',context)
 
 
 def profil(request):
@@ -168,56 +160,56 @@ def profil(request):
                 member.save()
         return redirect('profil')
 
+
     return render(request, 'tableau-bord/profil.html', context)
 
-
 def chatbot(request):
-    urilisateurs = User.objects.all().values()
+    utilisateurs = User.objects.all().values()
     context = {
-        'urilisateurs': urilisateurs,
+        'utilisateurs': utilisateurs,
     }
     return render(request, 'tableau-bord/chatbot.html', context)
 
-
 # Clé API Alpha Vantage (ajoute ta clé API dans settings.py)
 ALPHA_VANTAGE_API_KEY = settings.ALPHA_VANTAGE_API_KEY
-
-
 def bourse(request):
-    stock_data = None  # Par défaut, pas de données
+    urilisateurs = User.objects.all().values()
+    members = Member.objects.all()
+    stock_data = bourse_data.stock_data(request)
+    conseil = nova_ai.conseilActions(stock_data, 'conservateur')
+    print(conseil)
 
-    if 'symbol' in request.GET:
-        symbol = request.GET['symbol'].upper()
+    context = {
+        'urilisateurs': urilisateurs,
+        'members': members,
+        "stock_data": stock_data,
+        'conseil': conseil,
+    }
+    return render(request, "tableau-bord/bourse.html", context)
 
-        # Récupération des données depuis Alpha Vantage
-        url = f"https://www.alphavantage.co/query"
-        params = {
-            "function": "TIME_SERIES_DAILY",
-            "symbol": symbol,
-            "apikey": ALPHA_VANTAGE_API_KEY,
-            "outputsize": "compact"
-        }
 
-        response = requests.get(url, params=params)
-        data = response.json()
+#Fonctionnalités
+def deconnexion(request):
+    auth.logout(request)
+    return redirect('members')
+def supprimer(request):
+    members = Member.objects.all()
+    for member in members:
+        if member.utilisateur == request.user.username:
+            member.delete()
+    auth.get_user(request).delete()
+    return redirect('members')
 
-        if "Time Series (Daily)" in data:
-            time_series = data["Time Series (Daily)"]
-            dates = list(time_series.keys())[:30]  # Récupère les 30 derniers jours
-            prices = [float(time_series[date]["4. close"]) for date in dates]
+@csrf_exempt
+def reponseBot(request):
+    if user_logged_in:
+        user = request.user
+        utilisateur = user.username
+    else:
+        utilisateur = 'anonyme'
 
-            stock_data = {
-                "symbol": symbol,
-                "name": symbol,  # Alpha Vantage n'a pas de champ 'nom', mais tu peux le compléter
-                "last_price": prices[0],  # Dernier prix
-                "change": round(prices[0] - prices[1], 2),
-                "percent_change": round(((prices[0] - prices[1]) / prices[1]) * 100, 2),
-                "dates": dates[::-1],  # Inverser pour afficher dans le bon ordre
-                "prices": prices[::-1]
-            }
-
-    return render(request, "tableau-bord/bourse.html", {"stock_data": stock_data})
-
+    reponse = nova_ai.reponseBot(request, utilisateur)
+    return JsonResponse({"response": reponse})
 
 def chart_view(request):
     # Récupérer l'instance du membre correspondant en utilisant le nom d'utilisateur.
