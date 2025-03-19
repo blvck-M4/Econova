@@ -100,3 +100,14 @@ def profil(request):
     }
 
     return HttpResponse(template.render(context, request))
+
+def suivi(request):
+    template = loader.get_template('suivi.html')
+    urilisateurs = User.objects.all().values()
+    members = Member.objects.all()
+    context = {
+        'urilisateurs': urilisateurs,
+        'members': members
+    }
+
+    return HttpResponse(template.render(context, request))

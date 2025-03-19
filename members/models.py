@@ -10,6 +10,8 @@ class Member(models.Model):
     email = models.EmailField()
     mot_de_passe = models.CharField(max_length=100)
     date_creation = models.DateTimeField(auto_now_add=True)
+    tolerance_au_risque = models.IntegerField(null = True, blank = True, choices = [(i, i) for i in range(1, 5)])
+    connaissances = models.IntegerField(null = True, blank = True, choices = [(i, i) for i in range(1, 3)])
 
     def __str__(self):
         return f"{self.prenom} {self.nom_de_famille}"
