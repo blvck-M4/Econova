@@ -1,0 +1,110 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Connexion</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/connexion.css' %}">
+    <link rel="icon" href="{% static 'images/Logo EcoNova.png' %}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.12.2/lottie.min.js"></script>
+
+</head>
+
+<body>
+<header class="header">
+      <div class="logoSite">
+          <a href="/"><img src="{% static 'images/Logo EcoNova.png' %}" alt="Logo ÉcoNova Finance"
+                                   class="logoSite"></a>
+          <h2 class="econova-text">EcoNova</h2>
+      </div>
+
+        <div class="menu">
+            <div class="menu-btn">
+                <div class="btn-line" id="btn-line1"></div>
+                <div class="btn-line" id="btn-line2"></div>
+                <div class="btn-line" id="btn-line3"></div>
+            </div>
+        </div>
+
+    <div class="menu-slide">
+        {% if user.is_authenticated %}
+            <h2 class="navigation">Bienvenue {{ user.username }}</h2>
+        {% else %}
+            <h2 class="navigation">NAVIGATION</h2>
+        {% endif %}
+
+        <div class="liste-onglets">
+            <ul>
+                <h2><a href="">Simulateur</a></h2>
+                <h2><a href="">Suivi Financier</a></h2>
+                <h2><a href="">Bourse</a></h2>
+                <h2><a href="">Nova</a></h2>
+                <h2><a href="">Éducation Financière</a></h2>
+            </ul>
+        </div>
+        <div class="menu-connexion">
+            {% if not user.is_authenticated %}
+                <a href="connexion"><button class="connexion">Connexion</button></a>
+                <a href="rejoindre"><button class="rejoindre">Rejoindre</button></a>
+            {% else %}
+                <a href="deconnexion"><button class="deconnexion">Se déconnecter</button></a>
+                <a href="tableau-bord/profil">
+                    <h3 class="tableau-bord">Tableau de bord</h3>
+                    <lottie-player src="{% static 'json/dashboard-icon/Arrow left_custom_icon.json' %}"  loop hover></lottie-player>
+                </a>
+            {% endif %}
+
+        </div>
+        <h3>Avec NOVA, Naviguez facilement entre outils de suivi et simulations, Optimisez vos finances, développez une Vision stratégique et profitez d’un Accompagnement personnalisé. Budget, épargne, investissement : maîtrisez votre avenir financier en toute confiance.</h3>
+        <div class="logoSite">
+            <a href=""><img src="{% static 'images/Logo EcoNova.png' %}" alt="Logo ÉcoNova Finance" class="logoSite"></a>
+            <h2 class="econova-text">EcoNova</h2>
+        </div>
+    </div>
+</header>
+    <section class="connexion-section">
+        <div class="form">
+            <h1>Connecte-toi</h1>
+            <h3>Tu n’as pas encore de compte? <a href="rejoindre" style="color: #0051FF">Crée un compte</a></h3>
+            {% for message in messages %}
+                <h1>{{ message }}</h1>
+            {% endfor %}
+            <div id="lottie-container6" class="lottie-container-signin"></div>
+            <script>
+                var animation = lottie.loadAnimation({
+                    container: document.getElementById('lottie-container6'),
+                    renderer: 'svg',
+                    loop: true,
+                    autoplay: true,
+                    path: "{% static 'json/Sign in.json' %}"
+                });
+            </script>
+            <form action="" method="post">
+                {% csrf_token %}
+                <h2>Nom d'utilisateur</h2>
+                <input type="text" name="utilisateur" placeholder="">
+                <h2>Mot de passe</h2>
+                <input type="password" name="mot_de_passe" placeholder="">
+                <input type="submit" value="Se connecter">
+            </form>
+        </div>
+        <!--<div class="connexion-infos">
+            <div class="infos">
+                <h2>En vous inscrivant sur NOVA, vous accédez à des outils personnalisés pour gérer votre budget, suivre vos investissements et optimiser vos décisions financières. Profitez d’un suivi en temps réel, de conseils adaptés et d’une expérience sécurisée pour bâtir un avenir financier serein. Rejoignez-nous dès aujourd’hui !</h2>
+                <h1>Créez votre compte et prenez le contrôle de vos finances !</h1>
+            </div>
+            <div class="imgRejoindre" id="lottie">
+                <img src="{% static 'images/argentIMG.svg' %}" alt="">
+            </div>
+            <div class="shadow"></div>
+        </div>-->
+    </section>
+    <section class="copyrights">
+        <h3>© 2025 NOVA. Tous droits réservés.</h3>
+        <h3> Créé par Micheal Gyan, Gabriel-Ngoma Riendeau, Samy Baouche, Mohammed El Ouaabani et Nancy Bechara.</h3>
+    </section>
+
+    <script src="{% static "js/app.js" %}"></script>
+</body>
+</html>
