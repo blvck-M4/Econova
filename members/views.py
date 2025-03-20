@@ -214,6 +214,7 @@ def reponseBot(request):
     reponse = nova_ai.reponseBot(request, utilisateur)
     return JsonResponse({"response": reponse})
 
+
 def chart_view(request):
     # Récupérer l'instance du membre correspondant en utilisant le nom d'utilisateur.
     try:
@@ -222,6 +223,11 @@ def chart_view(request):
         member = None
 
     context = {}  # Assurez-vous que le contexte est toujours défini.
+
+    # Vérifier si l'utilisateur veut effacer les revenus
+    if request.method == "GET" and request.GET.get("clear_revenue") == "true" and member is not None:
+        MonthlyRevenue.objects.filter(member=member).delete()
+        return redirect('revenue_dashboard')  # Redirection pour rafraîchir la page
 
     if request.method == "POST":
         form = MonthlyRevenueForm(request.POST)
@@ -236,11 +242,10 @@ def chart_view(request):
                 month=month,
                 defaults={'revenue': revenue}
             )
-            # Rediriger pour éviter la resoumission lors du rafraîchissement.
-            return redirect('revenue_dashboard')
+            return redirect('revenue_dashboard')  # Rediriger pour éviter la resoumission
         else:
-            # Si le formulaire n'est pas valide, passez le formulaire au contexte.
-            context['form'] = form
+            context['form'] = form  # Si le formulaire n'est pas valide
+
     else:
         form = MonthlyRevenueForm()
         context['form'] = form
@@ -254,6 +259,9 @@ def chart_view(request):
         month_str = entry.month.strftime('%Y-%m')
         revenue_by_month[month_str] += float(entry.revenue)
 
+    # If there are no revenue entries, ensure we have at least one entry with 0 value
+    if not revenue_by_month:
+        revenue_by_month['No Data'] = 0  # Adding a default label and value for empty data
     sorted_months = sorted(revenue_by_month.keys())
     labels = sorted_months
     values = [revenue_by_month[month] for month in sorted_months]
@@ -264,4 +272,5 @@ def chart_view(request):
     }
 
     context['chart_data'] = json.dumps(chart_data)  # Toujours définir context['chart_data']
+
     return render(request, 'chart.html', context)
