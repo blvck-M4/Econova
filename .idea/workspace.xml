@@ -6,7 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="762bf436-e0f2-48da-9114-9583e32920ed" name="Changes" comment="Variables dans le model member">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/members/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/members/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/members/static/css/analyse.css" beforeDir="false" afterPath="$PROJECT_DIR$/members/static/css/analyse.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/members/templates/chart.html" beforeDir="false" afterPath="$PROJECT_DIR$/members/templates/chart.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/members/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/members/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,7 +32,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="master" />
+        <entry key="$PROJECT_DIR$" value="chart-review-micheal" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -40,12 +43,12 @@
     &quot;assignee&quot;: &quot;blvck-M4&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/blvck-M4/Econova.git",
-    "accountId": "d13859bd-9431-4aa1-b7ee-774830cf58df"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/blvck-M4/Econova.git&quot;,
+    &quot;accountId&quot;: &quot;d13859bd-9431-4aa1-b7ee-774830cf58df&quot;
   }
-}]]></component>
+}</component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 1
 }</component>
@@ -67,7 +70,7 @@
     "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.pycharm.django.structure.promotion.once.per.project": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "#28 on Micheal",
+    "git-widget-placeholder": "Micheal",
     "last_opened_file_path": "C:/Users/gabri/PycharmProjects/Econova",
     "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
@@ -99,6 +102,7 @@
         <env name="DJANGO_SETTINGS_MODULE" value="djangoProject1.settings" />
       </envs>
       <option name="SDK_HOME" value="" />
+      <option name="SDK_NAME" value="Python 3.13 (Econova)" />
       <option name="WORKING_DIRECTORY" value="" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
@@ -146,6 +150,7 @@
       <workItem from="1741142929149" duration="42391000" />
       <workItem from="1741615525854" duration="3191000" />
       <workItem from="1741812134202" duration="3930000" />
+      <workItem from="1742418652635" duration="1743000" />
     </task>
     <task id="LOCAL-00001" summary="Read me/  LICENSE.txt">
       <option name="closed" value="true" />

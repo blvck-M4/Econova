@@ -13,6 +13,9 @@ from .forms import MonthlyRevenueForm
 from .models import Member, MonthlyRevenue
 from django.conf import settings
 import requests
+
+from .models import Member
+
 conditions_termes = False
 
 from django.http import JsonResponse
