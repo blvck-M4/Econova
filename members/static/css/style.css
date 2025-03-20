@@ -374,3 +374,11 @@ h3, input::placeholder{
     text-align: center;
     line-height: 1.6;
 }
+.chart-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column; /* Ensures the title stays above */
+    height: auto;
+    text-align: center;
+}

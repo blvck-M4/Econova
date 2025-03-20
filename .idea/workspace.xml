@@ -4,12 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="762bf436-e0f2-48da-9114-9583e32920ed" name="Changes" comment="Variables dans le model member">
+    <list default="true" id="762bf436-e0f2-48da-9114-9583e32920ed" name="Changes" comment="Configuration du chart initiale finis">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/members/static/css/analyse.css" beforeDir="false" afterPath="$PROJECT_DIR$/members/static/css/analyse.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/members/templates/chart.html" beforeDir="false" afterPath="$PROJECT_DIR$/members/templates/chart.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/members/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/members/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -150,7 +147,7 @@
       <workItem from="1741142929149" duration="42391000" />
       <workItem from="1741615525854" duration="3191000" />
       <workItem from="1741812134202" duration="3930000" />
-      <workItem from="1742418652635" duration="1743000" />
+      <workItem from="1742418652635" duration="2376000" />
     </task>
     <task id="LOCAL-00001" summary="Read me/  LICENSE.txt">
       <option name="closed" value="true" />
@@ -304,7 +301,15 @@
       <option name="project" value="LOCAL" />
       <updated>1741815399842</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="Configuration du chart initiale finis">
+      <option name="closed" value="true" />
+      <created>1742431912348</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1742431912348</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -333,7 +338,8 @@
     <MESSAGE value="Page profil et chatbot (API et design html, css, js) dans le tableau de bord" />
     <MESSAGE value="Historique de conversation du chatbot" />
     <MESSAGE value="Variables dans le model member" />
-    <option name="LAST_COMMIT_MESSAGE" value="Variables dans le model member" />
+    <MESSAGE value="Configuration du chart initiale finis" />
+    <option name="LAST_COMMIT_MESSAGE" value="Configuration du chart initiale finis" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/EcoNova$urls.coverage" NAME="urls Coverage Results" MODIFIED="1738637946628" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/djangoProject1" />
