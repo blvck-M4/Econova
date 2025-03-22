@@ -224,8 +224,8 @@ def chart_view(request):
     context = {}  # Assurez-vous que le contexte est toujours défini.
 
     # Vérifier si l'utilisateur veut effacer les revenus
-    if request.method == "GET" and request.GET.get("clear_revenue") == "true" and member is not None:
-        RevenueMensuelle.objects.filter(member=member).delete()
+    if request.method == "GET" and request.GET.get("clear_revenue") == "true" and membre is not None:
+        RevenueMensuelle.objects.filter(membre=membre).delete()
         return redirect('revenue_dashboard')  # Redirection pour rafraîchir la page
 
     if request.method == "POST":
