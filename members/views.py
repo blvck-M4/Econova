@@ -176,14 +176,14 @@ def chatbot(request):
 # Clé API Alpha Vantage (ajoute ta clé API dans settings.py)
 ALPHA_VANTAGE_API_KEY = settings.ALPHA_VANTAGE_API_KEY
 def bourse(request):
-    urilisateurs = User.objects.all().values()
+    utilisateurs = User.objects.all().values()
     members = Member.objects.all()
     stock_data = bourse_data.stock_data(request)
     conseil = nova_ai.conseilActions(stock_data, 'conservateur')
     print(conseil)
 
     context = {
-        'urilisateurs': urilisateurs,
+        'utilisateurs': utilisateurs,
         'members': members,
         "stock_data": stock_data,
         'conseil': conseil,
@@ -254,17 +254,17 @@ def chart_view(request):
     revenue_entries = MonthlyRevenue.objects.filter(member=member) if member else []
 
     # Agréger les revenus par mois
-    revenue_by_month = defaultdict(float)
+    revenue_par_mois = defaultdict(float)
     for entry in revenue_entries:
         month_str = entry.month.strftime('%Y-%m')
-        revenue_by_month[month_str] += float(entry.revenue)
+        revenue_par_mois[month_str] += float(entry.revenue)
 
     # If there are no revenue entries, ensure we have at least one entry with 0 value
-    if not revenue_by_month:
-        revenue_by_month['No Data'] = 0  # Adding a default label and value for empty data
-    sorted_months = sorted(revenue_by_month.keys())
-    labels = sorted_months
-    values = [revenue_by_month[month] for month in sorted_months]
+    if not revenue_par_mois:
+        revenue_par_mois['No Data'] = 0  # Adding a default label and value for empty data
+    mois_trier = sorted(revenue_par_mois.keys())
+    labels = mois_trier
+    values = [revenue_par_mois[month] for month in mois_trier]
 
     chart_data = {
         "labels": labels,
