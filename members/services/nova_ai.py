@@ -1,3 +1,4 @@
+from django.conf import settings
 from dotenv import load_dotenv
 load_dotenv()
 import os
@@ -5,7 +6,7 @@ from google import genai
 from google.genai import types
 
 client = genai.Client(
-            api_key=os.getenv('GEMINI_API_KEY'),
+            api_key=settings.GEMINI_API_KEY,
         )
 model = "gemini-2.0-flash"
 generate_content_config = types.GenerateContentConfig(
@@ -65,9 +66,41 @@ def reponseBot (request, utilisateur):
                 config=generate_content_config,
         ):
             reponse += chunk.text
+        reponse_filtre = reponse.replace('**', '<br>')
+        reponse_finale = reponse_filtre.replace('*', ' ')
+
         historique.append({"role": "model", "text": reponse})
         request.session['historique'] = historique
 
-        return reponse
+        return reponse_finale
+
+
+def conseilActions(stock_data, profil):
+    contents = [
+        types.Content(
+            role="user",
+            parts=[
+                types.Part.from_text(text="""Donne moi des conseils financiers par rapport l'action 
+                """ + 'AAPL' + """. Fait le sachant que j'ai un profil financier """+profil),
+            ],
+        ),
+
+    ]
+    generate_content_config.system_instruction = [
+        types.Part.from_text(text="""Tu es NOVA, un conseiller financier virtuel intelligent conçu pour 
+                                    accompagner un utilisateur d’EcoNova dans la gestion et l’optimisation de ses 
+                                    finances personnelles. Ne donne pas des réponses trop longues, donc de plus de 500 
+                                    mots. Si tu rajoutes des points numérotés, fait le après les *.
+                                    """),
+    ]
+    reponse = ""
+    for chunk in client.models.generate_content_stream(
+            model=model,
+            contents=contents,
+            config=generate_content_config,
+    ):
+        reponse += chunk.text
+    reponse_finale = reponse.replace('*', '<br>')
+    return reponse_finale
 
 
