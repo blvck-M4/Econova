@@ -1,0 +1,173 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>ÉcoNova Finance</title>
+    <link rel="stylesheet" href="{% static 'css/tableau-bord/dashboard.css' %}">
+    <link rel="stylesheet" href="{% static 'css/tableau-bord/chatbot.css' %}">
+    <link rel="icon" href="{% static 'images/Logo EcoNova.png' %}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.12.2/lottie.min.js"></script>
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+<!--Menu du profil (bouton en haut à droite)-->
+    <lottie-player class="icon-profile" id="icon-profile" src="{% static 'json/dashboard-icon/User_custom_icon.json' %}"
+                       hover></lottie-player>
+    <div class="menu-profil menu-hide" id="menu-profil">
+        <div class="menu-profil-section1">
+            <img src="{% static 'images/dashboard-icon/profil-icon.svg' %}" alt="Icon de profil">
+            <h2>
+                {{ user.username }}
+            </h2>
+            <h3>{{ user.email }}</h3>
+
+        </div>
+        <div class="menu-profil-section2">
+            <a href="profil" class="">
+                <img src="{% static 'images/dashboard-icon/profil.svg' %}" alt="Icon de profil">
+                <h2>Mon profil</h2>
+            </a>
+            <a href="" class="">
+                <img src="{% static 'images/dashboard-icon/parametre.svg' %}" alt="Icon de parametre">
+                <h2>Paramètres</h2>
+            </a>
+            <a href="" class="">
+                <img src="{% static 'images/dashboard-icon/moon.svg' %}" alt="Icon de mode sombre">
+                <h2>Mode sombre</h2>
+            </a>
+        </div>
+        <div class="menu-profil-section3">
+            <a href="/deconnexion" class="">
+                <img src="{% static 'images/dashboard-icon/logout-svgrepo-com 1.svg' %}" alt="Icon de déconnexion">
+                <h2>Se déconnecter</h2>
+            </a>
+        </div>
+    </div>
+
+<!--Menu à gauche-->
+    <section class="menu">
+        <div class="logoSite">
+          <a href="/"><img src="{% static 'images/Logo EcoNova.png' %}" alt="Logo ÉcoNova Finance"
+                                         class="logoSite"></a>
+          <h2 class="econova-text">EcoNova</h2>
+        </div>
+        <div class="onglets">
+            <a href="page-principale" class="page-principale onglet">
+                <lottie-player src="{% static 'json/dashboard-icon/Home_custom_icon.json' %}" hover></lottie-player>
+                <h2>Page principale</h2>
+            </a>
+            <div class="onglet-outils onglet">
+                <lottie-player src="{% static 'json/dashboard-icon/Wrench_custom_icon.json' %}" hover></lottie-player>
+                <h2 class="titre-outil">Outils Financiers</h2>
+                <img src="{% static 'images/dashboard-icon/triangle.svg' %}" class="triangle">
+            </div>
+
+            <div class="outils" id="outils">
+                <a href="" class="onglet-suivi onglet">
+                    <h2>Suivi</h2>
+                </a>
+                <a href="bourse" class="onglet-bourse onglet">
+                    <h2>Bourse</h2>
+                </a>
+                <a href="simulation" class="onglet-simulation onglet">
+                    <h2>Simulation</h2>
+                </a>
+                <a href="chatbot" class="onglet-nova onglet">
+                    <h2>NOVA</h2>
+                </a>
+            </div>
+        </div>
+        <a href="" class="onglet-dictionnaire onglet">
+            <lottie-player src="{% static 'json/dashboard-icon/Arrow left_custom_icon.json' %}" hover></lottie-player>
+            <h2>Dictionnaire Financier</h2>
+        </a>
+        <a href="" class="onglet-parametres onglet">
+            <lottie-player src="{% static 'json/dashboard-icon/Settings_custom_icon.json' %}" hover></lottie-player>
+            <h2>Paramètres</h2>
+        </a>
+    </section>
+
+    <section class="tableau-bord chatbot">
+
+        <div class="bienvenue" id="page-bienvenue">
+            <h1>Bonjour {{ user.username }}, je suis Nova, ton assistant IA personnalisé !</h1>
+            <h2>Je suis ton assistant financier intelligent, là pour t’aider à gérer ton argent, booster tes investissements, et te donner des conseils qui collent à tes projets. Que tu cherches à suivre tes dépenses, optimiser tes économies ou prévoir ton avenir financier, je suis là pour ça !
+N’hésite pas à me poser toutes tes questions, je suis là pour t’aider !</h2>
+        </div>
+        <div class="chat-box" id="chat-box"></div>
+
+        <div class="message-utilisateur">
+            <textarea onclick="enter()" type="text" id="user-input" placeholder="Pose ta question ici ..." ></textarea>
+            <button id="envoyer-message" onclick="envoyerMessage()"><img src="{% static 'images/dashboard-icon/Arrow right.svg' %}"></button>
+        </div>
+    </section>
+
+    <script>
+        function envoyerMessage(){
+            page_bienvenue = document.getElementById('page-bienvenue')
+            /*Zone du chat*/
+            chat_box = document.getElementById('chat-box')
+            /*Message de l'utilisateur et du bot*/
+            message_element_utilisateur = document.createElement("h2")
+            message_element_utilisateur.classList.add("user-message")
+            message_element_bot = document.createElement("h2")
+            message_element_bot.classList.add("bot-message")
+            /*Message d'erreur*/
+            message_element_erreur = document.createElement("h2")
+            message_element_erreur.innerHTML = "Erreur"
+
+            /*Envoyer le message de l'utilisateur dans la zone de chat*/
+            message_utilisateur = document.getElementById('user-input').value
+            if (message_utilisateur.trim() ==='') return;
+
+            message_element_utilisateur.innerHTML = message_utilisateur
+            chat_box.appendChild(message_element_utilisateur)
+            document.getElementById('user-input').value = ""
+
+            /*Faire disparaitre la page de bienvenue*/
+            page_bienvenue.classList.add('disparait')
+            chat_box.classList.add('bot_visibilité')
+
+
+            /*Envoyer la réponse du bot dans la zone de chat*/
+            $.ajax({
+                type: 'POST',
+                url: 'reponseBot',
+                data: {message: message_utilisateur, csrfmiddlewaretoken: '{{ csrf_token }}'},
+                success: function (reponse){
+                    message_element_bot.innerHTML = reponse.response
+                    chat_box.appendChild(message_element_bot)
+                },
+                error: function (){
+                    chat_box.appendChild(message_element_erreur)
+                }
+            })
+            scrollToBottom()
+
+        }
+        function scrollToBottom() {
+            let chatBox = document.getElementById("chat-box");
+            setTimeout(() => {
+                chatBox.scrollTo({
+                  top: chatBox.scrollHeight,
+                  behavior: "smooth"
+                });
+            }, 100);
+        }
+
+        function enter(){
+            document.getElementById("user-input").addEventListener("keyup", function(event) {
+                event.preventDefault();
+                if (event.keyCode === 13) {
+                    document.getElementById("envoyer-message").click();
+                    console.log('test')
+                }
+            });
+        }
+    </script>
+    <script src="{% static 'js/tableau-bord.js' %}"></script>
+
+</body>
+</html>
