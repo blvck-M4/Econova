@@ -1,4 +1,6 @@
 {% load static %}
+<link rel="stylesheet" href="{% static 'css/suivi-financier.css' %}">
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,9 +27,9 @@
     </div>
 
     <!-- Conteneur du graphique -->
-    <div>
-        <h2>Graphique des revenus</h2>
-        <canvas id="revenueChart"></canvas>
+    <div class="chart-container">
+    <h2>Graphique des revenus</h2>
+    <canvas id="revenueChart" width="900" height="500"></canvas>
     </div>
 
     <script>
@@ -43,10 +45,12 @@
                     data: chartData.values,
                     backgroundColor: 'rgba(75, 192, 192, 0.2)',
                     borderColor: 'rgba(75, 192, 192, 1)',
-                    borderWidth: 1
+                    borderWidth: 1,
+                    lineTension:0.1
                 }]
             },
             options: {
+                responsive: false,
                 scales: {
                     y: {
                         beginAtZero: true
@@ -56,7 +60,7 @@
         });
     </script>
 
-    <form method="get" action="{% url 'revenue_dashboard' %}">
+    <form method="get" action="{% url 'suivi-financier' %}">
         <button type="submit" name="clear_revenue" value="true">Effacer tous les revenus</button>
     </form>
 </body>
