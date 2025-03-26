@@ -88,22 +88,17 @@
         </div>
         <h2>Quel est votre profil financier ?</h2>
         <h3 class="infos-questionnaire">Avant de définir vos objectifs financiers, il est important de
-            comprendre votre situation
-            et vos
-            attentes. Cela comprend votre capacité à accepter des risques, votre horizon de placement et vos objectifs
-            financiers. Remplissez ce questionnaire pour mieux comprendre votre profil financier, ainsi que les types
-            d’investissements qui vous conviennent le mieux. Cela servira également de point de départ pour des
-            discussions avec un conseiller financier.</h3>
+            comprendre votre situation et vos attentes. Cela comprend votre capacité à accepter des
+            risques, votre horizon de placement et vos objectifs financiers. Remplissez ce questionnaire
+            pour mieux comprendre votre profil financier, ainsi que les types d’investissements qui vous
+            conviennent le mieux. Cela servira également de point de départ pour des discussions avec un
+            conseiller financier.</h3>
 
         <form action="" method="post">
             {% csrf_token %}
-            <div class="question visible">
-                <h2>Entrez votre date de naissance</h2>
-                <input type="date" name="date_de_naissance" placeholder="Date de naissance">
-            </div>
 
-            <div class="question">
-                <h2>Quel est votre âge?</h2>
+            <div class="question visible">
+                <h2>Quelle est votre tranche d'âge?</h2>
                 <div><input type="radio" name="age" value="18-24">
                     <h3>18-24</h3></div>
                 <div><input type="radio" name="age" value="25-34">
@@ -174,21 +169,24 @@
 
             <div class="question">
                 <h2>Avez-vous des enfants?</h2>
-                <div><input type="radio" name="enfant" value="Oui">
+                <div><input type="radio" name="enfant" value="Oui" onclick="show1();"/>
                     <h3>Oui</h3></div>
-                <div><input type="radio" name="enfant" value="Non">
+                <div><input type="radio" name="enfant" value="Non" onclick="show2();"/>
                     <h3>Non</h3></div>
-                <br>
-                <br>
-                <h2>Comment d'enfants avez-vous à charge?</h2>
-                <div><input type="radio" name="nbEnfants" value="1 enfant">
-                    <h3>1 enfant</h3></div>
-                <div><input type="radio" name="nbEnfants" value="2 enfants">
-                    <h3>2 enfants</h3></div>
-                <div><input type="radio" name="nbEnfants" value="3 enfants">
-                    <h3>3 enfants</h3></div>
-                <div><input type="radio" name="nbEnfants" value="4 enfants ou plus">
-                    <h3>4 enfants ou plus</h3></div>
+
+                <div id="div1">
+                    <br>
+                    <br>
+                    <h2>Combien d'enfants avez-vous à charge?</h2>
+                    <div><input type="radio" name="nbEnfants" value="1 enfant">
+                        <h3>1 enfant</h3></div>
+                    <div><input type="radio" name="nbEnfants" value="2 enfants">
+                        <h3>2 enfants</h3></div>
+                    <div><input type="radio" name="nbEnfants" value="3 enfants">
+                        <h3>3 enfants</h3></div>
+                    <div><input type="radio" name="nbEnfants" value="4 enfants ou plus">
+                        <h3>4 enfants ou plus</h3></div>
+                </div>
             </div>
 
             <div class="question">
@@ -216,7 +214,7 @@
                 <div><input type="checkbox" name="objectif" value="Constituer un fond d'urgence">
                     <h3>Constituer un fond d'urgence</h3></div>
                 <div><input type="checkbox" name="objectif" value="Remboursement de dettes">
-                    <h3>Remborusement de dettes</h3></div>
+                    <h3>Remboursement de dettes</h3></div>
                 <div><input type="checkbox" name="objectif" value="Épargne pour les études">
                     <h3>Épargne pour les études</h3></div>
                 <div><input type="checkbox" name="objectif" value="Générer des revenus passifs">
@@ -234,151 +232,167 @@
                 </div>
             </div>
 
+
             <div class="question">
                 <h2>Êtes-vous actuellement endetté?</h2>
-                <div><input type="radio" name="dettes" value="Oui">
+                <div><input type="radio" name="dettes" value="Oui" onclick="show3();"/>
                     <h3>Oui</h3></div>
-                <div><input type="radio" name="dettes" value="Non">
+                <div><input type="radio" name="dettes" value="Non" onclick="show4();"/>
                     <h3>Non</h3></div>
-                <br>
-                <br>
-                <h2>À combien d'élève le montant de vos dettes?</h2>
-                <div><input type="radio" name="montantDette" value="Moins de 10 000$">
-                    <h3>Moins de 10 000$</h3></div>
-                <div><input type="radio" name="montantDette" value="10 000$ à 25 000$">
-                    <h3>10 000$ à 25 000$</h3></div>
-                <div><input type="radio" name="montantDette" value="25 000$ à 50 000$">
-                    <h3>25 000$ à 50 000$</h3></div>
-                <div><input type="radio" name="montantDette" value="50 000$ à 100 000$">
-                    <h3>50 000$ à 100 000$</h3></div>
-                <div><input type="radio" name="montantDette" value="Plus de 100 000$">
-                    <h3>Plus de 100 000$</h3></div>
-                <br>
-                <br>
-                <h2>Quelles sont vos types de dettes?</h2>
-                <div><input type="checkbox" name="typeDette" value="Carte de crédit">
-                    <h3>Carte de crédit</h3></div>
-                <div><input type="checkbox" name="typeDette" value="Prêts étudiants">
-                    <h3>Prêts étudiants</h3></div>
-                <div><input type="checkbox" name="typeDette" value="Prêts automoniles">
-                    <h3>Prêts automobiles</h3></div>
-                <div><input type="checkbox" name="typeDette" value="Hypothèque">
-                    <h3>Hypothèque</h3></div>
-                <div><input type="checkbox" name="typeDette" value="Autre"/>
-                    <h3>Autre: </h3><input type="text" name="typeDette"/>
+
+                <div id="div2">
+                    <br>
+                    <br>
+                    <h2>À combien s'élève le montant de vos dettes?</h2>
+                    <div><input type="radio" name="montantDette" value="Moins de 10 000$">
+                        <h3>Moins de 10 000$</h3></div>
+                    <div><input type="radio" name="montantDette" value="10 000$ à 25 000$">
+                        <h3>10 000$ à 25 000$</h3></div>
+                    <div><input type="radio" name="montantDette" value="25 000$ à 50 000$">
+                        <h3>25 000$ à 50 000$</h3></div>
+                    <div><input type="radio" name="montantDette" value="50 000$ à 100 000$">
+                        <h3>50 000$ à 100 000$</h3></div>
+                    <div><input type="radio" name="montantDette" value="Plus de 100 000$">
+                        <h3>Plus de 100 000$</h3></div>
+                    <br>
+                    <br>
+                    <h2>Quelles sont vos types de dettes?</h2>
+                    <div><input type="checkbox" name="typeDette" value="Carte de crédit">
+                        <h3>Carte de crédit</h3></div>
+                    <div><input type="checkbox" name="typeDette" value="Prêts étudiants">
+                        <h3>Prêts étudiants</h3></div>
+                    <div><input type="checkbox" name="typeDette" value="Prêts automoniles">
+                        <h3>Prêts automobiles</h3></div>
+                    <div><input type="checkbox" name="typeDette" value="Hypothèque">
+                        <h3>Hypothèque</h3></div>
+                    <div><input type="checkbox" name="typeDette" value="Autre"/>
+                        <h3>Autre: </h3><input type="text" name="typeDette"/>
+                    </div>
                 </div>
+
             </div>
 
 
-    <div class="question">
+            <div class="question">
 
-        <h2>Termes et conditions</h2>
+                <h2>Termes et conditions</h2>
 
-        <div style="height: 300px;width:650px;border:1px solid #ccc;font:16px/26px Arial, sans-serif;
+                <div style="height: 300px;width:650px;border:1px solid #ccc;font:16px/26px Arial, sans-serif;
                 overflow: auto; padding: 15px;">
 
-            <section>
-                <p><strong>Dernière mise à jour :</strong> 13 mars 2025</p>
+                    <section>
+                        <p><strong>Dernière mise à jour :</strong> 13 mars 2025</p>
 
-                <p>Les conditions générales s’appliquent à votre utilisation du site web EcoNova Finance
-                    développé par Gabriel Ngoma Riendeau, Micheal Gyan, Samy Baouche, Mohamed El-Ouaabani et
-                    Nancy Bechara. En accédant au site, l’utilisateur déclare avoir lu et compris les conditions
-                    générales d'utilisation et déclare accepter l’intégralité des conditions.</p>
+                        <p>Les conditions générales s’appliquent à votre utilisation du site web EcoNova Finance
+                            développé par Gabriel Ngoma Riendeau, Micheal Gyan, Samy Baouche, Mohamed El-Ouaabani et
+                            Nancy Bechara. En accédant au site, l’utilisateur déclare avoir lu et compris les
+                            conditions générales d'utilisation et déclare accepter l’intégralité des conditions.</p>
 
-                <h3><strong>1. ACCÈS AUX SERVICES</strong></h3>
-                <p>Tout utilisateur du site EcoNova Finance a accès aux services suivants :</p>
-                <ul>
-                    <li>Éducation financière</li>
-                    <li>Repaire boursier</li>
-                    <li>Simulateur financier</li>
-                </ul>
-                <p>Tout utilisateur ayant accès à internet peut accéder gratuitement au site web. Les services
-                    suivants ne sont pas accessibles pour tout utilisateur non inscrit au site (c’est-à-dire
-                    connecté à un compte) :</p>
-                <ul>
-                    <li>Chatbot NOVA</li>
-                    <li>Suivi financier</li>
-                </ul>
-                <p>Le site et ses différents services peuvent être interrompus ou suspendus par les
-                    développeurs, notamment à l’occasion d’une maintenance, sans obligation de préavis ou de
-                    justification.</p>
+                        <h3><strong>1. ACCÈS AUX SERVICES</strong></h3>
+                        <p>Tout utilisateur du site EcoNova Finance a accès aux services suivants :</p>
+                        <ul>
+                            <li>Éducation financière</li>
+                            <li>Repaire boursier</li>
+                            <li>Simulateur financier</li>
+                        </ul>
+                        <p>Tout utilisateur ayant accès à internet peut accéder gratuitement au site web. Les
+                            services suivants ne sont pas accessibles pour tout utilisateur non inscrit au site
+                            (c’est-à-dire connecté à un compte) :</p>
+                        <ul>
+                            <li>Chatbot NOVA</li>
+                            <li>Suivi financier</li>
+                        </ul>
+                        <p>Le site et ses différents services peuvent être interrompus ou suspendus par les
+                            développeurs, notamment à l’occasion d’une maintenance, sans obligation de préavis ou de
+                            justification.</p>
 
-                <h3><strong>2. RESPONSABILITÉ DE L’UTILISATEUR</strong></h3>
-                <p><strong>a)</strong> L’utilisateur est responsable des risques liés aux identifiants de son
-                    compte respectif et du maintien de sa confidentialité et sécurité (Ex : Mot de passe,
-                    activité sur le compte). Les développeurs n’assument aucune responsabilité de perte de mot
-                    de passe ou piratage du compte;</p>
-                <p><strong>b)</strong> L’utilisateur s’engage à fournir des informations véridiques et les
-                    modifier en cas de changements pour la meilleure expérience possible;</p>
-                <p><strong>c)</strong> L’utilisateur assume l’entière responsabilité de son utilisation des
-                    informations et du contenus présents sur le site;</p>
-                <p><strong>d)</strong> L’utilisateur assume l’entière responsabilité de ses choix financiers,
-                    ses pertes et ses gains sans possibilité de porter plainte aux développeurs et accepte les
-                    risques liés aux investissements d’argent.</p>
-                <p><strong>e)</strong> Le membre s’engage à tenir des propos respectueux et accepte que ses
-                    discussions soient modérées ou refusées par les développeurs, sans obligation de
-                    justification lors des discussions avec l’intelligence artificielle NOVA.</p>
+                        <h3><strong>2. RESPONSABILITÉ DE L’UTILISATEUR</strong></h3>
+                        <p><strong>a)</strong> L’utilisateur est responsable des risques liés aux identifiants de
+                            son
+                            compte respectif et du maintien de sa confidentialité et sécurité (Ex : Mot de passe,
+                            activité sur le compte). Les développeurs n’assument aucune responsabilité de perte de
+                            mot
+                            de passe ou piratage du compte;</p>
+                        <p><strong>b)</strong> L’utilisateur s’engage à fournir des informations véridiques et les
+                            modifier en cas de changements pour la meilleure expérience possible;</p>
+                        <p><strong>c)</strong> L’utilisateur assume l’entière responsabilité de son utilisation des
+                            informations et du contenus présents sur le site;</p>
+                        <p><strong>d)</strong> L’utilisateur assume l’entière responsabilité de ses choix
+                            financiers,
+                            ses pertes et ses gains sans possibilité de porter plainte aux développeurs et accepte
+                            les risques liés aux investissements d’argent.</p>
+                        <p><strong>e)</strong> Le membre s’engage à tenir des propos respectueux et accepte que ses
+                            discussions soient modérées ou refusées par les développeurs, sans obligation de
+                            justification lors des discussions avec l’intelligence artificielle NOVA.</p>
 
-                <h3><strong>3. RESPONSABILITÉ DES DÉVELOPPEURS</strong></h3>
-                <p><strong>a)</strong> Tout dysfonctionnement du serveur ou du réseau ne peut engager la
-                    responsabilité des développeurs ;</p>
-                <p><strong>b)</strong> Les développeurs n’apportent pas une garantie de sécurité totale ;</p>
-                <p><strong>c)</strong> Les développeurs se réservent la faculté d’une non-garantie de la
-                    fiabilité des sources, bien que les informations diffusées sur le site soient réputées
-                    fiables ;</p>
-                <p><strong>d)</strong> Les développeurs ne sont pas responsables des choix financiers des
-                    utilisateurs et des conseils fournis par l’intelligence artificielle ;</p>
-                <p><strong>e)</strong> Les développeurs ne sont pas responsables des pertes et gains financiers.
-                </p>
+                        <h3><strong>3. RESPONSABILITÉ DES DÉVELOPPEURS</strong></h3>
+                        <p><strong>a)</strong> Tout dysfonctionnement du serveur ou du réseau ne peut engager la
+                            responsabilité des développeurs ;</p>
+                        <p><strong>b)</strong> Les développeurs n’apportent pas une garantie de sécurité totale ;
+                        </p>
+                        <p><strong>c)</strong> Les développeurs se réservent la faculté d’une non-garantie de la
+                            fiabilité des sources, bien que les informations diffusées sur le site soient réputées
+                            fiables ;</p>
+                        <p><strong>d)</strong> Les développeurs ne sont pas responsables des choix financiers des
+                            utilisateurs et des conseils fournis par l’intelligence artificielle ;</p>
+                        <p><strong>e)</strong> Les développeurs ne sont pas responsables des pertes et gains
+                            financiers.
+                        </p>
 
-                <h3><strong>4. UTILISATION DU SITE</strong></h3>
-                <p><strong>a)</strong> L’utilisateur doit obtenir l’autorisation des développeurs du site avant
-                    toute reproduction, copie ou publication de ces différents contenus ;</p>
-                <p><strong>b)</strong> Les contenus peuvent être utilisés par les utilisateurs à des fins
-                    privées, tout usage commercial est interdit ;</p>
-                <p><strong>c)</strong> L’utilisateur est entièrement responsable de tout contenu mis sur le site
-                    ;</p>
-                <p><strong>d)</strong> Les développeurs du site se réservent le droit de modérer ou de supprimer
-                    librement et à tout moment les contenus mis sur le site par les utilisateurs, et ce sans
-                    justification.</p>
-                <p><strong>e)</strong> L’utilisateur s’engage à ne pas transmettre des virus informatiques ou
-                    tout autre logiciel qui pourrait endommager EcoNova Finance d’une quelconque manière ;</p>
-                <p><strong>f)</strong> L’utilisateur accepte de ne pas publier du matériel diffamatoire,
-                    violent, haineux ou discriminatoire.</p>
+                        <h3><strong>4. UTILISATION DU SITE</strong></h3>
+                        <p><strong>a)</strong> L’utilisateur doit obtenir l’autorisation des développeurs du site
+                            avant toute reproduction, copie ou publication de ces différents contenus ;</p>
+                        <p><strong>b)</strong> Les contenus peuvent être utilisés par les utilisateurs à des fins
+                            privées, tout usage commercial est interdit ;</p>
+                        <p><strong>c)</strong> L’utilisateur est entièrement responsable de tout contenu mis sur le
+                            site ;</p>
+                        <p><strong>d)</strong> Les développeurs du site se réservent le droit de modérer ou de
+                            supprimer librement et à tout moment les contenus mis sur le site par les utilisateurs,
+                            et ce sans justification.</p>
+                        <p><strong>e)</strong> L’utilisateur s’engage à ne pas transmettre des virus informatiques
+                            ou
+                            tout autre logiciel qui pourrait endommager EcoNova Finance d’une quelconque manière ;
+                        </p>
+                        <p><strong>f)</strong> L’utilisateur accepte de ne pas publier du matériel diffamatoire,
+                            violent, haineux ou discriminatoire.</p>
 
-                <h3><strong> 5. DONNÉES PERSONNELLES</strong></h3>
-                <p>L’utilisateur doit obligatoirement fournir des informations personnelles pour procéder à son
-                    inscription sur EcoNova Finance. En utilisant le site, l’utilisateur autorise l’utilisation
-                    des informations par les développeurs.</p>
-                <p>L’utilisateur fournit minimalement une adresse courriel valide et complète un questionnaire
-                    personnel dont les informations sont recueillies pour alimenter les conseils de NOVA. Les
-                    informations sont utilisées pour assurer une bonne expérience.</p>
-                <p>L’utilisateur accepte que son courriel soit partagé à Google à travers ses conversations avec
-                    Google Gen AI.</p>
+                        <h3><strong> 5. DONNÉES PERSONNELLES</strong></h3>
+                        <p>L’utilisateur doit obligatoirement fournir des informations personnelles pour procéder à
+                            son inscription sur EcoNova Finance. En utilisant le site, l’utilisateur autorise
+                            l’utilisation des informations par les développeurs.</p>
+                        <p>L’utilisateur fournit minimalement une adresse courriel valide et complète un
+                            questionnaire
+                            personnel dont les informations sont recueillies pour alimenter les conseils de NOVA.
+                            Les
+                            informations sont utilisées pour assurer une bonne expérience.</p>
+                        <p>L’utilisateur accepte que son courriel soit partagé à Google à travers ses conversations
+                            avec
+                            Google Gen AI.</p>
 
-                <h3><strong>6. MISE À JOUR DES CONDITIONS</strong></h3>
-                <p>Le site EcoNova Finance se réserve le droit de modifier les clauses de ces conditions
-                    générales d’utilisation à tout moment et sans justification.</p>
+                        <h3><strong>6. MISE À JOUR DES CONDITIONS</strong></h3>
+                        <p>Le site EcoNova Finance se réserve le droit de modifier les clauses de ces conditions
+                            générales d’utilisation à tout moment et sans justification.</p>
 
-                <h3><strong>7. CONTRAT UTILISATEURS/DÉVELOPPEURS</strong></h3>
-                <p>En acceptant ces conditions, l’utilisateur s’engage à respecter l’ensemble des éléments
-                    contenus dans la clause, et ce pour toute la durée de l’utilisation du site web, les
-                    développeurs s’engagent à respecter l’entente.</p>
-            </section>
+                        <h3><strong>7. CONTRAT UTILISATEURS/DÉVELOPPEURS</strong></h3>
+                        <p>En acceptant ces conditions, l’utilisateur s’engage à respecter l’ensemble des éléments
+                            contenus dans la clause, et ce pour toute la durée de l’utilisation du site web, les
+                            développeurs s’engagent à respecter l’entente.</p>
+                    </section>
+                </div>
+
+
+                <div><input type="checkbox" name="conditions" required>
+                    <h3>J'ai lu et j'accepte l'ensemble des termes et conditions ainsi que la politique de
+                        confidentialité.</h3>
+                </div>
+
+                <input type="submit" value="Envoyer">
+            </div>
+        </form>
+        <div class="nav-questionnaire">
+            <button class="retour">Retour</button>
+            <button class="suivant">Suivant</button>
         </div>
-
-        <div><input type="checkbox" name="conditions" required>
-            <h3>J'ai lu et j'accepte l'ensemble des termes et conditions ainsi que la politique de
-                confidentialité.</h3>
-        </div>
-
-        <input type="submit" value="Envoyer">
-    </div>
-    </form>
-    <div class="nav-questionnaire">
-        <button class="retour">Retour</button>
-        <button class="suivant">Suivant</button>
-    </div>
     </div>
 </section>
 <section class="copyrights">
@@ -386,7 +400,15 @@
     <h3> Créé par Micheal Gyan, Gabriel-Ngoma Riendeau, Samy Baouche, Mohammed El Ouaabani et Nancy Bechara.</h3>
 </section>
 
-<script src="{% static "js/app.js" %}"></script>
+<script>
+    menubar = document.querySelector('.menu-btn');
+    menuslide = document.querySelector('.menu-slide');
+    menubar.addEventListener("click", () => {
+        menuslide.classList.toggle("menu_active");
+        menubar.classList.toggle("x_active");
+        console.log("ok");
+    });</script>
+
 <script>
     suivant = document.querySelector('.suivant');
     question = document.querySelectorAll('.question');
@@ -409,5 +431,37 @@
         }
     })
 </script>
+
+<script>
+    window.onload = function () {
+        document.getElementById('div1').style.display = 'none';
+        document.getElementById('div2').style.display = 'none';
+    };
+
+    function show1() {
+        document.getElementById('div1').style.display = 'block';
+    }
+
+    function show2() {
+        document.getElementById('div1').style.display = 'none';
+    }
+
+    function show3() {
+        document.getElementById('div2').style.display = 'block';
+    }
+
+    function show4() {
+        document.getElementById('div2').style.display = 'none';
+    }
+</script>
+
+<!--<script>
+    function show1() {
+        rep = document.getElementById("div1");
+        rep.classList.toggle("visible-sousquestion");
+    }
+</script>
+-->
+
 </body>
 </html>
