@@ -262,3 +262,12 @@ def chart_view(request):
 
     context['chart_data'] = json.dumps(chart_data)  # Toujours définir context['chart_data']
     return render(request, 'chart.html', context)
+
+def suivi(request):
+    utilisateurs = User.objects.all().values()
+    members = Member.objects.all()
+    context = {
+        'utilisateurs': utilisateurs,
+        'members': members,
+    }
+    return render(request, 'tableau-bord/suivi.html', context)

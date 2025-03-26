@@ -1,18 +1,35 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
-    <title>Bourse - Recherche D'Actions</title>
+    <title>ÉcoNova Finance</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet"> <!-- Importation de la police Poppins -->
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/tableau-bord/suivi.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="icon" href="{% static 'images/Logo EcoNova.png' %}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.12.2/lottie.min.js"></script>
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
     <link rel="stylesheet" href="{% static 'css/tableau-bord/dashboard.css' %}">
     <link rel="stylesheet" href="{% static 'css/tableau-bord/chatbot.css' %}">
-    <link rel="stylesheet" href="{% static 'css/tableau-bord/bourse.css' %}">
     <link rel="icon" href="{% static 'images/Logo EcoNova.png' %}">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.12.2/lottie.min.js"></script>
     <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 </head>
 <body>
+
+<script src="{% static 'js/app.js' %}"></script>
+
+  <header class="header">
+
+  </header>
+
 <!--Menu du profil (bouton en haut à droite)-->
     <lottie-player class="icon-profile" id="icon-profile" src="{% static 'json/dashboard-icon/User_custom_icon.json' %}"
                        hover></lottie-player>
@@ -69,7 +86,7 @@
                 <a href="suivi" class="onglet-suivi onglet">
                     <h2>Suivi</h2>
                 </a>
-                <a href="" class="onglet-bourse onglet">
+                <a href="bourse" class="onglet-bourse onglet">
                     <h2>Bourse</h2>
                 </a>
                 <a href="" class="onglet-simulation onglet">
@@ -90,76 +107,82 @@
         </a>
     </section>
 
-    <section class="tableau-bord bourse">
+<!--Section suivi financier-->
+
         <nav>
-            <a href="{% url 'bourse' %}" class="active">Bourse</a>
+            <h1> Suivi </h1>
         </nav>
 
-        <div class="container">
-            <h1> Recherche d'actions</h1>
+    <div class="suivi-sections">
+        <div class="actifs">
+            <h2 class="sous-titre"> ACTIFS </h2>
+            <label>
+                <h4 class="sous-sous-titre"> Compte Chèque </h4>
+                <input type="text" name="compte-cheque" placeholder="...">
+            </label>
 
-            <!-- Formulaire de recherche -->
-            <form method="GET" action="{% url 'bourse' %}">
-                <input type="text" name="symbol" placeholder="Ex: AAPL, TSLA, MSFT..." required>
-                <button type="submit"> Rechercher</button>
-            </form>
+            <label>
+                <h4 class="sous-sous-titre"> Compte Epargne </h4>
+                <input type="text" name="compte-epargne" placeholder="...">
+            </label>
 
-            <!-- Affichage des informations de l'action -->
-            {% if stock_data %}
-                <div class="stock-info">
-                    <h2>{{ stock_data.name }} ({{ stock_data.symbol }})</h2>
-                    <p><strong>Dernier prix :</strong> ${{ stock_data.last_price }}</p>
-                    <p class="{% if stock_data.change > 0 %}positive{% else %}negative{% endif %}">
-                        <strong>Variation :</strong> {{ stock_data.change }} ({{ stock_data.percent_change }}%)
-                    </p>
-                </div>
+            <label>
+                <h4 class="sous-sous-titre"> Compte Bourse </h4>
+                <input type="text" name="compte-investissement" placeholder="...">
+            </label>
 
-                <!-- Graphique des prix -->
-                <div class="chart-container">
-                    <canvas id="stockChart"></canvas>
-                </div>
-            {% endif %}
+            <label>
+                <h4 class="sous-sous-titre"> Compte Cryptomonnaie </h4>
+                <input type="text" name="credits" placeholder="...">
+            </label>
+
+            <label>
+                <h4 class="sous-sous-titre"> Tout autre compte (REER, REEE, CELI, CELIAPP, etc) </h4>
+                <input type="text" name="carte-credit" placeholder="...">
+            </label>
+
         </div>
 
-    {% if stock_data %}
-        <div class="conseils">
-            <h1>Conseils de Nova pour </h1>
-            <h2>{{ conseil | safe }}</h2>
+        <div class="passifs">
+            <h2 class="sous-titre"> PASSIFS </h2>
+
+            <label>
+                <h4 class="sous-sous-titre"> Cartes de Crédit </h4>
+                <input type="text" name="credits" placeholder="...">
+            </label>
+
+            <label>
+                <h4 class="sous-sous-titre"> Emprunts </h4>
+                <input type="text" name="emprunts" placeholder="...">
+            </label>
+
+            <label>
+                <h4 class="sous-sous-titre"> Hypothèque </h4>
+                <input type="text" name="immobilier" placeholder="...">
+            </label>
         </div>
-    {% endif %}
-    </section>
 
-    <script>
-        {% if stock_data and stock_data.prices %}
-            var labels = {{ stock_data.dates|safe }};
-            var prices = {{ stock_data.prices|safe }};
+        <div class="barre-separation"> </div>
 
-            var ctx = document.getElementById('stockChart').getContext('2d');
-            var stockChart = new Chart(ctx, {
-                type: 'line',
-                data: {
-                    labels: labels,
-                    datasets: [{
-                        label: 'Prix ($)',
-                        data: prices,
-                        borderColor: '#FF4F8B',
-                        backgroundColor: 'rgba(255, 79, 139, 0.2)',
-                        borderWidth: 2,
-                        fill: true
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    scales: {
-                        x: { grid: { color: '#555' } },
-                        y: { grid: { color: '#555' } }
-                    }
-                }
-            });
-        {% endif %}
-    </script>
-    <script src="{% static 'js/tableau-bord.js' %}"></script>
+        <div class="interets">
+        <h2> Suivi d'un investissement à taux d'intérêts composés </h2>
+
+        </div>
+    </div>
+
+
+
+    <div class="bouton-calcul">
+        <button class="calculer"> Calculer </button>
+    </div>
+
+    <div class="capital-section">
+        <h2> Votre Capital :</h2>
+        <p id="capital-value"> Calcul en cours... </p>
+    </div>
+
+<script src="{% static "js/app.js" %}"></script>
+<script src="{% static 'js/tableau-bord.js' %}"></script>
 
 </body>
 </html>

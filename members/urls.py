@@ -16,4 +16,6 @@ urlpatterns = [
     path('tableau-bord/bourse', views.bourse, name='bourse'),
     path('tableau-bord/page-principale', views.page_principale, name='page-principale'),
     path('chart/', views.chart_view, name='revenue_dashboard'),
+
+    path('tableau-bord/suivi', views.suivi, name='suivi'),
 ]
