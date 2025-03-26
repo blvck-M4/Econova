@@ -22,6 +22,7 @@ from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from .services import nova_ai, bourse_data
 
+
 def membres(request):
     utilisateurs = User.objects.all().values()
     template = loader.get_template('home.html')
@@ -85,6 +86,7 @@ def connexion(request):
 
     return render(request, 'connexion.html')
 
+
 def questionnaire(request):
     membres = Membre.objects.all()
     utilisateurs = User.objects.all().values()
@@ -109,6 +111,7 @@ def questionnaire(request):
             return redirect('questionnaire')
     return HttpResponse(template.render(context, request))
 
+
 def conditions(request):
     utilisateurs = User.objects.all().values()
     template = loader.get_template('conditions.html')
@@ -117,7 +120,8 @@ def conditions(request):
     }
     return HttpResponse(template.render(context, request))
 
-#Pages du Tableau de bord
+
+# Pages du Tableau de bord
 def page_principale(request):
     utilisateurs = User.objects.all()
     members = Membre.objects.all()
@@ -126,7 +130,7 @@ def page_principale(request):
         'membres': members,
     }
 
-    return render(request, 'tableau-bord/page-principale.html',context)
+    return render(request, 'tableau-bord/page-principale.html', context)
 
 
 def profil(request):
@@ -166,12 +170,15 @@ def profil(request):
 
     return render(request, 'tableau-bord/profil.html', context)
 
+
 def chatbot(request):
     utilisateurs = User.objects.all().values()
     context = {
         'utilisateurs': utilisateurs,
     }
     return render(request, 'tableau-bord/chatbot.html', context)
+
+
 def simulation(request):
     utilisateurs = User.objects.all().values()
     context = {
@@ -179,8 +186,11 @@ def simulation(request):
     }
     return render(request, 'tableau-bord/simulation.html', context)
 
+
 # Clé API Alpha Vantage (ajoute ta clé API dans settings.py)
 ALPHA_VANTAGE_API_KEY = settings.ALPHA_VANTAGE_API_KEY
+
+
 def bourse(request):
     utilisateurs = User.objects.all().values()
     membre = Membre.objects.all()
@@ -197,10 +207,12 @@ def bourse(request):
     return render(request, "tableau-bord/bourse.html", context)
 
 
-#Fonctionnalités
+# Fonctionnalités
 def deconnexion(request):
     auth.logout(request)
     return redirect('membres')
+
+
 def supprimer(request):
     membres = Membre.objects.all()
     for membre in membres:
@@ -208,6 +220,7 @@ def supprimer(request):
             membre.delete()
     auth.get_user(request).delete()
     return redirect('membres')
+
 
 @csrf_exempt
 def reponseBot(request):
@@ -219,6 +232,7 @@ def reponseBot(request):
 
     reponse = nova_ai.reponseBot(request, utilisateur)
     return JsonResponse({"response": reponse})
+
 
 def chart_view(request):
     # Récupérer l'instance du membre correspondant en utilisant le nom d'utilisateur.
@@ -271,3 +285,11 @@ def chart_view(request):
 
     context['chart_data'] = json.dumps(chart_data)  # Toujours définir context['chart_data']
     return render(request, 'suivi-financier.html', context)
+
+
+def education(request):
+    utilisateurs = User.objects.all().values()
+    context = {
+        'utilisateurs': utilisateurs,
+    }
+    return render(request, 'education.html', context)
