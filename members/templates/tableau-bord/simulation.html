@@ -89,9 +89,132 @@
         </a>
     </section>
 
-    <section class="tableau-bord simulation"></section>>
+    <section class="tableau-bord simulation">
+        <div class="compte">
+            <!--Balance totale du compte-->
+            <div class="balance">
+                <h1>Balance du Compte</h1>
+                <h2 id="balance">200 000.00$</h2>
+            </div>
+            <!--Nombre de transactions-->
+            <div class="nb-transactions">
+                <h1>Nombre de transactions</h1>
+                <h2 id="nb-transactions">0</h2>
+            </div>
+            <!--gain ou perte-->
+            <div class="transaction">
+                <h1>Gains ou pertes</h1>
+                <h2 id="rendement">--</h2>
+            </div>
+        </div>
+        <div class="bouton-action">
+            <div id="action">
+                <h2>Actions</h2>
+                <img src="{% static 'images/dashboard-icon/triangle.svg' %}">
+            </div>
+            <div class="action-section">
+                <div class="action" id="rechercher"><h2>Rechercher</h2></div>
+                <div class="action" id="acheter"><h2>Acheter</h2></div>
+                <div class="action" id="vendre"><h2>Vendre</h2></div>
+            </div>
+        </div>
+        <img class="ouvrir-historique" src="{% static 'images/dashboard-icon/ouvrir-historique.svg' %}">
+        <div class="historique">
+            <h1>Historique</h1>
+            <div>
+                <h2></h2>
+            </div>
+        </div>
+        <div class="tableau-simulation">
+            <input class="recherche" type="text" name="recherche" placeholder="Rechercher">
+            <div class="type-produit">
+                <div class="produit-select"><h2>Actions</h2></div>
+                <div onclick="test"><h2>Immobilier</h2></div>
+                <div><h2>Cryptomonnaie</h2></div>
+            </div>
+            <div class="tableau-produit">
+                <div class="titres">
+                    <div><h2>Symbole</h2></div>
+                    <div><h2>Nom</h2></div>
+                    <div><h2>Prix</h2></div>
+                    <div><h2>Statut</h2></div>
+                </div>
+                <div class="infos">
+                    <div class="symbols">
+                        <div><h3>AAPL</h3></div>
+                        <div><h3>TSLA</h3></div>
+                        <div><h3>MSFT</h3></div>
+                        <div><h3>AMZN</h3></div>
+                        <div><h3>GOOG</h3></div>
+                        <div><h3>META</h3></div>
+                        <div><h3>NVDA</h3></div>
+                        <div><h3>NFLX</h3></div>
+                        <div><h3>SPY</h3></div>
+                        <div><h3>BABA</h3></div>
+
+                    </div>
+                    <div class="noms">
+                        <div><h3>Apple Inc.</h3></div>
+                        <div><h3>Tesla Inc.</h3></div>
+                        <div><h3>Microsoft Corporation</h3></div>
+                        <div><h3>Amazon.com Inc.</h3></div>
+                        <div><h3>Alphabet Inc.</h3></div>
+                        <div><h3>Meta Platforms Inc.</h3></div>
+                        <div><h3>NVIDIA Corp.</h3></div>
+                        <div><h3>Netflix Inc.</h3></div>
+                        <div><h3>SPDR S&P 500 ETF Trust</h3></div>
+                        <div><h3>Alibaba Group Holding Ltd.</h3></div>
+                    </div>
+                    <div class="prix">
+                        <div><h3>218,27 USD</h3></div>
+                        <div><h3>248,71 USD</h3></div>
+                        <div><h3>391,26 USD</h3></div>
+                        <div><h3>196,21 USD</h3></div>
+                        <div><h3>166,25 USD</h3></div>
+                        <div><h3>596,25 USD</h3></div>
+                        <div><h3>117,70 USD</h3></div>
+                        <div><h3>960,29 USD</h3></div>
+                        <div><h3>563,98 USD</h3></div>
+                        <div><h3>135,14 USD</h3></div>
+                    </div>
+                    <div class="statuts">
+                        <div><h3>Non vendu</h3></div>
+                        <div><h3>Vendu</h3></div>
+                        <div><h3>Non vendu</h3></div>
+                        <div><h3>Vendu</h3></div>
+                        <div><h3>Non vendu</h3></div>
+                        <div><h3>Vendu</h3></div>
+                        <div><h3>Non vendu</h3></div>
+                        <div><h3>Non vendu</h3></div>
+                        <div><h3>Vendu</h3></div>
+                        <div><h3>Non vendu</h3></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="portefeuil">
+            <div class="portefeuil-titre">
+                <img src="{% static 'images/dashboard-icon/triangle.svg' %}">
+                <h2>Mon portefeuil</h2>
+            </div>
+        </div>
+    </section>
 
     <script src="{% static 'js/tableau-bord.js' %}"></script>
+    <script>
+        action_bouton = document.getElementById('action');
+        action_section = document.querySelector('.action-section')
+        action_bouton.addEventListener("click", ()=>{
+            action_section.classList.toggle('action-visible')
+            console.log('test')
+            action_bouton.classList.toggle('action-rotate')
+        })
+
+        function test(){
+            console.log('test')
+        }
+    </script>
 
 </body>
 </html>

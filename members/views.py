@@ -75,7 +75,7 @@ def connexion(request):
             auth.login(request, user)
             global conditions_termes
             conditions_termes = True
-            return redirect('tableau-bord/profil')
+            return redirect('tableau-bord/page-principale')
         else:
             messages.error(request, "Nom d'utilisateur ou mot de passe incorrect")
             return redirect('connexion')
