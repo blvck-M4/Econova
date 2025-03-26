@@ -98,20 +98,11 @@
             {% csrf_token %}
 
             <div class="question visible">
-                <h2>Quelle est votre tranche d'âge?</h2>
-                <div><input type="radio" name="age" value="18-24">
-                    <h3>18-24</h3></div>
-                <div><input type="radio" name="age" value="25-34">
-                    <h3>25-34</h3></div>
-                <div><input type="radio" name="age" value="35-44">
-                    <h3>35-44</h3></div>
-                <div><input type="radio" name="age" value="45-54">
-                    <h3>45-54</h3></div>
-                <div><input type="radio" name="age" value="55-64">
-                    <h3>55-64</h3></div>
-                <div><input type="radio" name="age" value="65+">
-                    <h3>65+</h3></div>
+                <h2>Quelle est votre date de naissance?</h2>
+                <input type="date" name="age">
             </div>
+
+
             <div class="question">
                 <h2>Quel est votre sexe?</h2>
                 <div><input type="radio" name="sexe" value="Homme">
