@@ -13,5 +13,4 @@ urlpatterns = [
     path('tableau-bord/chatbot', views.chatbot, name='chatbot'),
     path('tableau-bord/reponseBot', views.reponseBot, name='reponseBot'),
     path('tableau-bord/bourse', views.bourse, name='bourse'),
-
 ]

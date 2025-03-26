@@ -7,11 +7,13 @@ from django.template import loader
 from .models import Member
 from django.conf import settings
 import requests
+
 conditions_termes = False
 
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from .services import nova_ai
+
 
 @csrf_exempt
 def reponseBot(request):
@@ -24,6 +26,7 @@ def reponseBot(request):
     reponse = nova_ai.reponseBot(request, utilisateur)
     return JsonResponse({"response": reponse})
 
+
 def members(request):
     urilisateurs = User.objects.all().values()
     template = loader.get_template('home.html')
@@ -33,8 +36,8 @@ def members(request):
     }
     return HttpResponse(template.render(context, request))
 
-def rejoindre(request):
 
+def rejoindre(request):
     if request.method == 'POST':
         prenom = request.POST['prenom']
         nom_de_famille = request.POST['nom_de_famille']
@@ -51,7 +54,8 @@ def rejoindre(request):
                     messages.info(request, "Nom d'utilisateur déjà utilisé")
                     return redirect('rejoindre')
                 else:
-                    user = User.objects.create_user(username=utilisateur, password=mot_de_passe, email=email, first_name=prenom, last_name=nom_de_famille)
+                    user = User.objects.create_user(username=utilisateur, password=mot_de_passe, email=email,
+                                                    first_name=prenom, last_name=nom_de_famille)
                     user.save()
                     if user is not None:
                         auth.login(request, user)
@@ -64,15 +68,15 @@ def rejoindre(request):
             messages.info(request, "Mot de passe trop court")
             return redirect('rejoindre')
 
-
     return render(request, 'rejoindre.html')
+
 
 def connexion(request):
     if request.method == 'POST':
         utilisateur = request.POST['utilisateur']
         mot_de_passe = request.POST['mot_de_passe']
         for user in User.objects.all():
-            print(user.username +' '+user.password)
+            print(user.username + ' ' + user.password)
         user = auth.authenticate(username=utilisateur, password=mot_de_passe)
 
         if user is not None:
@@ -86,9 +90,12 @@ def connexion(request):
 
     return render(request, 'connexion.html')
 
+
 def deconnexion(request):
     auth.logout(request)
     return redirect('members')
+
+
 def supprimer(request):
     members = Member.objects.all()
     for member in members:
@@ -96,6 +103,7 @@ def supprimer(request):
             member.delete()
     auth.get_user(request).delete()
     return redirect('members')
+
 
 def questionnaire(request):
     urilisateurs = User.objects.all().values()
@@ -116,6 +124,7 @@ def questionnaire(request):
             conditions_termes = False;
             return redirect('questionnaire')
     return HttpResponse(template.render(context, request))
+
 
 def profil(request):
     urilisateurs = User.objects.all().values()
@@ -152,8 +161,8 @@ def profil(request):
                 member.save()
         return redirect('profil')
 
-
     return render(request, 'tableau-bord/profil.html', context)
+
 
 def chatbot(request):
     urilisateurs = User.objects.all().values()
@@ -162,8 +171,11 @@ def chatbot(request):
     }
     return render(request, 'tableau-bord/chatbot.html', context)
 
+
 # Clé API Alpha Vantage (ajoute ta clé API dans settings.py)
 ALPHA_VANTAGE_API_KEY = settings.ALPHA_VANTAGE_API_KEY
+
+
 def bourse(request):
     stock_data = None  # Par défaut, pas de données
 
@@ -198,4 +210,3 @@ def bourse(request):
             }
 
     return render(request, "tableau-bord/bourse.html", {"stock_data": stock_data})
-
