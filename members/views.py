@@ -28,8 +28,8 @@ def members(request):
     }
     return HttpResponse(template.render(context, request))
 
-def rejoindre(request):
 
+def rejoindre(request):
     if request.method == 'POST':
         prenom = request.POST['prenom']
         nom_de_famille = request.POST['nom_de_famille']
@@ -46,7 +46,8 @@ def rejoindre(request):
                     messages.info(request, "Nom d'utilisateur déjà utilisé")
                     return redirect('rejoindre')
                 else:
-                    user = User.objects.create_user(username=utilisateur, password=mot_de_passe, email=email, first_name=prenom, last_name=nom_de_famille)
+                    user = User.objects.create_user(username=utilisateur, password=mot_de_passe, email=email,
+                                                    first_name=prenom, last_name=nom_de_famille)
                     user.save()
                     if user is not None:
                         auth.login(request, user)
@@ -59,15 +60,15 @@ def rejoindre(request):
             messages.info(request, "Mot de passe trop court")
             return redirect('rejoindre')
 
-
     return render(request, 'rejoindre.html')
+
 
 def connexion(request):
     if request.method == 'POST':
         utilisateur = request.POST['utilisateur']
         mot_de_passe = request.POST['mot_de_passe']
         for user in User.objects.all():
-            print(user.username +' '+user.password)
+            print(user.username + ' ' + user.password)
         user = auth.authenticate(username=utilisateur, password=mot_de_passe)
 
         if user is not None:
@@ -99,7 +100,7 @@ def questionnaire(request):
                 member.date_naissance = date_naissance
             member.save()
             conditions_termes = True;
-            return redirect('tableau-bord/profil')
+            return redirect('tableau-bord/page-principale')
         else:
             conditions_termes = False;
             return redirect('questionnaire')
@@ -160,7 +161,6 @@ def profil(request):
                 member.save()
         return redirect('profil')
 
-
     return render(request, 'tableau-bord/profil.html', context)
 
 def chatbot(request):
@@ -169,6 +169,12 @@ def chatbot(request):
         'utilisateurs': utilisateurs,
     }
     return render(request, 'tableau-bord/chatbot.html', context)
+def simulation(request):
+    utilisateurs = User.objects.all().values()
+    context = {
+        'utilisateurs': utilisateurs,
+    }
+    return render(request, 'tableau-bord/simulation.html', context)
 
 # Clé API Alpha Vantage (ajoute ta clé API dans settings.py)
 ALPHA_VANTAGE_API_KEY = settings.ALPHA_VANTAGE_API_KEY
