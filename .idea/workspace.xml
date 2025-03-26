@@ -4,9 +4,91 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="762bf436-e0f2-48da-9114-9583e32920ed" name="Changes" comment="Variables dans le model member">
+    <list default="true" id="762bf436-e0f2-48da-9114-9583e32920ed" name="Changes" comment="Configuration du chart initiale finis">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/members/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/members/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/djangoProject1/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/djangoProject1/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/djangoProject1/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/djangoProject1/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/members/.env" beforeDir="false" afterPath="$PROJECT_DIR$/membres/.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/members/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/membres/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/members/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/membres/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/members/apps.py" beforeDir="false" afterPath="$PROJECT_DIR$/membres/apps.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/members/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/membres/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/members/migrations/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/membres/migrations/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/members/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/membres/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/members/services/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/membres/services/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/members/services/bourse_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/membres/services/bourse_data.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/members/services/nova_ai.py" beforeDir="false" afterPath="$PROJECT_DIR$/membres/services/nova_ai.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/members/static/css/analyse.css" beforeDir="false" afterPath="$PROJECT_DIR$/membres/static/css/suivi-financier.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/members/static/css/conditions.css" beforeDir="false" afterPath="$PROJECT_DIR$/membres/static/css/conditions.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/members/static/css/connexion.css" beforeDir="false" afterPath="$PROJECT_DIR$/membres/static/css/connexion.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/members/static/css/home.css" beforeDir="false" afterPath="$PROJECT_DIR$/membres/static/css/home.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/members/static/css/questionnaire.css" beforeDir="false" afterPath="$PROJECT_DIR$/membres/static/css/questionnaire.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/members/static/css/rejoindre.css" beforeDir="false" afterPath="$PROJECT_DIR$/membres/static/css/rejoindre.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/members/static/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/membres/static/css/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/members/static/css/tableau-bord/bourse.css" beforeDir="false" afterPath="$PROJECT_DIR$/membres/static/css/tableau-bord/bourse.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/members/static/css/tableau-bord/chatbot.css" beforeDir="false" afterPath="$PROJECT_DIR$/membres/static/css/tableau-bord/chatbot.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/members/static/css/tableau-bord/dashboard.css" beforeDir="false" afterPath="$PROJECT_DIR$/membres/static/css/tableau-bord/dashboard.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/members/static/css/tableau-bord/page-principale.css" beforeDir="false" afterPath="$PROJECT_DIR$/membres/static/css/tableau-bord/page-principale.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/members/static/css/tableau-bord/profil.css" beforeDir="false" afterPath="$PROJECT_DIR$/membres/static/css/tableau-bord/profil.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/members/static/images/Logo EcoNova.png" beforeDir="false" afterPath="$PROJECT_DIR$/membres/static/images/Logo EcoNova.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/members/static/images/argentIMG.png" beforeDir="false" afterPath="$PROJECT_DIR$/membres/static/images/argentIMG.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/members/static/images/argentIMG.svg" beforeDir="false" afterPath="$PROJECT_DIR$/membres/static/images/argentIMG.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/members/static/images/call-center-7040784 1.svg" beforeDir="false" afterPath="$PROJECT_DIR$/membres/static/images/call-center-7040784 1.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/members/static/images/chatbot.svg" beforeDir="false" afterPath="$PROJECT_DIR$/membres/static/images/chatbot.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/members/static/images/chatbot2.png" beforeDir="false" afterPath="$PROJECT_DIR$/membres/static/images/chatbot2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/members/static/images/contrat.svg" beforeDir="false" afterPath="$PROJECT_DIR$/membres/static/images/contrat.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/members/static/images/dashboard-icon/Arrow right.svg" beforeDir="false" afterPath="$PROJECT_DIR$/membres/static/images/dashboard-icon/Arrow right.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/members/static/images/dashboard-icon/fleche-droite.svg" beforeDir="false" afterPath="$PROJECT_DIR$/membres/static/images/dashboard-icon/fleche-droite.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/members/static/images/dashboard-icon/logout-svgrepo-com 1.svg" beforeDir="false" afterPath="$PROJECT_DIR$/membres/static/images/dashboard-icon/logout-svgrepo-com 1.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/members/static/images/dashboard-icon/moon.svg" beforeDir="false" afterPath="$PROJECT_DIR$/membres/static/images/dashboard-icon/moon.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/members/static/images/dashboard-icon/parametre.svg" beforeDir="false" afterPath="$PROJECT_DIR$/membres/static/images/dashboard-icon/parametre.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/members/static/images/dashboard-icon/profil-icon.svg" beforeDir="false" afterPath="$PROJECT_DIR$/membres/static/images/dashboard-icon/profil-icon.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/members/static/images/dashboard-icon/profil.svg" beforeDir="false" afterPath="$PROJECT_DIR$/membres/static/images/dashboard-icon/profil.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/members/static/images/dashboard-icon/triangle.svg" beforeDir="false" afterPath="$PROJECT_DIR$/membres/static/images/dashboard-icon/triangle.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/members/static/images/educationIMG.png" beforeDir="false" afterPath="$PROJECT_DIR$/membres/static/images/educationIMG.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/members/static/images/greeting.svg" beforeDir="false" afterPath="$PROJECT_DIR$/membres/static/images/greeting.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/members/static/images/left-arrow.svg" beforeDir="false" afterPath="$PROJECT_DIR$/membres/static/images/left-arrow.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/members/static/images/logoGraphique.png" beforeDir="false" afterPath="$PROJECT_DIR$/membres/static/images/logoGraphique.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/members/static/images/logoImage.png" beforeDir="false" afterPath="$PROJECT_DIR$/membres/static/images/logoImage.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/members/static/images/quart-cercle.svg" beforeDir="false" afterPath="$PROJECT_DIR$/membres/static/images/quart-cercle.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/members/static/images/retour.svg" beforeDir="false" afterPath="$PROJECT_DIR$/membres/static/images/retour.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/members/static/images/right-arrow.svg" beforeDir="false" afterPath="$PROJECT_DIR$/membres/static/images/right-arrow.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/members/static/images/scale_graph.svg" beforeDir="false" afterPath="$PROJECT_DIR$/membres/static/images/scale_graph.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/members/static/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/membres/static/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/members/static/js/tableau-bord.js" beforeDir="false" afterPath="$PROJECT_DIR$/membres/static/js/tableau-bord.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/members/static/json/Analytics_custom_icon.json" beforeDir="false" afterPath="$PROJECT_DIR$/membres/static/json/Analytics_custom_icon.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/members/static/json/Animation-profil.json" beforeDir="false" afterPath="$PROJECT_DIR$/membres/static/json/Animation-profil.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/members/static/json/Compass_custom_icon.json" beforeDir="false" afterPath="$PROJECT_DIR$/membres/static/json/Compass_custom_icon.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/members/static/json/Growth Analysis (2).json" beforeDir="false" afterPath="$PROJECT_DIR$/membres/static/json/Growth Analysis (2).json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/members/static/json/Payment Done.json" beforeDir="false" afterPath="$PROJECT_DIR$/membres/static/json/Payment Done.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/members/static/json/Rocket_custom_icon.json" beforeDir="false" afterPath="$PROJECT_DIR$/membres/static/json/Rocket_custom_icon.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/members/static/json/Sign in.json" beforeDir="false" afterPath="$PROJECT_DIR$/membres/static/json/Sign in.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/members/static/json/Sign up 1.json" beforeDir="false" afterPath="$PROJECT_DIR$/membres/static/json/Sign up 1.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/members/static/json/Sign up 2.json" beforeDir="false" afterPath="$PROJECT_DIR$/membres/static/json/Sign up 2.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/members/static/json/dashboard-icon/Arrow left_custom_icon.json" beforeDir="false" afterPath="$PROJECT_DIR$/membres/static/json/dashboard-icon/Arrow left_custom_icon.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/members/static/json/dashboard-icon/Home_custom_icon.json" beforeDir="false" afterPath="$PROJECT_DIR$/membres/static/json/dashboard-icon/Home_custom_icon.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/members/static/json/dashboard-icon/Pencil_custom_icon.json" beforeDir="false" afterPath="$PROJECT_DIR$/membres/static/json/dashboard-icon/Pencil_custom_icon.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/members/static/json/dashboard-icon/Settings_custom_icon.json" beforeDir="false" afterPath="$PROJECT_DIR$/membres/static/json/dashboard-icon/Settings_custom_icon.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/members/static/json/dashboard-icon/User_custom_icon.json" beforeDir="false" afterPath="$PROJECT_DIR$/membres/static/json/dashboard-icon/User_custom_icon.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/members/static/json/dashboard-icon/Wrench_custom_icon.json" beforeDir="false" afterPath="$PROJECT_DIR$/membres/static/json/dashboard-icon/Wrench_custom_icon.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/members/static/json/form.json" beforeDir="false" afterPath="$PROJECT_DIR$/membres/static/json/form.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/members/static/json/profil.json" beforeDir="false" afterPath="$PROJECT_DIR$/membres/static/json/profil.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/members/static/videos/bourse_recording.mp4" beforeDir="false" afterPath="$PROJECT_DIR$/membres/static/videos/bourse_recording.mp4" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/members/static/videos/chatbot_recording.mp4" beforeDir="false" afterPath="$PROJECT_DIR$/membres/static/videos/chatbot_recording.mp4" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/members/templates/chart.html" beforeDir="false" afterPath="$PROJECT_DIR$/membres/templates/suivi-financier.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/members/templates/conditions.html" beforeDir="false" afterPath="$PROJECT_DIR$/membres/templates/conditions.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/members/templates/connexion.html" beforeDir="false" afterPath="$PROJECT_DIR$/membres/templates/connexion.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/members/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/membres/templates/home.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/members/templates/questionnaire.html" beforeDir="false" afterPath="$PROJECT_DIR$/membres/templates/questionnaire.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/members/templates/rejoindre.html" beforeDir="false" afterPath="$PROJECT_DIR$/membres/templates/rejoindre.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/members/templates/tableau-bord/bourse.html" beforeDir="false" afterPath="$PROJECT_DIR$/membres/templates/tableau-bord/bourse.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/members/templates/tableau-bord/chatbot.html" beforeDir="false" afterPath="$PROJECT_DIR$/membres/templates/tableau-bord/chatbot.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/members/templates/tableau-bord/page-principale.html" beforeDir="false" afterPath="$PROJECT_DIR$/membres/templates/tableau-bord/page-principale.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/members/templates/tableau-bord/profil.html" beforeDir="false" afterPath="$PROJECT_DIR$/membres/templates/tableau-bord/profil.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/members/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/membres/tests.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/members/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/membres/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/members/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/membres/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,7 +111,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="master" />
+        <entry key="$PROJECT_DIR$" value="chart-review-micheal" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -40,12 +122,12 @@
     &quot;assignee&quot;: &quot;blvck-M4&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/blvck-M4/Econova.git",
-    "accountId": "d13859bd-9431-4aa1-b7ee-774830cf58df"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/blvck-M4/Econova.git&quot;,
+    &quot;accountId&quot;: &quot;d13859bd-9431-4aa1-b7ee-774830cf58df&quot;
   }
-}]]></component>
+}</component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 1
 }</component>
@@ -67,7 +149,7 @@
     "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.pycharm.django.structure.promotion.once.per.project": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "#28 on Micheal",
+    "git-widget-placeholder": "master",
     "last_opened_file_path": "C:/Users/gabri/PycharmProjects/Econova",
     "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
@@ -99,6 +181,7 @@
         <env name="DJANGO_SETTINGS_MODULE" value="djangoProject1.settings" />
       </envs>
       <option name="SDK_HOME" value="" />
+      <option name="SDK_NAME" value="Python 3.13 (Econova)" />
       <option name="WORKING_DIRECTORY" value="" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
@@ -146,6 +229,7 @@
       <workItem from="1741142929149" duration="42391000" />
       <workItem from="1741615525854" duration="3191000" />
       <workItem from="1741812134202" duration="3930000" />
+      <workItem from="1742418652635" duration="2376000" />
     </task>
     <task id="LOCAL-00001" summary="Read me/  LICENSE.txt">
       <option name="closed" value="true" />
@@ -299,7 +383,15 @@
       <option name="project" value="LOCAL" />
       <updated>1741815399842</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="Configuration du chart initiale finis">
+      <option name="closed" value="true" />
+      <created>1742431912348</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1742431912348</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -328,7 +420,8 @@
     <MESSAGE value="Page profil et chatbot (API et design html, css, js) dans le tableau de bord" />
     <MESSAGE value="Historique de conversation du chatbot" />
     <MESSAGE value="Variables dans le model member" />
-    <option name="LAST_COMMIT_MESSAGE" value="Variables dans le model member" />
+    <MESSAGE value="Configuration du chart initiale finis" />
+    <option name="LAST_COMMIT_MESSAGE" value="Configuration du chart initiale finis" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/EcoNova$urls.coverage" NAME="urls Coverage Results" MODIFIED="1738637946628" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/djangoProject1" />
