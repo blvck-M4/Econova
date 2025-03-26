@@ -21,7 +21,7 @@ body {
     box-shadow: 0 4px 10px rgba(255, 177, 205, 0.67);
     width: 40%; /* Réduction de la largeur */
     max-width: 250px; /* Limite la largeur */
-    margin-left: -100px;
+    margin-left: 175px;
 }
 
 .passifs {
@@ -143,5 +143,30 @@ nav:hover h1 {
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(255, 177, 205, 0.67);
-    width: 200px;
+    width: 500px;
+    height: 500px;
+    gap: 20px;
+}
+
+.type-interet {
+    display: flex;
+    margin-top: 10px;
+    justify-content: center;
+}
+
+.type-interet button {
+    background-color: #2C2C2C;
+    color: #FFC0CB;
+    padding: 10px 20px;
+    border-color: #FFC0CB;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.type-interet button.selected {
+    background-color: #FFC0CB;
+    color: #2C2C2C;
+    border-color: #FFC0CB;
+    box-shadow: 0 4px 10px rgba(255, 177, 205, 0.67);
 }

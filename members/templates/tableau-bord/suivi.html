@@ -164,15 +164,30 @@
             <div class="barre-separation"> </div>
 
             <div class="interets">
-            <h2> Suivi d'un investissement à taux d'intérêts composés </h2>
+                <h2> Suivi d'un investissement à taux d'intérêts composés </h2>
 
+                <label>
+                    <h4> Investissement Initial </h4>
+                    <input type="text" name="investissement-initial" placeholder="...">
+
+                    <h4> Taux d'intérêts (%) </h4>
+                    <input type="text" name="taux-interet" placeholder="...">
+
+                    <div class="type-interet">
+                        <button id="mensuel" class="selected">Mensuel</button>
+                        <button id="annuel">Annuel</button>
+                    </div>
+
+                    <h4> Durée (en années) </h4>
+                    <input type="text" name="duree" placeholder="...">
+                </label>
             </div>
         </div>
 
 
 
     <div class="bouton-calcul">
-        <button class="calculer"> Calculer </button>
+        <button class="calculer" onclick="console.log('🚀 Bouton cliqué !'); calculerCapital();"> Calculer </button>
     </div>
 
     <div class="capital-section">
@@ -180,7 +195,7 @@
         <p id="capital-value"> Calcul en cours... </p>
     </div>
 
-<script src="{% static "js/app.js" %}"></script>
+<script src="{% static 'js/app.js' %}"></script>
 <script src="{% static 'js/tableau-bord.js' %}"></script>
 
 </body>

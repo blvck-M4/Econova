@@ -1,3 +1,5 @@
+console.log("app.js a été chargé"); //Savoir si le app.js a été appelé
+
 //Afficher le menu de navigation
 menubar = document.querySelector('.menu-btn');
 menuslide = document.querySelector('.menu-slide');
@@ -76,20 +78,26 @@ function enter(){
     });
 }
 
-//Calculer le capital
+function getValue(selector) {
+    let element = document.querySelector(selector);
+    return element ? parseFloat(element.value) || 0 : 0;
+}
 
 function calculerCapital() {
+
+    console.log("📊 calculerCapital() a été appelée !"); //Pour savoir si la fonction est appelée
+
     let actifs = [
-        parseFloat(document.getElementById("cheque").value) || 0,
-        parseFloat(document.getElementById("epargne").value) || 0,
-        parseFloat(document.getElementById("bourse").value) || 0,
-        parseFloat(document.getElementById("crypto").value) || 0,
-        parseFloat(document.getElementById("autre").value) || 0,
+        getValue(".cheque"),
+        getValue(".epargne"),
+        getValue(".bourse"),
+        getValue(".crypto"),
+        getValue(".autre")
     ];
     let passifs = [
-        parseFloat(document.getElementById("credits").value) || 0,
-        parseFloat(document.getElementById("emprunts").value) || 0,
-        parseFloat(document.getElementById("hypotheque").value) || 0,
+        getValue(".credits"),
+        getValue(".emprunts"),
+        getValue(".hypotheque")
     ];
 
     let totalActifs = actifs.reduce((acc, val) => acc + val, 0);
@@ -97,15 +105,25 @@ function calculerCapital() {
     let capital = totalActifs - totalPassifs;
 
     document.getElementById("capital-value").textContent = capital.toLocaleString() + " $";
+
+    console.log("Valeur chèque :", getValue(".cheque"));
+    console.log("Valeur épargne :", getValue(".epargne"));
+    console.log("Valeur bourse :", getValue(".bourse"));
+    console.log("Valeur crypto :", getValue(".crypto"));
+    console.log("Valeur autre :", getValue(".autre"));
+
+    console.log("Valeur crédits :", getValue(".credits"));
+    console.log("Valeur emprunts :", getValue(".emprunts"));
+    console.log("Valeur hypothèque :", getValue(".hypotheque"));
 }
 
-// Appeler cette fonction après la saisie des montants
-
 document.addEventListener("DOMContentLoaded", function () {
-    // Sélectionne le bouton avec la classe "calculer"
-    document.querySelector(".calculer").addEventListener("click", calculerCapital);
+    let boutonCalcul = document.querySelector(".calculer");
+    if (boutonCalcul) {
+        boutonCalcul.addEventListener("click", calculerCapital());
+    } else {
+        console.error("Le bouton de calcul n'a pas été trouvé !"); //Test de debug
+    }
 });
-
-console.log(document.querySelector(".calculer"));
 
 
