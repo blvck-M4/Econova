@@ -22,7 +22,7 @@ from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from .services import nova_ai, bourse_data
 
-def members(request):
+def membres(request):
     utilisateurs = User.objects.all().values()
     template = loader.get_template('home.html')
     context = {
@@ -31,8 +31,8 @@ def members(request):
     }
     return HttpResponse(template.render(context, request))
 
-def rejoindre(request):
 
+def rejoindre(request):
     if request.method == 'POST':
         prenom = request.POST['prenom']
         nom_de_famille = request.POST['nom_de_famille']
@@ -49,7 +49,8 @@ def rejoindre(request):
                     messages.info(request, "Nom d'utilisateur déjà utilisé")
                     return redirect('rejoindre')
                 else:
-                    user = User.objects.create_user(username=utilisateur, password=mot_de_passe, email=email, first_name=prenom, last_name=nom_de_famille)
+                    user = User.objects.create_user(username=utilisateur, password=mot_de_passe, email=email,
+                                                    first_name=prenom, last_name=nom_de_famille)
                     user.save()
                     if user is not None:
                         auth.login(request, user)
@@ -62,22 +63,22 @@ def rejoindre(request):
             messages.info(request, "Mot de passe trop court")
             return redirect('rejoindre')
 
-
     return render(request, 'rejoindre.html')
+
 
 def connexion(request):
     if request.method == 'POST':
         utilisateur = request.POST['utilisateur']
         mot_de_passe = request.POST['mot_de_passe']
         for user in User.objects.all():
-            print(user.username +' '+user.password)
+            print(user.username + ' ' + user.password)
         user = auth.authenticate(username=utilisateur, password=mot_de_passe)
 
         if user is not None:
             auth.login(request, user)
             global conditions_termes
             conditions_termes = True
-            return redirect('tableau-bord/profil')
+            return redirect('tableau-bord/page-principale')
         else:
             messages.error(request, "Nom d'utilisateur ou mot de passe incorrect")
             return redirect('connexion')
@@ -102,7 +103,7 @@ def questionnaire(request):
                 membre.date_naissance = date_naissance
             membre.save()
             conditions_termes = True;
-            return redirect('tableau-bord/profil')
+            return redirect('tableau-bord/page-principale')
         else:
             conditions_termes = False;
             return redirect('questionnaire')
@@ -163,7 +164,6 @@ def profil(request):
                 member.save()
         return redirect('profil')
 
-
     return render(request, 'tableau-bord/profil.html', context)
 
 def chatbot(request):
@@ -172,6 +172,12 @@ def chatbot(request):
         'utilisateurs': utilisateurs,
     }
     return render(request, 'tableau-bord/chatbot.html', context)
+def simulation(request):
+    utilisateurs = User.objects.all().values()
+    context = {
+        'utilisateurs': utilisateurs,
+    }
+    return render(request, 'tableau-bord/simulation.html', context)
 
 # Clé API Alpha Vantage (ajoute ta clé API dans settings.py)
 ALPHA_VANTAGE_API_KEY = settings.ALPHA_VANTAGE_API_KEY

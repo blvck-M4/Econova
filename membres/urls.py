@@ -2,7 +2,7 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('', views.members, name='membres'),
+    path('', views.membres, name='membres'),
     path('connexion', views.connexion, name='connexion'),
     path('rejoindre', views.rejoindre, name='rejoindre'),
 
@@ -15,5 +15,7 @@ urlpatterns = [
     path('tableau-bord/reponseBot', views.reponseBot, name='reponseBot'),
     path('tableau-bord/bourse', views.bourse, name='bourse'),
     path('tableau-bord/page-principale', views.page_principale, name='page-principale'),
-    path('suivi-financier/', views.chart_view, name='suivi-financier'),
+    path('chart/', views.chart_view, name='suivi-financier'),
+    path('tableau-bord/simulation', views.simulation, name='simulation'),
+
 ]

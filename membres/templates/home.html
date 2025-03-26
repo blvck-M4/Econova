@@ -45,7 +45,7 @@
             <h2 class="navigation">Bienvenue {{ user.username }}</h2>
             <div class="liste-onglets">
                 <ul>
-                    <h2><a href="">Simulateur</a></h2>
+                    <h2><a href="tableau-bord/simulation">Simulateur</a></h2>
                     <h2><a href="">Suivi Financier</a></h2>
                     <h2><a href="tableau-bord/bourse">Bourse</a></h2>
                     <h2><a href="tableau-bord/chatbot">Nova</a></h2>
@@ -54,7 +54,7 @@
             </div>
             <div class="menu-connexion">
                 <a href="deconnexion"><button class="deconnexion">Se déconnecter</button></a>
-                <a href="tableau-bord/profil">
+                <a href="tableau-bord/page-principale">
                     <h3 class="tableau-bord">Tableau de bord</h3>
                     <lottie-player src="{% static 'json/dashboard-icon/Arrow left_custom_icon.json' %}"  loop hover></lottie-player>
                 </a>
@@ -111,7 +111,7 @@
         {% if not user.is_authenticated %}
             <a href="connexion"><button class="btn-slogan">Commencer</button></a>
         {% elif conditions_termes %}
-            <a href="tableau-bord/profil"><button class="btn-slogan">Commencer</button></a>
+            <a href="tableau-bord/page-principale"><button class="btn-slogan">Commencer</button></a>
         {% else %}
             <a href="questionnaire"><button class="btn-slogan">Commencer</button></a>
         {% endif %}

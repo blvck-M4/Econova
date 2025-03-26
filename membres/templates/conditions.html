@@ -1,94 +1,247 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Conditions d'utilisation</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/conditions.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="icon" href="{% static 'images/Logo EcoNova.png' %}">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.12.2/lottie.min.js"></script>
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 </head>
 <body>
+<header class="header">
+      <div class="logoSite">
+          <a href="/"><img src="{% static 'images/Logo EcoNova.png' %}" alt="Logo ÉcoNova Finance" class="logoSite"></a>
+          <h2 class="econova-text">EcoNova</h2>
+      </div>
 
-<div class="conditions">
-    <h1>CONDITIONS D’UTILISATION</h1>
-    <h2>De EcoNova</h2>
-    <p><strong>Dernière mise à jour :</strong> 13 mars 2025</p>
+        <div class="menu">
+            {% if not user.is_authenticated %}
+            	<a href="connexion"><button class="connexion">Connexion</button></a>
+                <a href="rejoindre"><button class="rejoindre">Rejoindre</button></a>
+            {% else %}
+                <a href="deconnexion"><button class="deconnexion">Se déconnecter</button></a>
+            {% endif %}
 
-    <p>Les conditions générales s’appliquent à votre utilisation du site web EcoNova Finance développé par Gabriel Ngoma
-        Riendeau, Micheal Gyan, Samy Baouche, Mohamed El-Ouaabani et Nancy Bechara. En accédant au site, l’utilisateur
-        déclare avoir lu et compris les conditions générales d'utilisation et déclare accepter l’intégralité des
-        conditions.</p>
+            <div class="menu-btn">
+                <div class="btn-line" id="btn-line1"></div>
+                <div class="btn-line" id="btn-line2"></div>
+                <div class="btn-line" id="btn-line3"></div>
+            </div>
+        </div>
 
-    <h3><strong>1. ACCÈS AUX SERVICES</strong></h3>
-    <p>Tout utilisateur du site EcoNova Finance a accès aux services suivants :</p>
-    <ul>
-        <li>Éducation financière</li>
-        <li>Repaire boursier</li>
-        <li>Simulateur financier</li>
-    </ul>
-    <p>Tout utilisateur ayant accès à internet peut accéder gratuitement au site web. Les services suivants ne sont pas
-        accessibles pour tout utilisateur non inscrit au site (c’est-à-dire connecté à un compte) :</p>
-    <ul>
-        <li>Chatbot NOVA</li>
-        <li>Suivi financier</li>
-    </ul>
-    <p>Le site et ses différents services peuvent être interrompus ou suspendus par les développeurs, notamment à
-        l’occasion d’une maintenance, sans obligation de préavis ou de justification.</p>
+    <div class="menu-slide">
+        {% if user.is_authenticated %}
+            <h2 class="navigation">Bienvenue {{ user.username }}</h2>
+            <div class="liste-onglets">
+                <ul>
+                    <h2><a href="tableau-bord/simulation">Simulateur</a></h2>
+                    <h2><a href="">Suivi Financier</a></h2>
+                    <h2><a href="tableau-bord/bourse">Bourse</a></h2>
+                    <h2><a href="tableau-bord/chatbot">Nova</a></h2>
+                    <h2><a href="">Éducation Financière</a></h2>
+                </ul>
+            </div>
+            <div class="menu-connexion">
+                <a href="deconnexion"><button class="deconnexion">Se déconnecter</button></a>
+                <a href="tableau-bord/page-principale">
+                    <h3 class="tableau-bord">Tableau de bord</h3>
+                    <lottie-player src="{% static 'json/dashboard-icon/Arrow left_custom_icon.json' %}"  loop hover></lottie-player>
+                </a>
+            </div>
+        {% else %}
+            <h2 class="navigation">NAVIGATION</h2>
+            <div class="liste-onglets">
+                <ul>
+                    <h2><a href="">Simulateur</a></h2>
+                    <h2><a href="">Suivi Financier</a></h2>
+                    <h2><a href="">Bourse</a></h2>
+                    <h2><a href="">Nova</a></h2>
+                    <h2><a href="">Éducation Financière</a></h2>
+                </ul>
+            </div>
+            <div class="menu-connexion">
+                <a href="connexion"><button class="connexion">Connexion</button></a>
+                <a href="rejoindre"><button class="rejoindre">Rejoindre</button></a>
+            </div>
+        {% endif %}
+        <h3>Avec NOVA, Naviguez facilement entre outils de suivi et simulations, Optimisez vos finances, développez une Vision stratégique et profitez d’un Accompagnement personnalisé. Budget, épargne, investissement : maîtrisez votre avenir financier en toute confiance.</h3>
+        <div class="logoSite">
+            <a href=""><img src="{% static 'images/Logo EcoNova.png' %}" alt="Logo ÉcoNova Finance" class="logoSite"></a>
+            <h2 class="econova-text">EcoNova</h2>
+        </div>
+    </div>
 
-    <h3><strong>2. RESPONSABILITÉ DE L’UTILISATEUR</strong></h3>
-    <p><strong>a)</strong> L’utilisateur est responsable des risques liés aux identifiants de son compte respectif et du
-        maintien de sa confidentialité et sécurité (Ex : Mot de passe, activité sur le compte). Les développeurs
-        n’assument aucune responsabilité de perte de mot de passe ou piratage du compte;</p>
-    <p><strong>b)</strong> L’utilisateur s’engage à fournir des informations véridiques et les modifier en cas de
-        changements pour la meilleure expérience possible;</p>
-    <p><strong>c)</strong> L’utilisateur assume l’entière responsabilité de son utilisation des informations et du
-        contenus présents sur le site;</p>
-    <p><strong>d)</strong> L’utilisateur assume l’entière responsabilité de ses choix financiers, ses pertes et ses
-        gains sans possibilité de porter plainte aux développeurs et accepte les risques liés aux investissements
-        d’argent.</p>
-    <p><strong>e)</strong> Le membre s’engage à tenir des propos respectueux et accepte que ses discussions soient
-        modérées ou refusées par les développeurs, sans obligation de justification lors des discussions avec
-        l’intelligence artificielle NOVA.</p>
+  </header>
+<section class="conditions-section">
 
-    <h3><strong>3. RESPONSABILITÉ DES DÉVELOPPEURS</strong></h3>
-    <p><strong>a)</strong> Tout dysfonctionnement du serveur ou du réseau ne peut engager la responsabilité des
-        développeurs ;</p>
-    <p><strong>b)</strong> Les développeurs n’apportent pas une garantie de sécurité totale ;</p>
-    <p><strong>c)</strong> Les développeurs se réservent la faculté d’une non-garantie de la fiabilité des sources, bien
-        que les informations diffusées sur le site soient réputées fiables ;</p>
-    <p><strong>d)</strong> Les développeurs ne sont pas responsables des choix financiers des utilisateurs et des
-        conseils fournis par l’intelligence artificielle ;</p>
-    <p><strong>e)</strong> Les développeurs ne sont pas responsables des pertes et gains financiers.</p>
+    <div class="conditions">
+        <h1>CONDITIONS D’UTILISATION</h1>
+        <h2>De EcoNova</h2>
+        <p style="margin: 0"><strong>Dernière mise à jour :</strong> 13 mars 2025</p>
 
-    <h3><strong>4. UTILISATION DU SITE</strong></h3>
-    <p><strong>a)</strong> L’utilisateur doit obtenir l’autorisation des développeurs du site avant toute reproduction,
-        copie ou publication de ces différents contenus ;</p>
-    <p><strong>b)</strong> Les contenus peuvent être utilisés par les utilisateurs à des fins privées, tout usage
-        commercial est interdit ;</p>
-    <p><strong>c)</strong> L’utilisateur est entièrement responsable de tout contenu mis sur le site ;</p>
-    <p><strong>d)</strong> Les développeurs du site se réservent le droit de modérer ou de supprimer librement et à tout
-        moment les contenus mis sur le site par les utilisateurs, et ce sans justification.</p>
-    <p><strong>e)</strong> L’utilisateur s’engage à ne pas transmettre des virus informatiques ou tout autre logiciel
-        qui pourrait endommager EcoNova Finance d’une quelconque manière ;</p>
-    <p><strong>f)</strong> L’utilisateur accepte de ne pas publier du matériel diffamatoire, violent, haineux ou
-        discriminatoire.</p>
+        <p class="conditions-desc">Les conditions générales s’appliquent à votre utilisation du site
+            web EcoNova Finance
+            développé par
+            Gabriel Ngoma
+            Riendeau, Micheal Gyan, Samy Baouche, Mohamed El-Ouaabani et Nancy Bechara. En accédant au site, l’utilisateur
+            déclare avoir lu et compris les conditions générales d'utilisation et déclare accepter l’intégralité des
+            conditions.</p>
+        <div class="condition-item" id="acces-services">
+            <div class="condition-titre">
+                <h3><strong>1. ACCÈS AUX SERVICES</strong></h3>
+            </div>
+            <div class="condition-content">
+                <p>Tout utilisateur ayant accès à internet peut accéder gratuitement au site web. Les services suivants ne sont pas accessibles pour tout utilisateur non inscrit au site (c’est-à-dire connecté à un compte) :</p>
+                <ul>
+                    <li>Chatbot NOVA</li>
+                    <li>Suivi financier</li>
+                </ul>
+                <p>Le site et ses différents services peuvent être interrompus ou suspendus par les développeurs, notamment à l’occasion d’une maintenance, sans obligation de préavis ou de justification.</p>
+            </div>
+        </div>
 
-    <h3><strong> 5. DONNÉES PERSONNELLES</strong></h3>
-    <p>L’utilisateur doit obligatoirement fournir des informations personnelles pour procéder à son inscription sur
-        EcoNova Finance. En utilisant le site, l’utilisateur autorise l’utilisation des informations par les
-        développeurs.</p>
-    <p>L’utilisateur fournit minimalement une adresse courriel valide et complète un questionnaire personnel dont les
-        informations sont recueillies pour alimenter les conseils de NOVA. Les informations sont utilisées pour assurer
-        une bonne expérience.</p>
-    <p>L’utilisateur accepte que son courriel soit partagé à Google à travers ses conversations avec Google Gen AI.</p>
+        <div class="condition-item" id="responsabilite-utilisateur">
+            <div class="condition-titre">
+                <h3><strong>2. RESPONSABILITÉ DE L’UTILISATEUR</strong></h3>
+            </div>
+            <div class="condition-content">
+                <p><strong>a)</strong> L’utilisateur est responsable des risques liés aux identifiants de son compte respectif et du maintien de sa confidentialité et sécurité (Ex : Mot de passe, activité sur le compte). Les développeurs n’assument aucune responsabilité de perte de mot de passe ou piratage du compte;</p>
+                <p><strong>b)</strong> L’utilisateur s’engage à fournir des informations véridiques et les modifier en cas de changements pour la meilleure expérience possible;</p>
+                <p><strong>c)</strong> L’utilisateur assume l’entière responsabilité de son utilisation des informations et du contenus présents sur le site;</p>
+                <p><strong>d)</strong> L’utilisateur assume l’entière responsabilité de ses choix financiers, ses pertes et ses gains sans possibilité de porter plainte aux développeurs et accepte les risques liés aux investissements d’argent.</p>
+                <p><strong>e)</strong> Le membre s’engage à tenir des propos respectueux et accepte que ses discussions soient modérées ou refusées par les développeurs, sans obligation de justification lors des discussions avec l’intelligence artificielle NOVA.</p>
+            </div>
+        </div>
 
-    <h3><strong>6. MISE À JOUR DES CONDITIONS</strong></h3>
-    <p>Le site EcoNova Finance se réserve le droit de modifier les clauses de ces conditions générales d’utilisation à
-        tout moment et sans justification.</p>
+        <div class="condition-item" id="responsabilite-developpeurs">
+            <div class="condition-titre">
+                <h3><strong>3. RESPONSABILITÉ DES DÉVELOPPEURS</strong></h3>
+            </div>
+            <div class="condition-content">
+                <p><strong>a)</strong> Tout dysfonctionnement du serveur ou du réseau ne peut engager la responsabilité des développeurs ;</p>
+                <p><strong>b)</strong> Les développeurs n’apportent pas une garantie de sécurité totale ;</p>
+                <p><strong>c)</strong> Les développeurs se réservent la faculté d’une non-garantie de la fiabilité des sources, bien que les informations diffusées sur le site soient réputées fiables ;</p>
+                <p><strong>d)</strong> Les développeurs ne sont pas responsables des choix financiers des utilisateurs et des conseils fournis par l’intelligence artificielle ;</p>
+                <p><strong>e)</strong> Les développeurs ne sont pas responsables des pertes et gains financiers.</p>
+            </div>
+        </div>
 
-    <h3><strong>7. CONTRAT UTILISATEURS/DÉVELOPPEURS</strong></h3>
-    <p>En acceptant ces conditions, l’utilisateur s’engage à respecter l’ensemble des éléments contenus dans la clause,
-        et ce pour toute la durée de l’utilisation du site web, les développeurs s’engagent à respecter l’entente.</p>
-</div>
+        <div class="condition-item" id="utilisation-site">
+            <div class="condition-titre">
+                <h3><strong>4. UTILISATION DU SITE</strong></h3>
+            </div>
+            <div class="condition-content">
+                <p><strong>a)</strong> L’utilisateur doit obtenir l’autorisation des développeurs du site avant toute reproduction, copie ou publication de ces différents contenus ;</p>
+                <p><strong>b)</strong> Les contenus peuvent être utilisés par les utilisateurs à des fins privées, tout usage commercial est interdit ;</p>
+                <p><strong>c)</strong> L’utilisateur est entièrement responsable de tout contenu mis sur le site ;</p>
+                <p><strong>d)</strong> Les développeurs du site se réservent le droit de modérer ou de supprimer librement et à tout moment les contenus mis sur le site par les utilisateurs, et ce sans justification.</p>
+                <p><strong>e)</strong> L’utilisateur s’engage à ne pas transmettre des virus informatiques ou tout autre logiciel qui pourrait endommager EcoNova Finance d’une quelconque manière ;</p>
+                <p><strong>f)</strong> L’utilisateur accepte de ne pas publier du matériel diffamatoire, violent, haineux ou discriminatoire.</p>
+            </div>
+        </div>
 
+        <div class="condition-item" id="donnees-personnelles">
+            <div class="condition-titre">
+                <h3><strong>5. DONNÉES PERSONNELLES</strong></h3>
+            </div>
+            <div class="condition-content">
+                <p>L’utilisateur doit obligatoirement fournir des informations personnelles pour procéder à son inscription sur EcoNova Finance. En utilisant le site, l’utilisateur autorise l’utilisation des informations par les développeurs.</p>
+                <p>L’utilisateur fournit minimalement une adresse courriel valide et complète un questionnaire personnel dont les informations sont recueillies pour alimenter les conseils de NOVA. Les informations sont utilisées pour assurer une bonne expérience.</p>
+                <p>L’utilisateur accepte que son courriel soit partagé à Google à travers ses conversations avec Google Gen AI.</p>
+            </div>
+        </div>
+
+        <div class="condition-item" id="mise-a-jour-conditions">
+            <div class="condition-titre">
+                <h3><strong>6. MISE À JOUR DES CONDITIONS</strong></h3>
+            </div>
+            <div class="condition-content">
+                <p>Le site EcoNova Finance se réserve le droit de modifier les clauses de ces conditions générales d’utilisation à tout moment et sans justification.</p>
+            </div>
+        </div>
+
+        <div class="condition-item" id="contrat-utilisateur-developpeurs">
+            <div class="condition-titre">
+                <h3><strong>7. CONTRAT UTILISATEURS/DÉVELOPPEURS</strong></h3>
+            </div>
+            <div class="condition-content">
+                <p>En acceptant ces conditions, l’utilisateur s’engage à respecter l’ensemble des éléments contenus dans la clause, et ce pour toute la durée de l’utilisation du site web, les développeurs s’engagent à respecter l’entente.</p>
+            </div>
+        </div>
+
+
+    </div>
+</section>
+<footer>
+
+    <div class="footer-logoNova">
+        <div>
+            <a href=""><img src="{% static 'images/Logo EcoNova.png' %}" alt="Logo ÉcoNova Finance"
+                            class="logoFooter"></a>
+            <h1>NOVA – Votre gestion financière, aussi simple qu'un clic !</h1>
+        </div>
+
+        <h3>Avec NOVA, Naviguez facilement entre outils de suivi et simulations, Optimisez vos finances,
+            développez une Vision stratégique et profitez d’un Accompagnement personnalisé.
+            Budget, épargne, investissement : maîtrisez votre avenir financier en toute confiance.</h3>
+    </div>
+    <!-- Liste verticale alignée à droite -->
+    {% if user.is_authenticated %}
+            <div class="liste-onglets">
+                <ul>
+                    <h2><a href="">Simulateur</a></h2>
+                    <h2><a href="">Suivi Financier</a></h2>
+                    <h2><a href="tableau-bord/bourse">Bourse</a></h2>
+                    <h2><a href="tableau-bord/chatbot">Nova</a></h2>
+                    <h2><a href="">Éducation Financière</a></h2>
+                    <a href="deconnexion"><button class="connexion">Se déconnecter</button></a>
+                </ul>
+            </div>
+        {% else %}
+            <div class="liste-onglets">
+                <ul>
+                    <h2><a href="">Simulateur</a></h2>
+                    <h2><a href="">Suivi Financier</a></h2>
+                    <h2><a href="">Bourse</a></h2>
+                    <h2><a href="">Nova</a></h2>
+                    <h2><a href="">Éducation Financière</a></h2>
+                    <a href="connexion"><button class="connexion">Connexion</button></a>
+                </ul>
+            </div>
+        {% endif %}
+ </footer>
+
+
+    <section class="copyrights">
+        <h3>© 2025 NOVA. Tous droits réservés.</h3>
+        <h3> Créé par Micheal Gyan, Gabriel-Ngoma Riendeau, Samy Baouche, Mohammed El Ouaabani et Nancy Bechara.</h3>
+
+
+        <div class="sources-animation" >
+        <h3>Icons by https://unicornicons.com</h3>
+            <a href="https://iconscout.com/lottie-animations/growth-analysis" class="text-underline font-size-sm"
+               target="_blank">Growth Analysis</a> by <a href="https://iconscout.com/contributors/nanoagency" class="text-underline font-size-sm">
+            nanoagency</a> on <a href="https://iconscout.com" class="text-underline font-size-sm">IconScout</a>
+        </div>
+
+    </section>
+<script src="{% static "js/app.js" %}"></script>
+<script>
+document.querySelectorAll('.condition-titre').forEach((title) => {
+    title.addEventListener('click', function() {
+        title.classList.toggle('condition-titre-active')
+        const content = this.nextElementSibling;
+        content.classList.toggle('active');
+    });
+});
+</script>
 </body>
 </html>

@@ -21,8 +21,6 @@ document.addEventListener('click', e=>{
     }
 });
 
-
-
 //Dans la page profil, afficher la page pour modifier l'information sélectionné
 document.addEventListener("DOMContentLoaded", () => {
     const input1 = document.getElementById('input1');

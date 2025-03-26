@@ -352,12 +352,87 @@ h2, button{
   font-weight: 400;
   font-style: normal;
 }
-h3, input::placeholder{
+h3, input::placeholder, p, li{
   font-family: "Prompt", serif;
   font-weight: 300;
   font-style: normal;
 }
 
+
+/*FOOTER*/
+footer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    background-color: #212121;
+    height: 573px;
+    width: 100%;
+    padding: 0 54px;
+    overflow: hidden;
+}
+.footer-logoNova {
+    width: 70%;
+    justify-self: right;
+}
+.footer-logoNova div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.footer-logoNova div .logoFooter {
+    width: 150px;
+    height: 100px;
+}
+
+.footer-logoNova h1 {
+    font-size: 30px;
+
+}
+
+.footer-logoNova h3 {
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
+
+.liste-onglets {
+    .connexion {
+        padding: 7px 20px; /* Ajoute de l'espace à l'intérieur du bouton */
+        margin-top: 20px;
+        border: 2px solid white; /* Bordure blanche */
+        background-color: #FE66F4; /* Fond rose */
+        color: white; /* Texte blanc */
+        font-size: 16px; /* Taille de la police */
+        cursor: pointer; /* Change le curseur en main */
+        border-radius: 25px; /* Arrondir les bords */
+        transition: background-color 0.3s ease; /* Transition douce pour l'effet de survol */
+    }
+}
+
+.connexion:hover {
+    background-color: rgb(43, 43, 43); /* Couleur de fond sur hover */
+}
+
+
+#shadow3{
+    bottom: -100%;
+    filter: blur(300px);
+    background-color: rgba(254, 102, 196, 0.78);
+}
+/*COPYRIGHTS*/
+.copyrights {
+    a {
+        color: #FE66F4;
+        text-decoration: none;
+    }
+    h3:nth-child(1) {
+        margin-top: 10px;
+    }
+    .source-animation {
+        margin-top: 25px;
+    }
+}
 .copyrights {
     bottom: 0;
     left: 0;
