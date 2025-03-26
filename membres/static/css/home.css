@@ -1,0 +1,456 @@
+body {
+    background: #1b1b1b;
+    color: white;
+}
+
+
+/*PAGE DE PRÉSENTATION*/
+.lottie-container-presentation{
+    width: 700px;
+}
+.shadow{
+    width: 90vw;
+    height: 230px;
+    position: absolute;
+    background-color: #D9D9D9;
+}
+#shadow2{
+    bottom: -100%;
+    filter: blur(600px);
+}
+.presentation {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    height: 110vh;
+    width: 100%;
+    padding: 0 54px;
+    background-color: #212121;
+    overflow: hidden;
+
+}
+.logoSlogan{
+    width: 70vw;
+    height: auto;
+    position: absolute;
+    right: 0;
+    top: 60px;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+    animation: Apparait 1s ease;
+}
+@keyframes Apparait {
+    from {
+        opacity: 0;
+        transform: translateX(140%);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(00%);
+    }
+}
+.slogan {
+    width: 600px; /* Réduit la largeur */
+    text-align: left; /* Alignement à gauche */
+    padding: 10px;
+    font-size: 65px;
+    z-index: 2;
+
+    .btn-slogan{
+        background: rgb(43,43,43);
+        color: white;
+        border-radius: 25px;
+        font-size: 15px;
+        height: 55px;
+        width: 150px;
+        cursor: pointer;
+        border: 2px solid white;
+        transition: 0.1s ease-in-out;
+        margin-top: 100px;
+
+    }
+    .btn-slogan:hover{
+        background-color: #FE66F4;
+        color: white;
+    }
+
+}
+/*DESCRIPTION CHATBOT*/
+
+.nova {
+    height: 100%;
+    width: 100%;
+    padding: 200px 5vw;
+    text-align: center;
+}
+
+.nova h1 {
+    font-size: 100px;
+    margin-bottom: 50px;
+    letter-spacing: 5px;
+    animation: nova;
+    animation-timeline: view(30% auto);
+}
+
+.nova-infos {
+    width: 100%;
+    height: auto;
+    padding: 100px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    background-color: #212121;
+    border-radius: 25px;
+    box-shadow: rgba(16, 16, 28, 0.25) 0px 50px 100px -20px,
+                rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
+                rgba(2, 9, 14, 0.35) 0px -2px 6px 0px inset;
+    animation: chatbot;
+    animation-timeline: view(80% auto);
+}
+
+.description_Nova {
+    color: white;
+    padding-right: 50px;
+}
+
+.description_Nova h2 {
+    font-size: 40px;
+    color: #FFA1DB; /* Rose */
+    margin-bottom: 75px;
+}
+
+.description_Nova h3 {
+    font-size: 18px;
+    line-height: 1.6;
+    color: white;
+}
+
+.chat-btn {
+    background: transparent;
+        color: white;
+        border-radius: 25px;
+        font-size: 18px;
+        height: 50px;
+        width: 200px;
+        cursor: pointer;
+        border: 2px solid white;
+        transition: 0.2s ease-in-out;
+        margin-top: 50px;
+
+}
+
+.chat-btn:hover {
+    background-color: #FE66C4;
+
+}
+
+.bot_img img {
+    max-width: 100%;
+    height: auto;
+}
+
+@keyframes nova {
+    from {
+        opacity: 0;
+        transform: translateY(100px)  scale(1.5);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) translateX(0) scale(1);
+    }
+}
+
+@keyframes chatbot {
+    from {
+        opacity: 0;
+        border-radius: 0;
+        box-shadow: none;
+        transform: scale(0.3);
+    }
+    to {
+        opacity: 1;
+        border-radius: 25px;
+        box-shadow: rgba(0, 0, 0, 0.2) 0px 18px 50px -10px;
+        transform: translateY(0) scale(1);
+    }
+}
+
+
+/*EDUCATION FINANCIERE*/
+.education{
+    height: 480px;
+    width: 100%;
+    background-color: #1b1b1b;
+    display: flex;
+    .education-infos{
+        transform: translateX(-85px);
+        width: 100vw;
+        height: 100%;
+        background-color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        border-radius: 25px;
+        animation: autoSlide;
+        animation-timeline: view(70% auto);
+        padding: 0 500px 0 200px;
+
+        h1{
+            font-size: 40px;
+            color: black;
+            text-align: center;
+            margin-bottom: 50px;
+
+        }
+        h2{
+            font-size: 26px;
+            line-height: 1.6;
+            text-align: center;
+            color: black;
+        }
+    }
+
+    .lottie-container-education{
+        right: 0;
+        position: absolute;
+        height: 750px;
+        transform: translateY(100px) translateX(80px);
+        align-self: flex-end;
+        animation: autoShow;
+        animation-timeline: view(80% auto);
+    }
+    img{
+        right: 0;
+        position: absolute;
+        height: 480px;
+        align-self: flex-end;
+        animation: autoShow;
+
+    }
+}
+@keyframes autoShow {
+    from {
+        opacity: 0;
+        transform: translateX(185px) scale(0.3);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0) scale(1);
+    }
+}
+@keyframes autoSlide {
+    from {
+        opacity: 0;
+        transform: translateX(-100%) scale(0.3);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(-85px) translateY(0) scale(1);
+    }
+}
+
+
+
+/*OUTILS FINANCIERS*/
+.outils{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 250px 0;
+    h1:nth-child(1){
+        margin-bottom: 100px;
+        font-size: 100px;
+        animation: outils-animation;
+        animation-timeline: view(60% auto);
+    }
+    .outils-infos{
+        height: 600px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .info{
+            width: 400px;
+            height: 430px;
+            border-radius: 15px;
+            margin: 0 30px;
+            background: #1b1b1b;
+            transition: 0.2s ease-in-out;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            padding: 30px;
+            text-align: center;
+            h2{
+                font-size: 25px;
+                line-height: 25px;
+                color: #FFA1DB;
+            }
+            h2:nth-child(1){
+                margin-bottom: 10px;
+            }
+            h3{
+                margin-top: 20px;
+            }
+        }
+    }
+}
+@keyframes outils-animation {
+    from {
+        opacity: 0;
+        transform: translateY(100px) scale(0.3);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+.lottie-container-outils{
+    width: 120px;
+    margin-top: 20px;
+}
+@property --angle {
+    syntax: '<angle>';
+    initial-value: 0deg;
+    inherits: false;
+}
+#info3::before, #info3::after{
+    --angle: 90deg;
+}
+#info2::before, #info2::after{
+    --angle: 180deg;
+}
+.info::before, .info::after{
+    content: "";
+    position: absolute;
+    width: 400px;
+    height: 430px;
+    z-index: -1;
+    transform: scale(1.01);
+    border-radius: 15px;
+    background-image: conic-gradient(from var(--angle), transparent 70%, #FE66C4);
+}
+#info1:hover::before, #info1:hover::after{
+    animation: 3s spin1 linear infinite;
+}
+#info2:hover::before, #info2:hover::after{
+    animation: 3s spin2 linear infinite;
+}
+#info3:hover::before, #info3:hover::after{
+    animation: 3s spin3 linear infinite;
+}
+.info:hover{
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 60px 40px -7px;
+}
+
+@keyframes spin1 {
+    from {
+        --angle: 0deg;
+    }
+    to {
+        --angle: 360deg;
+    }
+}
+@keyframes spin2 {
+    from {
+        --angle: 180deg;
+    }
+    to {
+        --angle: 540deg;
+    }
+}
+@keyframes spin3 {
+    from {
+        --angle: 90deg;
+    }
+    to {
+        --angle: 450deg;
+    }
+}
+.info::after{
+    filter: blur(1rem);
+    opacity: 0.5;
+}
+
+
+/*FOOTER*/
+footer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    background-color: #212121;
+    height: 573px;
+    width: 100%;
+    padding: 0 54px;
+    overflow: hidden;
+}
+.footer-logoNova {
+    width: 70%;
+    justify-self: right;
+}
+.footer-logoNova div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.footer-logoNova div .logoFooter {
+    width: 150px;
+    height: 100px;
+}
+
+.footer-logoNova h1 {
+    font-size: 30px;
+
+}
+
+.footer-logoNova h3 {
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
+
+.liste-onglets {
+    .connexion {
+        padding: 7px 20px; /* Ajoute de l'espace à l'intérieur du bouton */
+        margin-top: 20px;
+        border: 2px solid white; /* Bordure blanche */
+        background-color: #FE66F4; /* Fond rose */
+        color: white; /* Texte blanc */
+        font-size: 16px; /* Taille de la police */
+        cursor: pointer; /* Change le curseur en main */
+        border-radius: 25px; /* Arrondir les bords */
+        transition: background-color 0.3s ease; /* Transition douce pour l'effet de survol */
+    }
+}
+
+.connexion:hover {
+    background-color: rgb(43, 43, 43); /* Couleur de fond sur hover */
+}
+
+
+#shadow3{
+    bottom: -100%;
+    filter: blur(300px);
+    background-color: rgba(254, 102, 196, 0.78);
+}
+/*COPYRIGHTS*/
+.copyrights {
+    a {
+        color: #FE66F4;
+        text-decoration: none;
+    }
+    h3:nth-child(1) {
+        margin-top: 10px;
+    }
+    .source-animation {
+        margin-top: 25px;
+    }
+}
