@@ -6,172 +6,357 @@
     <title>ÉcoNova Finance</title>
     <link rel="stylesheet" href="{% static 'css/tableau-bord/dashboard.css' %}">
     <link rel="stylesheet" href="{% static 'css/tableau-bord/chatbot.css' %}">
+    <link rel="stylesheet" href="{% static 'css/education.css' %}">
     <link rel="icon" href="{% static 'images/Logo EcoNova.png' %}">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.12.2/lottie.min.js"></script>
     <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
-<!--Menu du profil (bouton en haut à droite)-->
-    <lottie-player class="icon-profile" id="icon-profile" src="{% static 'json/dashboard-icon/User_custom_icon.json' %}"
-                       hover></lottie-player>
-    <div class="menu-profil menu-hide" id="menu-profil">
-        <div class="menu-profil-section1">
-            <img src="{% static 'images/dashboard-icon/profil-icon.svg' %}" alt="Icon de profil">
-            <h2>
-                {{ user.username }}
-            </h2>
-            <h3>{{ user.email }}</h3>
 
+<section class="education">
+
+    <div class="bienvenue" id="page-bienvenue">
+        <h1>Éducation financière</h1>
+        <h2>L'outil d'éducation financière t'aide à mieux comprendre ton profil d'investisseur et les
+            finances. Choisis de répondre au questionnaire de profil d'investisseur ou de t'informer sur
+            les finances pour en apprendre plus avec NOVA!</h2>
+
+        <div class="profilInvest">
+            <button onclick="show2()" class="nav-questionnaire profil">Profil d'investisseur</button>
+            <button onclick="show1()" class="dictionnaireFinancier">Dictionnaire financier</button>
         </div>
-        <div class="menu-profil-section2">
-            <a href="profil" class="">
-                <img src="{% static 'images/dashboard-icon/profil.svg' %}" alt="Icon de profil">
-                <h2>Mon profil</h2>
-            </a>
-            <a href="" class="">
-                <img src="{% static 'images/dashboard-icon/parametre.svg' %}" alt="Icon de parametre">
-                <h2>Paramètres</h2>
-            </a>
-            <a href="" class="">
-                <img src="{% static 'images/dashboard-icon/moon.svg' %}" alt="Icon de mode sombre">
-                <h2>Mode sombre</h2>
-            </a>
-        </div>
-        <div class="menu-profil-section3">
-            <a href="/deconnexion" class="">
-                <img src="{% static 'images/dashboard-icon/logout-svgrepo-com 1.svg' %}" alt="Icon de déconnexion">
-                <h2>Se déconnecter</h2>
-            </a>
-        </div>
+
     </div>
 
-<!--Menu à gauche-->
-    <section class="menu">
-        <div class="logoSite">
-          <a href="/"><img src="{% static 'images/Logo EcoNova.png' %}" alt="Logo ÉcoNova Finance"
-                                         class="logoSite"></a>
-          <h2 class="econova-text">EcoNova</h2>
-        </div>
-        <div class="onglets">
-            <a href="" class="page-principale onglet">
-                <lottie-player src="{% static 'json/dashboard-icon/Home_custom_icon.json' %}" hover></lottie-player>
-                <h2>Page principale</h2>
-            </a>
-            <div class="onglet-outils onglet">
-                <lottie-player src="{% static 'json/dashboard-icon/Wrench_custom_icon.json' %}" hover></lottie-player>
-                <h2 class="titre-outil">Outils Financiers</h2>
-                <img src="{% static 'images/dashboard-icon/triangle.svg' %}" class="triangle">
-            </div>
+    <div id="dictionnaire1">
+        <h1>CONCEPTS FINANCIERS</h1>
+        <br>
+        <h2>1. Termes de base</h2>
+        <ul>
+            <li><strong>Budget :</strong> Planification des revenus et des dépenses sur une période donnée.</li>
 
-            <div class="outils" id="outils">
-                <a href="" class="onglet-suivi onglet">
-                    <h2>Suivi</h2>
-                </a>
-                <a href="bourse" class="onglet-bourse onglet">
-                    <h2>Bourse</h2>
-                </a>
-                <a href="" class="onglet-simulation onglet">
-                    <h2>Simulation</h2>
-                </a>
-                <a href="chatbot" class="onglet-nova onglet">
-                    <h2>NOVA</h2>
-                </a>
-            </div>
-        </div>
-        <a href="" class="onglet-dictionnaire onglet">
-            <lottie-player src="{% static 'json/dashboard-icon/Arrow left_custom_icon.json' %}" hover></lottie-player>
-            <h2>Dictionnaire Financier</h2>
-        </a>
-        <a href="" class="onglet-parametres onglet">
-            <lottie-player src="{% static 'json/dashboard-icon/Settings_custom_icon.json' %}" hover></lottie-player>
-            <h2>Paramètres</h2>
-        </a>
-    </section>
+            <li><strong>Revenu : </strong> Somme d'argent générée par une personne ou une organisation, généralement via
+                le travail, les investissements ou les ventes.
+            </li>
 
-    <section class="tableau-bord chatbot">
+            <li><strong>Dépenses :</strong> Sommes d'argent utilisées pour acheter des biens et services ou pour
+                d'autres
+                besoins financiers.
+            </li>
 
-        <div class="bienvenue" id="page-bienvenue">
-            <h1>Bonjour {{ user.username }}, je suis Nova, ton assistant IA personnalisé !</h1>
-            <h2>Je suis ton assistant financier intelligent, là pour t’aider à gérer ton argent, booster tes investissements, et te donner des conseils qui collent à tes projets. Que tu cherches à suivre tes dépenses, optimiser tes économies ou prévoir ton avenir financier, je suis là pour ça !
-N’hésite pas à me poser toutes tes questions, je suis là pour t’aider !</h2>
-        </div>
-        <div class="chat-box" id="chat-box"></div>
+            <li><strong>Solde </strong>: Différence entre les revenus et les dépenses. Peut être positif (excédent) ou
+                négatif (déficit).
+            </li>
 
-        <div class="message-utilisateur">
-            <textarea onclick="enter()" type="text" id="user-input" placeholder="Pose ta question ici ..." ></textarea>
-            <button id="envoyer-message" onclick="envoyerMessage()"><img src="{% static 'images/dashboard-icon/Arrow right.svg' %}"></button>
-        </div>
-    </section>
+            <li><strong>Épargne</strong> : Partie des revenus qui n'est pas dépensée et qui est mise de côté, souvent
+                dans un compte d'épargne.
+            </li>
 
-    <script>
-        function envoyerMessage(){
-            page_bienvenue = document.getElementById('page-bienvenue')
-            /*Zone du chat*/
-            chat_box = document.getElementById('chat-box')
-            /*Message de l'utilisateur et du bot*/
-            message_element_utilisateur = document.createElement("h2")
-            message_element_utilisateur.classList.add("user-message")
-            message_element_bot = document.createElement("h2")
-            message_element_bot.classList.add("bot-message")
-            /*Message d'erreur*/
-            message_element_erreur = document.createElement("h2")
-            message_element_erreur.innerHTML = "Erreur"
+            <li><strong>Investissement :</strong> Placement d'argent dans des actifs ou des projets dans l'espoir d'en
+                obtenir un retour financier.
+            </li>
+        </ul>
+        <br>
+        <h2>2. Termes financiers courants :</h2>
+        <ul>
+            <li><strong>Actif :</strong> Ressources possédées par une personne ou une organisation, susceptibles de
+                générer des revenus.
+            </li>
 
-            /*Envoyer le message de l'utilisateur dans la zone de chat*/
-            message_utilisateur = document.getElementById('user-input').value
-            if (message_utilisateur.trim() ==='') return;
+            <li><strong>Passif :</strong> Obligations financières ou dettes à rembourser.</li>
 
-            message_element_utilisateur.innerHTML = message_utilisateur
-            chat_box.appendChild(message_element_utilisateur)
-            document.getElementById('user-input').value = ""
+            <li><strong>Rentabilité :</strong> Mesure de la capacité d’un investissement ou d’une entreprise à générer
+                des bénéfices.
+            </li>
 
-            /*Faire disparaitre la page de bienvenue*/
-            page_bienvenue.classList.add('disparait')
-            chat_box.classList.add('bot_visibilité')
+            <li><strong>Liquidité :</strong> Facilité avec laquelle un actif peut être converti en cash sans affecter
+                son prix.
+            </li>
 
-            let loader = document.createElement("loader");
-            loader.ael
-            loader.classList.add("load-visible");
-    chat_box.appendChild(loader);
-            /*Envoyer la réponse du bot dans la zone de chat*/
-            $.ajax({
-                type: 'POST',
-                url: 'reponseBot',
-                data: {message: message_utilisateur, csrfmiddlewaretoken: '{{ csrf_token }}'},
-                success: function (reponse){
-                    loader.remove()
-                    message_element_bot.innerHTML = reponse.response
-                    chat_box.appendChild(message_element_bot)
-                },
-                error: function (){
-                    chat_box.appendChild(message_element_erreur)
-                }
-            })
-            scrollToBottom()
+            <li><strong>Taux d'intérêt :</strong> Pourcentage du montant emprunté ou investi, payé en tant que
+                rémunération pour
+                l'utilisation de l'argent.
+            </li>
+        </ul>
+        <br>
+        <h2>3. Termes liés à l’investissement :</h2>
+        <ul>
+            <li><strong>Actions :</strong> Titres financiers représentant une part de propriété dans une entreprise.
+            </li>
 
-        }
-        function scrollToBottom() {
-            let chatBox = document.getElementById("chat-box");
-            setTimeout(() => {
-                chatBox.scrollTo({
-                  top: chatBox.scrollHeight,
-                  behavior: "smooth"
-                });
-            }, 100);
-        }
+            <il><strong>Obligations :</strong> Instruments financiers utilisés par les gouvernements ou les entreprises
+                pour emprunter de
+                l'argent.
+            </il>
 
-        function enter(){
-            document.getElementById("user-input").addEventListener("keyup", function(event) {
-                event.preventDefault();
-                if (event.keyCode === 13) {
-                    document.getElementById("envoyer-message").click();
-                    console.log('test')
-                }
-            });
-        }
-    </script>
-    <script src="{% static 'js/tableau-bord.js' %}"></script>
+            <li><strong>Portefeuille d'investissement :</strong> Ensemble des actifs financiers détenus par un
+                investisseur.
+            </li>
+
+            <li><strong>Diversification :</strong> Stratégie consistant à répartir les investissements sur plusieurs
+                actifs pour réduire
+                les risques.
+            </li>
+
+            <li><strong>Rendement :</strong> Mesure du gain ou de la perte généré par un investissement, exprimé en
+                pourcentage.
+            </li>
+
+        </ul>
+        <br>
+        <h2>4. Éducation financière et concepts avancés :</h2>
+        <ul>
+            <li><strong>Analyse fondamentale :</strong> Méthode d'évaluation d'une entreprise en analysant ses états
+                financiers et son
+                environnement économique.
+            </li>
+
+            <li><strong>Analyse technique :</strong> Utilisation de graphiques et de modèles mathématiques pour prédire
+                les mouvements
+                futurs des prix des actifs.
+            </li>
+
+            <li><strong>"Risk management" :</strong> Stratégies utilisées pour minimiser l'impact des risques financiers
+                sur les investissements.
+            </li>
+
+            <li><strong>Taux de rendement interne (TRI) :</strong> Taux d'intérêt qui égalise la valeur actuelle nette
+                d'un investissement avec ses flux de trésorerie futurs.
+            </li>
+
+            <li><strong>Inflation :</strong> Hausse générale et persistante des prix des biens et services au fil du
+                temps.
+            </li>
+        </ul>
+
+        <br>
+        <h2>5. Concepts liés à la gestion de portefeuille :</h2>
+        <ul>
+            <li><strong>Allocation d'actifs :</strong> Répartition des investissements dans différentes catégories
+                d'actifs (actions, obligations, immobilier, etc.) pour optimiser le rendement et le risque.
+            </li>
+
+            <li><strong>Ratio de Sharpe :</strong> Mesure de la performance d'un investissement en fonction de sa
+                volatilité (risque).
+            </li>
+
+            <li><strong>Beta :</strong> Mesure de la volatilité d'un actif par rapport à un indice de référence, comme
+                le marché boursier.
+            </li>
+
+            <li><strong>Horizon de placement :</strong> Période pendant laquelle un investisseur prévoit de maintenir
+                son investissement.
+            </li>
+        </ul>
+        <br>
+        <h2>6. Termes liés à la fiscalité et aux taxes :</h2>
+        <ul>
+            <li><strong>Impôt sur le revenu :</strong> Taxe perçue par l'État sur les revenus des particuliers et des
+                entreprises.
+            </li>
+
+            <li><strong>Crédit d'impôt :</strong> Montant déduit des impôts dus, souvent pour encourager certains
+                comportements (comme
+                l'investissement dans des secteurs spécifiques).
+            </li>
+
+            <li><strong>Déduction fiscale :</strong> Montant qui peut être soustrait du revenu brut pour réduire la base
+                imposable.
+            </li>
+        </ul>
+
+        <br>
+        <h2>7. Outils et stratégies de gestion financière :</h2>
+        <ul>
+            <li><strong>Simulation d'investissement :</strong> Outil permettant de tester les performances d’un
+                investissement dans différentes conditions de marché.
+            </li>
+
+            <li><strong>Planification financière :</strong> Processus d'établissement de stratégies pour atteindre des
+                objectifs financiers à long terme.
+            </li>
+
+            <li><strong>Prévision budgétaire :</strong> Estimation des revenus et des dépenses futures sur la base des
+                données passées et des objectifs futurs.
+            </li>
+        </ul>
+        <br>
+        <br>
+        <h1>TYPES D'INVESTISSEMENT</h1>
+        <h2>1. Investissements en actions :</h2>
+        <ul>
+            <li><strong>Actions ordinaires :</strong> Titres de propriété dans une entreprise qui permettent de
+                bénéficier de dividendes et d’une valorisation de l’entreprise. Les actionnaires peuvent participer
+                aux assemblées générales et ont droit à une part des bénéfices (dividendes).
+            </li>
+
+            <li><strong>Actions privilégiées :</strong> Ces actions donnent droit à des dividendes fixes, généralement
+                avant les actions ordinaires, mais n'offrent pas de droit de vote dans l'entreprise.
+            </li>
+        </ul>
+
+        <h2>2. Obligations :</h2>
+        <ul>
+            <li><strong>Obligations d'État :</strong> Titres de dette émis par les gouvernements. Elles sont considérées
+                comme moins risquées, surtout si elles sont émises par des pays économiquement stables.
+            </li>
+
+            <li><strong>Obligations d'entreprises :</strong> Titres de dette émis par des sociétés. Elles offrent
+                généralement des rendements plus élevés que les obligations d'État, mais comportent également un risque accru.
+            </li>
+
+            <li><strong>Obligations municipales :</strong> Titres de dette émis par les autorités locales (villes,
+                départements, etc.). Elles sont souvent exemptées d'impôts dans certains pays.
+            </li>
+        </ul>
+        <h2>3. Investissements immobiliers :</h2>
+        <ul>
+            <li><strong>Immobilier résidentiel :</strong> Acheter des maisons, appartements ou immeubles pour les louer
+                ou les revendre à profit. Cela peut inclure la gestion d'immeubles locatifs.
+            </li>
+
+            <li><strong>Immobilier commercial :</strong> Investir dans des biens immobiliers destinés à des activités
+                commerciales, comme des bureaux, des magasins ou des entrepôts.
+            </li>
+
+            <li><strong>Fonds immobiliers (REITs) :</strong> Fonds qui permettent d'investir dans l'immobilier sans
+                avoir à posséder directement de biens immobiliers. Les REITs génèrent souvent des revenus sous forme de dividendes.
+            </li>
+        </ul>
+        <h2>4. Investissements en matières premières (commodités) :</h2>
+        <ul>
+            <li><strong>Or, argent, platine :</strong> Métaux précieux souvent utilisés comme valeurs refuges en période
+                d’incertitude économique.
+            </li>
+
+            <li><strong>Pétrole, gaz naturel :</strong> Investir dans les ressources énergétiques peut se faire par
+                l'achat de contrats à terme, d'actions de sociétés pétrolières ou de fonds spécialisés.
+            </li>
+
+            <li><strong>Agriculture :</strong> Investir dans les produits agricoles comme le maïs, le soja, ou le café,
+                soit via des contrats à terme, soit par l'achat d'actions de sociétés agricoles.
+            </li>
+        </ul>
+        <h2>5. Fonds d'investissement :</h2>
+        <ul>
+            <li><strong>Fonds communs de placement :</strong> Ces fonds regroupent l'argent de plusieurs investisseurs
+                pour acheter une diversité d'actifs (actions, obligations, etc.). Ils offrent une gestion professionnelle.
+            </li>
+
+            <li><strong>Fonds indiciels (ETF) :</strong> Fonds qui répliquent la performance d'un indice boursier, comme
+                le S&P 500. Ces fonds ont généralement des frais plus bas que les fonds communs de placement.
+            </li>
+
+            <li><strong>Fonds à gestion active :</strong> Fonds où un gestionnaire de fonds prend des décisions
+                d’investissement en fonction des opportunités du marché, contrairement aux fonds indiciels.
+            </li>
+        </ul>
+        <h2>6. Investissements alternatifs :</h2>
+        <ul>
+            <li><strong>Private equity :</strong> Investir dans des entreprises non cotées en bourse. Cela peut inclure
+                des investissements dans des startups ou des entreprises en difficulté.
+            </li>
+
+            <li><strong>Capital-risque (venture capital) :</strong> Investissement dans des startups à fort potentiel de
+                croissance mais à haut risque. Les investisseurs apportent des fonds en échange de parts dans l’entreprise.
+            </li>
+
+            <li><strong>Crowdfunding immobilier :</strong> Investir dans des projets immobiliers via des plateformes de
+                financement participatif.
+            </li>
+        </ul>
+        <h2>7. Comptes d’épargne et produits à faible risque :</h2>
+        <ul>
+            <li><strong>Comptes d'épargne :</strong> Comptes bancaires rémunérés qui offrent une faible rentabilité mais
+                un haut niveau de sécurité.
+            </li>
+
+            <li><strong>Certificats de dépôt (CD) :</strong> Produits d'investissement à faible risque proposés par les
+                banques, avec des rendements fixes sur une période déterminée.
+            </li>
+
+            <li><strong>Comptes à terme :</strong> Similaires aux certificats de dépôt, mais plus flexibles quant à la
+                durée de l’investissement.
+            </li>
+        </ul>
+        <h2>8. Cryptomonnaies :</h2>
+        <ul>
+            <li><strong>Bitcoin, Ethereum :</strong> Monnaies numériques basées sur la blockchain. Ces investissements
+                sont connus pour leur volatilité et sont considérés comme très spéculatifs.
+            </li>
+
+            <li>Altcoins : Autres cryptomonnaies en dehors de Bitcoin et Ethereum, comme Litecoin, Ripple, ou
+                Polkadot.
+            </li>
+        </ul>
+        <h2>9. Produits dérivés :</h2>
+        <ul>
+            <li><strong>Contrats à terme (Futures) :</strong> Contrats obligatoires d'achat ou de vente d'un actif à une
+                date future et à un prix déterminé. Utilisés pour la spéculation ou la couverture des risques.
+            </li>
+
+            <li><strong>Options :</strong> Contrats donnant à l'acheteur le droit, mais non l’obligation, d'acheter ou
+                de vendre un actif à un prix donné avant une date précise.
+            </li>
+        </ul>
+        <h2>10. Investissement socialement responsable (ISR) :</h2>
+        <ul>
+            <li><strong>Fonds ISR :</strong> Investissements qui prennent en compte des critères environnementaux,
+                sociaux et de gouvernance (ESG) en plus des critères financiers.
+            </li>
+
+            <li><strong>Impact investing :</strong> Investir dans des projets ayant un impact positif mesurable sur la
+                société et l’environnement, tout en recherchant un retour financier.
+            </li>
+        </ul>
+        <br>
+        <br>
+        <h1>STRATÉGIES D'INVESTISSEMENT</h1>
+        <ul>
+            <li><strong>Investissement passif :</strong> Stratégie d'investissement où l'objectif est de suivre le
+                marché plutôt que de tenter de le battre, souvent via des fonds indiciels.
+            </li>
+
+            <li><strong>Investissement actif :</strong> Stratégie où l’investisseur cherche à surpasser le marché en
+                sélectionnant des actifs spécifiques.
+            </li>
+
+            <li><strong>Investissement à long terme :</strong> Stratégie qui consiste à conserver des actifs sur une
+                longue période (souvent plusieurs années) pour bénéficier de la croissance du marché.
+            </li>
+
+            <li><strong>Investissement à court terme :</strong> Stratégie où l'investisseur cherche à tirer profit de
+                petites fluctuations de prix à court terme.
+            </li>
+        </ul>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <a href="https://lautorite.qc.ca/grand-public/glossaire-financier"></a>
+
+</section>
+
+<script>
+    window.onload = function () {
+        document.getElementById('dictionnaire1').style.display = 'none';
+    };
+
+    function show1() {
+        document.getElementById('dictionnaire1').style.display = 'block';
+    }
+
+    function show2() {
+        document.getElementById('dictionnaire1').style.display = 'none';
+    }
+
+</script>
+
+
+<script src="{% static 'js/tableau-bord.js' %}"></script>
 
 </body>
 </html>

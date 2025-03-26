@@ -17,5 +17,6 @@ urlpatterns = [
     path('tableau-bord/page-principale', views.page_principale, name='page-principale'),
     path('chart/', views.chart_view, name='suivi-financier'),
     path('tableau-bord/simulation', views.simulation, name='simulation'),
+    path('education', views.education, name='education'),
 
 ]
