@@ -76,4 +76,36 @@ function enter(){
     });
 }
 
+//Calculer le capital
+
+function calculerCapital() {
+    let actifs = [
+        parseFloat(document.getElementById("cheque").value) || 0,
+        parseFloat(document.getElementById("epargne").value) || 0,
+        parseFloat(document.getElementById("bourse").value) || 0,
+        parseFloat(document.getElementById("crypto").value) || 0,
+        parseFloat(document.getElementById("autre").value) || 0,
+    ];
+    let passifs = [
+        parseFloat(document.getElementById("credits").value) || 0,
+        parseFloat(document.getElementById("emprunts").value) || 0,
+        parseFloat(document.getElementById("hypotheque").value) || 0,
+    ];
+
+    let totalActifs = actifs.reduce((acc, val) => acc + val, 0);
+    let totalPassifs = passifs.reduce((acc, val) => acc + val, 0);
+    let capital = totalActifs - totalPassifs;
+
+    document.getElementById("capital-value").textContent = capital.toLocaleString() + " $";
+}
+
+// Appeler cette fonction après la saisie des montants
+
+document.addEventListener("DOMContentLoaded", function () {
+    // Sélectionne le bouton avec la classe "calculer"
+    document.querySelector(".calculer").addEventListener("click", calculerCapital);
+});
+
+console.log(document.querySelector(".calculer"));
+
 
