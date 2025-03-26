@@ -1,9 +1,9 @@
 from django import forms
-from .models import MonthlyRevenue
+from .models import RevenueMensuelle
 
-class MonthlyRevenueForm(forms.ModelForm):
+class RevenueMensuelleForms(forms.ModelForm):
     class Meta:
-        model = MonthlyRevenue
+        model = RevenueMensuelle
         fields = ['month', 'revenue']  # Ensure 'month' is a DateField
 
     # Optionally, you can add a DateInput widget to format the date field
