@@ -98,20 +98,11 @@
             {% csrf_token %}
 
             <div class="question visible">
-                <h2>Quelle est votre tranche d'âge?</h2>
-                <div><input type="radio" name="age" value="18-24">
-                    <h3>18-24</h3></div>
-                <div><input type="radio" name="age" value="25-34">
-                    <h3>25-34</h3></div>
-                <div><input type="radio" name="age" value="35-44">
-                    <h3>35-44</h3></div>
-                <div><input type="radio" name="age" value="45-54">
-                    <h3>45-54</h3></div>
-                <div><input type="radio" name="age" value="55-64">
-                    <h3>55-64</h3></div>
-                <div><input type="radio" name="age" value="65+">
-                    <h3>65+</h3></div>
+                <h2>Quelle est votre date de naissance?</h2>
+                <input type="date" name="age">
             </div>
+
+
             <div class="question">
                 <h2>Quel est votre sexe?</h2>
                 <div><input type="radio" name="sexe" value="Homme">
@@ -277,7 +268,7 @@
 
                 <h2>Termes et conditions</h2>
 
-                <div style="height: 300px;width:650px;border:1px solid #ccc;font:16px/26px Arial, sans-serif;
+                <div1 style="height: 300px;width:650px;border:1px solid #ccc;font:16px/26px Arial, sans-serif;
                 overflow: auto; padding: 15px;">
 
                     <section>
@@ -378,7 +369,7 @@
                             contenus dans la clause, et ce pour toute la durée de l’utilisation du site web, les
                             développeurs s’engagent à respecter l’entente.</p>
                     </section>
-                </div>
+                </div1>
 
 
                 <div><input type="checkbox" name="conditions" required>
@@ -454,14 +445,6 @@
         document.getElementById('div2').style.display = 'none';
     }
 </script>
-
-<!--<script>
-    function show1() {
-        rep = document.getElementById("div1");
-        rep.classList.toggle("visible-sousquestion");
-    }
-</script>
--->
 
 </body>
 </html>

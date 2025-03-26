@@ -22,7 +22,7 @@ from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from .services import nova_ai, bourse_data
 
-def members(request):
+def membres(request):
     utilisateurs = User.objects.all().values()
     template = loader.get_template('home.html')
     context = {
