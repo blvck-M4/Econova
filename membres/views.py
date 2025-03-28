@@ -8,6 +8,7 @@ from django.contrib.auth.models import User, auth
 from django.contrib import messages
 from django.http import HttpResponse
 from django.template import loader
+from idna.uts46data import uts46data
 
 from .forms import RevenueMensuelleForms
 from .models import Membre, RevenueMensuelle
@@ -106,10 +107,10 @@ def questionnaire(request):
     return HttpResponse(template.render(context, request))
 
 def conditions(request):
-    urilisateurs = User.objects.all().values()
+    utilisateurs = User.objects.all().values()
     template = loader.get_template('conditions.html')
     context = {
-        'urilisateurs': urilisateurs,
+        'urilisateurs': utilisateurs,
     }
     return HttpResponse(template.render(context, request))
 
@@ -173,14 +174,14 @@ def chatbot(request):
 # Clé API Alpha Vantage (ajoute ta clé API dans settings.py)
 ALPHA_VANTAGE_API_KEY = settings.ALPHA_VANTAGE_API_KEY
 def bourse(request):
-    urilisateurs = User.objects.all().values()
+    utilisateurs = User.objects.all().values()
     members = Membre.objects.all()
     stock_data = bourse_data.stock_data(request)
     conseil = nova_ai.conseilActions(stock_data, 'conservateur')
     print(conseil)
 
     context = {
-        'urilisateurs': urilisateurs,
+        'urilisateurs': utilisateurs,
         'members': members,
         "stock_data": stock_data,
         'conseil': conseil,
