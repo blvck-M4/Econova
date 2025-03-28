@@ -9,8 +9,8 @@ from django.contrib import messages
 from django.http import HttpResponse
 from django.template import loader
 
-from .forms import MonthlyRevenueForm
-from .models import Member, MonthlyRevenue
+from .forms import RevenueMensuelleForms
+from .models import Membre, RevenueMensuelle
 from django.conf import settings
 import requests
 conditions_termes = False
@@ -82,7 +82,7 @@ def connexion(request):
     return render(request, 'connexion.html')
 
 def questionnaire(request):
-    members = Member.objects.all()
+    members = Membre.objects.all()
     utilisateurs = User.objects.all().values()
     template = loader.get_template('questionnaire.html')
     context = {
@@ -116,7 +116,7 @@ def conditions(request):
 #Pages du Tableau de bord
 def page_principale(request):
     utilisateurs = User.objects.all()
-    members = Member.objects.all()
+    members = Membre.objects.all()
     context = {
         'utilisateurs': utilisateurs,
         'members': members,
@@ -127,7 +127,7 @@ def page_principale(request):
 
 def profil(request):
     utilisateurs = User.objects.all().values()
-    members = Member.objects.all()
+    members = Membre.objects.all()
     context = {
         'utilisateurs': utilisateurs,
         'members': members
@@ -174,7 +174,7 @@ def chatbot(request):
 ALPHA_VANTAGE_API_KEY = settings.ALPHA_VANTAGE_API_KEY
 def bourse(request):
     urilisateurs = User.objects.all().values()
-    members = Member.objects.all()
+    members = Membre.objects.all()
     stock_data = bourse_data.stock_data(request)
     conseil = nova_ai.conseilActions(stock_data, 'conservateur')
     print(conseil)
@@ -193,7 +193,7 @@ def deconnexion(request):
     auth.logout(request)
     return redirect('members')
 def supprimer(request):
-    members = Member.objects.all()
+    members = Membre.objects.all()
     for member in members:
         if member.utilisateur == request.user.username:
             member.delete()
@@ -214,21 +214,21 @@ def reponseBot(request):
 def chart_view(request):
     # Récupérer l'instance du membre correspondant en utilisant le nom d'utilisateur.
     try:
-        member = Member.objects.get(utilisateur=request.user.username)
-    except Member.DoesNotExist:
+        member = Membre.objects.get(utilisateur=request.user.username)
+    except Membre.DoesNotExist:
         member = None
 
     context = {}  # Assurez-vous que le contexte est toujours défini.
 
     if request.method == "POST":
-        form = MonthlyRevenueForm(request.POST)
+        form = RevenueMensuelleForms(request.POST)
         if form.is_valid() and member is not None:
             # Extraire les données nettoyées
             month = form.cleaned_data['month']
             revenue = form.cleaned_data['revenue']
 
             # Mettre à jour ou créer l'enregistrement MonthlyRevenue pour le mois et le membre donnés.
-            MonthlyRevenue.objects.update_or_create(
+            RevenueMensuelle.objects.update_or_create(
                 member=member,
                 month=month,
                 defaults={'revenue': revenue}
@@ -239,11 +239,11 @@ def chart_view(request):
             # Si le formulaire n'est pas valide, passez le formulaire au contexte.
             context['form'] = form
     else:
-        form = MonthlyRevenueForm()
+        form = RevenueMensuelleForms()
         context['form'] = form
 
     # Filtrer les entrées de revenus pour le membre actuel (si elles existent)
-    revenue_entries = MonthlyRevenue.objects.filter(member=member) if member else []
+    revenue_entries = RevenueMensuelle.objects.filter(member=member) if member else []
 
     # Agréger les revenus par mois
     revenue_by_month = defaultdict(float)
@@ -265,7 +265,7 @@ def chart_view(request):
 
 def suivi(request):
     utilisateurs = User.objects.all().values()
-    members = Member.objects.all()
+    members = Membre.objects.all()
     context = {
         'utilisateurs': utilisateurs,
         'members': members,
