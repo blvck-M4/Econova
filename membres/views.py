@@ -106,11 +106,15 @@ def questionnaire(request):
         nombre_enfant = request.POST.get('nbEnfants')
         situation_habitation = request.POST.get('habitation')
 
-        dette_credits = request.POST.get('credits')
-        dette_pret_etudiant = request.POST.get('pret')
-        dette_pret_automobile = request.POST.get('auto')
-        dette_hypotheque = request.POST.get('hypo')
-        dette_autre = request.POST.get('autre')
+
+
+        dette_credits = request.POST.get('detteCredit')
+        dette_pret_etudiant = request.POST.get('detteEtudiant')
+        dette_pret_automobile = request.POST.get('detteAutomobile')
+        dette_hypotheque = request.POST.get('detteHypotheque')
+        dette_autre = request.POST.get('AutreTypeDette')
+
+
 
         # Ensure date_naissance is a valid date object
         if date_naissance:
@@ -141,8 +145,14 @@ def questionnaire(request):
                 else:
                     membre.nombre_enfant = None  # Clear if not a parent
 
+
                 membre.situation_habitation = situation_habitation
 
+                membre.dette_credits = dette_credits =='on'
+                membre.dette_pret_etudiant = dette_pret_etudiant == 'on'
+                membre.dette_pret_automobile = dette_pret_automobile == 'on'
+                membre.dette_hypotheque = dette_hypotheque == 'on'
+                membre.dette_autre = dette_autre =='on'
                 # Save changes
                 membre.save()
 
