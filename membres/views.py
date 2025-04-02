@@ -1,5 +1,6 @@
 import json
 from collections import defaultdict
+from datetime import datetime
 from os import utime
 
 from django.contrib.auth import user_logged_in
@@ -85,28 +86,72 @@ def connexion(request):
 
     return render(request, 'connexion.html')
 
+
 def questionnaire(request):
     membres = Membre.objects.all()
     utilisateurs = User.objects.all().values()
     template = loader.get_template('questionnaire.html')
-    context = {
-        'utilisateurs': utilisateurs
-    }
+    context = {'utilisateurs': utilisateurs}
+
     global conditions_termes
+
     if request.method == 'POST':
-        date_naissance = request.POST['date_naissance']
-        conditions = request.POST['conditions']
-        if conditions == 'on':
+        # Retrieve form data
+        date_naissance = request.POST.get('age')
+        statut_professionnelle = request.POST.get('situation')
+        revenu_mensuelle = request.POST.get('revenu')
+        statut_marital = request.POST.get('statut')
+        conditions = request.POST.get('conditions')
+        parent = request.POST.get('enfant')
+        nombre_enfant = request.POST.get('nbEnfants')
+        situation_habitation = request.POST.get('habitation')
+
+        dette_credits = request.POST.get('credits')
+        dette_pret_etudiant = request.POST.get('pret')
+        dette_pret_automobile = request.POST.get('auto')
+        dette_hypotheque = request.POST.get('hypo')
+        dette_autre = request.POST.get('autre')
+
+        # Ensure date_naissance is a valid date object
+        if date_naissance:
+            date_naissance = datetime.strptime(date_naissance, "%Y-%m-%d").date()
+
+        # If "Autre" is selected for profession, get the custom value
+        if statut_professionnelle == "Autre":
+            statut_professionnelle = request.POST.get('autre_situation', 'Autre')  # Get the text if Autre is selected
+
+        # Ensure conditions are accepted before updating
+        if conditions == 'on':  # Check if the conditions box is checked
             user = request.user
-            membre = membres.filter(utilisateur=user.username)
+            try:
+                membre = membres.get(utilisateur=user.username)
+            except Membre.DoesNotExist:
+                membre = None  # Handle case where the user is not found in Membre
+
             if membre is not None:
-                membre.date_naissance = date_naissance
-            membre.save()
-            conditions_termes = True;
-            return redirect('tableau-bord/page-principale')
+                # Update fields
+                membre.date_de_naissance = date_naissance
+                membre.statut_professionnelle = statut_professionnelle
+                membre.revenu_mensuelle = revenu_mensuelle
+                membre.statut_marital = statut_marital
+                membre.parent = (parent == 'Oui')  # Convert to boolean
+
+                if membre.parent:  # Only set if parent is "Yes"
+                    membre.nombre_enfant = nombre_enfant
+                else:
+                    membre.nombre_enfant = None  # Clear if not a parent
+
+                membre.situation_habitation = situation_habitation
+
+                # Save changes
+                membre.save()
+
+                conditions_termes = True
+                return redirect('tableau-bord/page-principale')
         else:
-            conditions_termes = False;
+            conditions_termes = False
             return redirect('questionnaire')
+
     return HttpResponse(template.render(context, request))
 
 def conditions(request):
@@ -232,7 +277,7 @@ def chart_view(request):
     # Vérifier si l'utilisateur veut effacer les revenus
     if request.method == "GET" and request.GET.get("clear_revenue") == "true" and membre is not None:
         RevenueMensuelle.objects.filter(membre=membre).delete()
-        return redirect('revenue_dashboard')  # Redirection pour rafraîchir la page
+        return redirect('suivi-financier')  # Redirection pour rafraîchir la page
 
     if request.method == "POST":
         form = RevenueMensuelleForms(request.POST)
@@ -266,8 +311,6 @@ def chart_view(request):
         revenue_par_mois[mois_str] += float(ajout.revenue)
 
     sorted_months = sorted(revenue_par_mois.keys())
-    labels = sorted_months
-    values = [revenue_par_mois[month] for month in sorted_months]
     # If there are no revenue entries, ensure we have at least one entry with 0 value
     if not revenue_par_mois:
         revenue_par_mois['No Data'] = 0  # Adding a default label and value for empty data
