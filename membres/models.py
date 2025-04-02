@@ -11,14 +11,15 @@ class Membre(models.Model):
     date_creation = models.DateTimeField(auto_now_add=True)
 
     # Informations personnelles
-    date_de_naissance = models.CharField(max_length=255, null=True, blank=True)
-    statut_professionnelle = models.CharField(max_length=255, null=True, blank=True)
-    revenu_mensuelle = models.CharField(max_length=255, null=True, blank=True)
-    statut_marital = models.CharField(max_length=255, null=True, blank=True)
+    date_de_naissance = models.DateField(null=True)
+    statut_professionnelle = models.CharField(max_length=255, null=True)
+    revenu_mensuelle = models.CharField(max_length=255, null=True)
+    statut_marital = models.CharField(max_length=255, null=True)
     parent = models.BooleanField(default=False)
-    nombre_enfant = models.CharField(max_length=255, null=True, blank=True)
-    situation_habitation = models.CharField(max_length=255, null=True, blank=True)
-    objectifs_principales = models.CharField(max_length=255, null=True, blank=True)
+    nombre_enfant = models.CharField(max_length=255, null=True)
+    situation_habitation = models.CharField(max_length=255, null=True)
+
+    objectifs_principales = models.CharField(max_length=255, null=True)
 
     # Types de dettes
     dette_credits = models.BooleanField(default=False)
