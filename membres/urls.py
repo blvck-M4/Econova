@@ -15,7 +15,7 @@ urlpatterns = [
     path('tableau-bord/reponseBot', views.reponseBot, name='reponseBot'),
     path('tableau-bord/bourse', views.bourse, name='bourse'),
     path('tableau-bord/page-principale', views.page_principale, name='page-principale'),
-    path('chart/', views.chart_view, name='suivi-financier'),
+    path('suivi-financier/', views.chart_view, name='suivi-financier'),
     path('tableau-bord/simulation', views.simulation, name='simulation'),
 
 ]
