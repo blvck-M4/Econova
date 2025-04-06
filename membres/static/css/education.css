@@ -1,25 +1,208 @@
-.profilInvest {
-
-    .nav-questionnaire button {
-        align-items: center;
-        background: #f5f5fa;
-        border: 0;
-        border-radius: 8px;
-        box-shadow: rgba(0, 0, 0, 0.25) 0 25px 50px -12px;
-        box-sizing: border-box;
-        cursor: pointer;
-        padding: 15px;
-        transition: 0.2s ease-in-out;
-    }
-
-    .nav-questionnaire .profil {
-        background-color: #FE66C4;
-        color: white;
-    }
-
-    .nav-questionnaire .dictionnaire:hover {
-        background: #FE66C4;
-        color: white;
-    }
-
+body {
+    background: #252525;
+    color: white;
+    line-height: 1.8;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
+
+.container {
+    background: #3a3a3a;
+    width: 80%;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    flex-grow: 1;
+    margin: 100px 0 60px;
+    text-align: center;
+}
+
+main {
+    padding: 40px;
+    margin: auto;
+}
+
+.description {
+    text-align: center;
+    margin-bottom: 50px;
+    color: white;
+    font-size: 18px;
+}
+
+.description h2 {
+    font-size: 46px;
+    color: white;
+    margin-bottom: 15px;
+}
+
+.sections {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.section {
+    flex: 1;
+    max-width: 400px;
+    background: #4a4a4a;
+    color: white;
+    padding: 35px;
+    border-radius: 15px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    text-align: center;
+    position: relative;
+    cursor: pointer;
+}
+
+.section i {
+    font-size: 36px;
+    color: #FF65C4;
+    margin-bottom: 10px;
+}
+
+.section h3 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #FF65C4;
+}
+
+.section:hover {
+    transform: scale(1.1);
+    box-shadow: 0 12px 30px black;
+    background: #ff4081;
+}
+
+.section:hover h3,
+.section:hover i {
+    color: white;
+}
+
+.hidden-text {
+    font-size: 16px;
+    color: white;
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height 0.5s ease, opacity 0.5s ease, margin-top 0.3s ease;
+    margin-top: 0;
+}
+
+.section:hover .hidden-text {
+    max-height: 100px;
+    opacity: 1;
+    margin-top: 10px;
+}
+
+.boite-texte {
+    text-align: left;
+    margin-top: 40px;
+    padding: 20px;
+    background: #2c2c2c;
+    border-radius: 10px;
+    box-shadow: 0 6px 20px black;
+    font-size: 18px;
+    color: white;
+    display: none;
+    animation: fadeIn 0.5s ease-in-out;
+
+    h1 {
+        font-size: 40px;
+    }
+
+    h2 {
+        font-size: 32px;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.concept-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.concept-bar {
+    width: 5px;
+    height: 40px;
+    background: #FF65C4;
+    margin-right: 15px;
+}
+
+.concept-definition strong {
+    color: #FF65C4;
+}
+
+.section.active {
+    background: #ff4081;
+    color: white;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
+}
+
+.section.active i,
+.section.active h3 {
+    color: white;
+}
+
+.dropbtn {
+    padding: 16px;
+    font-size: 16px;
+    border-radius: 15px;
+}
+
+.dropdown {
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #1f2023;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: white;
+    font-family: "Prompt", serif;
+    font-size: 15px;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #818181;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown:hover .dropbtn {
+    background-color: #ff4081;
+}
+
+.upButton {
+    background-color: #FF65C4;
+    position: fixed;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    right: 50px;
+    bottom: 50px;
+}
+
