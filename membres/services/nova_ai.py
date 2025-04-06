@@ -102,5 +102,48 @@ def conseilActions(stock_data, profil):
         reponse += chunk.text
     reponse_finale = reponse.replace('*', '<br>')
     return reponse_finale
+liste_actions = []
+def listeActions():
+    contents = [
+        types.Content(
+            role="user",
+            parts=[
+                types.Part.from_text(text="""Génère une liste du top 50 des actions sous la forme {symbole,nom,prix,
+                niveau de 
+                risque,tendance; ...}"""),
+            ],
+        ),
+
+    ]
+    generate_content_config.system_instruction = [
+        types.Part.from_text(text="""Tu es un générateur de liste d'actions en français. Tu n'écris rien d'autre que la 
+        liste 
+            et tu donnes les prix en $CAN. Sépare les liste par ; et l'intérieur des listes par une virgule sans 
+            utilisé rien d'autre pour que je puisse réutiliser la liste facilement. Aussi met la tendance sous ce 
+            format: -2.39 (-1.44 %) les six derniers mois. N'inverse pas les noms et les 
+            symboles des actions. Les symboles sont générralement moins de 4 lettres."""),
+    ]
+    reponse = ""
+    global liste_actions
+    if len(liste_actions) == 0:
+        for chunk in client.models.generate_content_stream(
+                model=model,
+                contents=contents,
+                config=generate_content_config,
+        ):
+            reponse += chunk.text
+        liste_actions = reponse.split(';')
+
+    actions = []
+    for action in liste_actions:
+        symbole, nom, prix, risque, tendance = action.split(',')
+        if len(symbole.strip()) <= 5:
+            actions.append({"symbole": symbole, "nom": nom, "prix": prix, "risque": risque, "tendance": tendance})
+    print(actions)
+    return actions
 
 
+def simulationAI():
+
+
+    return ""

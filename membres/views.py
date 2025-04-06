@@ -174,8 +174,11 @@ def chatbot(request):
     return render(request, 'tableau-bord/chatbot.html', context)
 def simulation(request):
     utilisateurs = User.objects.all().values()
+    liste_actions = nova_ai.listeActions()
+    print(liste_actions)
     context = {
         'utilisateurs': utilisateurs,
+        'listeActions': liste_actions,
     }
     return render(request, 'tableau-bord/simulation.html', context)
 
