@@ -111,7 +111,7 @@ def listeActions():
         types.Content(
             role="user",
             parts=[
-                types.Part.from_text(text="""Génère une liste du top 30 des actions sous la forme {symbole,nom,prix,
+                types.Part.from_text(text="""Génère une liste du top 10 des actions sous la forme {symbole,nom,prix,
                 niveau de 
                 risque,tendance; ...}"""),
             ],
@@ -141,6 +141,7 @@ def listeActions():
     for action in liste_actions:
         symbole, nom, prix, risque, tendance = action.split(',')
         if len(symbole.strip()) <= 5:
+            tendance = tendance.strip("\n\r\t")
             actions.append({"symbole": symbole, "nom": nom, "prix": prix, "risque": risque, "tendance": tendance})
     print(actions)
     return actions
@@ -181,8 +182,8 @@ def graphSimulation(action):
     donnees = []
     for donnee in liste_donnees:
         date, prix = donnee.split(',')
-        date = date.strip("[]' ")
-        prix = prix.strip("[]' ")
+        date = date.strip("[]' \n\r\t")
+        prix = prix.strip("[]' \n\r\t")
         donnees.append({"date": date, "prix": prix})
     return donnees
 

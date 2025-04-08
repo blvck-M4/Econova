@@ -320,6 +320,7 @@
                 ],
             {% endfor %}
         };
+        console.log(actionsGraph)
         console.log("actionsGraph =", actionsGraph);
 
 
@@ -346,6 +347,7 @@
                                 prices.push(parseFloat(data.prix));
                             });
                         }
+                        chargerGraphique(produitNom)
 
                     }
                 {% endfor %}
@@ -487,6 +489,23 @@
                 }
             }
         });
+        function chargerGraphique(nom) {
+            const donnees = actionsGraph[nom];
+            if (donnees) {
+                labels.length = 0;
+                prices.length = 0;
+
+                donnees.forEach((pt) => {
+                    labels.push(pt.date);
+                    prices.push(pt.prix);
+                });
+
+                document.getElementById("produit-titre").innerText = `Graphique de ${nom}`;
+                stockChart.update();
+            } else {
+                alert("Données non trouvées pour " + nom);
+            }
+        }
     </script>
 
 
