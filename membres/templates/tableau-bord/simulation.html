@@ -146,20 +146,29 @@
                 <div id="bouton-crypto" onclick="cryptoClick()"><h2>Cryptomonnaie</h2></div>
             </div>
             <div id="produit-info" class="produit-info">
+                <span id="fermer-produit">&times;</span>
                 <div class="produit-info-contenu">
-                    <span id="fermer-produit">&times;</span>
                     <div class="infos-action">
                         <div class="produit-titre">
                             <h1 id="produit-type"></h1>
+
                             <h2 id="produit-risque"></h2>
                         </div>
                         <div class="produit-transaction">
-                            <div>
+                            <div class="selection-qte">
                                 <h2 id="produit-titre"></h2>
-                                <h2 id="produit-tendance"></h2>
+                                <input type="number" id="quantite" name="quantite" placeholder="Qté" min="1"
+                                       max="999">
                             </div>
-                            <div>
-
+                            <div class="selection-type">
+                                <h2 id="produit-tendance"></h2>
+                                <div class="dropdown-container">
+                                    <button class="choix-bouton" id="actionBouton">Choisir une action</button>
+                                    <div class="dropdown-options" id="options">
+                                        <div onclick="selectOption('Acheter')"><h2>Acheter</h2></div>
+                                        <div onclick="selectOption('Vendre')"><h2>Vendre</h2></div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="chart-container">
@@ -167,7 +176,21 @@
                         </div>
                     </div>
                     <div class="transaction">
-
+                        <div class="details-transaction">
+                            <div class="info-transac">
+                                <h2>Qté:</h2>
+                                <h2 id="produit-qte">1</h2>
+                            </div>
+                                <div class="info-transac">
+                                <h2>Montant unitaire:</h2>
+                                <h2 id="produit-prix">100$</h2>
+                            </div>
+                        </div>
+                        <div class="info-transac">
+                            <h2>Total:</h2>
+                            <h2 id="total"></h2>
+                        </div>
+                        <button class="bouton-transaction" role="button">Faire la transaction</button>
                     </div>
                 </div>
             </div>
@@ -247,6 +270,7 @@
     </section>
 
     <script src="{% static 'js/tableau-bord.js' %}"></script>
+    <script src="{% static 'js/simulation.js' %}"></script>
     <script>
 
         let crypto;
@@ -276,8 +300,28 @@
         popupTitle = document.getElementById('produit-titre');
         popupTendance = document.getElementById('produit-tendance');
         popupRisque = document.getElementById('produit-risque');
+        popupPrix = document.getElementById('produit-prix');
         popupType = document.getElementById('produit-type');
+        popupQte = document.getElementById('produit-qte')
         produit_fermer = document.getElementById('fermer-produit');
+
+        produit_Qte = document.getElementById('quantite')
+        popupTotal = document.getElementById('total');
+
+        //Données pour les graphiques des produits
+        var labels = [];
+        var prices = [];
+        const actionsGraph = {
+            {% for action in actionsGraph %}
+                "{{ action.nom }}": [
+                    {% for data in action.donnees %}
+                        { date: "{{ data.date|escapejs }}", prix: "{{ data.prix }}" },
+                    {% endfor %}
+                ],
+            {% endfor %}
+        };
+        console.log("actionsGraph =", actionsGraph);
+
 
         // Ajoute un event listener sur chaque symbole
         symbols.forEach((symbol) => {
@@ -285,19 +329,48 @@
                 symbolText = symbol.innerText; // Récupère le texte du symbole
                 produitNom = ''
                 produitRisque = ''
+                produitPrix = ''
                 produitTendance = ''
                 {% for listeAction in  listeActions %}
-                    if (symbolText == '{{ listeAction.symbole }}'){
+                    if (symbolText === '{{ listeAction.symbole }}'){
                         produitNom = '{{ listeAction.nom }}'
                         produitRisque = '{{ listeAction.risque }}'
+                        produitPrix = '{{ listeAction.prix }}'
                         produitTendance = '{{ listeAction.tendance }}'
+                        const donnees = actionsGraph[produitNom];
+                        if (donnees) {
+                            labels.length = 0;
+                            prices.length = 0;
+                            donnees.forEach(data => {
+                                labels.push(data.date);
+                                prices.push(parseFloat(data.prix));
+                            });
+                        }
+
                     }
                 {% endfor %}
-
                 // Personnaliser le popup en fonction du symbole cliqué
                 popupTitle.innerText = `${symbolText} - ${produitNom}`;
                 popupRisque.innerText = `Risque: ${produitRisque}`;
                 popupTendance.innerText = `${produitTendance} - 6 dernier mois`
+                popupPrix.innerText = `${produitPrix}`
+
+                popupTotal.innerText = `--`;
+                popupQte.innerText = `--`;
+                // Met à jour le total et la quantité du produit affichée dynamiquement
+                produit_Qte.addEventListener('input', () => {
+                    const quantite = parseInt(produit_Qte.value);
+                    const prix = parseFloat(popupPrix.innerText);
+
+                    if (!isNaN(quantite) && !isNaN(prix)) {
+                        const total = quantite * prix;
+                        popupTotal.innerText = `${total.toFixed(2)} $`;
+                        popupQte.innerText = quantite;
+                    } else {
+                        popupTotal.innerText = `--`;
+                        popupQte.innerText = `--`;
+                    }
+                });
                 if (produitTendance.split('+')){
                     popupTendance.style.color = '#34E519'
                 } else{
@@ -318,44 +391,18 @@
             });
         });
 
-        // Fermer le popup lorsque l'utilisateur clique sur "X"
-        produit_fermer.addEventListener('click', () => {
-            produit_info.style.display = "none";
-        });
-
-        // Fermer le popup si l'utilisateur clique en dehors du contenu
-        produit_info.addEventListener('click', (event) => {
-            if (event.target === produit_info) {
-                produit_info.style.display = "none";
-            }
-        });
-
-
-        ouvrir_historique = document.querySelector('.ouvrir-historique')
-        historique = document.getElementById('historique')
-        ouvrir_historique.addEventListener('click',()=>{
-            historique.classList.toggle('historique-visible')
-        })
-        fermer_historique = document.querySelector('.fermer-historique')
-        fermer_historique.addEventListener('click', ()=>{
-            if (historique.classList.contains('historique-visible')){
-                historique.classList.remove('historique-visible')
-            }
-        })
-        // Données des actions
-
         // Sélectionne les symboles
         let transactionHistorique = document.getElementById('transaction-history');
 
         // Fonction pour ajouter une transaction
-        function addTransaction(symbol, price, status) {
+        function addTransaction(status) {
             let row = document.createElement('tr');
 
             row.innerHTML = `
                 <td>${new Date().toLocaleString()}</td>
-                <td>${symbol}</td>
-                <td>${actions[symbol]}</td>
-                <td>${price}</td>
+                <td>${symbolText}</td>
+                <td>${produitNom}</td>
+                <td>${produitPrix}</td>
                 <td>${status}</td>
             `;
 
@@ -365,70 +412,83 @@
         // Ajoute un événement de clic sur chaque symbole
         symbols.forEach((symbolElement) => {
             symbolElement.addEventListener('click', () => {
-                let symbol = symbolElement.innerText;
-                let price = (Math.random() * (1000 - 100) + 100).toFixed(2) + " USD"; // Prix aléatoire pour test
                 let status = Math.random() > 0.5 ? "Achat" : "Vente"; // Choisir aléatoirement entre Achat et Vente
-
-                addTransaction(symbol, price, status);
+                addTransaction(status);
             });
         });
 
 
 
 
-        bouton_produit = document.querySelectorAll('.type-produit div')
-        actions_tableau = document.querySelector('.actions-tableau')
-        tableau_produit = document.querySelectorAll('.tableau-produit tbody')
-        bouton_produit.forEach((produit)=>{
-            produit.addEventListener('click', ()=>{
-                produit.classList.toggle('produit-select');
-                // Liste des autres boutons à désélectionner
-                let autresBoutons = Array.from(bouton_produit).filter(btn => btn !== produit);
 
-                // Retirer la classe 'produit-select' des autres boutons
-                autresBoutons.forEach(btn => btn.classList.remove('produit-select'));
-
-               tableau_produit.forEach((tableau) => {
-                    let idCorrespondant = produit.id.replace('bouton', 'tab');
-
-                    if (tableau.id === idCorrespondant) {
-                        tableau.classList.toggle('tableau-visible');
-                    } else {
-                        tableau.classList.add('tableau-visible');
-                    }
-                });
-            })
-        })
-    </script>
-
-<script>
-    var labels =[];
-            var prices = [];
-
-            var ctx = document.getElementById('stockChart').getContext('2d');
-            var stockChart = new Chart(ctx, {
-                type: 'line',
-                data: {
-                    labels: labels,
-                    datasets: [{
-                        label: 'Prix ($)',
-                        data: prices,
+        var ctx = document.getElementById('stockChart').getContext('2d');
+        var stockChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Prix ($)',
+                    data: prices,
+                    borderColor: '#FF4F8B',
+                    backgroundColor: 'rgba(255, 79, 139, 0.1)',
+                    borderWidth: 2,
+                    pointBackgroundColor: '#FF4F8B',
+                    pointBorderColor: '#fff',
+                    pointHoverRadius: 6,
+                    pointRadius: 4,
+                    tension: 0.3,
+                    fill: true
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        labels: {
+                            color: '#FFF',
+                            font: {
+                                size: 14,
+                                weight: 'bold'
+                            }
+                        }
+                    },
+                    tooltip: {
+                        backgroundColor: '#1e1e1e',
+                        titleColor: '#FF4F8B',
+                        bodyColor: '#FFF',
                         borderColor: '#FF4F8B',
-                        backgroundColor: 'rgba(255, 79, 139, 0.2)',
-                        borderWidth: 2,
-                        fill: true
-                    }]
+                        borderWidth: 1
+                    }
                 },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    scales: {
-                        x: { grid: { color: '#555' } },
-                        y: { grid: { color: '#555' } }
+                scales: {
+                    x: {
+                        grid: {
+                            color: '#333'
+                        },
+                        ticks: {
+                            color: '#AAA',
+                            font: {
+                                size: 12
+                            }
+                        }
+                    },
+                    y: {
+                        grid: {
+                            color: '#333'
+                        },
+                        ticks: {
+                            color: '#AAA',
+                            font: {
+                                size: 12
+                            }
+                        }
                     }
                 }
-            });
-</script>
+            }
+        });
+    </script>
+
 
 </body>
 </html>

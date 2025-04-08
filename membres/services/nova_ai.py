@@ -76,12 +76,15 @@ def reponseBot (request, utilisateur):
 
 
 def conseilActions(stock_data, profil):
+    nom = ''
+    if stock_data:
+        nom = stock_data['name']
     contents = [
         types.Content(
             role="user",
             parts=[
                 types.Part.from_text(text="""Donne moi des conseils financiers par rapport l'action 
-                """ + 'AAPL' + """. Fait le sachant que j'ai un profil financier """+profil),
+                """ + nom + """. Fait le sachant que j'ai un profil financier """+profil),
             ],
         ),
 
@@ -108,7 +111,7 @@ def listeActions():
         types.Content(
             role="user",
             parts=[
-                types.Part.from_text(text="""Génère une liste du top 50 des actions sous la forme {symbole,nom,prix,
+                types.Part.from_text(text="""Génère une liste du top 30 des actions sous la forme {symbole,nom,prix,
                 niveau de 
                 risque,tendance; ...}"""),
             ],
@@ -141,6 +144,47 @@ def listeActions():
             actions.append({"symbole": symbole, "nom": nom, "prix": prix, "risque": risque, "tendance": tendance})
     print(actions)
     return actions
+
+liste_donnees = []
+def graphSimulation(action):
+    contents = [
+        types.Content(
+            role="user",
+            parts=[
+                types.Part.from_text(text="""Génère une liste de données pour créer un graphique de prix par mois 
+                sur 6 mois de l'action """ + action['nom'] + """. sous 
+                ce format: [['2020-01-01',100.05];['2020-02-01',101.23]]). Fait le en considérant sa tendance (""" +
+                                          action['tendance'] + """) et 
+                son prix initial (""" + action['prix'] + """)""",)
+            ],
+        ),
+
+    ]
+    generate_content_config.system_instruction = [
+        types.Part.from_text(text="""Tu es un générateur de liste de données de graphique. Tu n'écris rien d'autre 
+        que la liste. Sépare les liste par ; et l'intérieur des listes par une virgule sans 
+                utilisé rien d'autre pour que je puisse réutiliser la liste facilement. Ne me pas de signe $ sur le 
+                prix.
+                """),
+    ]
+    reponse = ""
+
+    global liste_donnees
+    for chunk in client.models.generate_content_stream(
+                model=model,
+                contents=contents,
+                config=generate_content_config,
+    ):
+        reponse += chunk.text
+    liste_donnees = reponse.split(';')
+
+    donnees = []
+    for donnee in liste_donnees:
+        date, prix = donnee.split(',')
+        date = date.strip("[]' ")
+        prix = prix.strip("[]' ")
+        donnees.append({"date": date, "prix": prix})
+    return donnees
 
 
 def simulationAI():
