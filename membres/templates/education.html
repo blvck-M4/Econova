@@ -18,6 +18,7 @@
 </head>
 
 <body>
+<!-- Dessus de la page + Menu -->
 <header class="header">
     <div class="logoSite">
         <a href="/"><img src="{% static 'images/Logo EcoNova.png' %}" alt="Logo ÉcoNova Finance"
@@ -79,6 +80,8 @@
     </div>
 </header>
 
+
+<!-- Boite principale (contenu) -->
 <div class="container">
     <main>
         <div class="description">
@@ -91,6 +94,7 @@
         </div>
 
         <div class="sections">
+            <!-- Dictionnaire -->
             <div class="section" id="concepts-btn"
                  onclick="toggleActiveSection(this, '', `
 <div class='dropdown'>
@@ -607,10 +611,14 @@
                 <h3><strong>Dictionnaire</strong></h3>
                 <p class="hidden-text">Découvre les termes financiers clés pour enrichir tes connaissances!</p>
 
-
             </div>
+
+            <!-- Quesionnaire -->
             <div class="section" id="profil-btn"
-                 onclick="toggleActiveSection(this, 'Profil d\'investisseur', 'A definir')">
+                 onclick="toggleActiveSection(this, 'Profil d\'investisseur', `
+
+                 `)">
+
                 <i class="fas fa-user-check"></i>
                 <h3><strong>Profil d'investisseur</strong></h3>
                 <p class="hidden-text">Remplis un questionnaire pour mieux comprendre ton profil et tes objectifs!</p>
@@ -623,10 +631,13 @@
     </main>
 
 
-    <a href='#'><button class="upButton"><i class="fa fa-arrow-up"></i></button></a>
+    <a href=''>
+        <button class="upButton"><i class="fa fa-arrow-up"></i></button>
+    </a>
 
 </div>
 
+<!-- Pied de la page -->
 <section class="copyrights">
     <h3>© 2025 NOVA. Tous droits réservés.</h3>
     <h3> Créé par Micheal Gyan, Gabriel-Ngoma Riendeau, Samy Baouche, Mohammed El Ouaabani et Nancy Bechara.</h3>
@@ -635,6 +646,7 @@
 <script>
     let lastClicked = null;
 
+    <!-- JS Dictionnaire -->
     function toggleInfo(titre, texte) {
         var boite = document.getElementById("infoBox");
 
@@ -648,7 +660,7 @@
         }
     }
 
-
+    <!-- JS Questionnaire -->
     function toggleActiveSection(button, title, content) {
         var boite = document.getElementById("infoBox");
 
@@ -669,6 +681,7 @@
 
 </script>
 
+<!-- JS Menu -->
 <script>
     menubar = document.querySelector('.menu-btn');
     menuslide = document.querySelector('.menu-slide');
