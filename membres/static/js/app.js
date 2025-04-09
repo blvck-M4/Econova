@@ -1,3 +1,5 @@
+console.log("app.js a été chargé"); //Savoir si le app.js a été appelé
+
 //Afficher le menu de navigation
 menubar = document.querySelector('.menu-btn');
 menuslide = document.querySelector('.menu-slide');
@@ -75,5 +77,53 @@ function enter(){
         }
     });
 }
+
+function getValue(selector) {
+    let element = document.querySelector(selector);
+    return element ? parseFloat(element.value) || 0 : 0;
+}
+
+function calculerCapital() {
+
+    console.log("📊 calculerCapital() a été appelée !"); //Pour savoir si la fonction est appelée
+
+    let actifs = [
+        getValue(".cheque"),
+        getValue(".epargne"),
+        getValue(".bourse"),
+        getValue(".crypto"),
+        getValue(".autre")
+    ];
+    let passifs = [
+        getValue(".credits"),
+        getValue(".emprunts"),
+        getValue(".hypotheque")
+    ];
+
+    let totalActifs = actifs.reduce((acc, val) => acc + val, 0);
+    let totalPassifs = passifs.reduce((acc, val) => acc + val, 0);
+    let capital = totalActifs - totalPassifs;
+
+    document.getElementById("capital-value").textContent = capital.toLocaleString() + " $";
+
+    console.log("Valeur chèque :", getValue(".cheque"));
+    console.log("Valeur épargne :", getValue(".epargne"));
+    console.log("Valeur bourse :", getValue(".bourse"));
+    console.log("Valeur crypto :", getValue(".crypto"));
+    console.log("Valeur autre :", getValue(".autre"));
+
+    console.log("Valeur crédits :", getValue(".credits"));
+    console.log("Valeur emprunts :", getValue(".emprunts"));
+    console.log("Valeur hypothèque :", getValue(".hypotheque"));
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+    let boutonCalcul = document.querySelector(".calculer");
+    if (boutonCalcul) {
+        boutonCalcul.addEventListener("click", calculerCapital());
+    } else {
+        console.error("Le bouton de calcul n'a pas été trouvé !"); //Test de debug
+    }
+});
 
 

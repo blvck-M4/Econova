@@ -13,9 +13,6 @@ from .forms import RevenueMensuelleForms
 from .models import Membre, RevenueMensuelle
 from django.conf import settings
 import requests
-
-from .models import Membre
-
 conditions_termes = False
 
 from django.http import JsonResponse
@@ -31,7 +28,6 @@ def membres(request):
         'conditions_termes': conditions_termes,
     }
     return HttpResponse(template.render(context, request))
-
 
 def rejoindre(request):
     if request.method == 'POST':
@@ -86,7 +82,6 @@ def connexion(request):
 
     return render(request, 'connexion.html')
 
-
 def questionnaire(request):
     membres = Membre.objects.all()
     utilisateurs = User.objects.all().values()
@@ -111,7 +106,6 @@ def questionnaire(request):
             return redirect('questionnaire')
     return HttpResponse(template.render(context, request))
 
-
 def conditions(request):
     utilisateurs = User.objects.all().values()
     template = loader.get_template('conditions.html')
@@ -120,8 +114,7 @@ def conditions(request):
     }
     return HttpResponse(template.render(context, request))
 
-
-# Pages du Tableau de bord
+#Pages du Tableau de bord
 def page_principale(request):
     utilisateurs = User.objects.all()
     members = Membre.objects.all()
@@ -130,7 +123,7 @@ def page_principale(request):
         'membres': members,
     }
 
-    return render(request, 'tableau-bord/page-principale.html', context)
+    return render(request, 'tableau-bord/page-principale.html',context)
 
 
 def profil(request):
@@ -170,27 +163,31 @@ def profil(request):
 
     return render(request, 'tableau-bord/profil.html', context)
 
-
 def chatbot(request):
     utilisateurs = User.objects.all().values()
     context = {
         'utilisateurs': utilisateurs,
     }
     return render(request, 'tableau-bord/chatbot.html', context)
-
-
 def simulation(request):
     utilisateurs = User.objects.all().values()
+    liste_actions = nova_ai.listeActions()
+    graph_actions = []
+    for action in liste_actions:
+        liste_donnees = nova_ai.graphSimulation(action)
+        graph_actions.append({
+            "nom": action['nom'],  # ou action.symbole si tu préfères
+            "donnees": liste_donnees
+        })
     context = {
         'utilisateurs': utilisateurs,
+        'listeActions': liste_actions,
+        'actionsGraph': graph_actions,
     }
     return render(request, 'tableau-bord/simulation.html', context)
 
-
 # Clé API Alpha Vantage (ajoute ta clé API dans settings.py)
 ALPHA_VANTAGE_API_KEY = settings.ALPHA_VANTAGE_API_KEY
-
-
 def bourse(request):
     utilisateurs = User.objects.all().values()
     membre = Membre.objects.all()
@@ -207,7 +204,7 @@ def bourse(request):
     return render(request, "tableau-bord/bourse.html", context)
 
 
-# Fonctionnalités
+#Fonctionnalités
 def deconnexion(request):
     auth.logout(request)
     return redirect('membres')
@@ -221,7 +218,6 @@ def supprimer(request):
     auth.get_user(request).delete()
     return redirect('membres')
 
-
 @csrf_exempt
 def reponseBot(request):
     if user_logged_in:
@@ -232,7 +228,6 @@ def reponseBot(request):
 
     reponse = nova_ai.reponseBot(request, utilisateur)
     return JsonResponse({"response": reponse})
-
 
 def chart_view(request):
     # Récupérer l'instance du membre correspondant en utilisant le nom d'utilisateur.
@@ -293,3 +288,12 @@ def education(request):
         'utilisateurs': utilisateurs,
     }
     return render(request, 'education.html', context)
+
+def suivi(request):
+    utilisateurs = User.objects.all().values()
+    members = Membre.objects.all()
+    context = {
+        'utilisateurs': utilisateurs,
+        'members': members,
+    }
+    return render(request, 'tableau-bord/suivi.html', context)
