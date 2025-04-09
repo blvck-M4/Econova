@@ -97,7 +97,7 @@ def questionnaire(request):
 
     if request.method == 'POST':
         # Retrieve form data
-        date_naissance = request.POST.get('age')
+        date_naissance = request.POST.get('dateNaissance')
         statut_professionnelle = request.POST.get('situation')
         revenu_mensuelle = request.POST.get('revenu')
         statut_marital = request.POST.get('statut')
@@ -105,9 +105,9 @@ def questionnaire(request):
         parent = request.POST.get('enfant')
         nombre_enfant = request.POST.get('nbEnfants')
         situation_habitation = request.POST.get('habitation')
+        sexe = request.POST.get('sexe')
 
-
-
+        montant_dette = request.POST.get('montantDette')
         dette_credits = request.POST.get('detteCredit')
         dette_pret_etudiant = request.POST.get('detteEtudiant')
         dette_pret_automobile = request.POST.get('detteAutomobile')
@@ -139,7 +139,7 @@ def questionnaire(request):
                 membre.revenu_mensuelle = revenu_mensuelle
                 membre.statut_marital = statut_marital
                 membre.parent = (parent == 'Oui')  # Convert to boolean
-
+                membre.sexe = sexe
                 if membre.parent:  # Only set if parent is "Yes"
                     membre.nombre_enfant = nombre_enfant
                 else:
@@ -147,7 +147,7 @@ def questionnaire(request):
 
 
                 membre.situation_habitation = situation_habitation
-
+                membre.montant_dette = montant_dette
                 membre.dette_credits = dette_credits =='on'
                 membre.dette_pret_etudiant = dette_pret_etudiant == 'on'
                 membre.dette_pret_automobile = dette_pret_automobile == 'on'

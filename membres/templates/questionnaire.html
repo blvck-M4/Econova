@@ -3,6 +3,7 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Questionnaire</title>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link rel="stylesheet" href="{% static 'css/questionnaire.css' %}">
@@ -86,6 +87,7 @@
                 });
             </script>
         </div>
+
         <h2>Quel est votre profil financier ?</h2>
         <h3 class="infos-questionnaire">Avant de définir vos objectifs financiers, il est important de
             comprendre votre situation et vos attentes. Cela comprend votre capacité à accepter des
@@ -99,9 +101,9 @@
 
             <div class="question visible">
                 <h2>Quelle est votre date de naissance?</h2>
-                <input type="date" name="age">
+                <label for="dateNaissance"></label>
+                <input type="date" id="dateNaissance" name="dateNaissance" min="1900-01-01" max="2025-12-31">
             </div>
-
 
             <div class="question">
                 <h2>Quel est votre sexe?</h2>
@@ -398,6 +400,8 @@
         menuslide.classList.toggle("menu_active");
         menubar.classList.toggle("x_active");
         console.log("ok");
+
+
     });</script>
 
 <script>
