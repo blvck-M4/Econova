@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+{% load static %}
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Éducation</title>
+    <link rel="icon" href="{% static 'images/Logo EcoNova.png' %}" type="image/x-icon">
+
+    <link rel="icon" href="images/Logo EcoNova.png">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'css/education.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+<!-- Dessus de la page + Menu -->
+<header class="header">
+    <div class="logoSite">
+        <a href="/"><img src="{% static 'images/Logo EcoNova.png' %}" alt="Logo ÉcoNova Finance"
+                         class="logoSite"></a>
+        <h2 class="econova-text">EcoNova</h2>
+    </div>
+
+    <div class="menu">
+        <div class="menu-btn">
+            <div class="btn-line" id="btn-line1"></div>
+            <div class="btn-line" id="btn-line2"></div>
+            <div class="btn-line" id="btn-line3"></div>
+        </div>
+    </div>
+
+    <div class="menu-slide">
+        {% if user.is_authenticated %}
+            <h2 class="navigation">Bienvenue {{ user.username }}</h2>
+        {% else %}
+            <h2 class="navigation">NAVIGATION</h2>
+        {% endif %}
+
+        <div class="liste-onglets">
+            <ul>
+                <h2><a href="">Simulateur</a></h2>
+                <h2><a href="">Suivi Financier</a></h2>
+                <h2><a href="">Bourse</a></h2>
+                <h2><a href="">Nova</a></h2>
+                <h2><a href="">Éducation Financière</a></h2>
+            </ul>
+        </div>
+        <div class="menu-connexion">
+            {% if not user.is_authenticated %}
+                <a href="connexion">
+                    <button class="connexion">Connexion</button>
+                </a>
+                <a href="rejoindre">
+                    <button class="rejoindre">Rejoindre</button>
+                </a>
+            {% else %}
+                <a href="deconnexion">
+                    <button class="deconnexion">Se déconnecter</button>
+                </a>
+                <a href="tableau-bord/profil">
+                    <h3 class="tableau-bord">Tableau de bord</h3>
+
+                </a>
+            {% endif %}
+
+        </div>
+        <h3>Avec NOVA, Naviguez facilement entre outils de suivi et simulations, Optimisez vos finances, développez une
+            Vision stratégique et profitez d’un Accompagnement personnalisé. Budget, épargne, investissement : maîtrisez
+            votre avenir financier en toute confiance.</h3>
+        <div class="logoSite">
+            <a href=""><img src="{% static 'images/Logo EcoNova.png' %}" alt="Logo ÉcoNova Finance"
+                            class="logoSite"></a>
+            <h2 class="econova-text">EcoNova</h2>
+        </div>
+    </div>
+</header>
+
+
+<!-- Boite principale (contenu) -->
+<div class="container">
+    <main>
+        <div class="description">
+            <h2>Éducation Financière</h2>
+            <p>L'outil d'éducation financière t'aide à mieux comprendre ton profil d'investisseur et les
+                finances.
+                <br>
+                Choisis de répondre au questionnaire de profil d'investisseur ou de t'informer sur
+                les finances pour en apprendre plus avec NOVA!</p>
+        </div>
+
+        <div class="sections">
+            <!-- Dictionnaire -->
+            <div class="section" id="concepts-btn"
+                 onclick="toggleActiveSection(this, '', `
+<div class='dropdown'>
+  <button class='dropbtn'><h3>Catégories</h3></button>
+  <div class='dropdown-content'>
+    <a href='#Concepts financiers'>Concepts financiers</a>
+    <a href='#Types d investissement'>Types d'investissement</a>
+    <a href='#Strategies d investissement'>Stratégies d'investissement</a>
+    <a href='https://lautorite.qc.ca/grand-public' target ='_blank'><i class='fas fa-link'></i>AMF</a>
+  </div>
+</div>
+
+            <h1 id = 'Concepts financiers'>CONCEPTS FINANCIERS</h1>
+<h2>Termes de base</h2>
+<div class='concept-item'>
+        <div class='concept-bar'></div>
+        <div class='concept-definition'>
+            <h3><strong>Budget</strong></h3>
+            <p>Planification des revenus et des dépenses sur une période donnée.</p>
+        </div>
+    </div>
+    <div class='concept-item'>
+        <div class='concept-bar'></div>
+        <div class='concept-definition'>
+            <h3><strong>Revenu</strong></h3>
+            <p>Somme d'argent générée par une personne ou une organisation.</p>
+        </div>
+    </div>
+<div class='concept-item'>
+        <div class='concept-bar'></div>
+        <div class='concept-definition'>
+            <h3><strong>Dépenses</strong></h3>
+            <p>Sommes d'argent utilisées pour acheter des biens et services.</p>
+        </div>
+    </div>
+    <div class='concept-item'>
+        <div class='concept-bar'></div>
+        <div class='concept-definition'>
+            <h3><strong>Épargne</strong></h3>
+            <p>Partie des revenus qui n'est pas dépensée et qui est mise de côté.</p>
+        </div>
+    </div>
+    <div class='concept-item'>
+        <div class='concept-bar'></div>
+        <div class='concept-definition'>
+            <h3><strong>Investissement</strong></h3>
+            <p>Placement d'argent dans des actifs pour obtenir un retour financier.</p>
+        </div>
+    </div>
+<br>
+<h2>Termes financiers courants</h2>
+<div class='concept-item'>
+        <div class='concept-bar'></div>
+        <div class='concept-definition'>
+            <h3><strong>Actif</strong></h3>
+            <p>Ressources possédées par une personne ou une organisation, susceptibles de
+                générer des revenus.</p>
+        </div>
+    </div>
+<div class='concept-item'>
+        <div class='concept-bar'></div>
+        <div class='concept-definition'>
+            <h3><strong>Passif</strong></h3>
+            <p>Obligations financières ou dettes à rembourser.</p>
+        </div>
+    </div>
+<div class='concept-item'>
+        <div class='concept-bar'></div>
+        <div class='concept-definition'>
+            <h3><strong>Rentabilité</strong></h3>
+            <p>Mesure de la capacité d’un investissement ou d’une entreprise à générer
+                des bénéfices.</p>
+        </div>
+    </div>
+<div class='concept-item'>
+        <div class='concept-bar'></div>
+        <div class='concept-definition'>
+            <h3><strong>Liquidité</strong></h3>
+            <p>Facilité avec laquelle un actif peut être converti en cash sans affecter
+                son prix.</p>
+        </div>
+    </div>
+<div class='concept-item'>
+        <div class='concept-bar'></div>
+        <div class='concept-definition'>
+            <h3><strong>Taux d'intérêt</strong></h3>
+            <p>Pourcentage du montant emprunté ou investi, payé en tant que
+                rémunération pour l'utilisation de l'argent.</p>
+        </div>
+    </div>
+<br>
+<h2>Termes liés à l’investissement</h2>
+<div class='concept-item'>
+        <div class='concept-bar'></div>
+        <div class='concept-definition'>
+            <h3><strong>Actions</strong></h3>
+            <p>Titres financiers représentant une part de propriété dans une entreprise.</p>
+        </div>
+    </div>
+<div class='concept-item'>
+        <div class='concept-bar'></div>
+        <div class='concept-definition'>
+            <h3><strong>Obligations</strong></h3>
+            <p>Instruments financiers utilisés par les gouvernements ou les entreprises
+                pour emprunter de l'argent.</p>
+        </div>
+    </div>
+<div class='concept-item'>
+        <div class='concept-bar'></div>
+        <div class='concept-definition'>
+            <h3><strong>Portefeuille d'investissement</strong></h3>
+            <p>Ensemble des actifs financiers détenus par un
+                investisseur.</p>
+        </div>
+    </div>
+<div class='concept-item'>
+        <div class='concept-bar'></div>
+        <div class='concept-definition'>
+            <h3><strong>Diversification</strong></h3>
+            <p>Stratégie consistant à répartir les investissements sur plusieurs
+                actifs pour réduire les risques.</p>
+        </div>
+    </div>
+<div class='concept-item'>
+        <div class='concept-bar'></div>
+        <div class='concept-definition'>
+            <h3><strong>Rendement</strong></h3>
+            <p>Mesure du gain ou de la perte généré par un investissement, exprimé en
+                pourcentage.</p>
+        </div>
+    </div>
+<br>
+ <h2>Éducation financière et concepts avancés</h2>
+<div class='concept-item'>
+        <div class='concept-bar'></div>
+        <div class='concept-definition'>
+            <h3><strong>Analyse fondamentale</strong></h3>
+            <p>Méthode d'évaluation d'une entreprise en analysant ses états
+                financiers et son environnement économique.</p>
+        </div>
+    </div>
+<div class='concept-item'>
+        <div class='concept-bar'></div>
+        <div class='concept-definition'>
+            <h3><strong>Analyse technique</strong></h3>
+            <p>Utilisation de graphiques et de modèles mathématiques pour prédire
+                les mouvements futurs des prix des actifs.</p>
+        </div>
+    </div>
+<div class='concept-item'>
+        <div class='concept-bar'></div>
+        <div class='concept-definition'>
+            <h3><strong>Risk management</strong></h3>
+            <p>Stratégies utilisées pour minimiser l'impact des risques financiers
+                sur les investissements.</p>
+        </div>
+    </div>
+<div class='concept-item'>
+        <div class='concept-bar'></div>
+        <div class='concept-definition'>
+            <h3><strong>Taux de rendement interne (TRI)</strong></h3>
+            <p>aux d'intérêt qui égalise la valeur actuelle nette
+                d'un investissement avec ses flux de trésorerie futurs.</p>
+        </div>
+    </div>
+<div class='concept-item'>
+        <div class='concept-bar'></div>
+        <div class='concept-definition'>
+            <h3><strong>Inflation</strong></h3>
+            <p>Hausse générale et persistante des prix des biens et services au fil du
+                temps.</p>
+        </div>
+    </div>
+<br>
+<h2>Concepts liés à la gestion de portefeuille</h2>
+<div class='concept-item'>
+        <div class='concept-bar'></div>
+        <div class='concept-definition'>
+            <h3><strong>Allocation d'actifs</strong></h3>
+            <p>Répartition des investissements dans différentes catégories
+                d'actifs (actions, obligations, immobilier, etc.) pour optimiser le rendement et le risque.</p>
+        </div>
+    </div>
+<div class='concept-item'>
+        <div class='concept-bar'></div>
+        <div class='concept-definition'>
+            <h3><strong>Ratio de Sharpe</strong></h3>
+            <p>Mesure de la performance d'un investissement en fonction de sa
+                volatilité (risque).</p>
+        </div>
+    </div>
+<div class='concept-item'>
+        <div class='concept-bar'></div>
+        <div class='concept-definition'>
+            <h3><strong>Beta</strong></h3>
+            <p>Mesure de la volatilité d'un actif par rapport à un indice de référence, comme
+                le marché boursier.</p>
+        </div>
+    </div>
+<div class='concept-item'>
+        <div class='concept-bar'></div>
+        <div class='concept-definition'>
+            <h3><strong>Horizon de placement</strong></h3>
+            <p>Période pendant laquelle un investisseur prévoit de maintenir
+                son investissement.</p>
+        </div>
+    </div>
+<br>
+<h2>Termes liés à la fiscalité et aux taxes</h2>
+<div class='concept-item'>
+        <div class='concept-bar'></div>
+        <div class='concept-definition'>
+            <h3><strong>Impôt sur le revenu</strong></h3>
+            <p>Période pendant laquelle un investisseur prévoit de maintenir
+                son investissement.</p>
+        </div>
+    </div>
+<div class='concept-item'>
+        <div class='concept-bar'></div>
+        <div class='concept-definition'>
+            <h3><strong>Crédit d'impôt</strong></h3>
+            <p>Montant déduit des impôts dus, souvent pour encourager certains
+                comportements (comme l'investissement dans des secteurs spécifiques).</p>
+        </div>
+    </div>
+<div class='concept-item'>
+        <div class='concept-bar'></div>
+        <div class='concept-definition'>
+            <h3><strong>Déduction fiscale</strong></h3>
+            <p>Montant qui peut être soustrait du revenu brut pour réduire la base
+                imposable.</p>
+        </div>
+    </div>
+<br id = 'Types d investissement'>
+<br>
+<h1>TYPES D'INVESTISSEMENT</h1>
+<h2>Investissements en actions</h2>
+<div class='concept-item'>
+        <div class='concept-bar'></div>
+        <div class='concept-definition'>
+            <h3><strong>Actions ordinaires</strong></h3>
+            <p>Titres de propriété dans une entreprise qui permettent de
+                bénéficier de dividendes et d’une valorisation de l’entreprise. Les actionnaires peuvent participer
+                aux assemblées générales et ont droit à une part des bénéfices (dividendes).
+            </p>
+        </div>
+    </div>
+<div class='concept-item'>
+        <div class='concept-bar'></div>
+        <div class='concept-definition'>
+            <h3><strong>Actions privilégiées</strong></h3>
+            <p>Ces actions donnent droit à des dividendes fixes, généralement
+                avant les actions ordinaires, mais n'offrent pas de droit de vote dans l'entreprise.</p>
+        </div>
+    </div>
+<br>
+<h2>Obligations</h2>
+<div class='concept-item'>
+        <div class='concept-bar'></div>
+        <div class='concept-definition'>
+            <h3><strong>Obligations d'État</strong></h3>
+            <p>Titres de dette émis par les gouvernements. Elles sont considérées
+                comme moins risquées, surtout si elles sont émises par des pays économiquement stables.</p>
+        </div>
+    </div>
+<div class='concept-item'>
+        <div class='concept-bar'></div>
+        <div class='concept-definition'>
+            <h3><strong>Obligations d'entreprises</strong></h3>
+            <p>Titres de dette émis par des sociétés. Elles offrent généralement des rendements plus élevés que
+               les obligations d'État, mais comportent également un risque accru.</p>
+        </div>
+    </div>
+<div class='concept-item'>
+        <div class='concept-bar'></div>
+        <div class='concept-definition'>
+            <h3><strong>Obligations municipales</strong></h3>
+            <p>Titres de dette émis par les autorités locales (villes,
+                départements, etc.). Elles sont souvent exemptées d'impôts dans certains pays.</p>
+        </div>
+    </div>
+<br>
+<h2>Investissements immobiliers</h2>
+<div class='concept-item'>
+        <div class='concept-bar'></div>
+        <div class='concept-definition'>
+            <h3><strong>Immobilier résidentiel</strong></h3>
+            <p>Acheter des maisons, appartements ou immeubles pour les louer
+                ou les revendre à profit. Cela peut inclure la gestion d'immeubles locatifs.</p>
+        </div>
+    </div>
+<div class='concept-item'>
+        <div class='concept-bar'></div>
+        <div class='concept-definition'>
+            <h3><strong>Investissement actif</strong></h3>
+            <p>Stratégie où l’investisseur cherche à surpasser le marché en
+                sélectionnant des actifs spécifiques.</p>
+        </div>
+    </div>
+<div class='concept-item'>
+        <div class='concept-bar'></div>
+        <div class='concept-definition'>
+            <h3><strong>Immobilier commercial</strong></h3>
+            <p>Investir dans des biens immobiliers destinés à des activités
+               commerciales, comme des bureaux, des magasins ou des entrepôts.</p>
+        </div>
+    </div>
+<div class='concept-item'>
+        <div class='concept-bar'></div>
+        <div class='concept-definition'>
+            <h3><strong>Fonds immobiliers (REITs)</strong></h3>
+            <p>Fonds qui permettent d'investir dans l'immobilier sans
+                avoir à posséder directement de biens immobiliers. Les REITs génèrent souvent des revenus sous forme de dividendes.</p>
+        </div>
+    </div>
+<br>
+<h2>Investissements en matières premières (commodités)</h2>
+<div class='concept-item'>
+        <div class='concept-bar'></div>
+        <div class='concept-definition'>
+            <h3><strong>Or, argent, platine</strong></h3>
+            <p>Métaux précieux souvent utilisés comme valeurs refuges en période
+                d’incertitude économique.</p>
+        </div>
+    </div>
+<div class='concept-item'>
+        <div class='concept-bar'></div>
+        <div class='concept-definition'>
+            <h3><strong>Pétrole, gaz naturel</strong></h3>
+            <p>Investir dans les ressources énergétiques peut se faire par
+                l'achat de contrats à terme, d'actions de sociétés pétrolières ou de fonds spécialisés.</p>
+        </div>
+    </div>
+<div class='concept-item'>
+        <div class='concept-bar'></div>
+        <div class='concept-definition'>
+            <h3><strong>Agriculture</strong></h3>
+            <p>Investir dans les produits agricoles comme le maïs, le soja, ou le café,
+                soit via des contrats à terme, soit par l'achat d'actions de sociétés agricoles.</p>
+        </div>
+    </div>
+<br>
+<h2>Fonds d'investissement</h2>
+<div class='concept-item'>
+        <div class='concept-bar'></div>
+        <div class='concept-definition'>
+            <h3><strong>Fonds communs de placement</strong></h3>
+            <p>Ces fonds regroupent l'argent de plusieurs investisseurs
+               pour acheter une diversité d'actifs (actions, obligations, etc.). Ils offrent une gestion professionnelle.</p>
+        </div>
+    </div>
+<div class='concept-item'>
+        <div class='concept-bar'></div>
+        <div class='concept-definition'>
+            <h3><strong>Fonds indiciels (ETF)</strong></h3>
+            <p>Fonds qui répliquent la performance d'un indice boursier, comme
+                le S&P 500. Ces fonds ont généralement des frais plus bas que les fonds communs de placement.</p>
+        </div>
+    </div>
+<div class='concept-item'>
+        <div class='concept-bar'></div>
+        <div class='concept-definition'>
+            <h3><strong>Fonds à gestion active</strong></h3>
+            <p>Fonds où un gestionnaire de fonds prend des décisions
+                d’investissement en fonction des opportunités du marché, contrairement aux fonds indiciels.</p>
+        </div>
+    </div>
+<br>
+<h2>Investissements alternatifs</h2>
+<div class='concept-item'>
+        <div class='concept-bar'></div>
+        <div class='concept-definition'>
+            <h3><strong>Private equity</strong></h3>
+            <p>Investir dans des entreprises non cotées en bourse. Cela peut inclure
+               des investissements dans des startups ou des entreprises en difficulté.</p>
+        </div>
+    </div>
+<div class='concept-item'>
+        <div class='concept-bar'></div>
+        <div class='concept-definition'>
+            <h3><strong>Capital-risque (venture capital)</strong></h3>
+            <p>Investissement dans des startups à fort potentiel de
+                croissance mais à haut risque. Les investisseurs apportent des fonds en échange de parts dans l’entreprise.</p>
+        </div>
+    </div>
+<div class='concept-item'>
+        <div class='concept-bar'></div>
+        <div class='concept-definition'>
+            <h3><strong>Crowdfunding immobilier</strong></h3>
+            <p>Investir dans des projets immobiliers via des plateformes de
+               financement participatif.</p>
+        </div>
+    </div>
+<br>
+<h2>Comptes d’épargne et produits à faible risque</h2>
+<div class='concept-item'>
+        <div class='concept-bar'></div>
+        <div class='concept-definition'>
+            <h3><strong>Comptes d'épargne</strong></h3>
+            <p>Comptes bancaires rémunérés qui offrent une faible rentabilité mais
+                un haut niveau de sécurité.</p>
+        </div>
+    </div>
+<div class='concept-item'>
+        <div class='concept-bar'></div>
+        <div class='concept-definition'>
+            <h3><strong>Certificats de dépôt (CD)</strong></h3>
+            <p>Produits d'investissement à faible risque proposés par les
+               banques, avec des rendements fixes sur une période déterminée.</p>
+        </div>
+    </div>
+<div class='concept-item'>
+        <div class='concept-bar'></div>
+        <div class='concept-definition'>
+            <h3><strong>Comptes à terme</strong></h3>
+            <p>Similaires aux certificats de dépôt, mais plus flexibles quant à la
+                durée de l’investissement.</p>
+        </div>
+    </div>
+<br>
+<h2>Cryptomonnaies</h2>
+<div class='concept-item'>
+        <div class='concept-bar'></div>
+        <div class='concept-definition'>
+            <h3><strong>Bitcoin, Ethereum</strong></h3>
+            <p>Monnaies numériques basées sur la blockchain. Ces investissements
+                sont connus pour leur volatilité et sont considérés comme très spéculatifs.</p>
+        </div>
+    </div>
+<div class='concept-item'>
+        <div class='concept-bar'></div>
+        <div class='concept-definition'>
+            <h3><strong>Altcoins</strong></h3>
+            <p>Autres cryptomonnaies en dehors de Bitcoin et Ethereum, comme Litecoin, Ripple, ou
+                Polkadot.</p>
+        </div>
+    </div>
+<br>
+<h2>Produits dérivés</h2>
+<div class='concept-item'>
+        <div class='concept-bar'></div>
+        <div class='concept-definition'>
+            <h3><strong>Contrats à terme (Futures)</strong></h3>
+            <p>Contrats obligatoires d'achat ou de vente d'un actif à une
+                date future et à un prix déterminé. Utilisés pour la spéculation ou la couverture des risques.</p>
+        </div>
+    </div>
+<div class='concept-item'>
+        <div class='concept-bar'></div>
+        <div class='concept-definition'>
+            <h3><strong>Options</strong></h3>
+            <p>Contrats donnant à l'acheteur le droit, mais non l’obligation, d'acheter ou
+                de vendre un actif à un prix donné avant une date précise.</p>
+        </div>
+    </div>
+<br>
+<h2>Investissement socialement responsable (ISR)</h2>
+<br>
+<div class='concept-item'>
+        <div class='concept-bar'></div>
+        <div class='concept-definition'>
+            <h3><strong>Fonds ISR</strong></h3>
+            <p>Investissements qui prennent en compte des critères environnementaux,
+                sociaux et de gouvernance (ESG) en plus des critères financiers.</p>
+        </div>
+    </div>
+<div class='concept-item'>
+        <div class='concept-bar'></div>
+        <div class='concept-definition'>
+            <h3><strong>Impact investing</strong></h3>
+            <p>Investir dans des projets ayant un impact positif mesurable sur la
+                société et l’environnement, tout en recherchant un retour financier.</p>
+        </div>
+    </div>
+<br id = 'Strategies d investissement'>
+<br>
+<h1 >STRATÉGIE D'INVESTISSEMENT</h1>
+<div class='concept-item'>
+        <div class='concept-bar'></div>
+        <div class='concept-definition'>
+            <h3><strong>Investissement passif</strong></h3>
+            <p>Stratégie d'investissement où l'objectif est de suivre le
+                marché plutôt que de tenter de le battre, souvent via des fonds indiciels.</p>
+        </div>
+    </div>
+<div class='concept-item'>
+        <div class='concept-bar'></div>
+        <div class='concept-definition'>
+            <h3><strong>Investissement actif</strong></h3>
+            <p>Stratégie où l’investisseur cherche à surpasser le marché en
+                sélectionnant des actifs spécifiques.</p>
+        </div>
+    </div>
+<div class='concept-item'>
+        <div class='concept-bar'></div>
+        <div class='concept-definition'>
+            <h3><strong>Investissement à long terme</strong></h3>
+            <p>Stratégie qui consiste à conserver des actifs sur une
+                longue période (souvent plusieurs années) pour bénéficier de la croissance du marché.
+            </p>
+        </div>
+    </div>
+<div class='concept-item'>
+        <div class='concept-bar'></div>
+        <div class='concept-definition'>
+            <h3><strong>Investissement à court terme</strong></h3>
+            <p>Stratégie où l'investisseur cherche à tirer profit de
+                petites fluctuations de prix à court terme.</p>
+        </div>
+    </div>
+
+`)">
+                <i class="fas fa-book"></i>
+                <h3><strong>Dictionnaire</strong></h3>
+                <p class="hidden-text">Découvre les termes financiers clés pour enrichir tes connaissances!</p>
+
+            </div>
+
+            <!-- Quesionnaire -->
+            <div class="section" id="profil-btn"
+                 onclick="toggleActiveSection(this, 'Profil d\'investisseur', `
+
+                 `)">
+
+                <i class="fas fa-user-check"></i>
+                <h3><strong>Profil d'investisseur</strong></h3>
+                <p class="hidden-text">Remplis un questionnaire pour mieux comprendre ton profil et tes objectifs!</p>
+            </div>
+
+        </div>
+
+        <div id="infoBox" class="boite-texte"></div>
+
+    </main>
+
+
+    <a href=''>
+        <button class="upButton"><i class="fa fa-arrow-up"></i></button>
+    </a>
+
+</div>
+
+<!-- Pied de la page -->
+<section class="copyrights">
+    <h3>© 2025 NOVA. Tous droits réservés.</h3>
+    <h3> Créé par Micheal Gyan, Gabriel-Ngoma Riendeau, Samy Baouche, Mohammed El Ouaabani et Nancy Bechara.</h3>
+</section>
+
+<script>
+    let lastClicked = null;
+
+    <!-- JS Dictionnaire -->
+    function toggleInfo(titre, texte) {
+        var boite = document.getElementById("infoBox");
+
+        if (lastClicked === titre) {
+            boite.style.display = "none";
+            lastClicked = null;
+        } else {
+            boite.innerHTML = "<h2>" + titre + "</h2><p>" + texte + "</p>";
+            boite.style.display = "block";
+            lastClicked = titre;
+        }
+    }
+
+    <!-- JS Questionnaire -->
+    function toggleActiveSection(button, title, content) {
+        var boite = document.getElementById("infoBox");
+
+        document.querySelectorAll('.section').forEach(function (section) {
+            section.classList.remove('active');
+        });
+
+        if (lastClicked === title) {
+            boite.style.display = "none";
+            lastClicked = null;
+        } else {
+            button.classList.add('active');
+            boite.innerHTML = "<h2>" + title + "</h2>" + content;
+            boite.style.display = "block";
+            lastClicked = title;
+        }
+    }
+
+</script>
+
+<!-- JS Menu -->
+<script>
+    menubar = document.querySelector('.menu-btn');
+    menuslide = document.querySelector('.menu-slide');
+    menubar.addEventListener("click", () => {
+        menuslide.classList.toggle("menu_active");
+        menubar.classList.toggle("x_active");
+        console.log("ok");
+    });</script>
+
+</body>
+
+</html>
