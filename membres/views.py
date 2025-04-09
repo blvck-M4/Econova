@@ -171,8 +171,18 @@ def chatbot(request):
     return render(request, 'tableau-bord/chatbot.html', context)
 def simulation(request):
     utilisateurs = User.objects.all().values()
+    liste_actions = nova_ai.listeActions()
+    graph_actions = []
+    for action in liste_actions:
+        liste_donnees = nova_ai.graphSimulation(action)
+        graph_actions.append({
+            "nom": action['nom'],  # ou action.symbole si tu préfères
+            "donnees": liste_donnees
+        })
     context = {
         'utilisateurs': utilisateurs,
+        'listeActions': liste_actions,
+        'actionsGraph': graph_actions,
     }
     return render(request, 'tableau-bord/simulation.html', context)
 

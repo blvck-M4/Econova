@@ -10,6 +10,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.12.2/lottie.min.js"></script>
     <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
 <!--Menu du profil (bouton en haut à droite)-->
@@ -88,8 +89,9 @@
             <h2>Paramètres</h2>
         </a>
     </section>
-
+<!--Simulation-->
     <section class="tableau-bord simulation">
+        <!--Première section (Compte)-->
         <div class="compte">
             <!--Balance totale du compte-->
             <div class="balance">
@@ -107,90 +109,156 @@
                 <h2 id="rendement">--</h2>
             </div>
         </div>
-        <div class="bouton-action">
-            <div id="action">
-                <h2>Actions</h2>
-                <img src="{% static 'images/dashboard-icon/triangle.svg' %}">
-            </div>
-            <div class="action-section">
-                <div class="action" id="rechercher"><h2>Rechercher</h2></div>
-                <div class="action" id="acheter"><h2>Acheter</h2></div>
-                <div class="action" id="vendre"><h2>Vendre</h2></div>
+        <!--Bouton pour lancer la simulation-->
+        <div class="lancer-simulation">
+            <div id="lancer">
+                <h2>Lancer la simulation</h2>
             </div>
         </div>
+        <!--Historique des transactions-->
         <img class="ouvrir-historique" src="{% static 'images/dashboard-icon/ouvrir-historique.svg' %}">
-        <div class="historique">
-            <h1>Historique</h1>
+        <div class="historique resizable" id="historique">
+            <img class="fermer-historique" src="{% static 'images/dashboard-icon/fermer-historique.svg' %}">
             <div>
-                <h2></h2>
+                <h1>Historique</h1>
+                <table>
+                    <thead>
+                        <tr>
+                            <th><h2>Date</h2></th>
+                            <th><h2>Symbole</h2></th>
+                            <th><h2>Nom</h2></th>
+                            <th><h2>Prix</h2></th>
+                            <th><h2>Statut</h2></th>
+                        </tr>
+                    </thead>
+                    <tbody id="transaction-history">
+                        <!-- Les transactions seront ajoutées ici dynamiquement -->
+                    </tbody>
+                </table>
             </div>
         </div>
+        <!--Tableau des produits financiers pour faire des transactions-->
         <div class="tableau-simulation">
             <input class="recherche" type="text" name="recherche" placeholder="Rechercher">
             <div class="type-produit">
-                <div class="produit-select"><h2>Actions</h2></div>
-                <div onclick="test"><h2>Immobilier</h2></div>
-                <div><h2>Cryptomonnaie</h2></div>
+                <div id="bouton-action" onclick="actionClick()"><h2>Actions</h2></div>
+                <div id="bouton-immobilier" onclick="immobilierClick()"><h2>Immobilier</h2></div>
+                <div id="bouton-crypto" onclick="cryptoClick()"><h2>Cryptomonnaie</h2></div>
             </div>
-            <div class="tableau-produit">
-                <div class="titres">
-                    <div><h2>Symbole</h2></div>
-                    <div><h2>Nom</h2></div>
-                    <div><h2>Prix</h2></div>
-                    <div><h2>Statut</h2></div>
-                </div>
-                <div class="infos">
-                    <div class="symbols">
-                        <div><h3>AAPL</h3></div>
-                        <div><h3>TSLA</h3></div>
-                        <div><h3>MSFT</h3></div>
-                        <div><h3>AMZN</h3></div>
-                        <div><h3>GOOG</h3></div>
-                        <div><h3>META</h3></div>
-                        <div><h3>NVDA</h3></div>
-                        <div><h3>NFLX</h3></div>
-                        <div><h3>SPY</h3></div>
-                        <div><h3>BABA</h3></div>
+            <div id="produit-info" class="produit-info">
+                <span id="fermer-produit">&times;</span>
+                <div class="produit-info-contenu">
+                    <div class="infos-action">
+                        <div class="produit-titre">
+                            <h1 id="produit-type"></h1>
 
+                            <h2 id="produit-risque"></h2>
+                        </div>
+                        <div class="produit-transaction">
+                            <div class="selection-qte">
+                                <h2 id="produit-titre"></h2>
+                                <input type="number" id="quantite" name="quantite" placeholder="Qté" min="1"
+                                       max="999">
+                            </div>
+                            <div class="selection-type">
+                                <h2 id="produit-tendance"></h2>
+                                <div class="dropdown-container">
+                                    <button class="choix-bouton" id="actionBouton">Choisir une action</button>
+                                    <div class="dropdown-options" id="options">
+                                        <div onclick="selectOption('Acheter')"><h2>Acheter</h2></div>
+                                        <div onclick="selectOption('Vendre')"><h2>Vendre</h2></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="stockChart"></canvas>
+                        </div>
                     </div>
-                    <div class="noms">
-                        <div><h3>Apple Inc.</h3></div>
-                        <div><h3>Tesla Inc.</h3></div>
-                        <div><h3>Microsoft Corporation</h3></div>
-                        <div><h3>Amazon.com Inc.</h3></div>
-                        <div><h3>Alphabet Inc.</h3></div>
-                        <div><h3>Meta Platforms Inc.</h3></div>
-                        <div><h3>NVIDIA Corp.</h3></div>
-                        <div><h3>Netflix Inc.</h3></div>
-                        <div><h3>SPDR S&P 500 ETF Trust</h3></div>
-                        <div><h3>Alibaba Group Holding Ltd.</h3></div>
-                    </div>
-                    <div class="prix">
-                        <div><h3>218,27 USD</h3></div>
-                        <div><h3>248,71 USD</h3></div>
-                        <div><h3>391,26 USD</h3></div>
-                        <div><h3>196,21 USD</h3></div>
-                        <div><h3>166,25 USD</h3></div>
-                        <div><h3>596,25 USD</h3></div>
-                        <div><h3>117,70 USD</h3></div>
-                        <div><h3>960,29 USD</h3></div>
-                        <div><h3>563,98 USD</h3></div>
-                        <div><h3>135,14 USD</h3></div>
-                    </div>
-                    <div class="statuts">
-                        <div><h3>Non vendu</h3></div>
-                        <div><h3>Vendu</h3></div>
-                        <div><h3>Non vendu</h3></div>
-                        <div><h3>Vendu</h3></div>
-                        <div><h3>Non vendu</h3></div>
-                        <div><h3>Vendu</h3></div>
-                        <div><h3>Non vendu</h3></div>
-                        <div><h3>Non vendu</h3></div>
-                        <div><h3>Vendu</h3></div>
-                        <div><h3>Non vendu</h3></div>
+                    <div class="transaction">
+                        <div class="details-transaction">
+                            <div class="info-transac">
+                                <h2>Qté:</h2>
+                                <h2 id="produit-qte">1</h2>
+                            </div>
+                                <div class="info-transac">
+                                <h2>Montant unitaire:</h2>
+                                <h2 id="produit-prix">100$</h2>
+                            </div>
+                        </div>
+                        <div class="info-transac">
+                            <h2>Total:</h2>
+                            <h2 id="total"></h2>
+                        </div>
+                        <button class="bouton-transaction" role="button">Faire la transaction</button>
                     </div>
                 </div>
             </div>
+            <table class="tableau-produit">
+              <thead>
+                <tr class="titres">
+                  <th scope="col"><h2>Symbole</h2></th>
+                  <th scope="col"><h2>Nom</h2></th>
+                  <th scope="col"><h2>Prix</h2></th>
+                  <th scope="col"><h2>Statut</h2></th>
+                </tr>
+              </thead>
+              <tbody class="tableau-visible" id="tab-action">
+                {% for action in listeActions %}
+                    <tr>
+                        <th scope="row" class='symbols'><h3>{{ action.symbole }}</h3></th>
+                        <td class='noms'><h3>{{ action.nom }}</h3></td>
+                        <td class='prix'><h3>{{ action.prix }} $CAN</h3></td>
+                        <td class='statuts'><h3>Non vendu</h3></td>
+                    </tr>
+                {% endfor %}
+              </tbody>
+              <tbody class="tableau-visible" id="tab-immobilier">
+              {% for action in listeActions %}
+                <tr>
+                    <th scope="row" class='symbols'><h3>{{ action.symbole }}</h3></th>
+                    <td class='noms'><h3>{{ action.nom }}</h3></td>
+                    <td class='prix'><h3>{{ action.prix }} $CAN</h3></td>
+                    <td class='statuts'><h3>Non vendu</h3></td>
+                </tr>
+              {% endfor %}
+
+              </tbody>
+              <tbody class="tableau-visible" id="tab-crypto">
+                <tr>
+                    <th scope="row" class='symbols'><h3>BTC</h3></th>
+                    <td class='noms'><h3>Bitcoin</h3></td>
+                    <td class='prix'><h3>67,250 USD</h3></td>
+                    <td class='statuts'><h3>Non vendu</h3></td>
+                </tr>
+                <tr>
+                    <th scope="row" class='symbols'><h3>ETH</h3></th>
+                    <td class='noms'><h3>Ethereum</h3></td>
+                    <td class='prix'><h3>3,500 USD</h3></td>
+                    <td class='statuts'><h3>Vendu</h3></td>
+                </tr>
+                <tr>
+                    <th scope="row" class='symbols'><h3>BNB</h3></th>
+                    <td class='noms'><h3>Binance Coin</h3></td>
+                    <td class='prix'><h3>415 USD</h3></td>
+                    <td class='statuts'><h3>Non vendu</h3></td>
+                </tr>
+                <tr>
+                    <th scope="row" class='symbols'><h3>XRP</h3></th>
+                    <td class='noms'><h3>Ripple</h3></td>
+                    <td class='prix'><h3>0,62 USD</h3></td>
+                    <td class='statuts'><h3>Vendu</h3></td>
+                </tr>
+                <tr>
+                    <th scope="row" class='symbols'><h3>SOL</h3></th>
+                    <td class='noms'><h3>Solana</h3></td>
+                    <td class='prix'><h3>180 USD</h3></td>
+                    <td class='statuts'><h3>Non vendu</h3></td>
+                </tr>
+
+              </tbody>
+            </table>
+
         </div>
 
         <div class="portefeuil">
@@ -202,19 +270,244 @@
     </section>
 
     <script src="{% static 'js/tableau-bord.js' %}"></script>
+    <script src="{% static 'js/simulation.js' %}"></script>
     <script>
-        action_bouton = document.getElementById('action');
-        action_section = document.querySelector('.action-section')
-        action_bouton.addEventListener("click", ()=>{
-            action_section.classList.toggle('action-visible')
-            console.log('test')
-            action_bouton.classList.toggle('action-rotate')
-        })
 
-        function test(){
-            console.log('test')
+        let crypto;
+        let immobilier;
+        let action;
+        function actionClick(){
+            action=true;
+            immobilier=false;
+            crypto=false;
+        }
+        function immobilierClick(){
+            action=false;
+            immobilier=true;
+            crypto=false;
+        }
+        function cryptoClick(){
+            action=false;
+            immobilier=false;
+            crypto=true;
+        }
+
+        // Sélectionne tous les éléments ayant la classe 'symbols'
+        symbols = document.querySelectorAll('.symbols');
+
+        // Récupère les éléments du popup
+        produit_info = document.getElementById('produit-info');
+        popupTitle = document.getElementById('produit-titre');
+        popupTendance = document.getElementById('produit-tendance');
+        popupRisque = document.getElementById('produit-risque');
+        popupPrix = document.getElementById('produit-prix');
+        popupType = document.getElementById('produit-type');
+        popupQte = document.getElementById('produit-qte')
+        produit_fermer = document.getElementById('fermer-produit');
+
+        produit_Qte = document.getElementById('quantite')
+        popupTotal = document.getElementById('total');
+
+        //Données pour les graphiques des produits
+        var labels = [];
+        var prices = [];
+        const actionsGraph = {
+            {% for action in actionsGraph %}
+                "{{ action.nom }}": [
+                    {% for data in action.donnees %}
+                        { date: "{{ data.date|escapejs }}", prix: "{{ data.prix }}" },
+                    {% endfor %}
+                ],
+            {% endfor %}
+        };
+        console.log(actionsGraph)
+        console.log("actionsGraph =", actionsGraph);
+
+
+        // Ajoute un event listener sur chaque symbole
+        symbols.forEach((symbol) => {
+            symbol.addEventListener('click', () => {
+                symbolText = symbol.innerText; // Récupère le texte du symbole
+                produitNom = ''
+                produitRisque = ''
+                produitPrix = ''
+                produitTendance = ''
+                {% for listeAction in  listeActions %}
+                    if (symbolText === '{{ listeAction.symbole }}'){
+                        produitNom = '{{ listeAction.nom }}'
+                        produitRisque = '{{ listeAction.risque }}'
+                        produitPrix = '{{ listeAction.prix }}'
+                        produitTendance = '{{ listeAction.tendance }}'
+                        const donnees = actionsGraph[produitNom];
+                        if (donnees) {
+                            labels.length = 0;
+                            prices.length = 0;
+                            donnees.forEach(data => {
+                                labels.push(data.date);
+                                prices.push(parseFloat(data.prix));
+                            });
+                        }
+                        chargerGraphique(produitNom)
+
+                    }
+                {% endfor %}
+                // Personnaliser le popup en fonction du symbole cliqué
+                popupTitle.innerText = `${symbolText} - ${produitNom}`;
+                popupRisque.innerText = `Risque: ${produitRisque}`;
+                popupTendance.innerText = `${produitTendance} - 6 dernier mois`
+                popupPrix.innerText = `${produitPrix}`
+
+                popupTotal.innerText = `--`;
+                popupQte.innerText = `--`;
+                // Met à jour le total et la quantité du produit affichée dynamiquement
+                produit_Qte.addEventListener('input', () => {
+                    const quantite = parseInt(produit_Qte.value);
+                    const prix = parseFloat(popupPrix.innerText);
+
+                    if (!isNaN(quantite) && !isNaN(prix)) {
+                        const total = quantite * prix;
+                        popupTotal.innerText = `${total.toFixed(2)} $`;
+                        popupQte.innerText = quantite;
+                    } else {
+                        popupTotal.innerText = `--`;
+                        popupQte.innerText = `--`;
+                    }
+                });
+                if (produitTendance.split('+')){
+                    popupTendance.style.color = '#34E519'
+                } else{
+                    popupTendance.style.color = 'red'
+                }
+                if (immobilier && !crypto && !action){
+                    popupType.innerText = `Immobilier`;
+                }
+                if (crypto && !immobilier && !action){
+                    popupType.innerText = `Cryptomonnaie`;
+                }
+                if (action && !crypto && !immobilier){
+                    popupType.innerText = `Action`;
+                }
+
+                // Afficher le popup
+                produit_info.style.display = "flex";
+            });
+        });
+
+        // Sélectionne les symboles
+        let transactionHistorique = document.getElementById('transaction-history');
+
+        // Fonction pour ajouter une transaction
+        function addTransaction(status) {
+            let row = document.createElement('tr');
+
+            row.innerHTML = `
+                <td>${new Date().toLocaleString()}</td>
+                <td>${symbolText}</td>
+                <td>${produitNom}</td>
+                <td>${produitPrix}</td>
+                <td>${status}</td>
+            `;
+
+            transactionHistorique.appendChild(row);
+        }
+
+        // Ajoute un événement de clic sur chaque symbole
+        symbols.forEach((symbolElement) => {
+            symbolElement.addEventListener('click', () => {
+                let status = Math.random() > 0.5 ? "Achat" : "Vente"; // Choisir aléatoirement entre Achat et Vente
+                addTransaction(status);
+            });
+        });
+
+
+
+
+
+        var ctx = document.getElementById('stockChart').getContext('2d');
+        var stockChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Prix ($)',
+                    data: prices,
+                    borderColor: '#FF4F8B',
+                    backgroundColor: 'rgba(255, 79, 139, 0.1)',
+                    borderWidth: 2,
+                    pointBackgroundColor: '#FF4F8B',
+                    pointBorderColor: '#fff',
+                    pointHoverRadius: 6,
+                    pointRadius: 4,
+                    tension: 0.3,
+                    fill: true
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        labels: {
+                            color: '#FFF',
+                            font: {
+                                size: 14,
+                                weight: 'bold'
+                            }
+                        }
+                    },
+                    tooltip: {
+                        backgroundColor: '#1e1e1e',
+                        titleColor: '#FF4F8B',
+                        bodyColor: '#FFF',
+                        borderColor: '#FF4F8B',
+                        borderWidth: 1
+                    }
+                },
+                scales: {
+                    x: {
+                        grid: {
+                            color: '#333'
+                        },
+                        ticks: {
+                            color: '#AAA',
+                            font: {
+                                size: 12
+                            }
+                        }
+                    },
+                    y: {
+                        grid: {
+                            color: '#333'
+                        },
+                        ticks: {
+                            color: '#AAA',
+                            font: {
+                                size: 12
+                            }
+                        }
+                    }
+                }
+            }
+        });
+        function chargerGraphique(nom) {
+            const donnees = actionsGraph[nom];
+            if (donnees) {
+                labels.length = 0;
+                prices.length = 0;
+
+                donnees.forEach((pt) => {
+                    labels.push(pt.date);
+                    prices.push(pt.prix);
+                });
+
+                document.getElementById("produit-titre").innerText = `Graphique de ${nom}`;
+                stockChart.update();
+            } else {
+                alert("Données non trouvées pour " + nom);
+            }
         }
     </script>
+
 
 </body>
 </html>
