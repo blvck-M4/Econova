@@ -96,7 +96,7 @@ def questionnaire(request):
     global conditions_termes
 
     if request.method == 'POST':
-        # Retrieve form data
+
         date_naissance = request.POST.get('dateNaissance')
         statut_professionnelle = request.POST.get('situation')
         revenu_mensuelle = request.POST.get('revenu')
@@ -114,7 +114,16 @@ def questionnaire(request):
         dette_hypotheque = request.POST.get('detteHypotheque')
         dette_autre = request.POST.get('AutreTypeDette')
 
-
+        acheter_maison = request.POST.get('acheterMaison')
+        preparation_retraite = request.POST.get('preparationRetraite')
+        fond_urgence = request.POST.get('fondUrgence')
+        rembourser_dette = request.POST.get('rembourserDette')
+        epargne_etudes = request.POST.get('epargneEtude')
+        revenue_passif = request.POST.get('revenuePassif')
+        independance_financiere = request.POST.get('independanceFinanciere')
+        investir = request.POST.get('investir')
+        aucun = request.POST.get('aucun')
+        autre_objectif = request.POST.get('autreObjectif')
 
         # Ensure date_naissance is a valid date object
         if date_naissance:
@@ -123,6 +132,9 @@ def questionnaire(request):
         # If "Autre" is selected for profession, get the custom value
         if statut_professionnelle == "Autre":
             statut_professionnelle = request.POST.get('autre_situation', 'Autre')  # Get the text if Autre is selected
+
+        if autre_objectif == "Autre":
+            statut_professionnelle = request.POST.get('autre_situation', 'Autre')
 
         # Ensure conditions are accepted before updating
         if conditions == 'on':  # Check if the conditions box is checked
@@ -153,7 +165,19 @@ def questionnaire(request):
                 membre.dette_pret_automobile = dette_pret_automobile == 'on'
                 membre.dette_hypotheque = dette_hypotheque == 'on'
                 membre.dette_autre = dette_autre =='on'
-                # Save changes
+
+                membre.acheter_maison = acheter_maison =='on'
+                membre.preparation_retraite = preparation_retraite =='on'
+                membre.fond_urgence = fond_urgence =='on'
+                membre.rembourser_dette = rembourser_dette == 'on'
+                membre.epargne_etudes = epargne_etudes == 'on'
+                membre.revenue_passif = revenue_passif == 'on'
+                membre.independance_financiere = independance_financiere == 'on'
+                membre.investir = investir == 'on'
+                membre.aucun = aucun == 'on'
+                membre.autre_objectif = autre_objectif
+
+
                 membre.save()
 
                 conditions_termes = True
