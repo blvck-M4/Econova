@@ -60,25 +60,3 @@ bouton_produit.forEach((produit)=>{
         });
     })
 })
-
-
-
-
-const bouton_action = document.getElementById('actionBouton');
-const options = document.getElementById('options');
-
-bouton_action.addEventListener('click', () => {
-    options.style.display = options.style.display === 'block' ? 'none' : 'block';
-});
-
-function selectOption(choice) {
-    bouton_action.textContent = choice;
-    options.style.display = 'none';
-}
-
-// Fermer le menu si on clique ailleurs
-document.addEventListener('click', (e) => {
-    if (!document.querySelector('.dropdown-container').contains(e.target)) {
-        options.style.display = 'none';
-    }
-});

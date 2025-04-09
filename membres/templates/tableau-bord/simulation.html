@@ -190,7 +190,7 @@
                             <h2>Total:</h2>
                             <h2 id="total"></h2>
                         </div>
-                        <button class="bouton-transaction" role="button">Faire la transaction</button>
+                        <button class="bouton-transaction" role="button" onclick="effectuerTransaction()">Faire la transaction</button>
                     </div>
                 </div>
             </div>
@@ -295,6 +295,9 @@
         // Sélectionne tous les éléments ayant la classe 'symbols'
         symbols = document.querySelectorAll('.symbols');
 
+        // Boutons pour sélectionner le type de transaction
+        const bouton_action = document.getElementById('actionBouton');
+        const options = document.getElementById('options');
         // Récupère les éléments du popup
         produit_info = document.getElementById('produit-info');
         popupTitle = document.getElementById('produit-titre');
@@ -311,6 +314,7 @@
         //Données pour les graphiques des produits
         var labels = [];
         var prices = [];
+        var total = 0;
         const actionsGraph = {
             {% for action in actionsGraph %}
                 "{{ action.nom }}": [
@@ -327,6 +331,7 @@
         // Ajoute un event listener sur chaque symbole
         symbols.forEach((symbol) => {
             symbol.addEventListener('click', () => {
+                bouton_action.textContent = 'Choisir une action';
                 symbolText = symbol.innerText; // Récupère le texte du symbole
                 produitNom = ''
                 produitRisque = ''
@@ -365,7 +370,7 @@
                     const prix = parseFloat(popupPrix.innerText);
 
                     if (!isNaN(quantite) && !isNaN(prix)) {
-                        const total = quantite * prix;
+                        total = quantite * prix;
                         popupTotal.innerText = `${total.toFixed(2)} $`;
                         popupQte.innerText = quantite;
                     } else {
@@ -499,12 +504,46 @@
                     labels.push(pt.date);
                     prices.push(pt.prix);
                 });
-
-                document.getElementById("produit-titre").innerText = `Graphique de ${nom}`;
                 stockChart.update();
             } else {
                 alert("Données non trouvées pour " + nom);
             }
+        }
+
+
+
+        bouton_action.addEventListener('click', () => {
+            options.style.display = options.style.display === 'block' ? 'none' : 'block';
+        });
+
+        function selectOption(choix) {
+            bouton_action.textContent = choix;
+            options.style.display = 'none';
+        }
+
+        // Fermer le menu si on clique ailleurs
+        document.addEventListener('click', (e) => {
+            if (!document.querySelector('.dropdown-container').contains(e.target)) {
+                options.style.display = 'none';
+            }
+        });
+
+        balance = document.getElementById('balance')
+        nb_transaction = document.getElementById('nb-transaction')
+        function effectuerTransaction(){
+            const quantite = parseInt(produit_Qte.value);
+            if (quantite >= 1){
+                if (bouton_action.textContent === 'Acheter'){
+                    total_initial = parseFloat(balance.textContent.replace(/ /g, ''))
+                    balance.textContent = total_initial-total
+                    produit_Qte.value=0
+                } else if (bouton_action.textContent === 'Vendre'){
+                    total_initial = parseFloat(balance.textContent.replace(/ /g, ''))
+                    balance.textContent = total_initial+total
+                    produit_Qte.value=0
+                }
+            }
+
         }
     </script>
 

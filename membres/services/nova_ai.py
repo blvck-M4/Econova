@@ -105,13 +105,15 @@ def conseilActions(stock_data, profil):
         reponse += chunk.text
     reponse_finale = reponse.replace('*', '<br>')
     return reponse_finale
+
+
 liste_actions = []
 def listeActions():
     contents = [
         types.Content(
             role="user",
             parts=[
-                types.Part.from_text(text="""Génère une liste du top 10 des actions sous la forme {symbole,nom,prix,
+                types.Part.from_text(text="""Génère une liste de 10 actions sous la forme {symbole,nom,prix,
                 niveau de 
                 risque,tendance; ...}"""),
             ],
@@ -141,21 +143,28 @@ def listeActions():
     for action in liste_actions:
         symbole, nom, prix, risque, tendance = action.split(',')
         if len(symbole.strip()) <= 5:
-            tendance = tendance.strip("\n\r\t")
+            tendance = tendance.strip("\n\t\r")
+            prix = prix.strip("\n\t\r")
+            symbole = symbole.strip("\n\t\r")
+            nom = nom.strip("\n\t\r")
+            risque = risque.strip("\n\t\r")
+
             actions.append({"symbole": symbole, "nom": nom, "prix": prix, "risque": risque, "tendance": tendance})
     print(actions)
     return actions
 
+
+import datetime
 liste_donnees = []
 def graphSimulation(action):
+    date = datetime.datetime.now().strftime("%Y-%m-%d")
     contents = [
         types.Content(
             role="user",
             parts=[
-                types.Part.from_text(text="""Génère une liste de données pour créer un graphique de prix par mois 
-                sur 6 mois de l'action """ + action['nom'] + """. sous 
-                ce format: [['2020-01-01',100.05];['2020-02-01',101.23]]). Fait le en considérant sa tendance (""" +
-                                          action['tendance'] + """) et 
+                types.Part.from_text(text="""La date est """ + date + """. Génère une liste de données pour créer un graphique de prix par mois 
+                sur les 6 derniers mois de l'action """ + action['nom'] + """. sous 
+                ce format: [['2020-01-01',100.05];['2020-02-01',101.23]]). Fait le en considérant 
                 son prix initial (""" + action['prix'] + """)""",)
             ],
         ),
