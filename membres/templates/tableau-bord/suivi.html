@@ -169,16 +169,25 @@
                 <label>
                     <h4> Investissement Initial </h4>
                     <input type="text" name="investissement-initial" placeholder="...">
+                </label>
 
+                <label>
+                    <h4> Placements Mensuels </h4>
+                    <input type="text" name="placement-mensuel" placeholder="...">
+                </label>
+
+                <label>
                     <h4> Taux d'intérêts (%) </h4>
                     <input type="text" name="taux-interet" placeholder="...">
+                </label>
 
-                    <div class="type-interet">
-                        <button id="mensuel" class="selected"> Mensuel </button>
-                        <button id="annuel"> Annuel </button>
-                    </div>
+                <div class="type-interet">
+                    <button id="mensuel"> Mensuel </button>
+                    <button id="annuel"> Annuel </button>
+                </div>
 
-                    <h4> Durée (en années) </h4>
+                <label>
+                    <h4> Durée (Années / Mois) </h4>
                     <input type="text" name="duree" placeholder="...">
                 </label>
             </div>
@@ -197,6 +206,77 @@
 
 <script src="{% static 'js/app.js' %}"></script>
 <script src="{% static 'js/tableau-bord.js' %}"></script>
+
+<!--JavaScript du calcul du capital lorsqu'on appuie sur le bouton-->
+
+<script>
+function calculerCapital() {
+
+    console.log("📊 calculerCapital() a été appelée !"); //Pour savoir si la fonction est appelée
+
+    let actifs = [
+        getValue(".cheque"),
+        getValue(".epargne"),
+        getValue(".bourse"),
+        getValue(".crypto"),
+        getValue(".autre")
+    ];
+    let passifs = [
+        getValue(".credits"),
+        getValue(".emprunts"),
+        getValue(".hypotheque")
+    ];
+
+    let totalActifs = actifs.reduce((acc, val) => acc + val, 0);
+    let totalPassifs = passifs.reduce((acc, val) => acc + val, 0);
+    let capital = totalActifs - totalPassifs;
+
+    document.getElementById("capital-value").textContent = capital.toLocaleString() + " $";
+
+    console.log("Valeur chèque :", getValue(".cheque"));
+    console.log("Valeur épargne :", getValue(".epargne"));
+    console.log("Valeur bourse :", getValue(".bourse"));
+    console.log("Valeur crypto :", getValue(".crypto"));
+    console.log("Valeur autre :", getValue(".autre"));
+
+    console.log("Valeur crédits :", getValue(".credits"));
+    console.log("Valeur emprunts :", getValue(".emprunts"));
+    console.log("Valeur hypothèque :", getValue(".hypotheque"));
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+    let boutonCalcul = document.querySelector(".calculer");
+    if (boutonCalcul) {
+        boutonCalcul.addEventListener("click", calculerCapital());
+    } else {
+        console.error("Le bouton de calcul n'a pas été trouvé !"); //Test de debug
+    }
+});
+</script>
+
+<!--JavaScript de la selection des boutons mensuel ou annuel-->
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const mensuelBtn = document.getElementById("mensuel");
+    const annuelBtn = document.getElementById("annuel");
+
+    if (!mensuelBtn || !annuelBtn) {
+        console.error("Les boutons 'mensuel' ou 'annuel' n'ont pas été trouvés dans le DOM.");
+        return;
+    }
+
+    function selection(event) {
+        console.log("Clic détecté sur :", event.target.id);
+        mensuelBtn.classList.remove("selected");
+        annuelBtn.classList.remove("selected");
+        event.target.classList.add("selected");
+    }
+
+    mensuelBtn.addEventListener("click", selection);
+    annuelBtn.addEventListener("click", selection);
+});
+</script>
 
 </body>
 </html>
