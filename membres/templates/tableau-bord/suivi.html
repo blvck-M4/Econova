@@ -117,27 +117,27 @@
                 <h2 class="sous-titre"> ACTIFS </h2>
                 <label>
                     <h4 class="sous-sous-titre"> Compte Chèque </h4>
-                    <input class="cheque" type="text" name="compte-cheque" placeholder="...">
+                    <input class="actif" type="text" name="compte-cheque" placeholder="...">
                 </label>
 
                 <label>
                     <h4 class="sous-sous-titre"> Compte Epargne </h4>
-                    <input class="epargne" type="text" name="compte-epargne" placeholder="...">
+                    <input class="actif" type="text" name="compte-epargne" placeholder="...">
                 </label>
 
                 <label>
                     <h4 class="sous-sous-titre"> Compte Bourse </h4>
-                    <input class="bourse" type="text" name="compte-investissement" placeholder="...">
+                    <input class="actif" type="text" name="compte-investissement" placeholder="...">
                 </label>
 
                 <label>
                     <h4 class="sous-sous-titre"> Compte Cryptomonnaie </h4>
-                    <input class="crypto" type="text" name="credits" placeholder="...">
+                    <input class="actif" type="text" name="credits" placeholder="...">
                 </label>
 
                 <label>
                     <h4 class="sous-sous-titre"> Tout autre compte (REER, REEE, CELI, CELIAPP, etc) </h4>
-                    <input class="autre" type="text" name="carte-credit" placeholder="...">
+                    <input class="actif" type="text" name="carte-credit" placeholder="...">
                 </label>
 
             </div>
@@ -147,17 +147,17 @@
 
                 <label>
                     <h4 class="sous-sous-titre"> Cartes de Crédit </h4>
-                    <input class="credits" type="text" name="credits" placeholder="...">
+                    <input class="passif" type="text" name="credits" placeholder="...">
                 </label>
 
                 <label>
                     <h4 class="sous-sous-titre"> Emprunts </h4>
-                    <input class="emprunts" type="text" name="emprunts" placeholder="...">
+                    <input class="passif" type="text" name="emprunts" placeholder="...">
                 </label>
 
                 <label>
                     <h4 class="sous-sous-titre"> Hypothèque </h4>
-                    <input class="hypotheque" type="text" name="immobilier" placeholder="...">
+                    <input class="passif" type="text" name="immobilier" placeholder="...">
                 </label>
             </div>
 
@@ -194,14 +194,12 @@
         </div>
 
 
-
-    <div class="bouton-calcul">
-        <button class="calculer" onclick="console.log('🚀 Bouton cliqué !'); calculerCapital();"> Calculer </button>
-    </div>
-
     <div class="capital-section">
         <h2> Votre Capital :</h2>
-        <p id="capital-value"> Calcul en cours... </p>
+        <p id="capital-value"> </p>
+    </div>
+
+    <div class="bas-de-page">
     </div>
 
 <script src="{% static 'js/app.js' %}"></script>
@@ -210,47 +208,37 @@
 <!--JavaScript du calcul du capital lorsqu'on appuie sur le bouton-->
 
 <script>
-function calculerCapital() {
-
-    console.log("📊 calculerCapital() a été appelée !"); //Pour savoir si la fonction est appelée
-
-    let actifs = [
-        getValue(".cheque"),
-        getValue(".epargne"),
-        getValue(".bourse"),
-        getValue(".crypto"),
-        getValue(".autre")
-    ];
-    let passifs = [
-        getValue(".credits"),
-        getValue(".emprunts"),
-        getValue(".hypotheque")
-    ];
-
-    let totalActifs = actifs.reduce((acc, val) => acc + val, 0);
-    let totalPassifs = passifs.reduce((acc, val) => acc + val, 0);
-    let capital = totalActifs - totalPassifs;
-
-    document.getElementById("capital-value").textContent = capital.toLocaleString() + " $";
-
-    console.log("Valeur chèque :", getValue(".cheque"));
-    console.log("Valeur épargne :", getValue(".epargne"));
-    console.log("Valeur bourse :", getValue(".bourse"));
-    console.log("Valeur crypto :", getValue(".crypto"));
-    console.log("Valeur autre :", getValue(".autre"));
-
-    console.log("Valeur crédits :", getValue(".credits"));
-    console.log("Valeur emprunts :", getValue(".emprunts"));
-    console.log("Valeur hypothèque :", getValue(".hypotheque"));
-}
-
 document.addEventListener("DOMContentLoaded", function () {
-    let boutonCalcul = document.querySelector(".calculer");
-    if (boutonCalcul) {
-        boutonCalcul.addEventListener("click", calculerCapital());
-    } else {
-        console.error("Le bouton de calcul n'a pas été trouvé !"); //Test de debug
+    const actifs = document.querySelectorAll(".actif");
+    const passifs = document.querySelectorAll(".passif");
+
+    function calculer() {
+        console.log("📊 calculerCapital() a été appelée !"); //Pour savoir si la fonction est appelée
+
+        let sommeActifs = 0;
+        actifs.forEach(input => {
+            sommeActifs += parseFloat(input.value) || 0;
+        });
+
+        let sommePassifs = 0;
+        passifs.forEach(input => {
+            sommePassifs += parseFloat(input.value) || 0;
+        });
+
+        let capital = sommeActifs - sommePassifs;
+
+        document.getElementById("capital-value").textContent = capital.toLocaleString() + " $";
     }
+
+    actifs.forEach(input => {
+        input.addEventListener("input", calculer)
+    });
+
+    passifs.forEach(input => {
+        input.addEventListener("input", calculer)
+    });
+
+    calculer()
 });
 </script>
 
