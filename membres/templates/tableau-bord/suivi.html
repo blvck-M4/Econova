@@ -164,21 +164,21 @@
             <div class="barre-separation"> </div>
 
             <div class="interets">
-                <h2> Suivi d'un investissement à taux d'intérêts composés </h2>
+                <h2 class="sous-titre"> Suivi d'un investissement à taux d'intérêts composés </h2>
 
                 <label>
-                    <h4> Investissement Initial </h4>
+                    <h4 class="sous-sous-titre"> Investissement Initial </h4>
                     <input type="text" name="investissement-initial" placeholder="...">
                 </label>
 
                 <label>
-                    <h4> Placements Mensuels </h4>
+                    <h4 class="sous-sous-titre"> Placements Mensuels </h4>
                     <input type="text" name="placement-mensuel" placeholder="...">
                 </label>
 
                 <label>
-                    <h4> Taux d'intérêts (%) </h4>
-                    <input type="text" name="taux-interet" placeholder="...">
+                    <h4 class="sous-sous-titre"> Taux d'intérêts en décimales </h4>
+                    <input type="text" name="taux-interet" placeholder="Pour 5% entrez 0,05">
                 </label>
 
                 <div class="type-interet">
@@ -187,16 +187,21 @@
                 </div>
 
                 <label>
-                    <h4> Durée (Années / Mois) </h4>
+                    <h4 class="sous-sous-titre"> Durée (Années / Mois) </h4>
                     <input type="text" name="duree" placeholder="...">
                 </label>
+
+                <div class="resultat-investissement">
+                    <h3> <strong> Voici la valeur finale de votre investissement : </strong> </h3>
+                    <p id="investissement-valeur"> 0 $</p>
+                </div>
             </div>
         </div>
 
 
     <div class="capital-section">
-        <h2> Votre Capital :</h2>
-        <p id="capital-value"> </p>
+        <h2> <strong> Votre Capital : </strong> </h2>
+        <p id="capital-valeur"> </p>
     </div>
 
     <div class="bas-de-page">
@@ -213,7 +218,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const passifs = document.querySelectorAll(".passif");
 
     function calculer() {
-        console.log("📊 calculerCapital() a été appelée !"); //Pour savoir si la fonction est appelée
+        console.log("calculerCapital() a été appelée !"); //Pour savoir si la fonction est appelée
 
         let sommeActifs = 0;
         actifs.forEach(input => {
@@ -227,7 +232,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         let capital = sommeActifs - sommePassifs;
 
-        document.getElementById("capital-value").textContent = capital.toLocaleString() + " $";
+        document.getElementById("capital-valeur").textContent = capital.toLocaleString() + " $";
     }
 
     actifs.forEach(input => {
@@ -264,6 +269,11 @@ document.addEventListener("DOMContentLoaded", function () {
     mensuelBtn.addEventListener("click", selection);
     annuelBtn.addEventListener("click", selection);
 });
+</script>
+
+<!--JavaScript du calcul des inérêts composés mensuel ou annuel-->
+<script>
+
 </script>
 
 </body>

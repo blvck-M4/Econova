@@ -105,7 +105,7 @@ nav:hover h1 {
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(255, 177, 205, 0.67);
     width: 500px;
-    margin-top: 50px;
+    margin-top: 25px;
     margin-left: 385px;
 }
 
@@ -131,7 +131,7 @@ nav:hover h1 {
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(255, 177, 205, 0.67);
     width: 500px;
-    height: 600px;
+    height: 650px;
     gap: 30px;
     display: flex;
     flex-direction: column;
@@ -159,4 +159,10 @@ nav:hover h1 {
     color: #2C2C2C !important;
     border-color: #FFC0CB !important;
     box-shadow: 0 4px 10px rgba(255, 177, 205, 0.67) !important;
+}
+
+.resultat-investissement {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
 }
