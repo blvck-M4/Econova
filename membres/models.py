@@ -10,6 +10,7 @@ class Membre(models.Model):
     mot_de_passe = models.CharField(max_length=100)
     date_creation = models.DateTimeField(auto_now_add=True)
     # Informations personnelles
+    sexe = models.CharField(max_length=100, null=True)
     date_de_naissance = models.DateField(null=True)
     statut_professionnelle = models.CharField(max_length=255, null=True)
     revenu_mensuelle = models.CharField(max_length=255, null=True)
@@ -31,7 +32,7 @@ class Membre(models.Model):
     acheter_maison =models.BooleanField(default=False)
     preparation_retraite = models.BooleanField(default=False)
     fond_urgence = models.BooleanField(default=False)
-    rembousemer_dettes = models.BooleanField(default=False)
+    rembourser_dettes = models.BooleanField(default=False)
     epargne_etudes = models.BooleanField(default=False)
     revenue_passif = models.BooleanField(default=False)
     independance_financier = models.BooleanField(default=False)
