@@ -89,76 +89,200 @@
             <h2>Paramètres</h2>
         </a>
     </section>
+
+
+
+
+
+
+
     <section class="tableau-bord bourse">
-        <nav>
-            <a href="{% url 'bourse' %}" class="active">Bourse</a>
-        </nav>
+    <nav>
+        <a href="{% url 'bourse' %}" class="active">NovaStocks</a>
+    </nav>
 
-        <div class="container">
-            <h1> Recherche d'actions</h1>
+    <div>
+        <h3 class="description_NovaStocks">Suivez les marchés en temps réel, analysez les tendances et prenez des décisions éclairées grâce à NovaStocks</h3>
+    </div>
 
-            <!-- Formulaire de recherche -->
-            <form method="GET" action="{% url 'bourse' %}">
-                <input type="text" name="symbol" placeholder="Ex: AAPL, TSLA, MSFT..." required>
-                <button type="submit"> Rechercher</button>
-            </form>
+    <div class="container">
+        <form method="GET" action="{% url 'bourse' %}">
+             <input type="text" name="symbol" placeholder="Rechercher une action..." value="{{ request.GET.symbol }}" required>
+             <button type="submit">Rechercher</button>
+        </form>
+    </div>
 
-            <!-- Affichage des informations de l'action -->
-            {% if stock_data %}
-                <div class="stock-info">
-                    <h2>{{ stock_data.name }} ({{ stock_data.symbol }})</h2>
-                    <p><strong>Dernier prix :</strong> ${{ stock_data.last_price }}</p>
-                    <p class="{% if stock_data.change > 0 %}positive{% else %}negative{% endif %}">
-                        <strong>Variation :</strong> {{ stock_data.change }} ({{ stock_data.percent_change }}%)
-                    </p>
-                </div>
+    <div>
+        <!-- Affichage des informations de l'action -->
+   {% if stock_data %}
+    <div class="stock-info">
 
-                <!-- Graphique des prix -->
-                <div class="chart-container">
-                    <canvas id="stockChart"></canvas>
-                </div>
-            {% endif %}
+        <h2>{{ stock_data.name }} ({{ stock_data.symbol }})</h2>
+        <div class="stock-details">
+            <p>
+                <strong class="rose">Secteur :</strong> {{ stock_data.sector | title }}
+                <strong class="rose">  Industrie :</strong> {{ stock_data.industry | title }}
+            </p>
         </div>
+
+
+       <div class="price-info">
+            <h3>{{ stock_data.last_price|floatformat:2 }} $</h3>
+            <p class="price-change {% if stock_data.change >= 0 %}positive{% else %}negative{% endif %}">
+                {% if stock_data.change >= 0 %}+{% endif %}{{ stock_data.change|floatformat:2 }} $
+                <span class="percent-change">
+                    {% if stock_data.percent_change >= 0 %}+{% endif %}({{ stock_data.percent_change|floatformat:2 }}) %
+                </span>
+            </p>
+    </div>
+
+    </div>
+
+    </div>
+
+
+    {% if stock_data %}
+      <div class="period-selector">
+    <form method="GET" action="{% url 'bourse' %}">
+        <input type="hidden" name="symbol" value="{{ stock_data.symbol }}">
+        <button type="submit" name="period" value="24h" class="{% if request.GET.period == '24h' or not request.GET.period %}active{% endif %}">24 h</button>
+        <button type="submit" name="period" value="5j" class="{% if request.GET.period == '5j' %}active{% endif %}">5 j</button>
+        <button type="submit" name="period" value="30j" class="{% if request.GET.period == '30j' %}active{% endif %}">30 j</button>
+        <button type="submit" name="period" value="90j" class="{% if request.GET.period == '90j' %}active{% endif %}">90 j</button>
+        <button type="submit" name="period" value="1an" class="{% if request.GET.period == '1an' %}active{% endif %}">1 an</button>
+        <button type="submit" name="period" value="tout" class="{% if request.GET.period == 'tout' %}active{% endif %}">Tout</button>
+    </form>
+</div>
+
+    <div class="chart-container">
+        <canvas id="stockChart"></canvas>
+    </div>
+
+     <div class="remarque_bourse_graphique">
+        <h2>* Uniquement les données des jours de la semaine qui sont disponibles (bourse fermée le weekend)</h2>
+    </div>
+{% endif %}
+
+       <div class="fundamental-data">
+                    <div class="data-row">
+                        <p><strong>Ouverture :</strong> ${{ stock_data.open_price |floatformat:2 }}</p>
+                        <p><strong>Plus haut/jour :</strong> ${{ stock_data.daily_high |floatformat:2 }}</p>
+                        <p><strong>Plus bas/jour :</strong> ${{ stock_data.daily_low |floatformat:2 }}</p>
+                    </div>
+
+                    <div class="data-row">
+                        <p><strong>Market Cap :</strong> {{ stock_data.market_cap |floatformat:2 }}</p>
+                        <p><strong>P/E Ratio :</strong> {{ stock_data.pe_ratio |floatformat:2}}</p>
+                        <p><strong>Dividende :</strong> {{ stock_data.dividend_yield |floatformat:2}}</p>
+                    </div>
+
+                    <div class="data-row">
+                        <p><strong>52 sem. haut :</strong> ${{ stock_data.52_week_high |floatformat:2}}</p>
+                        <p><strong>52 sem. bas :</strong> ${{ stock_data.52_week_low |floatformat:2}}</p>
+                        <p><strong>Volume moyen :</strong> {{ stock_data.volume |floatformat:2 }}</p>
+                    </div>
+
+                    <div class="data-row">
+                        <p><strong>SMA 20j :</strong> {{ stock_data.sma_20 |floatformat:2}}</p>
+                    </div>
+        </div>
+
+
+        {% endif %}
 
     {% if stock_data %}
         <div class="conseils">
-            <h1>Conseils de Nova pour </h1>
-            <h2>{{ conseil | safe }}</h2>
+            <h1>Analyse de {{ stock_data.symbol }}</h1>
+            <h2>
+                {% if stock_data.percent_change > 0 %}
+                    <p> Performance positive récente avec une hausse de {{ stock_data.percent_change }}%.</p>
+                {% else %}
+                    <p> Performance négative récente avec une baisse de {{ stock_data.percent_change }}%.</p>
+                {% endif %}
+
+                {% if stock_data.pe_ratio != "N/A" %}
+                    <p> Ratio P/E: {{ stock_data.pe_ratio }} -
+                    {% if stock_data.pe_ratio|add:"0" < 15 %}
+                        Potentiellement sous-évalué par rapport à la moyenne du marché.
+                    {% elif stock_data.pe_ratio|add:"0" > 25 %}
+                        Potentiellement sur-évalué par rapport à la moyenne du marché.
+                    {% else %}
+                        Dans la moyenne du marché.
+                    {% endif %}
+                    </p>
+                {% endif %}
+
+                {% if stock_data.dividend_yield != "N/A" and stock_data.dividend_yield|add:"0" > 2 %}
+                    <p> Dividende intéressant de {{ stock_data.dividend_yield }}%, intéressant pour les investisseurs en revenu.</p>
+                {% endif %}
+
+                <p> Volume moyen: {{ stock_data.volume }} actions/jour - Liquidité {% if avg_volume|add:"0" > 1000000 %}élevée{% else %}modérée{% endif %}.</p>
+
+                {% if stock_data.sma_20 != "N/A" %}
+                    <p> Prix actuel vs SMA 20j:
+                    {% if stock_data.last_price|add:"0" > stock_data.sma_20|add:"0" %}
+                        Au-dessus de la moyenne mobile ({{ stock_data.sma_20 }}), tendance potentiellement haussière.
+                    {% else %}
+                        En-dessous de la moyenne mobile ({{ stock_data.sma_20 }}), tendance potentiellement baissière.
+                    {% endif %}
+                    </p>
+                {% endif %}
+            </h2>
         </div>
     {% endif %}
-    </section>
+</section>
 
-    <script>
-        {% if stock_data and stock_data.prices %}
-            var labels = {{ stock_data.dates|safe }};
-            var prices = {{ stock_data.prices|safe }};
+<script>
+    {% if stock_data and stock_data.prices %}
+        var labels = {{ stock_data.dates|safe }};
+        var prices = {{ stock_data.prices|safe }};
 
-            var ctx = document.getElementById('stockChart').getContext('2d');
-            var stockChart = new Chart(ctx, {
-                type: 'line',
-                data: {
-                    labels: labels,
-                    datasets: [{
-                        label: 'Prix ($)',
-                        data: prices,
-                        borderColor: '#FF4F8B',
-                        backgroundColor: 'rgba(255, 79, 139, 0.2)',
-                        borderWidth: 2,
-                        fill: true
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    scales: {
-                        x: { grid: { color: '#555' } },
-                        y: { grid: { color: '#555' } }
+
+        var ctx = document.getElementById('stockChart').getContext('2d');
+var stockChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: {{ stock_data.dates|safe }},
+        datasets: [{
+            label: 'Prix USD ($)',
+            data: {{ stock_data.prices|safe }},
+            borderColor: '#ffa1db',
+            backgroundColor: 'rgba(255, 79, 139, 0.2)',
+            borderWidth: 2,
+            fill: true,
+            tension: 0.4
+        }]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+            x: {
+                reverse: true,
+                grid: { color: 'rgba(255,255,255,0.34)' },
+                ticks: {
+                    color: 'white',
+                    maxTicksLimit: {% if stock_data.period == '24h' %}24{% else %}10{% endif %},
+                    autoSkip: true
+                }
+            },
+            y: {
+                grid: { color: 'rgba(255,255,255,0.34)' },
+                ticks: {
+                    color: 'white',
+                    callback: function(value) {
+                        return '$' + value.toFixed(2);
                     }
                 }
-            });
-        {% endif %}
-    </script>
-    <script src="{% static 'js/tableau-bord.js' %}"></script>
+            }
+        }
+    }
+});
+    {% endif %}
+</script>
+
+
+
 
 </body>
 </html>

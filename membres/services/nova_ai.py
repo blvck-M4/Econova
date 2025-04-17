@@ -1,6 +1,5 @@
 from django.conf import settings
-from dotenv import load_dotenv
-load_dotenv()
+
 import os
 from google import genai
 from google.genai import types
