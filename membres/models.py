@@ -9,6 +9,7 @@ class Membre(models.Model):
     email = models.EmailField()
     mot_de_passe = models.CharField(max_length=100)
     date_creation = models.DateTimeField(auto_now_add=True)
+
     # Informations personnelles
     sexe = models.CharField(max_length=100, null=True)
     date_de_naissance = models.DateField(null=True)
@@ -18,7 +19,7 @@ class Membre(models.Model):
     parent = models.BooleanField(default=False)
     nombre_enfant = models.CharField(max_length=255, null=True)
     situation_habitation = models.CharField(max_length=255, null=True)
-    objectifs_principales = models.CharField(max_length=255, null=True)
+
 
     # Types de dettes
     montant_dette = models.CharField(max_length=255, null=True)
@@ -26,7 +27,7 @@ class Membre(models.Model):
     dette_pret_etudiant = models.BooleanField(default=False)
     dette_pret_automobile = models.BooleanField(default=False)
     dette_hypotheque = models.BooleanField(default=False)
-    dette_autre = models.BooleanField(default=False)
+    dette_autre = models.CharField(max_length=255, null=True)
 
     # Objectifs financiers
     acheter_maison =models.BooleanField(default=False)

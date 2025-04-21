@@ -102,14 +102,14 @@ def questionnaire(request):
         parent = request.POST.get('enfant')
         nombre_enfant = request.POST.get('nbEnfants')
         situation_habitation = request.POST.get('habitation')
-        sexe = request.POST.get('sexe')
+        sexe = request.POST.get('sexe') #
 
         montant_dette = request.POST.get('montantDette')
         dette_credits = request.POST.get('detteCredit')
         dette_pret_etudiant = request.POST.get('detteEtudiant')
         dette_pret_automobile = request.POST.get('detteAutomobile')
         dette_hypotheque = request.POST.get('detteHypotheque')
-        dette_autre = request.POST.get('AutreTypeDette')
+        dette_autre = request.POST.get('AutreDette')
 
         acheter_maison = request.POST.get('acheterMaison')
         preparation_retraite = request.POST.get('preparationRetraite')
@@ -117,7 +117,7 @@ def questionnaire(request):
         rembourser_dette = request.POST.get('rembourserDette')
         epargne_etudes = request.POST.get('epargneEtude')
         revenue_passif = request.POST.get('revenuePassif')
-        independance_financiere = request.POST.get('independanceFinanciere')
+        independance_financier = request.POST.get('independanceFinanciere')
         investir = request.POST.get('investir')
         aucun = request.POST.get('aucun')
         autre_objectif = request.POST.get('autreObjectif')
@@ -126,12 +126,25 @@ def questionnaire(request):
         if date_naissance:
             date_naissance = datetime.strptime(date_naissance, "%Y-%m-%d").date()
 
+        if sexe == "Autre":
+            sexe = request.POST.get('autreSexe')
+
         # If "Autre" is selected for profession, get the custom value
         if statut_professionnelle == "Autre":
-            statut_professionnelle = request.POST.get('autre_situation', 'Autre')  # Get the text if Autre is selected
+            statut_professionnelle = request.POST.get('autreSituation')
 
-        if autre_objectif == "Autre":
-            statut_professionnelle = request.POST.get('autre_situation', 'Autre')
+        if statut_marital == "Autre":
+            statut_marital = request.POST.get('autreStatut')
+
+
+        if situation_habitation == "Autre":
+            situation_habitation = request.POST.get('autreHabitation')
+
+        if autre_objectif == 'on':
+            autre_objectif = request.POST.get('autreObjectifSpecifique')
+
+        if dette_autre == 'on':
+            dette_autre = request.POST.get('typeAutreDette')
 
         # Ensure conditions are accepted before updating
         if conditions == 'on':  # Check if the conditions box is checked
@@ -157,19 +170,19 @@ def questionnaire(request):
 
                 membre.situation_habitation = situation_habitation
                 membre.montant_dette = montant_dette
-                membre.dette_credits = dette_credits =='on'
+                membre.dette_credits = dette_credits == 'on'
                 membre.dette_pret_etudiant = dette_pret_etudiant == 'on'
                 membre.dette_pret_automobile = dette_pret_automobile == 'on'
                 membre.dette_hypotheque = dette_hypotheque == 'on'
-                membre.dette_autre = dette_autre =='on'
+                membre.dette_autre = dette_autre
 
                 membre.acheter_maison = acheter_maison =='on'
                 membre.preparation_retraite = preparation_retraite =='on'
-                membre.fond_urgence = fond_urgence =='on'
-                membre.rembourser_dette = rembourser_dette == 'on'
+                membre.fond_urgence = fond_urgence == 'on'
+                membre.rembourser_dettes = rembourser_dette == 'on'
                 membre.epargne_etudes = epargne_etudes == 'on'
                 membre.revenue_passif = revenue_passif == 'on'
-                membre.independance_financiere = independance_financiere == 'on'
+                membre.independance_financier = independance_financier == 'on'
                 membre.investir = investir == 'on'
                 membre.aucun = aucun == 'on'
                 membre.autre_objectif = autre_objectif
