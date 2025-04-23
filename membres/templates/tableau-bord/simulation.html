@@ -96,7 +96,7 @@
             <!--Balance totale du compte-->
             <div class="balance">
                 <h1>Balance du Compte</h1>
-                <h2 id="balance">200 000.00$</h2>
+                <h2 id="balance">200 000,00$</h2>
             </div>
             <!--Nombre de transactions-->
             <div class="nb-transactions">
@@ -195,21 +195,19 @@
                 </div>
             </div>
             <table class="tableau-produit">
-              <thead>
-                <tr class="titres">
-                  <th scope="col"><h2>Symbole</h2></th>
-                  <th scope="col"><h2>Nom</h2></th>
-                  <th scope="col"><h2>Prix</h2></th>
-                  <th scope="col"><h2>Statut</h2></th>
-                </tr>
-              </thead>
+                <thead>
+                    <tr class="titres">
+                      <th scope="col"><h2>Symbole</h2></th>
+                      <th scope="col"><h2>Nom</h2></th>
+                      <th scope="col"><h2>Prix</h2></th>
+                    </tr>
+                </thead>
               <tbody class="tableau-visible" id="tab-action">
                 {% for action in listeActions %}
                     <tr>
                         <th scope="row" class='symbols'><h3>{{ action.symbole }}</h3></th>
                         <td class='noms'><h3>{{ action.nom }}</h3></td>
                         <td class='prix'><h3>{{ action.prix }} $CAN</h3></td>
-                        <td class='statuts'><h3>Non vendu</h3></td>
                     </tr>
                 {% endfor %}
               </tbody>
@@ -219,7 +217,6 @@
                     <th scope="row" class='symbols'><h3>{{ action.symbole }}</h3></th>
                     <td class='noms'><h3>{{ action.nom }}</h3></td>
                     <td class='prix'><h3>{{ action.prix }} $CAN</h3></td>
-                    <td class='statuts'><h3>Non vendu</h3></td>
                 </tr>
               {% endfor %}
 
@@ -294,6 +291,9 @@
 
         // Sélectionne tous les éléments ayant la classe 'symbols'
         symbols = document.querySelectorAll('.symbols');
+
+        // Portefeuil de l'utilisateur avec le nb de transaction pour chaque produit
+        let portefeuil = [];
 
         // Boutons pour sélectionner le type de transaction
         const bouton_action = document.getElementById('actionBouton');
@@ -398,32 +398,6 @@
             });
         });
 
-        // Sélectionne les symboles
-        let transactionHistorique = document.getElementById('transaction-history');
-
-        // Fonction pour ajouter une transaction
-        function addTransaction(status) {
-            let row = document.createElement('tr');
-
-            row.innerHTML = `
-                <td>${new Date().toLocaleString()}</td>
-                <td>${symbolText}</td>
-                <td>${produitNom}</td>
-                <td>${produitPrix}</td>
-                <td>${status}</td>
-            `;
-
-            transactionHistorique.appendChild(row);
-        }
-
-        // Ajoute un événement de clic sur chaque symbole
-        symbols.forEach((symbolElement) => {
-            symbolElement.addEventListener('click', () => {
-                let status = Math.random() > 0.5 ? "Achat" : "Vente"; // Choisir aléatoirement entre Achat et Vente
-                addTransaction(status);
-            });
-        });
-
 
 
 
@@ -516,6 +490,24 @@
             options.style.display = options.style.display === 'block' ? 'none' : 'block';
         });
 
+
+        // Fonction pour ajouter une transaction
+        let transactionHistorique = document.getElementById('transaction-history');
+        function addTransaction(statut, prix) {
+            let row = document.createElement('tr');
+
+            row.innerHTML = `
+                <td>${new Date().toLocaleString()}</td>
+                <td>${symbolText}</td>
+                <td>${produitNom}</td>
+                <td>${prix}</td>
+                <td>${statut}</td>
+            `;
+
+            transactionHistorique.appendChild(row);
+        }
+
+        //Fonction pour choisir si l'utilisateur veut acheter ou vendre un produit
         function selectOption(choix) {
             bouton_action.textContent = choix;
             options.style.display = 'none';
@@ -530,17 +522,64 @@
 
         balance = document.getElementById('balance')
         nb_transaction = document.getElementById('nb-transaction')
+        bouton_transaction = document.querySelector('.bouton-transaction')
         function effectuerTransaction(){
             const quantite = parseInt(produit_Qte.value);
             if (quantite >= 1){
-                if (bouton_action.textContent === 'Acheter'){
-                    total_initial = parseFloat(balance.textContent.replace(/ /g, ''))
-                    balance.textContent = total_initial-total
+
+
+                let cleanBalance = balance.textContent
+                    .trim() // Removes any leading/trailing spaces
+                    .replace('$', '') // Removes the dollar sign
+                    .replace(/\s+/g, ''); // Removes all spaces (including non-breaking ones)
+
+                // Convert cleaned value to a number
+                total_initial = parseFloat(cleanBalance);
+
+
+                console.log(balance.innerText)
+                let existingEntry = portefeuil.find(entry => entry.nom === popupTitle.innerText);
+                if (bouton_action.textContent === 'Acheter' && (total_initial-total) >= 0){
+                    calcul = total_initial-total
+                    console.log('total initial: '+total_initial + ' ; Total: '+total)
+                    balance.textContent = calcul.toLocaleString('fr-FR') +'$'
                     produit_Qte.value=0
+                    addTransaction('Acheter', total);
+                    if (!existingEntry) {
+                        // Ajouter un nouvel objet si non trouvé
+                        portefeuil.push({ nom: popupTitle.innerText, transactions: quantite });
+                    } else {
+                        // Incrémenter les transactions si trouvé
+                        existingEntry.transactions += quantite;
+                    }
+
+
                 } else if (bouton_action.textContent === 'Vendre'){
-                    total_initial = parseFloat(balance.textContent.replace(/ /g, ''))
-                    balance.textContent = total_initial+total
-                    produit_Qte.value=0
+                    if (existingEntry.transactions >= quantite){
+                        calcul = total_initial+total
+                        balance.textContent = calcul.toLocaleString('fr-FR') +'$'
+                        produit_Qte.value=0
+                        addTransaction('Vendu', total);
+                        existingEntry.transactions -= quantite;
+                    } else{
+                        bouton_transaction.style.backgroundColor = 'red';
+                    }
+                }
+
+                if (portefeuil.length > 0) {
+                    var transacTotal = 0
+                    portefeuil.forEach(e =>{
+                        transacTotal += e.transactions
+                        console.log(e.transactions)
+                    })
+                    console.log(transacTotal)
+                    let nb_transaction = document.getElementById('nb-transactions');
+                    if (nb_transaction) {
+                        nb_transaction.innerText = transacTotal;
+                    } else {
+                        console.error('Element nb_transaction is missing.');
+                    }
+
                 }
             }
 
