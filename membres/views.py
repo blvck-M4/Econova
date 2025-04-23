@@ -328,6 +328,8 @@ def chart_view(request):
     except Membre.DoesNotExist:
         membre = None
 
+    conseil = nova_ai.get_conseil(membre)
+
     context = {}  # Assurez-vous que le contexte est toujours défini.
 
     # Vérifier si l'utilisateur veut effacer les revenus
@@ -378,8 +380,11 @@ def chart_view(request):
         "labels": labels,
         "values": values,
     }
-
-    context['chart_data'] = json.dumps(chart_data)  # Toujours définir context['chart_data']
+    context = {
+        'form': form,
+        'chart_data': json.dumps(chart_data),
+        'conseil': conseil,  # ← n’oubliez pas ça !
+    }
     return render(request, 'suivi-financier.html', context)
 
 

@@ -1,3 +1,6 @@
+import datetime
+import json
+
 from django.conf import settings
 from dotenv import load_dotenv
 from google import genai
@@ -190,3 +193,92 @@ def simulationAI():
 
 
     return ""
+
+def build_profile(member):
+    """Construit un dict JSON du profil, avec timestamp pour varier le prompt."""
+    dettes = []
+    objectifs = []
+    if member.dette_credits:
+        dettes.append("Dettes de crédit")
+
+    if member.dette_pret_etudiant:
+        dettes.append("Dettes de pret etudiant")
+
+    if member.epargne_etudes:
+        dettes.append("Dettes de epargne")
+
+    if member.dette_pret_automobile:
+        dettes.append("Dettes de pret automobile")
+
+    if member.dette_hypotheque:
+        dettes.append("Dettes de hypotheque")
+
+    if member.dette_autre is not None:
+        dettes.append(member.dette_autre)
+
+    objectifs = []
+
+
+
+    return {
+        "nom":        f"{member.prenom} {member.nom_de_famille}",
+        "revenu":     member.revenu_mensuelle,
+        "dettes": {
+            "consommation": member.dette_credits,
+            "étudiant":     member.dette_pret_etudiant,
+            "auto":         member.dette_pret_automobile,
+            "hypothèque":   member.dette_hypotheque,
+            "autre":        member.dette_autre,
+        },
+        "objectifs": {
+            "maison":        member.acheter_maison,
+            "retraite":      member.preparation_retraite,
+            "urgence":       member.fond_urgence,
+            "remboursement": member.rembourser_dettes,
+            "études":        member.epargne_etudes,
+            "passif":        member.revenue_passif,
+            "indépendance":  member.independance_financier,
+            "investir":      member.investir,
+            "autre":         member.autre_objectif,
+        },
+        "tolérance_risque": member.tolerance_risque,
+    }
+
+def get_conseil(member):
+    profile_json = json.dumps(build_profile(member), ensure_ascii=False, indent=2)
+
+    contents = [
+        types.Content(
+            role="user",
+            parts=[
+                types.Part.from_text(text="""Parmi les données du """+ f"Profil :\n{profile_json}" +""" choisi à l'hazard UNE des objectifs spécifique ou une des dettes spécifique parmi celles qui s'applique à l'utilisateur augmantant la probabilité
+                de la génération d'une dettes et génère un conseil extêmement précise concernant cette dernière. Énumère pas les dettes de l'utilisateur. Le conseil ne doit pas dépasser plus de 100 mots. Elle soit est concise et pertinent
+                ne vous présentez pas, donne directement le conseil. Ne travail pas en fonction de priorité cependant si tu choisi quelque chose à priorisé souligne rapidement l'importance""")
+
+            ],
+        ),
+
+    ]
+    generate_content_config.system_instruction = [
+        types.Part.from_text(text="""
+            Vous êtes NOVA, un conseiller financier certifié. Qui génère des conseils objectives. Vos conseils sont fourit
+            à la troisième personne avec un ton neutre.
+              
+            """.strip()),
+    ]
+    reponse = ""
+
+    global liste_donnees
+    for chunk in client.models.generate_content_stream(
+            model=model,
+            contents=contents,
+            config=generate_content_config,
+    ):
+        reponse += chunk.text
+
+    return reponse
+
+
+
+
+
