@@ -8,6 +8,7 @@ from google.genai import types
 client = genai.Client(
             api_key=settings.GEMINI_API_KEY,
         )
+
 model = "gemini-2.0-flash"
 generate_content_config = types.GenerateContentConfig(
     temperature=1,

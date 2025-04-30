@@ -13,7 +13,7 @@ h1{
     font-weight: bold;
     font-style: normal;
 }
-h2, button, a{
+h2, button, a, option{
   font-family: "Prompt", serif;
   font-weight: 400;
   font-style: normal;
@@ -103,9 +103,11 @@ h3, input::placeholder, textarea{
     }
     h2{
         font-size: 15px;
+        color: black;
     }
     h3{
         font-size: 12px;
+        color: black;
     }
 
 }

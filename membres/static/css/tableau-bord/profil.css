@@ -148,7 +148,6 @@ body{
         background-color: white;
         border-radius: 15px;
         box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset, rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
-
         h1{
             font-size: 20px;
             margin-bottom: 20px;
@@ -157,7 +156,7 @@ body{
             font-size: 15px;
             margin-bottom: 5px;
         }
-        input[type="text"], input[type="email"], input[type="password"]{
+        input[type="text"], input[type="email"], input[type="password"], .choix-genre select{
             width: 600px;
             padding: 0px 20px;
             height: 50px;
@@ -169,6 +168,28 @@ body{
             margin-bottom: 20px;
             background-color: white;
             border: 2px solid #e4e4e4;
+        }
+        input[type='date'] {
+            background-color: #FE66C4;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 10px;
+            transition: 0.2s ease-in-out;
+            font-family: "Prompt", serif;
+            font-weight: 300;
+            font-style: normal;
+            outline: none;
+            margin: 30px;
+        }
+        .choix-genre select{
+            display: flex;
+            justify-content: left;
+            align-items: center;
+            margin: 10px 0;
+            option {
+                padding: 5px;
+            }
         }
         .checkbox-utilisateur-container{
             display: flex;
