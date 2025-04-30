@@ -98,7 +98,9 @@
             <div class="section" id="concepts-btn"
                  onclick="toggleActiveSection(this, '', `
 <div class='dropdown'>
-  <button class='dropbtn'><h3>Catégories</h3></button>
+  <button class='dropbtn'>
+        Catégories <span class='chevron fas fa-chevron-down'></span>
+      </button>
   <div class='dropdown-content'>
     <a href='#Concepts financiers'>Concepts financiers</a>
     <a href='#Types d investissement'>Types d'investissement</a>
@@ -615,9 +617,43 @@
 
             <!-- Quesionnaire -->
             <div class="section" id="profil-btn"
-                 onclick="toggleActiveSection(this, 'Profil d\'investisseur', `
+                 onclick="toggleActiveSection(this, '', `
+<h1 id = 'profil' >Profil d\'investisseur --NOVA--</h1>
 
-                 `)">
+<h3 id='explication' style='max-width: 950px; margin: auto; background: rgba(0,0,0,0.34); border-left: 4px solid #fe66c4; padding: 16px; border-radius: 6px;'>
+Vous allez répondre à <strong>10 questions</strong> basées sur des mises en situation, avec <strong>3 à 4 choix</strong> chacune.
+  <br><br>
+  Vos réponses me permettront de déterminer si vous êtes un investisseur <strong>prudent, modéré ou audacieux</strong>. En cas d'incohérence, je vous le signalerai.
+  <br><br>
+  À la fin, vous recevrez un <strong>rapport personnalisé</strong>:
+  <ul style='margin-top: 10px; padding-left: 20px;'>
+    <li>🧑‍💼 Votre type d’investisseur</li>
+    <li>📊 Vos comportements financiers</li>
+    <li>💰 Une répartition suggérée en $ CAD avec des produits canadiens</li>
+  </ul>
+<br>
+Vous pourrez aussi recommencer avec des questions plus avancées si vous le souhaitez.
+  <br><br>
+  <span style='display: inline-block; background: rgba(254,102,224,0.62); border: 1px solid rgba(254,102,196,0.49); padding: 12px; border-radius: 4px;'>
+    📌 <strong>Important :</strong> Si vous me posez une question pendant le quiz, je répondrai brièvement puis vous redirigerai vers notre chatbot principal.
+  </span>
+<br><br>
+</h3>
+
+<br>
+<button class='btnCommencer' onclick='demarrerChat()'>Commencer</button>
+
+  <div class='chatBox' id='chatBox'>
+    <div class='messages' id='conteneurMessages'>
+    </div>
+
+    <div class='zoneSaisie'>
+      <input type='text' id='saisieMessage' class='champMessage' placeholder='Écrivez un message...' />
+      <button class='btnEnvoyer' onclick='envoyerMessage()'>Envoyer</button>
+    </div>
+  </div>
+
+`)">
 
                 <i class="fas fa-user-check"></i>
                 <h3><strong>Profil d'investisseur</strong></h3>
@@ -631,9 +667,9 @@
     </main>
 
 
-    <a href=''>
-        <button class="upButton"><i class="fa fa-arrow-up"></i></button>
-    </a>
+    <button class="upButton" onclick="scrollToTop()">
+        <i class="fas fa-arrow-up"></i>
+    </button>
 
 </div>
 
@@ -679,7 +715,74 @@
         }
     }
 
+    <!-- Scroll top bouton -->
+    function scrollToTop() {
+        window.scrollTo({top: 0, behavior: 'smooth'});
+    }
+
+    window.onscroll = function () {
+        var button = document.querySelector('.upButton');
+        if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+            button.classList.add('show');
+        } else {
+            button.classList.remove('show');
+        }
+    };
+
+
 </script>
+
+<!-- JS CHATBOX profil -->
+<script>
+    function demarrerChat() {
+        document.getElementById('explication').style.display = 'none';
+
+        document.querySelector('.btnCommencer').style.display = 'none';
+
+        const chatBox = document.getElementById('chatBox');
+        chatBox.style.display = 'flex';
+
+        setTimeout(function () {
+            envoyerMessage("Salut, c'est Patate!", 'ordinateur');
+        }, 500);
+    }
+
+    function envoyerMessage(message = "", expediteur = "utilisateur") {
+        const champMessage = document.getElementById('saisieMessage');
+        const conteneurMessages = document.getElementById('conteneurMessages');
+
+        const texteMessage = message || champMessage.value.trim();
+        if (texteMessage !== "") {
+            const messageElement = document.createElement('div');
+            messageElement.classList.add(expediteur === 'ordinateur' ? 'messageOrdinateur' : 'messageUtilisateur');
+            messageElement.textContent = texteMessage;
+
+            conteneurMessages.appendChild(messageElement);
+
+            conteneurMessages.scrollTop = conteneurMessages.scrollHeight;
+
+            if (expediteur === 'utilisateur') {
+                champMessage.value = '';
+            }
+        }
+    }
+
+    document.getElementById('saisieMessage').addEventListener('keydown', function (event) {
+        if (event.key === 'Enter') {
+            envoyerMessage();
+        }
+    });
+
+    function defilerVersLeBas() {
+        const conteneurMessages = document.getElementById('conteneurMessages');
+        conteneurMessages.scrollTop = conteneurMessages.scrollHeight; // Force le défilement vers le bas
+    }
+
+    document.getElementById('conteneurMessages').addEventListener('DOMNodeInserted', function () {
+        defilerVersLeBas();
+    });
+</script>
+
 
 <!-- JS Menu -->
 <script>
