@@ -107,7 +107,7 @@
     </section>
 
 <!--Section suivi financier-->
-
+    <div class="corp">
         <nav>
             <h1> Suivi Financier </h1>
         </nav>
@@ -116,28 +116,28 @@
             <div class="actifs">
                 <h2 class="sous-titre"> ACTIFS </h2>
                 <label>
-                    <h4 class="sous-sous-titre"> Compte Chèque </h4>
-                    <input class="actif" type="text" name="compte-cheque" placeholder="...">
+                    <h4 class="sous-sous-titre"> Comptes Chèque </h4>
+                    <input class="actif" type="text" name="compte-cheque" placeholder="">
                 </label>
 
                 <label>
-                    <h4 class="sous-sous-titre"> Compte Epargne </h4>
-                    <input class="actif" type="text" name="compte-epargne" placeholder="...">
+                    <h4 class="sous-sous-titre"> Comptes Epargne </h4>
+                    <input class="actif" type="text" name="compte-epargne" placeholder="">
                 </label>
 
                 <label>
-                    <h4 class="sous-sous-titre"> Compte Bourse </h4>
-                    <input class="actif" type="text" name="compte-investissement" placeholder="...">
+                    <h4 class="sous-sous-titre"> Comptes Bourse </h4>
+                    <input class="actif" type="text" name="compte-bourse" placeholder="">
                 </label>
 
                 <label>
-                    <h4 class="sous-sous-titre"> Compte Cryptomonnaie </h4>
-                    <input class="actif" type="text" name="credits" placeholder="...">
+                    <h4 class="sous-sous-titre"> Comptes Cryptomonnaie </h4>
+                    <input class="actif" type="text" name="compte-crypto" placeholder="">
                 </label>
 
                 <label>
-                    <h4 class="sous-sous-titre"> Tout autre compte (REER, REEE, CELI, CELIAPP, etc) </h4>
-                    <input class="actif" type="text" name="carte-credit" placeholder="...">
+                    <h4 class="sous-sous-titre"> Tout Autre Bien De Valeur </h4>
+                    <input class="actif" type="text" name="autre-biens" placeholder="">
                 </label>
 
             </div>
@@ -147,17 +147,27 @@
 
                 <label>
                     <h4 class="sous-sous-titre"> Cartes de Crédit </h4>
-                    <input class="passif" type="text" name="credits" placeholder="...">
+                    <input class="passif" type="text" name="credits" placeholder="">
                 </label>
 
                 <label>
                     <h4 class="sous-sous-titre"> Emprunts </h4>
-                    <input class="passif" type="text" name="emprunts" placeholder="...">
+                    <input class="passif" type="text" name="emprunts" placeholder="">
                 </label>
 
                 <label>
                     <h4 class="sous-sous-titre"> Hypothèque </h4>
-                    <input class="passif" type="text" name="immobilier" placeholder="...">
+                    <input class="passif" type="text" name="immobilier" placeholder="">
+                </label>
+
+                <label>
+                    <h4 class="sous-sous-titre"> Crédit Automobile </h4>
+                    <input class="passif" type="text" name="automobile" placeholder="">
+                </label>
+
+                <label>
+                    <h4 class="sous-sous-titre"> Autre Crédit </h4>
+                    <input class="passif" type="text" name="autre-crédit" placeholder="">
                 </label>
             </div>
 
@@ -166,19 +176,20 @@
             <div class="interets">
                 <h2 class="sous-titre"> Suivi d'un investissement à taux d'intérêts composés </h2>
 
+
                 <label>
                     <h4 class="sous-sous-titre" > Investissement Initial </h4>
-                    <input type="text" name="investissement-initial" id="investInitial" placeholder="...">
+                    <input type="text" name="investissement-initial" id="investInitial" placeholder="">
                 </label>
 
                 <label>
                     <h4 class="sous-sous-titre" > Placements Mensuels </h4>
-                    <input type="text" name="placement-mensuel" id="versements" placeholder="...">
+                    <input type="text" name="placement-mensuel" id="versements" placeholder="">
                 </label>
 
                 <label>
                     <h4 class="sous-sous-titre" > Taux d'intérêts en % </h4>
-                    <input type="text" name="taux-interet" id="interets" placeholder="Pour 5% entrez 0,05">
+                    <input type="text" name="taux-interet" id="interets" placeholder="">
                 </label>
 
                 <div class="type-interet">
@@ -188,7 +199,7 @@
 
                 <label>
                     <h4 class="sous-sous-titre" > Durée (Années) </h4>
-                    <input type="text" name="duree" id="duree" placeholder="...">
+                    <input type="text" name="duree" id="duree" placeholder="">
                 </label>
 
                 <div class="resultat-investissement">
@@ -206,6 +217,57 @@
 
     <div class="bas-de-page">
     </div>
+
+    <div class="séparation-invest">
+    </div>
+
+    <div class="suggestions">
+
+        <div class="entete">
+            <h2 class="sous-titre">
+                Vous êtes insatisfaits par votre capital? ou Vous voulez fructifier votre capital actuel?
+            </h2>
+
+            <h3 class="sous-sous-titre">
+                Voici différents comptes à intérêts qui vous permettrons de faire de vos rêves une réalité !
+            </h3>
+        </div>
+
+        <div class="suggestion-compte">
+
+
+
+            <div class="info-compte">
+
+                <div class="haut-compte"></div>
+
+                <h4 class="sous-sous-titre"> WealthSimple </h4>
+
+                <h4 class="sous-sous-sous-titre"> Description </h4>
+
+                <h5 class="contenu-text"> Ce compte est idéal pour toute personne voulant
+                    fructifier leur capital à l'abri des impôts
+                    que ce soit avec un petit ou grand capital.
+                </h5>
+
+                <h4 class="sous-sous-sous-titre"> Avantages </h4>
+
+                <h5 class="contenu-text">
+                    L'avantage principal de ce compte est que les taux d'intérêts augmentent avec votre capital
+                    et que votre argent est disponible en tout temps.
+                </h5>
+
+                <a href="https://www.wealthsimple.com/fr-ca/accounts/registered-savings" target="_blank">
+                    <h5 class="contenu-text-lien"> cliquez pour vous diriger vers la page du compte </h5>
+                </a>
+            </div>
+
+            <img class="img-compte" src="{% static 'images/Wealthsimple_2015_Icon.svg' %}" alt="Icon de WealthSimple">
+
+        </div>
+    </div>
+
+  </div>
 
 <script src="{% static 'js/app.js' %}"></script>
 <script src="{% static 'js/tableau-bord.js' %}"></script>
