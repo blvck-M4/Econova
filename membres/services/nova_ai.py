@@ -1,45 +1,47 @@
 from django.conf import settings
 from dotenv import load_dotenv
+
 load_dotenv()
 import os
 from google import genai
 from google.genai import types
 
 client = genai.Client(
-            api_key=settings.GEMINI_API_KEY,
-        )
+    api_key=settings.GEMINI_API_KEY,
+)
 model = "gemini-2.0-flash"
 generate_content_config = types.GenerateContentConfig(
     temperature=1,
     top_p=0.95,
     top_k=64,
     max_output_tokens=8192,
-            safety_settings=[
-                types.SafetySetting(
-                    category="HARM_CATEGORY_HARASSMENT",
-                    threshold="BLOCK_ONLY_HIGH",  # Block few
-                ),
-                types.SafetySetting(
-                    category="HARM_CATEGORY_HATE_SPEECH",
-                    threshold="BLOCK_ONLY_HIGH",  # Block few
-                ),
-                types.SafetySetting(
-                    category="HARM_CATEGORY_SEXUALLY_EXPLICIT",
-                    threshold="BLOCK_ONLY_HIGH",  # Block few
-                ),
-                types.SafetySetting(
-                    category="HARM_CATEGORY_DANGEROUS_CONTENT",
-                    threshold="BLOCK_ONLY_HIGH",  # Block few
-                ),
-                types.SafetySetting(
-                    category="HARM_CATEGORY_CIVIC_INTEGRITY",
-                    threshold="BLOCK_ONLY_HIGH",  # Block few
-                ),
-            ],
+    safety_settings=[
+        types.SafetySetting(
+            category="HARM_CATEGORY_HARASSMENT",
+            threshold="BLOCK_ONLY_HIGH",  # Block few
+        ),
+        types.SafetySetting(
+            category="HARM_CATEGORY_HATE_SPEECH",
+            threshold="BLOCK_ONLY_HIGH",  # Block few
+        ),
+        types.SafetySetting(
+            category="HARM_CATEGORY_SEXUALLY_EXPLICIT",
+            threshold="BLOCK_ONLY_HIGH",  # Block few
+        ),
+        types.SafetySetting(
+            category="HARM_CATEGORY_DANGEROUS_CONTENT",
+            threshold="BLOCK_ONLY_HIGH",  # Block few
+        ),
+        types.SafetySetting(
+            category="HARM_CATEGORY_CIVIC_INTEGRITY",
+            threshold="BLOCK_ONLY_HIGH",  # Block few
+        ),
+    ],
     response_mime_type="text/plain",
 )
 
-def reponseBot (request, utilisateur):
+
+def reponseBot(request, utilisateur):
     historique = request.session.get('historique', [])
     if request.method == "POST":
         user_message = request.POST.get("message")
@@ -84,7 +86,7 @@ def conseilActions(stock_data, profil):
             role="user",
             parts=[
                 types.Part.from_text(text="""Donne moi des conseils financiers par rapport l'action 
-                """ + nom + """. Fait le sachant que j'ai un profil financier """+profil),
+                """ + nom + """. Fait le sachant que j'ai un profil financier """ + profil),
             ],
         ),
 
@@ -105,7 +107,11 @@ def conseilActions(stock_data, profil):
         reponse += chunk.text
     reponse_finale = reponse.replace('*', '<br>')
     return reponse_finale
+
+
 liste_actions = []
+
+
 def listeActions():
     contents = [
         types.Content(
@@ -146,7 +152,10 @@ def listeActions():
     print(actions)
     return actions
 
+
 liste_donnees = []
+
+
 def graphSimulation(action):
     contents = [
         types.Content(
@@ -156,7 +165,7 @@ def graphSimulation(action):
                 sur 6 mois de l'action """ + action['nom'] + """. sous 
                 ce format: [['2020-01-01',100.05];['2020-02-01',101.23]]). Fait le en considérant sa tendance (""" +
                                           action['tendance'] + """) et 
-                son prix initial (""" + action['prix'] + """)""",)
+                son prix initial (""" + action['prix'] + """)""", )
             ],
         ),
 
@@ -172,9 +181,9 @@ def graphSimulation(action):
 
     global liste_donnees
     for chunk in client.models.generate_content_stream(
-                model=model,
-                contents=contents,
-                config=generate_content_config,
+            model=model,
+            contents=contents,
+            config=generate_content_config,
     ):
         reponse += chunk.text
     liste_donnees = reponse.split(';')
@@ -189,6 +198,49 @@ def graphSimulation(action):
 
 
 def simulationAI():
-
-
     return ""
+
+
+def qstProfil(request, utilisateur):
+    historique = request.session.get('historique', [])
+    if request.method == "POST":
+        user_message = request.POST.get("message")
+        historique.append({"role": "user", "text": user_message})
+        contents = [
+            types.Content(role=message["role"] if message["role"] == "user" else "model", parts=[types.Part.from_text(
+                text=message["text"])])
+            for message in historique
+
+        ]
+        generate_content_config.system_instruction = [
+            types.Part.from_text(text="""Tu es Nova  un conseiller financier virtuel conçu pour aider""" + utilisateur + """
+            du site ECONOVA à déterminer leur profil d’investisseur à travers 10 questions basées sur des mises en situation 
+            que tu génères. Une question automatique sera posé à """ + utilisateur + """ avant que tu commences le questionnaire
+            pour savoir si il est prêt pour s’assurer que tout est bien compris, tu prends la réponse de validation (oui/non)
+            avant de commencer. Si c'est non demande quel est le problème, sinon commence le questionnaire.Chaque question 
+            propose 3 à 4 choix de réponses clairs et concis. Tu détectes les incohérences logiques entre les réponses et invites
+             """ + utilisateur + """ à corriger si nécessaire. L’humour est utilisé uniquement dans les réponses, lorsqu’une
+            erreur ou une incohérence survient, mais jamais dans la formulation des questions, qui restent professionnelles 
+            et neutres. Si """ + utilisateur + """ pose une question en cours de route, tu y réponds brièvement, puis le réfères
+            à la section chatbot du site pour une réponse plus complète ou une discussion approfondie, avant de revenir 
+            automatiquement au questionnaire.À la fin, tu génères un rapport personnalisé décrivant le type d’investisseur, 
+            les comportements financiers observés, et une suggestion de répartition de portefeuille, avec la possibilité 
+            de recommencer avec des questions plus avancées.Le tout est adapté au contexte canadien,avec des références en 
+            dollars canadiens ($ CAD), des produits financiers locaux et une logique conforme aux réalités du marché canadien.
+            Finalement, tu demandes à """ + utilisateur + """ s'il veut refaire le questionnaire avec des questions plus 
+            techniques pour apprendre à se connaitre davantage."""),
+        ]
+        reponse = ""
+        for chunk in client.models.generate_content_stream(
+                model=model,
+                contents=contents,
+                config=generate_content_config,
+        ):
+            reponse += chunk.text
+        reponse_filtre = reponse.replace('**', '<br>')
+        reponse_finale = reponse_filtre.replace('*', ' ')
+
+        historique.append({"role": "model", "text": reponse})
+        request.session['historique'] = historique
+
+        return reponse_finale
