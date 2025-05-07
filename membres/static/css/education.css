@@ -260,6 +260,7 @@ main {
     transition: background-color 0.3s;
     position: relative;
     animation: pulse 2s infinite;
+    left: 82%;
 }
 
 .btnCommencer:hover {
@@ -281,7 +282,6 @@ main {
 
 
 .chatBox {
-    width: 950px;
     height: 500px;
     background-color: white;
     border-radius: 15px;
@@ -300,7 +300,7 @@ main {
     padding: 10px;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    margin-bottom: 8%;
 }
 
 .messageUtilisateur {
@@ -310,18 +310,18 @@ main {
     padding: 10px;
     border-radius: 10px;
     max-width: 70%;
-    word-wrap: break-word;
     margin-left: 10px;
+    margin-bottom: 10px ;
 }
 
 .messageOrdinateur {
     align-self: flex-start;
+    text-align: left;
     background-color: #2c2c2c;
     color: white;
     padding: 10px;
     border-radius: 10px;
     max-width: 70%;
-    word-wrap: break-word;
     margin-right: 10px;
 }
 

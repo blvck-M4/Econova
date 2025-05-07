@@ -96,7 +96,7 @@
         <div class="sections">
             <!-- Dictionnaire -->
             <div class="section" id="concepts-btn"
-                 onclick="toggleActiveSection(this, '', `
+                 onclick="toggleActiveSection(this,'', `
 <div class='dropdown'>
   <button class='dropbtn'>
         Catégories <span class='chevron fas fa-chevron-down'></span>
@@ -621,6 +621,8 @@
 <h1 id = 'profil' >Profil d\'investisseur --NOVA--</h1>
 
 <h3 id='explication' style='max-width: 950px; margin: auto; background: rgba(0,0,0,0.34); border-left: 4px solid #fe66c4; padding: 16px; border-radius: 6px;'>
+<strong>Salut, c'est Nova!</strong>
+<br>
 Vous allez répondre à <strong>10 questions</strong> basées sur des mises en situation, avec <strong>3 à 4 choix</strong> chacune.
   <br><br>
   Vos réponses me permettront de déterminer si vous êtes un investisseur <strong>prudent, modéré ou audacieux</strong>. En cas d'incohérence, je vous le signalerai.
@@ -641,15 +643,17 @@ Vous pourrez aussi recommencer avec des questions plus avancées si vous le souh
 </h3>
 
 <br>
-<button class='btnCommencer' onclick='demarrerChat()'>Commencer</button>
+<button class='btnCommencer' onclick='demarrerChat()'><a style ='color: white; text-decoration: none; '
+ href='#profil'>Commencer</a></button>
 
-  <div class='chatBox' id='chatBox'>
+  <div class='chatBox' id='chat-box'>
     <div class='messages' id='conteneurMessages'>
     </div>
 
     <div class='zoneSaisie'>
-      <input type='text' id='saisieMessage' class='champMessage' placeholder='Écrivez un message...' />
-      <button class='btnEnvoyer' onclick='envoyerMessage()'>Envoyer</button>
+      <input onclick='enter()' type='text' id='saisieMessage' class='champMessage' placeholder=' Répondez ici...' />
+
+      <button id = 'envoyer-message' class='btnEnvoyer' onclick='envoyerMessage()'>Envoyer</button>
     </div>
   </div>
 
@@ -739,7 +743,7 @@ Vous pourrez aussi recommencer avec des questions plus avancées si vous le souh
 
         document.querySelector('.btnCommencer').style.display = 'none';
 
-        const chatBox = document.getElementById('chatBox');
+        const chatBox = document.getElementById('chat-box');
         chatBox.style.display = 'flex';
 
         setTimeout(function () {
@@ -747,42 +751,88 @@ Vous pourrez aussi recommencer avec des questions plus avancées si vous le souh
         }, 500);
     }
 
-    function envoyerMessage(message = "", expediteur = "utilisateur") {
-        const champMessage = document.getElementById('saisieMessage');
-        const conteneurMessages = document.getElementById('conteneurMessages');
 
-        const texteMessage = message || champMessage.value.trim();
-        if (texteMessage !== "") {
-            const messageElement = document.createElement('div');
-            messageElement.classList.add(expediteur === 'ordinateur' ? 'messageOrdinateur' : 'messageUtilisateur');
-            messageElement.textContent = texteMessage;
+    /**
+     function envoyerMessage(message = "", expediteur = "utilisateur") {
+     const champMessage = document.getElementById('saisieMessage');
+     const conteneurMessages = document.getElementById('conteneurMessages');
 
-            conteneurMessages.appendChild(messageElement);
+     const texteMessage = message || champMessage.value.trim();
+     if (texteMessage !== "") {
+     const messageElement = document.createElement('div');
+     messageElement.classList.add(expediteur === 'ordinateur' ? 'messageOrdinateur' : 'messageUtilisateur');
+     messageElement.textContent = texteMessage;
 
-            conteneurMessages.scrollTop = conteneurMessages.scrollHeight;
+     conteneurMessages.appendChild(messageElement);
 
-            if (expediteur === 'utilisateur') {
-                champMessage.value = '';
+     conteneurMessages.scrollTop = conteneurMessages.scrollHeight;
+
+     if (expediteur === 'utilisateur') {
+     champMessage.value = '';
+     }
+     }
+     }
+     **/
+    function envoyerMessage() {
+        /*Zone du chat*/
+        chatBox = document.getElementById('conteneurMessages')
+        /*Message de l'utilisateur et du bot*/
+        message_element_utilisateur = document.createElement("p")
+        message_element_utilisateur.classList.add("messageUtilisateur")
+        message_element_bot = document.createElement("p")
+        message_element_bot.classList.add("messageOrdinateur")
+        /*Message d'erreur*/
+        message_element_erreur = document.createElement("p")
+        message_element_erreur.innerHTML = "Erreur"
+
+        /*Envoyer le message de l'utilisateur dans la zone de chat*/
+        message_utilisateur = document.getElementById('saisieMessage').value
+        if (message_utilisateur.trim() === '') return;
+
+        message_element_utilisateur.innerHTML = message_utilisateur
+        chatBox.appendChild(message_element_utilisateur)
+        document.getElementById('saisieMessage').value = ""
+
+        /*Envoyer la réponse du bot dans la zone de chat*/
+        $.ajax({
+            type: 'POST',
+            url: 'qstProfil',
+            data: {message: message_utilisateur, csrfmiddlewaretoken: '{{ csrf_token }}'},
+            success: function (reponse) {
+                message_element_bot.innerHTML = reponse.response
+                chatBox.appendChild(message_element_bot)
+            },
+            error: function () {
+                chatBox.appendChild(message_element_erreur)
             }
-        }
+        })
+        scrollToBottom()
+
     }
 
-    document.getElementById('saisieMessage').addEventListener('keydown', function (event) {
-        if (event.key === 'Enter') {
-            envoyerMessage();
-        }
-    });
-
-    function defilerVersLeBas() {
-        const conteneurMessages = document.getElementById('conteneurMessages');
-        conteneurMessages.scrollTop = conteneurMessages.scrollHeight; // Force le défilement vers le bas
+    //fonctionne pas
+    function scrollToBottom() {
+        let chatBox = document.getElementById("conteneurMessage");
+        setTimeout(() => {
+            chatBox.scrollTo({
+                bottom: chatBox.scrollHeight,
+                behavior: "smooth"
+            });
+        }, 100);
     }
 
-    document.getElementById('conteneurMessages').addEventListener('DOMNodeInserted', function () {
-        defilerVersLeBas();
-    });
+    //fonctionne pas
+    function enter() {
+        document.getElementById("saisieMessage").addEventListener("keyup", function (event) {
+            event.preventDefault();
+            if (event.key === "Enter") {
+                document.getElementById("btnEnvoyer").click();
+                console.log('test')
+            }
+        });
+    }
+
 </script>
-
 
 <!-- JS Menu -->
 <script>
