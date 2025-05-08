@@ -115,6 +115,7 @@
                 <h2>Lancer la simulation</h2>
             </div>
         </div>
+        <div id="graphes-montecarlo"></div>
         <!--Historique des transactions-->
         <img class="ouvrir-historique" src="{% static 'images/dashboard-icon/ouvrir-historique.svg' %}">
         <div class="historique resizable" id="historique">
@@ -258,10 +259,31 @@
 
         </div>
 
-        <div class="portefeuil">
+        <div class="portefeuil" id="portefeuil">
             <div class="portefeuil-titre">
                 <img src="{% static 'images/dashboard-icon/triangle.svg' %}">
-                <h2>Mon portefeuil</h2>
+                <h2>Mon portefeuille</h2>
+            </div>
+        </div>
+        <div class="portefeuil-section">
+            <h1>Portefeuille</h1>
+            <div class="produits">
+                <table>
+                    <thead>
+                        <tr class="titres">
+                          <th scope="col"><h2>Produit</h2></th>
+                          <th scope="col"><h2>Qté</h2></th>
+                          <th scope="col"><h2>Prix</h2></th>
+                        </tr>
+                    </thead>
+                    <tbody id="tab-produit">
+                        <tr>
+                            <th scope="row"><h3></h3></th>
+                            <td><h3></h3></td>
+                            <td><h3></h3></td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </section>
@@ -293,7 +315,7 @@
         symbols = document.querySelectorAll('.symbols');
 
         // Portefeuil de l'utilisateur avec le nb de transaction pour chaque produit
-        let portefeuil = [];
+        let portefeuille = [];
 
         // Boutons pour sélectionner le type de transaction
         const bouton_action = document.getElementById('actionBouton');
@@ -538,7 +560,7 @@
 
 
                 console.log(balance.innerText)
-                let existingEntry = portefeuil.find(entry => entry.nom === popupTitle.innerText);
+                let existingEntry = portefeuille.find(entry => entry.nom === popupTitle.innerText);
                 if (bouton_action.textContent === 'Acheter' && (total_initial-total) >= 0){
                     calcul = total_initial-total
                     console.log('total initial: '+total_initial + ' ; Total: '+total)
@@ -547,10 +569,11 @@
                     addTransaction('Acheter', total);
                     if (!existingEntry) {
                         // Ajouter un nouvel objet si non trouvé
-                        portefeuil.push({ nom: popupTitle.innerText, transactions: quantite });
+                        portefeuille.push({ nom: popupTitle.innerText, transactions: quantite, prix: total });
                     } else {
                         // Incrémenter les transactions si trouvé
                         existingEntry.transactions += quantite;
+                        existingEntry.prix += total;
                     }
 
 
@@ -561,14 +584,15 @@
                         produit_Qte.value=0
                         addTransaction('Vendu', total);
                         existingEntry.transactions -= quantite;
+                        existingEntry.prix -= total;
                     } else{
                         bouton_transaction.style.backgroundColor = 'red';
                     }
                 }
 
-                if (portefeuil.length > 0) {
+                if (portefeuille.length > 0) {
                     var transacTotal = 0
-                    portefeuil.forEach(e =>{
+                    portefeuille.forEach(e =>{
                         transacTotal += e.transactions
                         console.log(e.transactions)
                     })
@@ -577,13 +601,110 @@
                     if (nb_transaction) {
                         nb_transaction.innerText = transacTotal;
                     } else {
-                        console.error('Element nb_transaction is missing.');
+                        console.error('Élément nb_transaction est manquant');
                     }
 
                 }
+                afficherPortefeuilleDansTableau(portefeuille);
             }
 
         }
+
+        function afficherPortefeuilleDansTableau(portefeuille) {
+            const tbody = document.getElementById('tab-produit');
+
+            tbody.innerHTML = '';
+
+            portefeuille.forEach(item => {
+                const ligne = document.createElement('tr');
+
+                // Cellule Produit (th)
+                const cellProduit = document.createElement('th');
+                cellProduit.scope = 'row';
+                const produitText = document.createElement('h3');
+                produitText.textContent = item.nom;
+                cellProduit.appendChild(produitText);
+
+                // Cellule Qté
+                const cellQte = document.createElement('td');
+                const qteText = document.createElement('h3');
+                qteText.textContent = item.transactions;
+                cellQte.appendChild(qteText);
+
+                // Cellule Prix
+                const cellPrix = document.createElement('td');
+                const prixText = document.createElement('h3');
+                prixText.textContent = item.prix;
+                cellPrix.appendChild(prixText);
+
+                // Ajouter les cellules à la ligne
+                ligne.appendChild(cellProduit);
+                ligne.appendChild(cellQte);
+                ligne.appendChild(cellPrix);
+
+                // Ajouter la ligne au tableau
+                tbody.appendChild(ligne);
+            });
+        }
+
+
+        //Envoyer les infos du portefeuil au simulateur
+        lancerSimulation = document.getElementById('lancer')
+        lancerSimulation.addEventListener('click', () => {
+            console.log(portefeuille)
+            portefeuille.forEach(e =>{
+                console.log(e.nom)
+                var symbole = e.nom.split(' - ')[0]
+                $.ajax({
+                    type: 'POST',
+                    url: '/tableau-bord/lancer_simulation',
+                    data: {message: symbole, csrfmiddlewaretoken: '{{ csrf_token }}'},
+                    success: function (reponse) {
+                      console.log("Simulation reçue pour :", symbole);
+
+                      // Créer un canvas pour chaque graphique
+                      const canvasId = `chart-${symbole}`;
+                      const container = document.getElementById('graphes-montecarlo');
+                      const chartBlock = document.createElement('div');
+                      chartBlock.innerHTML = `<h4>${symbole}</h4><canvas id="${canvasId}" width="600" height="300"></canvas>`;
+                      container.appendChild(chartBlock);
+
+                      // Récupérer les simulations
+                      const data = reponse.response;
+                      const datasets = data.map((simulation, i) => ({
+                        label: `Sim ${i + 1}`,
+                        data: simulation,
+                        borderColor: `hsl(${(i * 50) % 360}, 70%, 50%)`,
+                        fill: false,
+                        borderWidth: 1,
+                        pointRadius: 0
+                      }));
+
+                      const ctx = document.getElementById(canvasId).getContext('2d');
+                      new Chart(ctx, {
+                        type: 'line',
+                        data: {
+                          labels: Array.from({ length: data[0].length }, (_, i) => i),
+                          datasets: datasets
+                        },
+                        options: {
+                          responsive: true,
+                          plugins: {
+                            legend: { display: false }
+                          },
+                          scales: {
+                            x: { title: { display: true, text: 'Temps' }},
+                            y: { title: { display: true, text: 'Prix simulé' }}
+                          }
+                        }
+                      });
+                    },
+                    error: function () {
+                      console.log("Erreur lors de la simulation");
+                    }
+                })
+            })
+        })
     </script>
 
 

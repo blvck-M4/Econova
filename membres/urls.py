@@ -20,4 +20,5 @@ urlpatterns = [
     path('education', views.education, name='education'),
 
     path('tableau-bord/suivi', views.suivi, name='suivi'),
+    path('tableau-bord/lancer_simulation', views.lancer_simulation, name='lancer_simulation'),
 ]

@@ -481,3 +481,89 @@ body{
   border-width: 4px 0 0;
   background: none;
 }
+
+
+.portefeuil-section{
+    position: fixed;
+    display: none;
+    bottom: 0;
+    left: 0;
+    height: 300px;
+    width: 100%;
+    padding-left: 320px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    background-color: #1b1b1b;
+
+    h1{
+        color: white;
+        font-size: 30px;
+        margin-bottom: 25px;
+    }
+    .produits{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        table{
+            width: 70%;
+            border-collapse: collapse;
+            background-color: #2a2a2a;
+            border-radius: 8px;
+            overflow: hidden;
+            border-collapse: collapse;
+            table-layout: fixed;
+
+            h3{
+                color: white;
+                text-align: left;
+                margin-left: 15px;
+            }
+        }
+        thead {
+            background-color: #1e1e1e;
+            color: #cccccc;
+        }
+
+        thead th {
+            text-align: left;
+            padding: 12px 16px;
+            font-weight: 600;
+            font-size: 14px;
+            border-bottom: 1px solid #333333;
+            background-color: #1e1e1e;
+            position: sticky;
+            top: 0;
+            z-index: 2;
+        }
+
+        tbody tr {
+            border-bottom: 1px solid #333333;
+        }
+
+        tbody td {
+            padding: 12px 16px;
+            font-size: 14px;
+        }
+
+        tbody tr.empty-row td {
+            height: 40px;
+            background-color: #2a2a2a;
+        }
+
+
+        tbody {
+          display: block;
+          max-height: 150px; /* Adjust as needed */
+          overflow-y: auto;
+        }
+
+        thead, tbody tr {
+          display: table;
+          table-layout: fixed;
+          width: 100%;
+        }
+
+    }
+}

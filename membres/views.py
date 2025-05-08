@@ -18,7 +18,7 @@ conditions_termes = False
 
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
-from .services import nova_ai, bourse_data
+from .services import nova_ai, bourse_data, simulation as nova_sim
 
 
 def membres(request):
@@ -283,10 +283,10 @@ def chatbot(request):
     return render(request, 'tableau-bord/chatbot.html', context)
 def simulation(request):
     utilisateurs = User.objects.all().values()
-    liste_actions = nova_ai.listeActions()
+    liste_actions = nova_sim.listeActions(nova_ai.listeActions())
     graph_actions = []
     for action in liste_actions:
-        liste_donnees = nova_ai.graphSimulation(action)
+        liste_donnees = nova_sim.graphProduit(action)
         graph_actions.append({
             "nom": action['nom'],  # ou action.symbole si tu préfères
             "donnees": liste_donnees
@@ -338,6 +338,16 @@ def reponseBot(request):
     reponse = nova_ai.reponseBot(request, utilisateur)
     return JsonResponse({"response": reponse})
 
+import numpy as np
+@csrf_exempt
+def lancer_simulation(request):
+    if request.method == "POST":
+        symbole = request.POST.get('message')
+
+        # Simulation qui retourne un tableau numpy
+        simulations = nova_sim.lancerSimulations(symbole, 5)
+
+    return JsonResponse({"response": simulations})
 def chart_view(request):
     # Récupérer l'instance du membre correspondant en utilisant le nom d'utilisateur.
     try:

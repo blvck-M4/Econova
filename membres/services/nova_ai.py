@@ -114,20 +114,15 @@ def listeActions():
         types.Content(
             role="user",
             parts=[
-                types.Part.from_text(text="""Génère une liste de 10 actions sous la forme {symbole,nom,prix,
-                niveau de 
-                risque,tendance; ...}"""),
+                types.Part.from_text(text="""Génère le symbol du top 20 des actions sous la forme {AAPL,...}"""),
             ],
         ),
 
     ]
     generate_content_config.system_instruction = [
         types.Part.from_text(text="""Tu es un générateur de liste d'actions en français. Tu n'écris rien d'autre que la 
-        liste 
-            et tu donnes les prix en $CAN. Sépare les liste par ; et l'intérieur des listes par une virgule sans 
-            utilisé rien d'autre pour que je puisse réutiliser la liste facilement. Aussi met la tendance sous ce 
-            format: -2.39 (-1.44 %) les six derniers mois. N'inverse pas les noms et les 
-            symboles des actions. Les symboles sont générralement moins de 4 lettres."""),
+        liste. Sépare la liste par une virgule sans 
+            utilisé rien d'autre pour que je puisse réutiliser la liste facilement."""),
     ]
     reponse = ""
     global liste_actions
@@ -138,64 +133,14 @@ def listeActions():
                 config=generate_content_config,
         ):
             reponse += chunk.text
-        liste_actions = reponse.split(';')
-
-    actions = []
-    for action in liste_actions:
-        symbole, nom, prix, risque, tendance = action.split(',')
-        if len(symbole.strip()) <= 5:
-            tendance = tendance.strip("\n\t\r")
-            prix = prix.strip("\n\t\r")
-            symbole = symbole.strip("\n\t\r")
-            nom = nom.strip("\n\t\r")
-            risque = risque.strip("\n\t\r")
-
-            actions.append({"symbole": symbole, "nom": nom, "prix": prix, "risque": risque, "tendance": tendance})
-    print(actions)
-    return actions
+        liste_actions = reponse.split(',')
 
 
-import datetime
-liste_donnees = []
-def graphSimulation(action):
-    date = datetime.datetime.now().strftime("%Y-%m-%d")
-    contents = [
-        types.Content(
-            role="user",
-            parts=[
-                types.Part.from_text(text="""La date est """ + date + """. Génère une liste de données pour créer un graphique de prix par mois 
-                sur les 6 derniers mois de l'action """ + action['nom'] + """. sous 
-                ce format: [['2020-01-01',100.05];['2020-02-01',101.23]]). Fait le en considérant 
-                son prix initial (""" + action['prix'] + """)""",)
-            ],
-        ),
+    print(liste_actions)
+    return liste_actions
 
-    ]
-    generate_content_config.system_instruction = [
-        types.Part.from_text(text="""Tu es un générateur de liste de données de graphique. Tu n'écris rien d'autre 
-        que la liste. Sépare les liste par ; et l'intérieur des listes par une virgule sans 
-                utilisé rien d'autre pour que je puisse réutiliser la liste facilement. Ne me pas de signe $ sur le 
-                prix.
-                """),
-    ]
-    reponse = ""
 
-    global liste_donnees
-    for chunk in client.models.generate_content_stream(
-                model=model,
-                contents=contents,
-                config=generate_content_config,
-    ):
-        reponse += chunk.text
-    liste_donnees = reponse.split(';')
 
-    donnees = []
-    for donnee in liste_donnees:
-        date, prix = donnee.split(',')
-        date = date.strip("[]' \n\r\t")
-        prix = prix.strip("[]' \n\r\t")
-        donnees.append({"date": date, "prix": prix})
-    return donnees
 
 
 def simulationAI():
