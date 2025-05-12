@@ -115,6 +115,10 @@
                 <h2>Lancer la simulation</h2>
             </div>
         </div>
+        <div id="chargement" style="display: none; text-align: center;">
+          <p>Chargement en cours...</p>
+          <div class="spinner"></div>
+        </div>
         <div id="graphes-montecarlo"></div>
         <!--Historique des transactions-->
         <img class="ouvrir-historique" src="{% static 'images/dashboard-icon/ouvrir-historique.svg' %}">
@@ -556,7 +560,7 @@
                     .replace(/\s+/g, ''); // Removes all spaces (including non-breaking ones)
 
                 // Convert cleaned value to a number
-                total_initial = parseFloat(cleanBalance);
+                let total_initial = parseFloat(cleanBalance);
 
 
                 console.log(balance.innerText)
@@ -650,8 +654,14 @@
 
         //Envoyer les infos du portefeuil au simulateur
         lancerSimulation = document.getElementById('lancer')
+        chargement = document.getElementById('chargement')
         lancerSimulation.addEventListener('click', () => {
+            //Afficher le chargement
+            chargement.style.display = 'block';
+
             console.log(portefeuille)
+            rendement = document.getElementById('rendement')
+            rendement_total = 0
             portefeuille.forEach(e =>{
                 console.log(e.nom)
                 var symbole = e.nom.split(' - ')[0]
@@ -666,11 +676,16 @@
                       const canvasId = `chart-${symbole}`;
                       const container = document.getElementById('graphes-montecarlo');
                       const chartBlock = document.createElement('div');
-                      chartBlock.innerHTML = `<h4>${symbole}</h4><canvas id="${canvasId}" width="600" height="300"></canvas>`;
+                      chartBlock.innerHTML = `<h3>${symbole}</h3><canvas id="${canvasId}" width="600"
+                      height="300"></canvas>`;
                       container.appendChild(chartBlock);
 
                       // Récupérer les simulations
-                      const data = reponse.response;
+                        const montecarlo = reponse.response;
+                      const data = reponse.response.simulations;
+                      const moyenne = reponse.response.moyenne;
+                      rendement_total += moyenne*e.transactions
+                      console.log(moyenne)
                       const datasets = data.map((simulation, i) => ({
                         label: `Sim ${i + 1}`,
                         data: simulation,
@@ -698,11 +713,25 @@
                           }
                         }
                       });
+                      //Cacher le chargement
+                      chargement.style.display = 'none';
                     },
                     error: function () {
                       console.log("Erreur lors de la simulation");
                     }
                 })
+                rendement.textContent = rendement_total.toFixed(2) + ' $'
+                console.log("Rendement total: "+rendement_total)
+                let cleanBalance = balance.textContent
+                    .trim() // Removes any leading/trailing spaces
+                    .replace('$', '') // Removes the dollar sign
+                    .replace(/\s+/g, ''); // Removes all spaces (including non-breaking ones)
+
+                // Convert cleaned value to a number
+                let total_initial = parseFloat(cleanBalance);
+                let calcul = total_initial+rendement_total
+                balance.textContent = calcul.toLocaleString('fr-FR') +'$'
+
             })
         })
     </script>

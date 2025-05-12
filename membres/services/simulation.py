@@ -72,15 +72,23 @@ def lancerSimulations(symbole, nbannes):
 
     dt = 1 / N
     simulations = np.zeros((M, N))
+    addition = 0
     for i in range(M):
         prices = [S0]
         for _ in range(1, N):
             rand = np.random.normal()
             St = prices[-1] * np.exp((mu - 0.5 * sigma**2) * dt + sigma * np.sqrt(dt) * rand)
             prices.append(St)
+            if len(prices) == N:
+                print(f"Prix actuel: {St}")
+                addition += St
+                print(f"Addition: {addition}")
         simulations[i] = prices
+    moyenne = addition / M
+    print(f"Moyenne des prix: {moyenne}")
 
     simulations_list = [sim.tolist() if isinstance(sim, np.ndarray) else sim for sim in simulations]
-    return simulations_list
+    monte_carlo = {"simulations": simulations_list, "moyenne": moyenne}
+    return monte_carlo
 
 
