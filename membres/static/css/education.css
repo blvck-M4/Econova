@@ -7,6 +7,33 @@ body {
     align-items: center;
 }
 
+a {
+    color: white;
+    text-decoration: underline;
+}
+
+a:hover {
+    color: #ff65c4;
+}
+
+div:target {
+    animation: flashEffect 2s ease-in-out forwards;
+}
+
+@keyframes flashEffect {
+    0% {
+        background-color: rgba(255, 255, 0, 0.6);
+    }
+    100% {
+        background-color: transparent;
+    }
+}
+
+html {
+    scroll-padding-top: 80px;
+    scroll-behavior: smooth;
+}
+
 .container {
     background: #3a3a3a;
     width: 80%;
@@ -311,7 +338,7 @@ main {
     border-radius: 10px;
     max-width: 70%;
     margin-left: 10px;
-    margin-bottom: 10px ;
+    margin-bottom: 10px;
 }
 
 .messageOrdinateur {
@@ -360,4 +387,3 @@ main {
 .btnEnvoyer:hover {
     background-color: #ff4081;
 }
-
