@@ -1,7 +1,7 @@
 import yfinance as yf
 import numpy as np
-actions = []
 def listeActions(symbols):
+    actions = []
     if len(actions) == 0:
         for symbol in symbols:
             try:
@@ -53,21 +53,24 @@ def graphProduit(action):
     return donnees
 
 #Simulation de Monte Carlo
-def lancerSimulations(symbole, nbannes):
+def lancerSimulations(symbole, nb_annees):
     # Récupérer les données depuis yfinance
     ticker = yf.Ticker(symbole)  # Choisis ton symbole boursier
     historique = ticker.history(period="1y")
     prix_cloture = historique["Close"]
 
-    # Calcul des paramètres
+
+
+    # Calcul des rendements logarithmiques
     rendements_log = np.log(prix_cloture / prix_cloture.shift(1)).dropna()
 
+    # Paramètres de la simulation
     S0 = prix_cloture.iloc[-1]             # Prix actuel
     mu = rendements_log.mean() * 252       # Drift (rendement annuel)
     sigma = rendements_log.std() * np.sqrt(252)  # Volatilité annualisée
 
     # Simulation de Monte Carlo
-    N = 252 * nbannes       # Nombre de jours (1 an de bourse)
+    N = 252 * nb_annees       # Nombre de jours (1 an de bourse)
     M = 100        # Nombre de simulations
 
     dt = 1 / N

@@ -30,13 +30,11 @@
                 <img src="{% static 'images/dashboard-icon/profil.svg' %}" alt="Icon de profil">
                 <h2>Mon profil</h2>
             </a>
-            <a href="" class="">
-                <img src="{% static 'images/dashboard-icon/parametre.svg' %}" alt="Icon de parametre">
-                <h2>Paramètres</h2>
-            </a>
-            <a href="" class="">
-                <img src="{% static 'images/dashboard-icon/moon.svg' %}" alt="Icon de mode sombre">
-                <h2>Mode sombre</h2>
+            <a href="/" class="">
+                <img src="{% static 'images/dashboard-icon/home_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg' %}"
+                     style="filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(180deg) brightness(100%) contrast(100%);"
+                     alt="Icon page d'accueil">
+                <h2>Page d'accueil</h2>
             </a>
         </div>
         <div class="menu-profil-section3">
@@ -84,10 +82,18 @@
             <lottie-player src="{% static 'json/dashboard-icon/Arrow left_custom_icon.json' %}" hover></lottie-player>
             <h2>Éducation Financière</h2>
         </a>
-        <a href="" class="onglet-parametres onglet">
-            <lottie-player src="{% static 'json/dashboard-icon/Settings_custom_icon.json' %}" hover></lottie-player>
-            <h2>Paramètres</h2>
-        </a>
+    </section>
+    <section class="page-accueil">
+        <div class="intro-container">
+            <h1>Bienvenue sur le simulateur financier d'EcoNova</h1>
+            <h2>Plongez dans l’univers de la prévision financière avec notre simulateur basé sur la méthode de Monte Carlo, une technique puissante utilisée dans la finance quantitative pour modéliser l’incertitude des marchés. En tenant compte de la volatilité historique, des rendements attendus et de la corrélation entre les actifs, notre outil génère des milliers de trajectoires possibles pour votre portefeuille.</h2>
+            <div>
+                <h2>Sélectionner le nombre d'années dans lequel vous voulez vous projeter:</h2>
+                <input id="nbannees" type="number" name="nbannees" min="1" required>
+                <input id="commencer_simulation" type="submit" value="Lancer la simulation">
+
+            </div>
+        </div>
     </section>
 <!--Simulation-->
     <section class="tableau-bord simulation">
@@ -105,7 +111,7 @@
             </div>
             <!--gain ou perte-->
             <div class="transaction">
-                <h1>Gains ou pertes</h1>
+                <h1>Rendement</h1>
                 <h2 id="rendement">--</h2>
             </div>
         </div>
@@ -147,7 +153,6 @@
             <input class="recherche" type="text" name="recherche" placeholder="Rechercher">
             <div class="type-produit">
                 <div id="bouton-action" onclick="actionClick()"><h2>Actions</h2></div>
-                <div id="bouton-immobilier" onclick="immobilierClick()"><h2>Immobilier</h2></div>
                 <div id="bouton-crypto" onclick="cryptoClick()"><h2>Cryptomonnaie</h2></div>
             </div>
             <div id="produit-info" class="produit-info">
@@ -212,53 +217,21 @@
                     <tr>
                         <th scope="row" class='symbols'><h3>{{ action.symbole }}</h3></th>
                         <td class='noms'><h3>{{ action.nom }}</h3></td>
-                        <td class='prix'><h3>{{ action.prix }} $CAN</h3></td>
+                        <td class='prix'><h3>{{ action.prix }} $</h3></td>
                     </tr>
                 {% endfor %}
               </tbody>
-              <tbody class="tableau-visible" id="tab-immobilier">
-              {% for action in listeActions %}
+              <tbody class="tableau-visible" id="tab-crypto">
+              {% for crypto in listeCryptos %}
                 <tr>
-                    <th scope="row" class='symbols'><h3>{{ action.symbole }}</h3></th>
-                    <td class='noms'><h3>{{ action.nom }}</h3></td>
-                    <td class='prix'><h3>{{ action.prix }} $CAN</h3></td>
+                    <th scope="row" class='symbols'><h3>{{ crypto.symbole }}</h3></th>
+                    <td class='noms'><h3>{{ crypto.nom }}</h3></td>
+                    <td class='prix'><h3>{{ crypto.prix }} $</h3></td>
                 </tr>
               {% endfor %}
 
               </tbody>
-              <tbody class="tableau-visible" id="tab-crypto">
-                <tr>
-                    <th scope="row" class='symbols'><h3>BTC</h3></th>
-                    <td class='noms'><h3>Bitcoin</h3></td>
-                    <td class='prix'><h3>67,250 USD</h3></td>
-                    <td class='statuts'><h3>Non vendu</h3></td>
-                </tr>
-                <tr>
-                    <th scope="row" class='symbols'><h3>ETH</h3></th>
-                    <td class='noms'><h3>Ethereum</h3></td>
-                    <td class='prix'><h3>3,500 USD</h3></td>
-                    <td class='statuts'><h3>Vendu</h3></td>
-                </tr>
-                <tr>
-                    <th scope="row" class='symbols'><h3>BNB</h3></th>
-                    <td class='noms'><h3>Binance Coin</h3></td>
-                    <td class='prix'><h3>415 USD</h3></td>
-                    <td class='statuts'><h3>Non vendu</h3></td>
-                </tr>
-                <tr>
-                    <th scope="row" class='symbols'><h3>XRP</h3></th>
-                    <td class='noms'><h3>Ripple</h3></td>
-                    <td class='prix'><h3>0,62 USD</h3></td>
-                    <td class='statuts'><h3>Vendu</h3></td>
-                </tr>
-                <tr>
-                    <th scope="row" class='symbols'><h3>SOL</h3></th>
-                    <td class='noms'><h3>Solana</h3></td>
-                    <td class='prix'><h3>180 USD</h3></td>
-                    <td class='statuts'><h3>Non vendu</h3></td>
-                </tr>
 
-              </tbody>
             </table>
 
         </div>
@@ -278,6 +251,7 @@
                           <th scope="col"><h2>Produit</h2></th>
                           <th scope="col"><h2>Qté</h2></th>
                           <th scope="col"><h2>Prix</h2></th>
+                          <th scope="col"><h2></h2></th>
                         </tr>
                     </thead>
                     <tbody id="tab-produit">
@@ -297,21 +271,13 @@
     <script>
 
         let crypto;
-        let immobilier;
         let action;
         function actionClick(){
             action=true;
-            immobilier=false;
-            crypto=false;
-        }
-        function immobilierClick(){
-            action=false;
-            immobilier=true;
             crypto=false;
         }
         function cryptoClick(){
             action=false;
-            immobilier=false;
             crypto=true;
         }
 
@@ -350,9 +316,28 @@
                 ],
             {% endfor %}
         };
-        console.log(actionsGraph)
-        console.log("actionsGraph =", actionsGraph);
+        const cryptosGraph = {
+            {% for crypto in cryptosGraph %}
+                "{{ crypto.nom }}": [
+                    {% for data in crypto.donnees %}
+                        { date: "{{ data.date|escapejs }}", prix: "{{ data.prix }}" },
+                    {% endfor %}
+                ],
+            {% endfor %}
+        };
 
+        commencer_simulation = document.getElementById('commencer_simulation')
+        nbannees_input = document.getElementById('nbannees')
+        nbannees = 1
+        commencer_simulation.addEventListener('click', (e)=>{
+            if (!nbannees_input.value) {
+                alert("Veuillez remplir le champ avant de lancer la simulation.");
+                return;
+            }
+            e.preventDefault()
+            document.querySelector('.page-accueil').style.display = 'none'
+            nbannees = nbannees_input.value
+        })
 
         // Ajoute un event listener sur chaque symbole
         symbols.forEach((symbol) => {
@@ -370,6 +355,25 @@
                         produitPrix = '{{ listeAction.prix }}'
                         produitTendance = '{{ listeAction.tendance }}'
                         const donnees = actionsGraph[produitNom];
+                        if (donnees) {
+                            labels.length = 0;
+                            prices.length = 0;
+                            donnees.forEach(data => {
+                                labels.push(data.date);
+                                prices.push(parseFloat(data.prix));
+                            });
+                        }
+                        chargerGraphique(produitNom)
+
+                    }
+                {% endfor %}
+                {% for listeCrypto in  listeCryptos %}
+                    if (symbolText === '{{ listeCrypto.symbole }}'){
+                        produitNom = '{{ listeCrypto.nom }}'
+                        produitRisque = '{{ listeCrypto.risque }}'
+                        produitPrix = '{{ listeCrypto.prix }}'
+                        produitTendance = '{{ listeCrypto.tendance }}'
+                        const donnees = cryptosGraph[produitNom];
                         if (donnees) {
                             labels.length = 0;
                             prices.length = 0;
@@ -409,13 +413,11 @@
                 } else{
                     popupTendance.style.color = 'red'
                 }
-                if (immobilier && !crypto && !action){
-                    popupType.innerText = `Immobilier`;
-                }
-                if (crypto && !immobilier && !action){
+
+                if (crypto && !action){
                     popupType.innerText = `Cryptomonnaie`;
                 }
-                if (action && !crypto && !immobilier){
+                if (action && !crypto){
                     popupType.innerText = `Action`;
                 }
 
@@ -495,7 +497,12 @@
             }
         });
         function chargerGraphique(nom) {
-            const donnees = actionsGraph[nom];
+            let donnees
+            if (crypto){
+                donnees = cryptosGraph[nom];
+            } else if (action){
+                donnees = actionsGraph[nom];
+            }
             if (donnees) {
                 labels.length = 0;
                 prices.length = 0;
@@ -526,7 +533,7 @@
                 <td>${new Date().toLocaleString()}</td>
                 <td>${symbolText}</td>
                 <td>${produitNom}</td>
-                <td>${prix}</td>
+                <td>${prix.toFixed(2)}</td>
                 <td>${statut}</td>
             `;
 
@@ -554,13 +561,9 @@
             if (quantite >= 1){
 
 
-                let cleanBalance = balance.textContent
-                    .trim() // Removes any leading/trailing spaces
-                    .replace('$', '') // Removes the dollar sign
-                    .replace(/\s+/g, ''); // Removes all spaces (including non-breaking ones)
 
                 // Convert cleaned value to a number
-                let total_initial = parseFloat(cleanBalance);
+                let total_initial = cleanBalance();
 
 
                 console.log(balance.innerText)
@@ -627,48 +630,120 @@
                 cellProduit.scope = 'row';
                 const produitText = document.createElement('h3');
                 produitText.textContent = item.nom;
+                produitText.id = item.nom;
                 cellProduit.appendChild(produitText);
 
                 // Cellule Qté
                 const cellQte = document.createElement('td');
                 const qteText = document.createElement('h3');
                 qteText.textContent = item.transactions;
+                qteText.id = item.nom + '_qte';
                 cellQte.appendChild(qteText);
 
                 // Cellule Prix
                 const cellPrix = document.createElement('td');
                 const prixText = document.createElement('h3');
                 prixText.textContent = item.prix;
+                prixText.id = item.nom + '_prix';
                 cellPrix.appendChild(prixText);
+
+                // Cellule Vendre
+                const cellVendre = document.createElement('td');
+                const vendreText = document.createElement('button');
+                vendreText.textContent = 'Vendre';
+                vendreText.id = item.nom + '_vendre';
+                vendreText.addEventListener('click', () => {
+                    boutonVendrePortefeuille(item.transactions, item);
+                });
+                cellVendre.appendChild(vendreText);
 
                 // Ajouter les cellules à la ligne
                 ligne.appendChild(cellProduit);
                 ligne.appendChild(cellQte);
                 ligne.appendChild(cellPrix);
+                ligne.appendChild(cellVendre);
 
                 // Ajouter la ligne au tableau
                 tbody.appendChild(ligne);
             });
         }
+        function cleanBalance(){
+            let cleanBalance = balance.textContent
+                    .trim() // Removes any leading/trailing spaces
+                    .replace('$', '') // Removes the dollar sign
+                    .replace(/\s+/g, ''); // Removes all spaces (including non-breaking ones)
+            return parseFloat(cleanBalance);
+        }
+        function boutonVendrePortefeuille(quantite, item) {
+            nouveau_total = parseFloat(document.getElementById(item.nom + '_prix').innerText)
+            item.prix = nouveau_total;
+            console.log('Nouveau total'+nouveau_total)
+            if (quantite >= 1){
+
+
+                let total_initial = cleanBalance();
+
+
+                if (item.transactions >= quantite){
+                    let calcul = total_initial+nouveau_total
+                    balance.textContent = calcul.toLocaleString('fr-FR') +'$'
+                    addTransaction('Vendu', nouveau_total);
+                    item.transactions -= quantite;
+                    item.prix -= nouveau_total;
+                    document.getElementById(item.nom + '_qte').textContent = item.transactions;
+                    document.getElementById(item.nom + '_prix').textContent = item.prix;
+                    console.log('Prix: '+item.prix)
+                } else{
+                    bouton_transaction.style.backgroundColor = 'red';
+                }
+
+                if (portefeuille.length > 0) {
+                    let transacTotal = 0
+                    portefeuille.forEach(e =>{
+                        transacTotal += e.transactions
+                        console.log(e.transactions)
+                    })
+                    console.log(transacTotal)
+                    let nb_transaction = document.getElementById('nb-transactions');
+                    if (nb_transaction) {
+                        nb_transaction.innerText = transacTotal;
+                    } else {
+                        console.error('Élément nb_transaction est manquant');
+                    }
+
+                }
+            }
+        }
 
 
         //Envoyer les infos du portefeuil au simulateur
         lancerSimulation = document.getElementById('lancer')
+        const lancerH2 = document.querySelector("#lancer h2");
         chargement = document.getElementById('chargement')
+        let redemarrer = false
         lancerSimulation.addEventListener('click', () => {
+            if (redemarrer === true){
+                location.reload()
+                return
+            } else if (portefeuille.length === 0){
+                return;
+            }
             //Afficher le chargement
             chargement.style.display = 'block';
-
+            document.querySelector('.tableau-simulation').style.display = 'none'
             console.log(portefeuille)
             rendement = document.getElementById('rendement')
             rendement_total = 0
+            let montant_avant_sim = 0
             portefeuille.forEach(e =>{
                 console.log(e.nom)
                 var symbole = e.nom.split(' - ')[0]
+                var message = e.nom.split(' - ')[0] + ' - '+nbannees
+                console.log(symbole)
                 $.ajax({
                     type: 'POST',
                     url: '/tableau-bord/lancer_simulation',
-                    data: {message: symbole, csrfmiddlewaretoken: '{{ csrf_token }}'},
+                    data: {message: message, csrfmiddlewaretoken: '{{ csrf_token }}'},
                     success: function (reponse) {
                       console.log("Simulation reçue pour :", symbole);
 
@@ -676,16 +751,16 @@
                       const canvasId = `chart-${symbole}`;
                       const container = document.getElementById('graphes-montecarlo');
                       const chartBlock = document.createElement('div');
-                      chartBlock.innerHTML = `<h3>${symbole}</h3><canvas id="${canvasId}" width="600"
-                      height="300"></canvas>`;
+                      rendement_moyen = reponse.response.moyenne.toFixed(2)*e.transactions - e.prix
+                      chartBlock.innerHTML = `<h3>${symbole} x ${e.transactions}</h3><canvas id="${canvasId}" width="600"
+                      height="300"></canvas><h3>Rendement moyen: ${rendement_moyen} $</h3>`;
                       container.appendChild(chartBlock);
 
                       // Récupérer les simulations
-                        const montecarlo = reponse.response;
                       const data = reponse.response.simulations;
-                      const moyenne = reponse.response.moyenne;
-                      rendement_total += moyenne*e.transactions
-                      console.log(moyenne)
+                      const moyenne1 = reponse.response.moyenne;
+                      rendement_total += moyenne1*e.transactions
+                      console.log(moyenne1)
                       const datasets = data.map((simulation, i) => ({
                         label: `Sim ${i + 1}`,
                         data: simulation,
@@ -708,31 +783,33 @@
                             legend: { display: false }
                           },
                           scales: {
-                            x: { title: { display: true, text: 'Temps' }},
-                            y: { title: { display: true, text: 'Prix simulé' }}
+                            x: { title: { display: true, text: 'Temps (jours)' }},
+                            y: { title: { display: true, text: 'Prix simulé ($)' }}
                           }
                         }
                       });
                       //Cacher le chargement
                       chargement.style.display = 'none';
-                    },
-                    error: function () {
+                      lancerH2.innerText = 'Redémarrer'
+
+                      //Afficher les résultats
+                      montant_avant_sim += e.prix;
+                      rendement_pourcentage = (rendement_total-montant_avant_sim)/montant_avant_sim*100
+                      rendement.textContent = rendement_pourcentage.toFixed(2) + '%'
+                        console.log("Rendement total: "+rendement_total)
+                        console.log('Clean balance: '+cleanBalance())
+                        console.log('Montant avant simulation: '+montant_avant_sim)
+                        console.log('Rendement pourcentage: '+rendement_pourcentage)
+                        console.log('Rendement moyen: '+rendement_moyen)
+                        document.getElementById(e.nom+'_prix').textContent = rendement_total.toFixed(2)
+                    }, error: function () {
                       console.log("Erreur lors de la simulation");
                     }
                 })
-                rendement.textContent = rendement_total.toFixed(2) + ' $'
-                console.log("Rendement total: "+rendement_total)
-                let cleanBalance = balance.textContent
-                    .trim() // Removes any leading/trailing spaces
-                    .replace('$', '') // Removes the dollar sign
-                    .replace(/\s+/g, ''); // Removes all spaces (including non-breaking ones)
-
-                // Convert cleaned value to a number
-                let total_initial = parseFloat(cleanBalance);
-                let calcul = total_initial+rendement_total
-                balance.textContent = calcul.toLocaleString('fr-FR') +'$'
 
             })
+            redemarrer = true
+
         })
     </script>
 

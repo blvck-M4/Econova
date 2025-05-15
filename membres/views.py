@@ -283,7 +283,8 @@ def chatbot(request):
     return render(request, 'tableau-bord/chatbot.html', context)
 def simulation(request):
     utilisateurs = User.objects.all().values()
-    liste_actions = nova_sim.listeActions(nova_ai.listeActions())
+    liste_actions = nova_sim.listeActions(nova_ai.listeProduits('actions'))
+    liste_cryptos = nova_sim.listeActions(nova_ai.listeProduits('cryptomonnaies'))
     graph_actions = []
     for action in liste_actions:
         liste_donnees = nova_sim.graphProduit(action)
@@ -291,10 +292,21 @@ def simulation(request):
             "nom": action['nom'],  # ou action.symbole si tu préfères
             "donnees": liste_donnees
         })
+    graph_cryptos = []
+    for crypto in liste_cryptos:
+        liste_donnees = nova_sim.graphProduit(crypto)
+        graph_cryptos.append({
+            "nom": crypto['nom'],  # ou action.symbole si tu préfères
+            "donnees": liste_donnees
+        })
+
     context = {
         'utilisateurs': utilisateurs,
         'listeActions': liste_actions,
+        'listeCryptos': liste_cryptos,
         'actionsGraph': graph_actions,
+        'cryptosGraph': graph_cryptos,
+
     }
     return render(request, 'tableau-bord/simulation.html', context)
 
@@ -335,6 +347,7 @@ def reponseBot(request):
     else:
         utilisateur = 'anonyme'
 
+
     reponse = nova_ai.reponseBot(request, utilisateur)
     return JsonResponse({"response": reponse})
 
@@ -342,10 +355,11 @@ import numpy as np
 @csrf_exempt
 def lancer_simulation(request):
     if request.method == "POST":
-        symbole = request.POST.get('message')
+        symbole = request.POST.get('message').split(' - ')[0]
+        nbannees = int(request.POST.get('message').split(' - ')[1])
 
         # Simulation qui retourne un tableau numpy
-        simulations = nova_sim.lancerSimulations(symbole, 5)
+        simulations = nova_sim.lancerSimulations(symbole, nbannees)
 
     return JsonResponse({"response": simulations})
 def chart_view(request):

@@ -1,6 +1,88 @@
 body{
     background-color: white;
 }
+
+/* Style général de la page */
+.page-accueil {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    padding-left: 300px;
+    z-index: 5;
+    background-color: rgba(0, 0, 0, 0.56);
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+/* Conteneur principal de la page d'introduction */
+.intro-container {
+    background-color: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    border-radius: 16px;
+    padding: 40px;
+    max-width: 800px;
+    text-align: center;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    animation: fadeIn 1s ease-in-out;
+}
+
+/* Titres */
+.intro-container h1 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    color: #ffffff;
+}
+
+.intro-container h2 {
+    font-size: 1.1em;
+    line-height: 1.6;
+    font-weight: normal;
+    color: #dddddd;
+    margin-bottom: 30px;
+}
+
+/* Formulaire */
+.intro-container input[type="number"] {
+    padding: 10px;
+    font-size: 1em;
+    border: none;
+    border-radius: 8px;
+    width: 100px;
+    margin-right: 10px;
+}
+
+.intro-container input[type="submit"] {
+    padding: 10px 20px;
+    font-size: 1em;
+    border: none;
+    background-color: #FE66C4;
+    color: #fff;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.intro-container input[type="submit"]:hover {
+    background-color: #ff67c3;
+}
+
+/* Animation */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+
+
+
+
+
+
 .simulation{
     display: flex;
     flex-direction: column;
@@ -45,6 +127,13 @@ body{
     align-items: center;
     background-color: #bababa;
     cursor: pointer;
+    #lancer{
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
     h2{
         color: white;
         text-transform: uppercase;
