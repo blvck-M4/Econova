@@ -287,7 +287,6 @@ main {
     transition: background-color 0.3s;
     position: relative;
     animation: pulse 2s infinite;
-    left: 82%;
 }
 
 .btnCommencer:hover {

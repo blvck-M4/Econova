@@ -12,6 +12,11 @@
 
     <link rel="icon" href="images/Logo EcoNova.png">
 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.12.2/lottie.min.js"></script>
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="{% static 'css/education.css' %}">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
@@ -794,6 +799,7 @@
         chatBox.style.display = 'flex';
 
         setTimeout(function () {
+            envoyerAI('Bonjour')
             envoyerMessage("Salut, c'est Patate!", 'ordinateur');
         }, 500);
     }
@@ -841,10 +847,18 @@
         document.getElementById('saisieMessage').value = ""
 
         /*Envoyer la réponse du bot dans la zone de chat*/
+        console.log(message_utilisateur)
+        message_element_bot.innerHTML = {{ salutation_bot }}
+        chatBox.appendChild(message_element_bot)
+        envoyerAI(message_utilisateur)
+        scrollToBottom()
+
+    }
+    function envoyerAI(message) {
         $.ajax({
             type: 'POST',
             url: 'qstProfil',
-            data: {message: message_utilisateur, csrfmiddlewaretoken: '{{ csrf_token }}'},
+            data: {message: message, csrfmiddlewaretoken: '{{ csrf_token }}'},
             success: function (reponse) {
                 message_element_bot.innerHTML = reponse.response
                 chatBox.appendChild(message_element_bot)
@@ -853,8 +867,6 @@
                 chatBox.appendChild(message_element_erreur)
             }
         })
-        scrollToBottom()
-
     }
 
     //fonctionne pas
