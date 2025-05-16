@@ -88,8 +88,8 @@
             <h1>Bienvenue sur le simulateur financier d'EcoNova</h1>
             <h2>Plongez dans l’univers de la prévision financière avec notre simulateur basé sur la méthode de Monte Carlo, une technique puissante utilisée dans la finance quantitative pour modéliser l’incertitude des marchés. En tenant compte de la volatilité historique, des rendements attendus et de la corrélation entre les actifs, notre outil génère des milliers de trajectoires possibles pour votre portefeuille.</h2>
             <div>
-                <h2>Sélectionner le nombre d'années dans lequel vous voulez vous projeter:</h2>
-                <input id="nbannees" type="number" name="nbannees" min="1" required>
+                <h2>Veuillez sélectionner le nombre d’années sur lequel vous souhaitez projeter votre simulation :</h2>
+                <input id="nbannees" type="number" name="nbannees" min="1" placeholder="Choisir" required>
                 <input id="commencer_simulation" type="submit" value="Lancer la simulation">
 
             </div>
@@ -526,7 +526,7 @@
 
         // Fonction pour ajouter une transaction
         let transactionHistorique = document.getElementById('transaction-history');
-        function addTransaction(statut, prix) {
+        function addTransaction(statut, prix, symbolText, produitNom) {
             let row = document.createElement('tr');
 
             row.innerHTML = `
@@ -573,10 +573,10 @@
                     console.log('total initial: '+total_initial + ' ; Total: '+total)
                     balance.textContent = calcul.toLocaleString('fr-FR') +'$'
                     produit_Qte.value=0
-                    addTransaction('Acheter', total);
+                    addTransaction('Acheter', total, symbolText, produitNom);
                     if (!existingEntry) {
                         // Ajouter un nouvel objet si non trouvé
-                        portefeuille.push({ nom: popupTitle.innerText, transactions: quantite, prix: total });
+                        portefeuille.push({ nom: popupTitle.innerText, transactions: quantite, prix: total.toFixed(2) });
                     } else {
                         // Incrémenter les transactions si trouvé
                         existingEntry.transactions += quantite;
@@ -589,7 +589,7 @@
                         calcul = total_initial+total
                         balance.textContent = calcul.toLocaleString('fr-FR') +'$'
                         produit_Qte.value=0
-                        addTransaction('Vendu', total);
+                        addTransaction('Vendu', total, symbolText, produitNom);
                         existingEntry.transactions -= quantite;
                         existingEntry.prix -= total;
                     } else{
@@ -687,7 +687,7 @@
                 if (item.transactions >= quantite){
                     let calcul = total_initial+nouveau_total
                     balance.textContent = calcul.toLocaleString('fr-FR') +'$'
-                    addTransaction('Vendu', nouveau_total);
+                    addTransaction('Vendu', nouveau_total, item.nom, item.nom);
                     item.transactions -= quantite;
                     item.prix -= nouveau_total;
                     document.getElementById(item.nom + '_qte').textContent = item.transactions;
@@ -753,7 +753,7 @@
                       const chartBlock = document.createElement('div');
                       rendement_moyen = reponse.response.moyenne.toFixed(2)*e.transactions - e.prix
                       chartBlock.innerHTML = `<h3>${symbole} x ${e.transactions}</h3><canvas id="${canvasId}" width="600"
-                      height="300"></canvas><h3>Rendement moyen: ${rendement_moyen} $</h3>`;
+                      height="300"></canvas><h3>Rendement moyen: ${rendement_moyen.toFixed(2)} $</h3>`;
                       container.appendChild(chartBlock);
 
                       // Récupérer les simulations
@@ -801,7 +801,7 @@
                         console.log('Montant avant simulation: '+montant_avant_sim)
                         console.log('Rendement pourcentage: '+rendement_pourcentage)
                         console.log('Rendement moyen: '+rendement_moyen)
-                        document.getElementById(e.nom+'_prix').textContent = rendement_total.toFixed(2)
+                        document.getElementById(e.nom+'_prix').textContent = (moyenne1*e.transactions).toFixed(2)
                     }, error: function () {
                       console.log("Erreur lors de la simulation");
                     }
