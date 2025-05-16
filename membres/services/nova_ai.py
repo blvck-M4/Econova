@@ -202,7 +202,7 @@ def simulationAI():
 
 
 def qstProfil(request, utilisateur):
-    historique = request.session.get('historique', [])
+    historique = request.session.get('historique2', [])
     if request.method == "POST":
         user_message = request.POST.get("message")
         historique.append({"role": "user", "text": user_message})
@@ -241,6 +241,6 @@ def qstProfil(request, utilisateur):
         reponse_finale = reponse_filtre.replace('*', ' ')
 
         historique.append({"role": "model", "text": reponse})
-        request.session['historique'] = historique
+        request.session['historique2'] = historique
 
         return reponse_finale
