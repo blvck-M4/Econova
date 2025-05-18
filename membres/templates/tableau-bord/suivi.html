@@ -173,38 +173,33 @@
 
             <div class="barre-separation"> </div>
 
-            <div class="interets">
-                <h2 class="sous-titre"> Suivi d'un investissement à taux d'intérêts composés </h2>
+            <div class="revenus">
+                <h2 class="sous-titre"> Calcul de vos revenus </h2>
 
 
                 <label>
-                    <h4 class="sous-sous-titre" > Investissement Initial </h4>
-                    <input type="text" name="investissement-initial" id="investInitial" placeholder="">
+                    <h4 class="sous-sous-titre" > Revenus d'emploi (ou actifs) </h4>
+                    <input type="text" name="hebdo" id="hebdo" placeholder="">
                 </label>
 
                 <label>
-                    <h4 class="sous-sous-titre" > Placements Mensuels </h4>
-                    <input type="text" name="placement-mensuel" id="versements" placeholder="">
+                    <h4 class="sous-sous-titre" > Revenus d'entreprise (si appliquable) </h4>
+                    <input type="text" name="entreprise" id="entreprise" placeholder="">
                 </label>
 
                 <label>
-                    <h4 class="sous-sous-titre" > Taux d'intérêts en % </h4>
-                    <input type="text" name="taux-interet" id="interets" placeholder="">
+                    <h4 class="sous-sous-titre" > Revenu de placement (ex: dividendes) </h4>
+                    <input type="text" name="placement" id="placement" placeholder="">
                 </label>
 
-                <div class="type-interet">
-                    <button id="mensuel"> Mensuel </button>
-                    <button id="annuel"> Annuel </button>
-                </div>
-
                 <label>
-                    <h4 class="sous-sous-titre" > Durée (Années) </h4>
-                    <input type="text" name="duree" id="duree" placeholder="">
+                    <h4 class="sous-sous-titre" > Revenus non récurrents (Héritage, Lotterie, etc) </h4>
+                    <input type="text" name="paye-autre" id="payeAutre" placeholder="">
                 </label>
 
                 <div class="resultat-investissement">
-                    <h3> <strong> Voici la valeur finale de votre investissement : </strong> </h3>
-                    <p id="investissement-valeur"> 0 $</p>
+                    <h3> <strong> Votre revenu est de : </strong> </h3>
+                    <p id="revenuTotal"> 0 $ </p>
                 </div>
             </div>
         </div>
@@ -221,7 +216,9 @@
     <div class="séparation-invest">
     </div>
 
-    <div class="suggestions">
+    <div class="suggestion">
+
+        <div class="suggestions-tout">
 
         <div class="entete">
             <h2 class="sous-titre">
@@ -265,7 +262,48 @@
             <img class="img-compte" src="{% static 'images/Wealthsimple_2015_Icon.svg' %}" alt="Icon de WealthSimple">
 
         </div>
+
+        </div>
+
+        <div class="barre-separation-suggestion"></div>
+
+        <div class="interets">
+                <h2 class="sous-titre"> Suivi d'un investissement à taux d'intérêts composés </h2>
+
+
+                <label>
+                    <h4 class="sous-sous-titre" > Investissement Initial </h4>
+                    <input type="text" name="investissement-initial" id="investInitial" placeholder="">
+                </label>
+
+                <label>
+                    <h4 class="sous-sous-titre" > Placements Mensuels </h4>
+                    <input type="text" name="placement-mensuel" id="versements" placeholder="">
+                </label>
+
+                <label>
+                    <h4 class="sous-sous-titre" > Taux d'intérêts en % </h4>
+                    <input type="text" name="taux-interet" id="interets" placeholder="">
+                </label>
+
+                <div class="type-interet">
+                    <button id="mensuel"> Mensuel </button>
+                    <button id="annuel"> Annuel </button>
+                </div>
+
+                <label>
+                    <h4 class="sous-sous-titre" > Durée (Années) </h4>
+                    <input type="text" name="duree" id="duree" placeholder="">
+                </label>
+
+                <div class="resultat-investissement">
+                    <h3> <strong> Voici la valeur finale de votre investissement : </strong> </h3>
+                    <p id="investissement-valeur"> 0 $</p>
+                </div>
+            </div>
     </div>
+
+
 
   </div>
 
@@ -377,6 +415,37 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById("mensuel").addEventListener("click", calculerCapital)
 
         document.getElementById("annuel").addEventListener("click", calculerCapital)
+
+    })
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+
+        function calculerCapital() {
+
+            const hebdo = parseFloat(document.getElementById("hebdo").value) || 0;
+            const entreprise = parseFloat(document.getElementById("entreprise").value) || 0;
+            const placement = parseFloat(document.getElementById("placement").value) || 0;
+            const autre = parseFloat(document.getElementById("payeAutre").value) || 0;
+
+            console.log("hebdo = " + hebdo + " entreprise = " + entreprise + " placement = " + placement + " autre = " + autre);
+
+            let revenu = 0;
+
+        revenu = hebdo + entreprise + placement + autre;
+
+        document.getElementById("revenuTotal").textContent = revenu.toFixed(2) + " $";
+
+    }
+
+        document.getElementById("hebdo").addEventListener("input", calculerCapital)
+
+        document.getElementById("entreprise").addEventListener("input", calculerCapital)
+
+        document.getElementById("placement").addEventListener("input", calculerCapital)
+
+        document.getElementById("payeAutre").addEventListener("input", calculerCapital)
 
     })
 </script>

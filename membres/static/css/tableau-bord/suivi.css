@@ -4,7 +4,7 @@ body {
 }
 
 .corp {
-    height: 1500px;
+    height: 1750px;
 }
 
 .suivi-sections {
@@ -161,6 +161,20 @@ nav:hover h1 {
     flex-direction: column;
 }
 
+.revenus {
+    background-color: #2C2C2C;
+    color: #FFC0CB;
+    text-align: center;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(255, 177, 205, 0.67);
+    width: 500px;
+    height: 550px;
+    gap: 30px;
+    display: flex;
+    flex-direction: column;
+}
+
 .type-interet {
     display: flex;
     margin-top: 10px;
@@ -199,12 +213,23 @@ nav:hover h1 {
     margin-right: 50px;
 }
 
+.suggestion {
+    display: flex;
+    gap: 50px; /* Réduit l’espace entre Actifs et Passifs */
+    margin-top: 50px;
+}
+
+.suggestions-tout {
+    width: 550px;
+}
+
 .entete {
     display: flex;
     flex-direction: column;
     gap: 30px;
     margin-top: 40px;
-    margin-left: 400px;
+    margin-left: 350px;
+    width: 100%;
 }
 
 .suggestion-compte {
@@ -214,9 +239,9 @@ nav:hover h1 {
     color: #FFC0CB;
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(255, 177, 205, 0.67);
-    width: 1200px;
-    height: 250px;
-    gap: 100px;
+    width: 100%;
+    height: 325px;
+    gap: 45px;
     margin-top: 30px;
     margin-left: 350px;
 }
@@ -225,7 +250,7 @@ nav:hover h1 {
     display: flex;
     flex-direction: column;
     gap: 15px;
-    width: 750px;
+    width: 60%;
     height: 200px;
     margin-bottom: 10px;
     margin-left: 20px;
@@ -239,4 +264,13 @@ nav:hover h1 {
     height: 200px;
     margin-top: 25px;
     margin-bottom: 25px;
+    margin-right: 40px;
+}
+
+.barre-separation-suggestion {
+    width: 2px;
+    height: 500px;
+    background-color: #FFC0CB;
+    margin-left: 400px;
+    margin-right: 50px;
 }
