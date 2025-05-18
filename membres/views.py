@@ -341,11 +341,13 @@ def supprimer(request):
 
 @csrf_exempt
 def reponseBot(request):
-    if user_logged_in:
+    if request.user.is_authenticated:
         user = request.user
         utilisateur = user.username
     else:
-        utilisateur = 'anonyme'
+        utilisateur = "anonyme"
+
+    print('Utilisateur 1: '+utilisateur)
 
 
     reponse = nova_ai.reponseBot(request, utilisateur)
@@ -369,7 +371,7 @@ def chart_view(request):
     except Membre.DoesNotExist:
         membre = None
 
-    context = {}  # Assurez-vous que le contexte est toujours défini.
+    context = {}
 
     # Vérifier si l'utilisateur veut effacer les revenus
     if request.method == "GET" and request.GET.get("clear_revenue") == "true" and membre is not None:
@@ -420,7 +422,7 @@ def chart_view(request):
         "values": values,
     }
 
-    context['chart_data'] = json.dumps(chart_data)  # Toujours définir context['chart_data']
+    context['chart_data'] = json.dumps(chart_data)
     return render(request, 'suivi-financier.html', context)
 
 
