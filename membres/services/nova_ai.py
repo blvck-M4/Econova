@@ -1,4 +1,3 @@
-import datetime
 import json
 
 from django.conf import settings
@@ -8,9 +7,12 @@ import os
 from google import genai
 from google.genai import types
 
+from membres.models import Membre
+
 client = genai.Client(
             api_key=settings.GEMINI_API_KEY,
         )
+
 model = "gemini-2.0-flash"
 generate_content_config = types.GenerateContentConfig(
     temperature=1,
@@ -44,6 +46,19 @@ generate_content_config = types.GenerateContentConfig(
 
 def reponseBot (request, utilisateur):
     historique = request.session.get('historique', [])
+    utilisateur_infos = ''
+    if utilisateur != 'anonyme':
+        membre = Membre.objects.get(utilisateur=utilisateur)
+        fields = membre._meta.get_fields()
+        membre_str = ""
+
+        for field in fields:
+            if hasattr(membre, field.name):
+                value = getattr(membre, field.name)
+                membre_str += f"{field.name}: {value}, "
+        utilisateur_infos = membre_str.rstrip(', ')
+
+
     if request.method == "POST":
         user_message = request.POST.get("message")
         historique.append({"role": "user", "text": user_message})
@@ -56,7 +71,8 @@ def reponseBot (request, utilisateur):
         generate_content_config.system_instruction = [
             types.Part.from_text(text="""Tu es NOVA, un conseiller financier virtuel intelligent conçu pour 
                                 accompagner """ + utilisateur + """, un utilisateur d’EcoNova dans la gestion et l’optimisation de ses 
-                                finances personnelles. Propulsé par l’intelligence artificielle, NOVA analyse les habitudes financières des utilisateurs et 
+                                finances personnelles. Voici ses informations: """ + utilisateur_infos + """. 
+                                Propulsé par l’intelligence artificielle, NOVA analyse les habitudes financières des utilisateurs et 
                                 leur propose des stratégies adaptées à leur profil et à leurs objectifs d’investissement. Ne donne 
                                 pas des réponses trop longues (plus de 500 mots) à part si c'est nécessaire. Quand une 
                                 question ne fait pas de sens répond avec de l'humour. Répond avec des points numérotés quand c'est 
@@ -111,29 +127,41 @@ def conseilActions(stock_data, profil):
 
 
 liste_actions = []
-def listeActions():
+liste_cryptos = []
+def listeProduits(produit):
+    if produit == 'actions':
+        format = 'AAPL'
+    elif produit == 'cryptomonnaies':
+        format = 'BTC-USD'
+    else:
+        format = ''
     contents = [
         types.Content(
             role="user",
             parts=[
-                types.Part.from_text(text="""Génère une liste de 10 actions sous la forme {symbole,nom,prix,
-                niveau de 
-                risque,tendance; ...}"""),
+                types.Part.from_text(text="""Génère le symbol du top 10 des """+produit+""" sous la forme {
+                """+format+""",
+                ...}"""),
             ],
         ),
 
     ]
     generate_content_config.system_instruction = [
-        types.Part.from_text(text="""Tu es un générateur de liste d'actions en français. Tu n'écris rien d'autre que la 
-        liste 
-            et tu donnes les prix en $CAN. Sépare les liste par ; et l'intérieur des listes par une virgule sans 
-            utilisé rien d'autre pour que je puisse réutiliser la liste facilement. Aussi met la tendance sous ce 
-            format: -2.39 (-1.44 %) les six derniers mois. N'inverse pas les noms et les 
-            symboles des actions. Les symboles sont générralement moins de 4 lettres."""),
+        types.Part.from_text(text="""Tu es un générateur de liste de """+produit+""" en français. Tu n'écris rien 
+        d'autre que la 
+        liste. Sépare la liste par une virgule sans 
+            utilisé rien d'autre pour que je puisse réutiliser la liste facilement."""),
     ]
     reponse = ""
-    global liste_actions
-    if len(liste_actions) == 0:
+    if produit == 'actions':
+        global liste_actions
+        liste_produits = liste_actions
+    elif produit == 'cryptomonnaies':
+        global liste_cryptos
+        liste_produits = liste_cryptos
+    else:
+        liste_produits = []
+    if len(liste_produits) == 0:
         for chunk in client.models.generate_content_stream(
                 model=model,
                 contents=contents,
@@ -199,6 +227,8 @@ def graphSimulation(action):
         donnees.append({"date": date, "prix": prix})
     return donnees
 
+    print(liste_produits)
+    return liste_produits
 
 def simulationAI():
 

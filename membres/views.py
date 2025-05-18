@@ -9,7 +9,6 @@ from django.contrib.auth.models import User, auth
 from django.contrib import messages
 from django.http import HttpResponse
 from django.template import loader
-from idna.uts46data import uts46data
 
 from .forms import RevenueMensuelleForms
 from .models import Membre, RevenueMensuelle
@@ -19,7 +18,7 @@ conditions_termes = False
 
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
-from .services import nova_ai, bourse_data
+from .services import nova_ai, bourse_data, simulation as nova_sim
 
 
 def membres(request):
@@ -32,7 +31,7 @@ def membres(request):
     return HttpResponse(template.render(context, request))
 
 def rejoindre(request):
-
+    membres = Membre.objects.all().values()
     if request.method == 'POST':
         prenom = request.POST['prenom']
         nom_de_famille = request.POST['nom_de_famille']
@@ -52,6 +51,9 @@ def rejoindre(request):
                     user = User.objects.create_user(username=utilisateur, password=mot_de_passe, email=email,
                                                     first_name=prenom, last_name=nom_de_famille)
                     user.save()
+                    membre = Membre(utilisateur=utilisateur, prenom=prenom, nom_de_famille=nom_de_famille,
+                                    email=email, mot_de_passe=mot_de_passe, date_creation=datetime.now())
+                    membre.save()
                     if user is not None:
                         auth.login(request, user)
                         return redirect('questionnaire')
@@ -63,8 +65,8 @@ def rejoindre(request):
             messages.info(request, "Mot de passe trop court")
             return redirect('rejoindre')
 
-
     return render(request, 'rejoindre.html')
+
 
 def connexion(request):
     if request.method == 'POST':
@@ -85,6 +87,7 @@ def connexion(request):
 
     return render(request, 'connexion.html')
 
+
 def questionnaire(request):
     membres = Membre.objects.all()
     utilisateurs = User.objects.all().values()
@@ -92,6 +95,7 @@ def questionnaire(request):
     context = {'utilisateurs': utilisateurs}
 
     global conditions_termes
+
     if request.method == 'POST':
 
         date_naissance = request.POST.get('dateNaissance')
@@ -193,15 +197,16 @@ def questionnaire(request):
                 conditions_termes = True
                 return redirect('tableau-bord/page-principale')
         else:
-            conditions_termes = False;
+            conditions_termes = False
             return redirect('questionnaire')
+
     return HttpResponse(template.render(context, request))
 
 def conditions(request):
-    urilisateurs = User.objects.all().values()
+    utilisateurs = User.objects.all().values()
     template = loader.get_template('conditions.html')
     context = {
-        'urilisateurs': urilisateurs,
+        'utilisateurs': utilisateurs,
     }
     return HttpResponse(template.render(context, request))
 
@@ -211,7 +216,7 @@ def page_principale(request):
     members = Membre.objects.all()
     context = {
         'utilisateurs': utilisateurs,
-        'members': members,
+        'membres': members,
     }
 
     return render(request, 'tableau-bord/page-principale.html',context)
@@ -219,22 +224,30 @@ def page_principale(request):
 
 def profil(request):
     utilisateurs = User.objects.all().values()
-    members = Membre.objects.all()
-    context = {
-        'utilisateurs': utilisateurs,
-        'members': members
-    }
+    membres = Membre.objects.all()
 
+    user = request.user
+    try:
+        membre = membres.get(utilisateur=user.username)
+    except Membre.DoesNotExist:
+        membre = None  # Handle case where the user is not found in Membre
+
+    datenaissance = membre.date_de_naissance
+    genre = membre.sexe
     if request.method == 'POST':
         user = request.user
         utilisateur = user.username
-        for member in members:
+        for member in membres:
             if member.utilisateur == user.username:
                 if request.POST['prenom'] != '' and request.POST['nom_de_famille'] != '':
                     user.first_name = request.POST['prenom']
                     user.last_name = request.POST['nom_de_famille']
                 elif request.POST['email'] != '' and request.POST['email'] != user.email:
                     user.email = request.POST['email']
+                elif request.POST['sexe'] != '' and request.POST['sexe'] != genre:
+                    member.sexe = request.POST['sexe']
+                elif request.POST['date_naissance'] != '' and request.POST['date_naissance'] != datenaissance:
+                    member.date_de_naissance = request.POST['date_naissance']
                 elif request.POST['utilisateur'] != '' and request.POST['utilisateur'] != user.username:
                     user.username = request.POST['utilisateur']
                     member.utilisateur = request.POST['utilisateur']
@@ -250,9 +263,16 @@ def profil(request):
                         return redirect('tableau-bord/profil')
                 user.save()
                 member.save()
+                print(member.date_de_naissance)
         return redirect('profil')
+    context = {
+        'utilisateurs': utilisateurs,
+        'membres': membres,
+        'datenaissance': membre.date_de_naissance,
+        'statut': membre.statut_marital,
+        'genre': membre.sexe,
 
-
+    }
     return render(request, 'tableau-bord/profil.html', context)
 
 def chatbot(request):
@@ -263,18 +283,30 @@ def chatbot(request):
     return render(request, 'tableau-bord/chatbot.html', context)
 def simulation(request):
     utilisateurs = User.objects.all().values()
-    liste_actions = nova_ai.listeActions()
+    liste_actions = nova_sim.listeActions(nova_ai.listeProduits('actions'))
+    liste_cryptos = nova_sim.listeActions(nova_ai.listeProduits('cryptomonnaies'))
     graph_actions = []
     for action in liste_actions:
-        liste_donnees = nova_ai.graphSimulation(action)
+        liste_donnees = nova_sim.graphProduit(action)
         graph_actions.append({
             "nom": action['nom'],  # ou action.symbole si tu préfères
             "donnees": liste_donnees
         })
+    graph_cryptos = []
+    for crypto in liste_cryptos:
+        liste_donnees = nova_sim.graphProduit(crypto)
+        graph_cryptos.append({
+            "nom": crypto['nom'],  # ou action.symbole si tu préfères
+            "donnees": liste_donnees
+        })
+
     context = {
         'utilisateurs': utilisateurs,
         'listeActions': liste_actions,
+        'listeCryptos': liste_cryptos,
         'actionsGraph': graph_actions,
+        'cryptosGraph': graph_cryptos,
+
     }
     return render(request, 'tableau-bord/simulation.html', context)
 
@@ -308,7 +340,7 @@ def supprimer(request):
         if membre.utilisateur == request.user.username:
             membre.delete()
     auth.get_user(request).delete()
-    return redirect('members')
+    return redirect('membres')
 
 @csrf_exempt
 def reponseBot(request):
@@ -324,27 +356,32 @@ def reponseBot(request):
 def chart_view(request):
     # Récupérer l'instance du membre correspondant en utilisant le nom d'utilisateur.
     try:
-        member = Membre.objects.get(utilisateur=request.user.username)
+        membre = Membre.objects.get(utilisateur=request.user.username)
     except Membre.DoesNotExist:
-        member = None
+        membre = None
 
     context = {}  # Assurez-vous que le contexte est toujours défini.
 
+    # Vérifier si l'utilisateur veut effacer les revenus
+    if request.method == "GET" and request.GET.get("clear_revenue") == "true" and membre is not None:
+        RevenueMensuelle.objects.filter(membre=membre).delete()
+        return redirect('suivi-financier')  # Redirection pour rafraîchir la page
+
     if request.method == "POST":
         form = RevenueMensuelleForms(request.POST)
-        if form.is_valid() and member is not None:
+        if form.is_valid() and membre is not None:
             # Extraire les données nettoyées
-            month = form.cleaned_data['month']
+            mois = form.cleaned_data['month']
             revenue = form.cleaned_data['revenue']
 
             # Mettre à jour ou créer l'enregistrement MonthlyRevenue pour le mois et le membre donnés.
             RevenueMensuelle.objects.update_or_create(
-                member=member,
-                month=month,
+                membre=membre,
+                month=mois,
                 defaults={'revenue': revenue}
             )
             # Rediriger pour éviter la resoumission lors du rafraîchissement.
-            return redirect('revenue_dashboard')
+            return redirect('suivi-financier')
         else:
             # Si le formulaire n'est pas valide, passez le formulaire au contexte.
             context['form'] = form
@@ -353,17 +390,21 @@ def chart_view(request):
         context['form'] = form
 
     # Filtrer les entrées de revenus pour le membre actuel (si elles existent)
-    revenue_entries = RevenueMensuelle.objects.filter(member=member) if member else []
+    revenue_ajouter = RevenueMensuelle.objects.filter(membre=membre) if membre else []
 
     # Agréger les revenus par mois
-    revenue_by_month = defaultdict(float)
-    for entry in revenue_entries:
-        month_str = entry.month.strftime('%Y-%m')
-        revenue_by_month[month_str] += float(entry.revenue)
+    revenue_par_mois = defaultdict(float)
+    for ajout in revenue_ajouter:
+        mois_str = ajout.month.strftime('%Y-%m')
+        revenue_par_mois[mois_str] += float(ajout.revenue)
 
-    sorted_months = sorted(revenue_by_month.keys())
-    labels = sorted_months
-    values = [revenue_by_month[month] for month in sorted_months]
+    sorted_months = sorted(revenue_par_mois.keys())
+    # If there are no revenue entries, ensure we have at least one entry with 0 value
+    if not revenue_par_mois:
+        revenue_par_mois['No Data'] = 0  # Adding a default label and value for empty data
+    mois_trier = sorted(revenue_par_mois.keys())
+    labels = mois_trier
+    values = [revenue_par_mois[month] for month in mois_trier]
 
     chart_data = {
         "labels": labels,
@@ -371,7 +412,15 @@ def chart_view(request):
     }
 
     context['chart_data'] = json.dumps(chart_data)  # Toujours définir context['chart_data']
-    return render(request, 'chart.html', context)
+    return render(request, 'suivi-financier.html', context)
+
+
+def education(request):
+    utilisateurs = User.objects.all().values()
+    context = {
+        'utilisateurs': utilisateurs,
+    }
+    return render(request, 'education.html', context)
 
 def suivi(request):
     utilisateurs = User.objects.all().values()
