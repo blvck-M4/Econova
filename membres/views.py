@@ -9,6 +9,7 @@ from django.contrib.auth.models import User, auth
 from django.contrib import messages
 from django.http import HttpResponse
 from django.template import loader
+from idna.uts46data import uts46data
 
 from .forms import RevenueMensuelleForms
 from .models import Membre, RevenueMensuelle
@@ -31,6 +32,7 @@ def membres(request):
     return HttpResponse(template.render(context, request))
 
 def rejoindre(request):
+
     if request.method == 'POST':
         prenom = request.POST['prenom']
         nom_de_famille = request.POST['nom_de_famille']
@@ -61,8 +63,8 @@ def rejoindre(request):
             messages.info(request, "Mot de passe trop court")
             return redirect('rejoindre')
 
-    return render(request, 'rejoindre.html')
 
+    return render(request, 'rejoindre.html')
 
 def connexion(request):
     if request.method == 'POST':
@@ -83,7 +85,6 @@ def connexion(request):
 
     return render(request, 'connexion.html')
 
-
 def questionnaire(request):
     membres = Membre.objects.all()
     utilisateurs = User.objects.all().values()
@@ -91,7 +92,6 @@ def questionnaire(request):
     context = {'utilisateurs': utilisateurs}
 
     global conditions_termes
-
     if request.method == 'POST':
 
         date_naissance = request.POST.get('dateNaissance')
@@ -193,16 +193,15 @@ def questionnaire(request):
                 conditions_termes = True
                 return redirect('tableau-bord/page-principale')
         else:
-            conditions_termes = False
+            conditions_termes = False;
             return redirect('questionnaire')
-
     return HttpResponse(template.render(context, request))
 
 def conditions(request):
-    utilisateurs = User.objects.all().values()
+    urilisateurs = User.objects.all().values()
     template = loader.get_template('conditions.html')
     context = {
-        'utilisateurs': utilisateurs,
+        'urilisateurs': urilisateurs,
     }
     return HttpResponse(template.render(context, request))
 
@@ -212,7 +211,7 @@ def page_principale(request):
     members = Membre.objects.all()
     context = {
         'utilisateurs': utilisateurs,
-        'membres': members,
+        'members': members,
     }
 
     return render(request, 'tableau-bord/page-principale.html',context)
@@ -223,7 +222,7 @@ def profil(request):
     members = Membre.objects.all()
     context = {
         'utilisateurs': utilisateurs,
-        'membres': members
+        'members': members
     }
 
     if request.method == 'POST':
@@ -252,6 +251,7 @@ def profil(request):
                 user.save()
                 member.save()
         return redirect('profil')
+
 
     return render(request, 'tableau-bord/profil.html', context)
 
@@ -308,7 +308,7 @@ def supprimer(request):
         if membre.utilisateur == request.user.username:
             membre.delete()
     auth.get_user(request).delete()
-    return redirect('membres')
+    return redirect('members')
 
 @csrf_exempt
 def reponseBot(request):
@@ -324,34 +324,27 @@ def reponseBot(request):
 def chart_view(request):
     # Récupérer l'instance du membre correspondant en utilisant le nom d'utilisateur.
     try:
-        membre = Membre.objects.get(utilisateur=request.user.username)
+        member = Membre.objects.get(utilisateur=request.user.username)
     except Membre.DoesNotExist:
-        membre = None
-
-    conseil = nova_ai.get_conseil(membre)
+        member = None
 
     context = {}  # Assurez-vous que le contexte est toujours défini.
 
-    # Vérifier si l'utilisateur veut effacer les revenus
-    if request.method == "GET" and request.GET.get("clear_revenue") == "true" and membre is not None:
-        RevenueMensuelle.objects.filter(membre=membre).delete()
-        return redirect('suivi-financier')  # Redirection pour rafraîchir la page
-
     if request.method == "POST":
         form = RevenueMensuelleForms(request.POST)
-        if form.is_valid() and membre is not None:
+        if form.is_valid() and member is not None:
             # Extraire les données nettoyées
-            mois = form.cleaned_data['month']
+            month = form.cleaned_data['month']
             revenue = form.cleaned_data['revenue']
 
             # Mettre à jour ou créer l'enregistrement MonthlyRevenue pour le mois et le membre donnés.
             RevenueMensuelle.objects.update_or_create(
-                membre=membre,
-                month=mois,
+                member=member,
+                month=month,
                 defaults={'revenue': revenue}
             )
             # Rediriger pour éviter la resoumission lors du rafraîchissement.
-            return redirect('suivi-financier')
+            return redirect('revenue_dashboard')
         else:
             # Si le formulaire n'est pas valide, passez le formulaire au contexte.
             context['form'] = form
@@ -360,40 +353,25 @@ def chart_view(request):
         context['form'] = form
 
     # Filtrer les entrées de revenus pour le membre actuel (si elles existent)
-    revenue_ajouter = RevenueMensuelle.objects.filter(membre=membre) if membre else []
+    revenue_entries = RevenueMensuelle.objects.filter(member=member) if member else []
 
     # Agréger les revenus par mois
-    revenue_par_mois = defaultdict(float)
-    for ajout in revenue_ajouter:
-        mois_str = ajout.month.strftime('%Y-%m')
-        revenue_par_mois[mois_str] += float(ajout.revenue)
+    revenue_by_month = defaultdict(float)
+    for entry in revenue_entries:
+        month_str = entry.month.strftime('%Y-%m')
+        revenue_by_month[month_str] += float(entry.revenue)
 
-    sorted_months = sorted(revenue_par_mois.keys())
-    # If there are no revenue entries, ensure we have at least one entry with 0 value
-    if not revenue_par_mois:
-        revenue_par_mois['No Data'] = 0  # Adding a default label and value for empty data
-    mois_trier = sorted(revenue_par_mois.keys())
-    labels = mois_trier
-    values = [revenue_par_mois[month] for month in mois_trier]
+    sorted_months = sorted(revenue_by_month.keys())
+    labels = sorted_months
+    values = [revenue_by_month[month] for month in sorted_months]
 
     chart_data = {
         "labels": labels,
         "values": values,
     }
-    context = {
-        'form': form,
-        'chart_data': json.dumps(chart_data),
-        'conseil': conseil,  # ← n’oubliez pas ça !
-    }
-    return render(request, 'suivi-financier.html', context)
 
-
-def education(request):
-    utilisateurs = User.objects.all().values()
-    context = {
-        'utilisateurs': utilisateurs,
-    }
-    return render(request, 'education.html', context)
+    context['chart_data'] = json.dumps(chart_data)  # Toujours définir context['chart_data']
+    return render(request, 'chart.html', context)
 
 def suivi(request):
     utilisateurs = User.objects.all().values()
@@ -403,6 +381,3 @@ def suivi(request):
         'members': members,
     }
     return render(request, 'tableau-bord/suivi.html', context)
-
-def analyse(request):
-    return render(request, 'analyse.html')

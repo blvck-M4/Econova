@@ -117,27 +117,27 @@
                 <h2 class="sous-titre"> ACTIFS </h2>
                 <label>
                     <h4 class="sous-sous-titre"> Compte Chèque </h4>
-                    <input class="cheque" type="text" name="compte-cheque" placeholder="...">
+                    <input class="actif" type="text" name="compte-cheque" placeholder="...">
                 </label>
 
                 <label>
                     <h4 class="sous-sous-titre"> Compte Epargne </h4>
-                    <input class="epargne" type="text" name="compte-epargne" placeholder="...">
+                    <input class="actif" type="text" name="compte-epargne" placeholder="...">
                 </label>
 
                 <label>
                     <h4 class="sous-sous-titre"> Compte Bourse </h4>
-                    <input class="bourse" type="text" name="compte-investissement" placeholder="...">
+                    <input class="actif" type="text" name="compte-investissement" placeholder="...">
                 </label>
 
                 <label>
                     <h4 class="sous-sous-titre"> Compte Cryptomonnaie </h4>
-                    <input class="crypto" type="text" name="credits" placeholder="...">
+                    <input class="actif" type="text" name="credits" placeholder="...">
                 </label>
 
                 <label>
                     <h4 class="sous-sous-titre"> Tout autre compte (REER, REEE, CELI, CELIAPP, etc) </h4>
-                    <input class="autre" type="text" name="carte-credit" placeholder="...">
+                    <input class="actif" type="text" name="carte-credit" placeholder="...">
                 </label>
 
             </div>
@@ -147,56 +147,177 @@
 
                 <label>
                     <h4 class="sous-sous-titre"> Cartes de Crédit </h4>
-                    <input class="credits" type="text" name="credits" placeholder="...">
+                    <input class="passif" type="text" name="credits" placeholder="...">
                 </label>
 
                 <label>
                     <h4 class="sous-sous-titre"> Emprunts </h4>
-                    <input class="emprunts" type="text" name="emprunts" placeholder="...">
+                    <input class="passif" type="text" name="emprunts" placeholder="...">
                 </label>
 
                 <label>
                     <h4 class="sous-sous-titre"> Hypothèque </h4>
-                    <input class="hypotheque" type="text" name="immobilier" placeholder="...">
+                    <input class="passif" type="text" name="immobilier" placeholder="...">
                 </label>
             </div>
 
             <div class="barre-separation"> </div>
 
             <div class="interets">
-                <h2> Suivi d'un investissement à taux d'intérêts composés </h2>
+                <h2 class="sous-titre"> Suivi d'un investissement à taux d'intérêts composés </h2>
 
                 <label>
-                    <h4> Investissement Initial </h4>
-                    <input type="text" name="investissement-initial" placeholder="...">
-
-                    <h4> Taux d'intérêts (%) </h4>
-                    <input type="text" name="taux-interet" placeholder="...">
-
-                    <div class="type-interet">
-                        <button id="mensuel" class="selected"> Mensuel </button>
-                        <button id="annuel"> Annuel </button>
-                    </div>
-
-                    <h4> Durée (en années) </h4>
-                    <input type="text" name="duree" placeholder="...">
+                    <h4 class="sous-sous-titre" > Investissement Initial </h4>
+                    <input type="text" name="investissement-initial" id="investInitial" placeholder="...">
                 </label>
+
+                <label>
+                    <h4 class="sous-sous-titre" > Placements Mensuels </h4>
+                    <input type="text" name="placement-mensuel" id="versements" placeholder="...">
+                </label>
+
+                <label>
+                    <h4 class="sous-sous-titre" > Taux d'intérêts en % </h4>
+                    <input type="text" name="taux-interet" id="interets" placeholder="Pour 5% entrez 0,05">
+                </label>
+
+                <div class="type-interet">
+                    <button id="mensuel"> Mensuel </button>
+                    <button id="annuel"> Annuel </button>
+                </div>
+
+                <label>
+                    <h4 class="sous-sous-titre" > Durée (Années) </h4>
+                    <input type="text" name="duree" id="duree" placeholder="...">
+                </label>
+
+                <div class="resultat-investissement">
+                    <h3> <strong> Voici la valeur finale de votre investissement : </strong> </h3>
+                    <p id="investissement-valeur"> 0 $</p>
+                </div>
             </div>
         </div>
 
 
-
-    <div class="bouton-calcul">
-        <button class="calculer" onclick="console.log('🚀 Bouton cliqué !'); calculerCapital();"> Calculer </button>
+    <div class="capital-section">
+        <h2> <strong> Votre Capital : </strong> </h2>
+        <p id="capital-valeur"> </p>
     </div>
 
-    <div class="capital-section">
-        <h2> Votre Capital :</h2>
-        <p id="capital-value"> Calcul en cours... </p>
+    <div class="bas-de-page">
     </div>
 
 <script src="{% static 'js/app.js' %}"></script>
 <script src="{% static 'js/tableau-bord.js' %}"></script>
+
+<!--JavaScript du calcul du capital lorsqu'on appuie sur le bouton-->
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const actifs = document.querySelectorAll(".actif");
+    const passifs = document.querySelectorAll(".passif");
+
+    function calculer() {
+        console.log("calculerCapital() a été appelée !"); //Pour savoir si la fonction est appelée
+
+        let sommeActifs = 0;
+        actifs.forEach(input => {
+            sommeActifs += parseFloat(input.value) || 0;
+        });
+
+        let sommePassifs = 0;
+        passifs.forEach(input => {
+            sommePassifs += parseFloat(input.value) || 0;
+        });
+
+        let capital = sommeActifs - sommePassifs;
+
+        document.getElementById("capital-valeur").textContent = capital.toLocaleString() + " $";
+    }
+
+    actifs.forEach(input => {
+        input.addEventListener("input", calculer)
+    });
+
+    passifs.forEach(input => {
+        input.addEventListener("input", calculer)
+    });
+
+    calculer()
+});
+</script>
+
+<!--JavaScript de la selection des boutons mensuel ou annuel-->
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const mensuelBtn = document.getElementById("mensuel");
+    const annuelBtn = document.getElementById("annuel");
+
+    if (!mensuelBtn || !annuelBtn) {
+        console.error("Les boutons 'mensuel' ou 'annuel' n'ont pas été trouvés dans le DOM.");
+        return;
+    }
+
+    function selection(event) {
+        console.log("Clic détecté sur :", event.target.id);
+        mensuelBtn.classList.remove("selected");
+        annuelBtn.classList.remove("selected");
+        event.target.classList.add("selected");
+    }
+
+    mensuelBtn.addEventListener("click", selection);
+    annuelBtn.addEventListener("click", selection);
+});
+</script>
+
+<!--JavaScript du calcul des inérêts composés mensuel ou annuel-->
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+
+        function calculerCapital() {
+
+            const C0 = parseFloat(document.getElementById("investInitial").value) || 0;
+            const V = parseFloat(document.getElementById("versements").value) || 0;
+            const r = parseFloat(document.getElementById("interets").value) / 100 || 0;
+            const t = parseFloat(document.getElementById("duree").value) || 0;
+
+            console.log("C0 = " + C0 + " V = " + V + " r = " + r + " t = " + t);
+
+            const estMensuel = document.getElementById("mensuel").classList.contains("selected");
+
+            let capitalFinal = 0;
+
+        if (estMensuel) {
+            const n = 12;
+            const capitalInitial = C0 * Math.pow(1 + (r / 12), n * t);
+            const capitalVersements = V * ((Math.pow(1 + (r / 12), n * t) - 1) / (r / 12));
+            capitalFinal = capitalInitial + capitalVersements;
+
+        } else {
+            const n = 12;
+            const capitalInitial = C0 * Math.pow(1 + r, t);
+            const capitalVersements = ((V * n * (Math.pow(1 + r, t) - 1)) / r);
+            capitalFinal = capitalInitial + capitalVersements;
+        }
+
+      document.getElementById("investissement-valeur").textContent = capitalFinal.toFixed(2) + " $";
+    }
+
+        document.getElementById("investInitial").addEventListener("input", calculerCapital)
+
+        document.getElementById("versements").addEventListener("input", calculerCapital)
+
+        document.getElementById("interets").addEventListener("input", calculerCapital)
+
+        document.getElementById("duree").addEventListener("input", calculerCapital)
+
+        document.getElementById("mensuel").addEventListener("click", calculerCapital)
+
+        document.getElementById("annuel").addEventListener("click", calculerCapital)
+
+    })
+</script>
 
 </body>
 </html>
