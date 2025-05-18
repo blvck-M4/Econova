@@ -1,27 +1,27 @@
 /* 🎨 Thème sombre avec rose et blanc */
-html{
+html {
     background-color: #1F1F1F;
 }
+
 .bourse {
-    color: white;
+    color: #ffffff;
     font-family: 'Poppins', Arial, sans-serif;
     text-align: center;
     min-height: 100dvh;
     height: 100%;
-    background-color: #1F1F1F;
+    background-color: #2b2b2b;
 }
 
 /* Barre de navigation */
 nav {
-    background-color: #2C2C2C;
+    background-color: #2b2b2b;
     padding: 25px;
-    box-shadow: 0 4px 10px rgba(255, 79, 139, 0.3);
 }
 
 nav a {
-    color: #FF4F8B;
+    color: #fe66c4;
     text-decoration: none;
-    font-size: 18px;
+    font-size: 30px;
     margin: 0 20px;
     font-weight: bold;
     transition: color 0.3s ease-in-out;
@@ -31,24 +31,23 @@ nav a:hover {
     color: white;
 }
 
+.description_NovaStocks {
+    color: white;
+    margin-top: 50px;
+    font-size: 18px;
+}
+
 /* Conteneur principal */
 .container {
     max-width: 800px;
     margin: 40px auto;
     padding: 25px;
-    background-color: #2C2C2C;
     border-radius: 12px;
-    box-shadow: 0 0 20px rgba(255, 79, 139, 0.3);
-    transition: transform 0.2s ease-in-out;
-}
-
-.container:hover {
-    transform: translateY(-3px);
 }
 
 /* Titres */
 .bourse h1, .bourse h2 {
-    color: #FF4F8B;
+    color: #fe66c4;
     font-weight: bold;
 }
 
@@ -64,49 +63,89 @@ form {
 input {
     padding: 12px;
     font-size: 16px;
-    border: 2px solid #FF4F8B;
-    border-radius: 6px;
-    background-color: #3A3A3A;
-    color: white;
+    border: 3px solid #fe66c4;
+    border-radius: 30px;
+    background-color: #ffffff;
+    color: #000000;
     width: 65%;
-    transition: all 0.3s ease-in-out;
 }
 
 input:focus {
     outline: none;
-    border-color: #E03A74;
-    box-shadow: 0 0 8px rgba(255, 79, 139, 0.5);
+    border-color: #fe66c4;
 }
 
-button {
+.container button  {
     padding: 12px 18px;
-    font-size: 16px;
+    font-size: 18px;
     border: none;
-    background: linear-gradient(45deg, #FF4F8B, #E03A74);
+    background: linear-gradient(45deg, #fe66c4, #fe66f4);
     color: white;
-    border-radius: 6px;
+    border-radius: 30px;
     cursor: pointer;
-    font-weight: bold;
     transition: all 0.3s ease-in-out;
 }
 
 button:hover {
-    background: linear-gradient(45deg, #E03A74, #FF2F6D);
+    background: linear-gradient(45deg, #fe66f4, #fe66c4);
     transform: scale(1.05);
 }
 
 /* Infos de l'action */
 .stock-info {
-    margin-top: 20px;
+    margin-top: 75px;
     padding: 20px;
-    background-color: #3A3A3A;
+    background-color: #2b2b2b;
     border-radius: 10px;
-    box-shadow: 0 0 15px rgba(255, 79, 139, 0.3);
+    margin-left: 50px;
+    margin-right: 50px;
 }
 
-.stock-info p {
-    font-size: 20px;
+.stock-info h2 {
+    font-size: 40px;
+    color: #fe66c4;
+    margin-bottom: 50px;
+    text-align: center; /* Centrer le titre */
+}
+
+.stock-details {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.stock-details p {
+    font-size: 19px;
     margin: 5px 0;
+    color: #ffffff;
+}
+
+.rose {
+    color: #ffa1db;
+}
+
+.price-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    font-size: 25px;
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+.price-info h3 {
+    font-size: 35px;
+    color: white;
+    font-weight: normal;
+    margin: 0;
+}
+
+.price-change-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
 .positive {
@@ -123,18 +162,22 @@ button:hover {
 
 /* Graphique */
 .chart-container {
-    margin-top: 25px;
+    margin-top: 20px; /* Réduit pour rapprocher les boutons */
+    margin-left: 50px;
+    margin-right: 50px;
     padding: 20px;
-    background-color: #3A3A3A;
+    background-color: #2b2b2b;
     border-radius: 10px;
-    box-shadow: 0 0 15px rgba(255, 79, 139, 0.3);
+    border: 3px solid #fe66c4;
 }
 
 canvas {
-    max-width: 100%;
-    background-color: #2C2C2C;
+    background-color: #2b2b2b;
     border-radius: 6px;
     padding: 12px;
+    max-height: 100%;
+    height: 500px;
+    width: 750px;
 }
 
 /* Effets d'animation */
@@ -150,32 +193,35 @@ canvas {
 }
 
 .container, .stock-info, .chart-container {
-    animation: fadeIn 0.6s ease-in-out;
+    animation: fadeIn 1s ease-in-out;
 }
 
 /*Conseils*/
-.conseils{
+.conseils {
     width: fit-content;
     height: 1fr;
     display: flex;
     flex-direction: column;
     border-radius: 10px;
-    margin: 100px;
     padding: 50px;
     font-weight: 400;
     text-align: left;
     box-shadow: rgba(0, 0, 0, 0.2) 0px 18px 50px -10px;
     background-color: #2c2c2c;
-    h1{
-        font-size: 20px;
-        color: white;
-        margin-bottom: 30px;
-    }
-    h2{
-        font-size: 15px;
-        color: white;
-        font-weight: 400;
-    }
+    margin-left: 400px;
+    margin-top: 15px;
+}
+
+.conseils h1 {
+    font-size: 20px;
+    color: #fe66c4;
+    margin-bottom: 30px;
+}
+
+.conseils h2 {
+    font-size: 15px;
+    color: white;
+    font-weight: 400;
 }
 
 /* Responsive */
@@ -206,5 +252,116 @@ canvas {
     .stock-info p {
         font-size: 18px;
     }
+}
+
+/* Style pour les données fondamentales */
+.fundamental-data {
+    margin-top: 50px;
+    padding: 15px;
+    background-color: #3a3a3a;
+    border-radius: 8px;
+    color: white; /* Couleur par défaut pour le texte */
+}
+
+.data-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+}
+
+.data-row p {
+    margin: 5px 0;
+    min-width: 30%;
+    font-size: 16px;
+}
+
+/* Sélectionne les éléments strong qui précèdent les deux-points */
+.data-row p strong {
+    color: #ffa1db; /* Couleur rose */
+}
+
+/* Optionnel: pour s'assurer que les valeurs restent en blanc */
+.data-row p {
+    color: white;
+}
+
+/* Style pour les boutons de période */
+.period-selector {
+    display: flex;
+    justify-content: flex-end;
+    background-color: transparent; /* Fond transparent */
+    padding: 0;
+    margin: 0 50px -15px 0; /* Ajustement pour coller au canvas */
+    position: relative;
+    z-index: 1;
+}
+
+.period-selector form {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin: 0;
+    padding: 0;
+}
+
+.period-selector button {
+    padding: 8px 16px;
+    font-size: 14px;
+    border: 2px solid #fe66c4;
+    background-color: #2b2b2b;
+    color: white;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.period-selector button:hover {
+    background-color: #fe66c4;
+}
+
+.period-selector button.active {
+    background-color: #fe66c4;
+    font-weight: bold;
+}
+
+/* Style responsive */
+@media (max-width: 768px) {
+    .period-selector {
+        margin: 20px 20px 0 20px;
+        padding: 10px;
+        justify-content: center; /* Centrer sur mobile */
+    }
+
+    .period-selector form {
+        gap: 5px;
+    }
+
+    .period-selector button {
+        padding: 6px 12px;
+        font-size: 12px;
+    }
+
+    .conseils {
+        margin: 20px;
+        padding: 20px;
+    }
+
+    .stock-info {
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+
+    .chart-container {
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+}
+
+.remarque_bourse_graphique h2{
+    color: white;
+    font-size: 14px;
+    margin-left: 5px;
+    margin-top: 10px;
 }
 

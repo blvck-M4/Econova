@@ -18,6 +18,6 @@ urlpatterns = [
     path('suivi-financier/', views.chart_view, name='suivi-financier'),
     path('tableau-bord/simulation', views.simulation, name='simulation'),
     path('education', views.education, name='education'),
-
     path('tableau-bord/suivi', views.suivi, name='suivi'),
+    path('analyse', views.analyse, name='analyse'),
 ]

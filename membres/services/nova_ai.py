@@ -3,6 +3,8 @@ import json
 
 from django.conf import settings
 from dotenv import load_dotenv
+
+import os
 from google import genai
 from google.genai import types
 
@@ -85,7 +87,7 @@ def conseilActions(stock_data, profil):
             role="user",
             parts=[
                 types.Part.from_text(text="""Donne moi des conseils financiers par rapport l'action 
-                """ + nom + """. Fait le sachant que j'ai un profil financier """+profil),
+                """ + 'AAPL' + """. Fait le sachant que j'ai un profil financier """+profil),
             ],
         ),
 

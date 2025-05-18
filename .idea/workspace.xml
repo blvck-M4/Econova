@@ -4,7 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="762bf436-e0f2-48da-9114-9583e32920ed" name="Changes" comment="Essai d'ajout de conseil financiers" />
+    <list default="true" id="762bf436-e0f2-48da-9114-9583e32920ed" name="Changes" comment="Configuration du chart initiale finis">
+      <change afterPath="$PROJECT_DIR$/membres/static/css/analyse.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/membres/static/images/chart-icon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/membres/templates/analyse.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/membres/templates/depenses.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/membres/templates/revenues.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/membres/static/css/suivi-financier.css" beforeDir="false" afterPath="$PROJECT_DIR$/membres/static/css/suivi-financier.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/membres/templates/suivi-financier.html" beforeDir="false" afterPath="$PROJECT_DIR$/membres/templates/suivi-financier.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/membres/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/membres/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/membres/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/membres/views.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -18,15 +31,15 @@
       <list>
         <option value="Python Script" />
         <option value="JavaScript File" />
-        <option value="HTML File" />
         <option value="CSS File" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="master" />
+        <entry key="$PROJECT_DIR$" value="Micheal" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -56,7 +69,7 @@
   &quot;keyToString&quot;: {
     &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
     &quot;Django Server.djangoProject1.executor&quot;: &quot;Run&quot;,
-    &quot;Python.0001_initial.executor&quot;: &quot;Run&quot;,
+    &quot;JavaScript Debug.test.html.executor&quot;: &quot;Run&quot;,
     &quot;Python.manage.executor&quot;: &quot;Run&quot;,
     &quot;Python.settings.executor&quot;: &quot;Run&quot;,
     &quot;Python.urls.executor&quot;: &quot;Run&quot;,
@@ -65,7 +78,7 @@
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.pycharm.django.structure.promotion.once.per.project&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;Micheal&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/Users/gabri/PycharmProjects/Econova&quot;,
     &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
@@ -79,14 +92,17 @@
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/membres/static/css" />
-      <recent name="$PROJECT_DIR$/membres/templates" />
-      <recent name="$PROJECT_DIR$/membres/templates/tableau-bord" />
+      <recent name="C:\Users\Admin\Downloads\Econova\membres\static\images" />
       <recent name="C:\Users\gabri\OneDrive\Documents\GitHub\Econova\members\static\images\dashboard-icon" />
       <recent name="C:\Users\gabri\OneDrive\Documents\GitHub\Econova\members\static\css\tableau-bord" />
+      <recent name="C:\Users\gabri\OneDrive\Documents\GitHub\Econova\members\templates\tableau-bord" />
+      <recent name="C:\Users\gabri\OneDrive\Documents\GitHub\Econova\members\static\json\dashboard-icon" />
     </key>
   </component>
   <component name="RunManager" selected="Django Server.djangoProject1">
+    <configuration name="test.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/EcoNova/membres/templates/test.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
     <configuration name="0001_initial" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="EcoNova" />
       <option name="ENV_FILES" value="" />
@@ -138,8 +154,7 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.0001_initial" />
-        <item itemvalue="Python.0001_initial" />
+        <item itemvalue="JavaScript Debug.test.html" />
         <item itemvalue="Python.0001_initial" />
       </list>
     </recent_temporary>
@@ -176,8 +191,11 @@
       <workItem from="1741615525854" duration="3191000" />
       <workItem from="1741812134202" duration="3930000" />
       <workItem from="1742418652635" duration="2376000" />
-      <workItem from="1744324252219" duration="115000" />
-      <workItem from="1744587744554" duration="1228000" />
+      <workItem from="1746619538351" duration="24311000" />
+      <workItem from="1746830942704" duration="9848000" />
+      <workItem from="1747095297605" duration="92000" />
+      <workItem from="1747352345760" duration="2455000" />
+      <workItem from="1747566319283" duration="5344000" />
     </task>
     <task id="LOCAL-00001" summary="Read me/  LICENSE.txt">
       <option name="closed" value="true" />
@@ -339,15 +357,7 @@
       <option name="project" value="LOCAL" />
       <updated>1742431912348</updated>
     </task>
-    <task id="LOCAL-00021" summary="Essai d'ajout de conseil financiers">
-      <option name="closed" value="true" />
-      <created>1745443856407</created>
-      <option name="number" value="00021" />
-      <option name="presentableId" value="LOCAL-00021" />
-      <option name="project" value="LOCAL" />
-      <updated>1745443856407</updated>
-    </task>
-    <option name="localTasksCounter" value="22" />
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -375,16 +385,13 @@
     <MESSAGE value="Menu de la page d'accueil" />
     <MESSAGE value="Page profil et chatbot (API et design html, css, js) dans le tableau de bord" />
     <MESSAGE value="Historique de conversation du chatbot" />
-    <MESSAGE value="Configuration du chart initiale finis" />
     <MESSAGE value="Variables dans le model member" />
-    <MESSAGE value="Essai d'ajout de conseil financiers" />
-    <option name="LAST_COMMIT_MESSAGE" value="Essai d'ajout de conseil financiers" />
+    <MESSAGE value="Configuration du chart initiale finis" />
+    <option name="LAST_COMMIT_MESSAGE" value="Configuration du chart initiale finis" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/EcoNova$0001_initial.coverage" NAME="0001_initial Coverage Results" MODIFIED="1745434953074" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/membres/migrations" />
-    <SUITE FILE_PATH="coverage/EcoNova$settings.coverage" NAME="settings Coverage Results" MODIFIED="1738637938825" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/djangoProject1" />
-    <SUITE FILE_PATH="coverage/EcoNova$conseils.coverage" NAME="conseils Coverage Results" MODIFIED="1745431019888" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/membres/services" />
     <SUITE FILE_PATH="coverage/EcoNova$urls.coverage" NAME="urls Coverage Results" MODIFIED="1738637946628" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/djangoProject1" />
     <SUITE FILE_PATH="coverage/EcoNova$manage.coverage" NAME="manage Coverage Results" MODIFIED="1738638318017" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/EcoNova$settings.coverage" NAME="settings Coverage Results" MODIFIED="1738637938825" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/djangoProject1" />
   </component>
 </project>

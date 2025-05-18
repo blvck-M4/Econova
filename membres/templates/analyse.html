@@ -1,0 +1,237 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="icon" href="{% static 'images/Logo EcoNova.png' %}">
+    <link rel="stylesheet" href="{% static 'css/analyse.css' %}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.12.2/lottie.min.js"></script>
+
+  <title>Dashboard App</title>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+<header class="header">
+    <div class="logoSite">
+        <a href="/"><img src="{% static 'images/Logo EcoNova.png' %}" alt="Logo ÉcoNova Finance"
+                         class="logoSite"></a>
+        <h2 class="econova-text">EcoNova</h2>
+    </div>
+
+    <div class="menu">
+        <div class="menu-btn">
+            <div class="btn-line" id="btn-line1"></div>
+            <div class="btn-line" id="btn-line2"></div>
+            <div class="btn-line" id="btn-line3"></div>
+        </div>
+    </div>
+
+    <div class="menu-slide">
+        {% if user.is_authenticated %}
+            <h2 class="navigation">Bienvenue {{ user.username }}</h2>
+        {% else %}
+            <h2 class="navigation">NAVIGATION</h2>
+        {% endif %}
+
+        <div class="liste-onglets">
+            <ul>
+                <h2><a href="">Simulateur</a></h2>
+                <h2><a href="">Suivi Financier</a></h2>
+                <h2><a href="">Bourse</a></h2>
+                <h2><a href="">Nova</a></h2>
+                <h2><a href="">Éducation Financière</a></h2>
+            </ul>
+        </div>
+        <div class="menu-connexion">
+            {% if not user.is_authenticated %}
+                <a href="connexion">
+                    <button class="connexion">Connexion</button>
+                </a>
+                <a href="rejoindre">
+                    <button class="rejoindre">Rejoindre</button>
+                </a>
+            {% else %}
+                <a href="deconnexion">
+                    <button class="deconnexion">Se déconnecter</button>
+                </a>
+                <a href="tableau-bord/profil">
+                    <h3 class="tableau-bord">Tableau de bord</h3>
+                    <lottie-player src="{% static 'json/dashboard-icon/Arrow left_custom_icon.json' %}" loop
+                                   hover></lottie-player>
+                </a>
+            {% endif %}
+
+        </div>
+    </div>
+</header>
+
+
+<div class="container">
+    <!-- Summary cards with full chart design and visible axes -->
+    <div class="summary-cards">
+      <div class="card title-card">
+        <h2>Revenues</h2>
+        <canvas id="chartRevenues"></canvas>
+      </div>
+      <div class="card title-card">
+        <h2>Valeur Nette</h2>
+        <canvas id="chartValeurNette"></canvas>
+      </div>
+      <div class="card title-card">
+        <h2>Dépenses</h2>
+        <canvas id="chartDepenses"></canvas>
+      </div>
+    </div>
+
+    <!-- Main Line Chart and user-list side by side -->
+    <div class="main-flex">
+      <div class="card main-chart">
+          <div>
+              <button id="btnObjectifs">Voir Objectifs</button>
+              <button id="btnDettes">Voir Dettes</button>
+          </div>
+        <canvas id="lineChart"></canvas>
+      </div>
+
+        <div class="row-cards">
+            <div class="card chart-list">
+        <h2>Objectifs</h2>
+                <div>
+        <button><div class="chart-item"><img src="{% static 'images/chart-icon.png' %}" alt="Mon icône" width="32" height="32"><div>Achat maison</div></div></button>
+        <button><div class="chart-item"><img src="{% static 'images/chart-icon.png' %}" alt="Mon icône" width="32" height="32"><div>Investissement</div></div></button>
+        <button><div class="chart-item"><img src="{% static 'images/chart-icon.png' %}" alt="Mon icône" width="32" height="32"><div>Épargne</div></div></button></div>
+                <div>
+                    <button> Ajouter dépense</button>
+                </div>
+            </div>
+            <div class="vertical-separator"></div>
+            <div class="card chart-list">
+        <h2>Dépenses</h2>
+                <div>
+        <button><div class="chart-item"><img src="{% static 'images/chart-icon.png' %}" alt="Mon icône" width="32" height="32"><div>Achat maison</div></div></button>
+        <button><div class="chart-item"><img src="{% static 'images/chart-icon.png' %}" alt="Mon icône" width="32" height="32"><div>Investissement</div></div></button>
+        <button><div class="chart-item"><img src="{% static 'images/chart-icon.png' %}" alt="Mon icône" width="32" height="32"><div>Épargne</div></div></button>
+                </div>
+                <div>
+                    <button> Ajouter dépense</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bottom row: Table & Bar Chart side by side -->
+    <div class="row-cards">
+      <div class="card table">
+        <h2>Entrées</h2>
+        <table>
+          <thead><tr><th>Date</th><th>Type</th><th>Entrée</th></tr></thead>
+          <tbody>
+            <tr><td>01/01/01</td><td>Dépense</td><td>4321</td></tr>
+            <tr><td>01/01/01</td><td>Revenue</td><td>4033</td></tr>
+            <tr><td>01/01/01</td><td>Revenue</td><td>3128</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    // Random line graphs for top 3 with axes and labels
+    function randomData(n) { return Array.from({ length: n }, () => Math.floor(Math.random() * 100) + 1); }
+    const datesEntree = ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
+
+    chartRevenues = new Chart(document.getElementById('chartRevenues').getContext('2d'), {
+        type: 'line',
+        data: { labels: datesEntree, datasets: [
+            { label: 'Revenues',
+                data: randomData(datesEntree.length),
+                borderColor: 'hotpink',
+                backgroundColor: 'rgba(255,105,180,0.2)',
+                fill: true, tension: 0.3 }] },
+        options: { responsive: false,
+            scales:
+                { x: { display: true },
+                    y: { display: true, beginAtZero: true }}
+            , plugins: { legend: { display: false } } }
+      });
+
+    chartValeurNette = chartDepenses = new Chart(document.getElementById('chartValeurNette').getContext('2d'), {
+        type: 'line',
+        data: { labels: datesEntree, datasets: [
+            { label: 'Valeur Nette',
+                data: randomData(datesEntree.length),
+                borderColor: 'hotpink',
+                backgroundColor: 'rgba(255,105,180,0.2)',
+                fill: true, tension: 0.3 }] },
+        options: { responsive: false, scales: { x: { display: true }, y: { display: true, beginAtZero: true } }, plugins: { legend: { display: false } } }
+      });
+
+    chartDepenses = new Chart(document.getElementById('chartDepenses').getContext('2d'), {
+        type: 'line',
+        data: { labels: datesEntree, datasets: [
+            { label: 'Dépenses',
+                data: randomData(datesEntree.length),
+                borderColor: 'hotpink',
+                backgroundColor: 'rgba(255,105,180,0.2)',
+                fill: true, tension: 0.3 }] },
+        options: { responsive: false,
+            scales: { x: { display: true }, y: { display: true, beginAtZero: true } },
+            plugins: { legend: { display: false } } }
+      });
+
+    // Main line chart
+    const randomSeries = (min,max) =>
+      Array.from({length: labels.length}, () => +(Math.random()*(max-min)+min).toFixed(2));
+    const objectifsData = randomData(datesEntree.length)
+    const dettesData = randomData(datesEntree.length);
+
+    const chartObjectifsDettes = new Chart(document.getElementById('lineChart').getContext('2d'), {
+      type: 'line',
+        data: { labels: datesEntree,
+            datasets: [{
+          label: 'Progression Objectifs',
+                data: objectifsData,
+                backgroundColor: 'rgba(255,105,180,0.2)',
+                borderColor: 'hotpink',
+                borderWidth: 1,
+                fill: true,
+                tension: 0.1 }] },
+      options:
+          { responsive: false, scales: { y: { beginAtZero: true } } }
+    });
+    document.getElementById('btnObjectifs').addEventListener('click', () => {
+      chartObjectifsDettes.data.datasets[0].data = objectifsData;
+      chartObjectifsDettes.data.datasets[0].label = 'Progression Objectifs';
+      chartObjectifsDettes.update();
+    });
+
+    document.getElementById('btnDettes').addEventListener('click', () => {
+      chartObjectifsDettes.data.datasets[0].data = dettesData;
+      chartObjectifsDettes.data.datasets[0].label = 'Dettes';
+      chartObjectifsDettes.update();
+    });
+
+    // Main bar chart
+    new Chart(document.getElementById('barChart').getContext('2d'), {
+      type: 'bar', data: { labels: ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'], datasets: [{ label: 'Ventes Mensuelles', data: [50000,55000,52000,60000,62000,70000,65000,63000,60000,58000,54000,30000], backgroundColor: 'rgba(255,105,180,0.2)', borderColor: 'rgba(255,105,180,0.38)', borderWidth: 1 }] },
+      options: { responsive: false, scales: { y: { beginAtZero: true } } }
+    });
+  </script>
+
+<script>
+    menubar = document.querySelector('.menu-btn');
+    menuslide = document.querySelector('.menu-slide');
+    menubar.addEventListener("click", () => {
+        menuslide.classList.toggle("menu_active");
+        menubar.classList.toggle("x_active");
+        console.log("ok");
+
+
+    });</script>
+</body>
+</html>
