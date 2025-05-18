@@ -33,7 +33,11 @@ fermer_historique.addEventListener('click', ()=>{
         historique.classList.remove('historique-visible')
     }
 })
-
+document.addEventListener('click', function (event) {
+        if (!historique.contains(event.target) && !ouvrir_historique.contains(event.target)) {
+            historique.classList.remove('historique-visible')
+        }
+    });
 
 
 
@@ -62,23 +66,20 @@ bouton_produit.forEach((produit)=>{
 })
 
 
+document.addEventListener('DOMContentLoaded', function () {
+    const boutonPortefeuil = document.getElementById('portefeuil');
+    const sectionPortefeuil = document.querySelector('.portefeuil-section');
 
+    // 1. Afficher la section quand on clique sur le bouton
+    boutonPortefeuil.addEventListener('click', function (event) {
+        event.stopPropagation(); // Empêche la fermeture immédiate
+        sectionPortefeuil.style.display = 'block';
+    });
 
-const bouton_action = document.getElementById('actionBouton');
-const options = document.getElementById('options');
-
-bouton_action.addEventListener('click', () => {
-    options.style.display = options.style.display === 'block' ? 'none' : 'block';
-});
-
-function selectOption(choice) {
-    bouton_action.textContent = choice;
-    options.style.display = 'none';
-}
-
-// Fermer le menu si on clique ailleurs
-document.addEventListener('click', (e) => {
-    if (!document.querySelector('.dropdown-container').contains(e.target)) {
-        options.style.display = 'none';
-    }
+    // 2. Cacher la section si on clique à l’extérieur
+    document.addEventListener('click', function (event) {
+        if (!sectionPortefeuil.contains(event.target) && !boutonPortefeuil.contains(event.target)) {
+            sectionPortefeuil.style.display = 'none';
+        }
+    });
 });

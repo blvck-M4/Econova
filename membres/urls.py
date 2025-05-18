@@ -18,7 +18,9 @@ urlpatterns = [
     path('suivi-financier/', views.chart_view, name='suivi-financier'),
     path('tableau-bord/simulation', views.simulation, name='simulation'),
     path('education', views.education, name='education'),
+
     path('qstProfil', views.qstProfil, name='qstProfil'),
     path('tableau-bord/suivi', views.suivi, name='suivi'),
     path('analyse', views.analyse, name='analyse'),
+    path('tableau-bord/lancer_simulation', views.lancer_simulation, name='lancer_simulation'),
 ]

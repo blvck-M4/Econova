@@ -19,7 +19,7 @@ conditions_termes = False
 
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
-from .services import nova_ai, bourse_data
+from .services import nova_ai, bourse_data, simulation as nova_sim
 
 
 def membres(request):
@@ -32,6 +32,7 @@ def membres(request):
     return HttpResponse(template.render(context, request))
 
 def rejoindre(request):
+    membres = Membre.objects.all().values()
     if request.method == 'POST':
         prenom = request.POST['prenom']
         nom_de_famille = request.POST['nom_de_famille']
@@ -51,6 +52,9 @@ def rejoindre(request):
                     user = User.objects.create_user(username=utilisateur, password=mot_de_passe, email=email,
                                                     first_name=prenom, last_name=nom_de_famille)
                     user.save()
+                    membre = Membre(utilisateur=utilisateur, prenom=prenom, nom_de_famille=nom_de_famille,
+                                    email=email, mot_de_passe=mot_de_passe, date_creation=datetime.now())
+                    membre.save()
                     if user is not None:
                         auth.login(request, user)
                         return redirect('questionnaire')
@@ -221,22 +225,30 @@ def page_principale(request):
 
 def profil(request):
     utilisateurs = User.objects.all().values()
-    members = Membre.objects.all()
-    context = {
-        'utilisateurs': utilisateurs,
-        'membres': members
-    }
+    membres = Membre.objects.all()
 
+    user = request.user
+    try:
+        membre = membres.get(utilisateur=user.username)
+    except Membre.DoesNotExist:
+        membre = None  # Handle case where the user is not found in Membre
+
+    datenaissance = membre.date_de_naissance
+    genre = membre.sexe
     if request.method == 'POST':
         user = request.user
         utilisateur = user.username
-        for member in members:
+        for member in membres:
             if member.utilisateur == user.username:
                 if request.POST['prenom'] != '' and request.POST['nom_de_famille'] != '':
                     user.first_name = request.POST['prenom']
                     user.last_name = request.POST['nom_de_famille']
                 elif request.POST['email'] != '' and request.POST['email'] != user.email:
                     user.email = request.POST['email']
+                elif request.POST['sexe'] != '' and request.POST['sexe'] != genre:
+                    member.sexe = request.POST['sexe']
+                elif request.POST['date_naissance'] != '' and request.POST['date_naissance'] != datenaissance:
+                    member.date_de_naissance = request.POST['date_naissance']
                 elif request.POST['utilisateur'] != '' and request.POST['utilisateur'] != user.username:
                     user.username = request.POST['utilisateur']
                     member.utilisateur = request.POST['utilisateur']
@@ -252,8 +264,16 @@ def profil(request):
                         return redirect('tableau-bord/profil')
                 user.save()
                 member.save()
+                print(member.date_de_naissance)
         return redirect('profil')
+    context = {
+        'utilisateurs': utilisateurs,
+        'membres': membres,
+        'datenaissance': membre.date_de_naissance,
+        'statut': membre.statut_marital,
+        'genre': membre.sexe,
 
+    }
     return render(request, 'tableau-bord/profil.html', context)
 
 def chatbot(request):
@@ -264,18 +284,30 @@ def chatbot(request):
     return render(request, 'tableau-bord/chatbot.html', context)
 def simulation(request):
     utilisateurs = User.objects.all().values()
-    liste_actions = nova_ai.listeActions()
+    liste_actions = nova_sim.listeActions(nova_ai.listeProduits('actions'))
+    liste_cryptos = nova_sim.listeActions(nova_ai.listeProduits('cryptomonnaies'))
     graph_actions = []
     for action in liste_actions:
-        liste_donnees = nova_ai.graphSimulation(action)
+        liste_donnees = nova_sim.graphProduit(action)
         graph_actions.append({
             "nom": action['nom'],  # ou action.symbole si tu préfères
             "donnees": liste_donnees
         })
+    graph_cryptos = []
+    for crypto in liste_cryptos:
+        liste_donnees = nova_sim.graphProduit(crypto)
+        graph_cryptos.append({
+            "nom": crypto['nom'],  # ou action.symbole si tu préfères
+            "donnees": liste_donnees
+        })
+
     context = {
         'utilisateurs': utilisateurs,
         'listeActions': liste_actions,
+        'listeCryptos': liste_cryptos,
         'actionsGraph': graph_actions,
+        'cryptosGraph': graph_cryptos,
+
     }
     return render(request, 'tableau-bord/simulation.html', context)
 
@@ -332,6 +364,17 @@ def qstProfil(request):
     reponse = nova_ai.qstProfil(request, utilisateur)
     return JsonResponse({"response": reponse})
 
+import numpy as np
+@csrf_exempt
+def lancer_simulation(request):
+    if request.method == "POST":
+        symbole = request.POST.get('message').split(' - ')[0]
+        nbannees = int(request.POST.get('message').split(' - ')[1])
+
+        # Simulation qui retourne un tableau numpy
+        simulations = nova_sim.lancerSimulations(symbole, nbannees)
+
+    return JsonResponse({"response": simulations})
 def chart_view(request):
     # Récupérer l'instance du membre correspondant en utilisant le nom d'utilisateur.
     try:

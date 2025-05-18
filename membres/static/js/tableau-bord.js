@@ -27,16 +27,21 @@ document.addEventListener("DOMContentLoaded", () => {
     const input2 = document.getElementById('input2');
     const input3 = document.getElementById('input3');
     const input4 = document.getElementById('input4');
+    const input5 = document.getElementById('input5');
+    const input6 = document.getElementById('input6');
+
 
     const utilisateur = document.getElementById('utilisateur');
     const nom = document.getElementById('nom');
     const email = document.getElementById('email');
     const motDePasse = document.getElementById('motdepasse');
+    const date_naissance = document.getElementById('date-naissance');
+    const genre = document.getElementById('genre');
     const formModifier = document.querySelector('.form-modifier');
     const annuler = document.querySelector('.annuler'); // Bouton pour fermer
 
-    const inputs = [input1, input2, input3, input4];
-    const headers = [utilisateur, nom, email, motDePasse];
+    const inputs = [input1, input2, input3, input4, input5, input6];
+    const headers = [utilisateur, nom, email, motDePasse, date_naissance, genre];
 
     headers.forEach((header, index) => {
         header.addEventListener("click", () => {
