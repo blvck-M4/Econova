@@ -50,6 +50,7 @@ generate_content_config = types.GenerateContentConfig(
 def reponseBot(request, utilisateur):
     historique = request.session.get('historique', [])
     utilisateur_infos = ''
+    print('Utilisateur: '+utilisateur)
     if utilisateur != 'anonyme':
         membre = Membre.objects.get(utilisateur=utilisateur)
         fields = membre._meta.get_fields()
