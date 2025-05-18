@@ -317,14 +317,11 @@ def bourse(request):
     utilisateurs = User.objects.all().values()
     membre = Membre.objects.all()
     stock_data = bourse_data.stock_data(request)
-    conseil = nova_ai.conseilActions(stock_data, 'conservateur')
-    print(conseil)
 
     context = {
         'utilisateurs': utilisateurs,
         'membres': membre,
         "stock_data": stock_data,
-        'conseil': conseil,
     }
     return render(request, "tableau-bord/bourse.html", context)
 

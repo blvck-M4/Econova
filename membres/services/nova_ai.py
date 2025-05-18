@@ -172,21 +172,12 @@ def listeProduits(produit):
                 config=generate_content_config,
         ):
             reponse += chunk.text
-        liste_actions = reponse.split(';')
+        liste_produits = [produit.strip() for produit in reponse.split(',')]
 
-    actions = []
-    for action in liste_actions:
-        symbole, nom, prix, risque, tendance = action.split(',')
-        if len(symbole.strip()) <= 5:
-            tendance = tendance.strip("\n\t\r")
-            prix = prix.strip("\n\t\r")
-            symbole = symbole.strip("\n\t\r")
-            nom = nom.strip("\n\t\r")
-            risque = risque.strip("\n\t\r")
 
-            actions.append({"symbole": symbole, "nom": nom, "prix": prix, "risque": risque, "tendance": tendance})
-    print(actions)
-    return actions
+
+    print(liste_produits)
+    return liste_produits
 
 
 import datetime
@@ -233,8 +224,6 @@ def graphSimulation(action):
         donnees.append({"date": date, "prix": prix})
     return donnees
 
-    print(liste_produits)
-    return liste_produits
 
 def simulationAI():
     return ""
