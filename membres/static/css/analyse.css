@@ -11,10 +11,14 @@
       box-sizing: border-box;
       font-family: Arial, sans-serif;
     }
+    html {
+    background-color: #000000;
+}
     body {
       background-color: var(--bg-color);
       color: var(--text-color);
     }
+
 
     .search input {
       padding: 0.5rem;
@@ -24,7 +28,10 @@
       color: var(--text-color);
     }
 
-    .container { padding: 1rem; }
+
+
+    .container { padding: 20px;
+    margin-left: 300px}
     .vertical-separator {
     width: 1px;                /* line thickness */
     background-color: #ccc;    /* line colour */
@@ -39,8 +46,15 @@
       padding: 1rem;
     }
     .title-card {
-      text-align: center;
-      flex: 1;
+        display: flex;            /* ← enable flex layout */
+        flex-direction: column;   /* stack children vertically */
+        gap: 1rem;                /* ← space between h2, canvas, hr, h1 */
+        text-align: center;
+        flex: 1;
+}
+    .title-card h1 {
+      color: white;
+      margin-top: 1rem;
     }
     .title-card h2 {
       color: var(--accent-color);
@@ -49,7 +63,8 @@
     /* Same design as main chart */
     .title-card canvas {
       width: 100% !important;
-      height: 250px !important;
+      height: 200px !important;
+
       background: var(--card-bg);
       border-radius: 4px;
     }
@@ -69,6 +84,14 @@
       background: var(--card-bg);
       border-radius: 4px;
     }
+    .main-chart button{
+            background-color: #ff69b4;
+        border: 1px solid var(--border-color);
+      border-radius: 8px;
+      color: white;
+      padding: 0.5rem;
+      cursor: pointer;
+    }
     .chart-list {
       flex: 1;
       display: flex;
@@ -82,7 +105,6 @@
 
 
     .chart-list button {
-
       background: var(--card-bg);
       border: 1px solid var(--border-color);
       border-radius: 8px;

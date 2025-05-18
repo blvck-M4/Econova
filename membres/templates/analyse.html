@@ -4,10 +4,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link rel="icon" href="{% static 'images/Logo EcoNova.png' %}">
+    <link rel="stylesheet" href="{% static 'css/tableau-bord/dashboard.css' %}">
     <link rel="stylesheet" href="{% static 'css/analyse.css' %}">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.12.2/lottie.min.js"></script>
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 
   <title>Dashboard App</title>
 
@@ -15,75 +18,133 @@
 </head>
 <body>
 
-<header class="header">
-    <div class="logoSite">
-        <a href="/"><img src="{% static 'images/Logo EcoNova.png' %}" alt="Logo ÉcoNova Finance"
-                         class="logoSite"></a>
-        <h2 class="econova-text">EcoNova</h2>
-    </div>
+<!--Menu du profil (bouton en haut à droite)-->
+    <lottie-player class="icon-profile" id="icon-profile" src="{% static 'json/dashboard-icon/User_custom_icon.json' %}"
+                       hover></lottie-player>
+    <div class="menu-profil menu-hide" id="menu-profil">
+        <div class="menu-profil-section1">
+            <img src="{% static 'images/dashboard-icon/profil-icon.svg' %}" alt="Icon de profil">
+            <h2>
+                {{ user.username }}
+            </h2>
+            <h3>{{ user.email }}</h3>
 
-    <div class="menu">
-        <div class="menu-btn">
-            <div class="btn-line" id="btn-line1"></div>
-            <div class="btn-line" id="btn-line2"></div>
-            <div class="btn-line" id="btn-line3"></div>
+        </div>
+        <div class="menu-profil-section2">
+            <a href="profil" class="">
+                <img src="{% static 'images/dashboard-icon/profil.svg' %}" alt="Icon de profil">
+                <h2>Mon profil</h2>
+            </a>
+            <a href="/" class="">
+                <img src="{% static 'images/dashboard-icon/home_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg' %}"
+                     style="filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(180deg) brightness(100%) contrast(100%);"
+                     alt="Icon page d'accueil">
+                <h2>Page d'accueil</h2>
+            </a>
+        </div>
+        <div class="menu-profil-section3">
+            <a href="/deconnexion" class="">
+                <img src="{% static 'images/dashboard-icon/logout-svgrepo-com 1.svg' %}" alt="Icon de déconnexion">
+                <h2>Se déconnecter</h2>
+            </a>
         </div>
     </div>
 
-    <div class="menu-slide">
-        {% if user.is_authenticated %}
-            <h2 class="navigation">Bienvenue {{ user.username }}</h2>
-        {% else %}
-            <h2 class="navigation">NAVIGATION</h2>
-        {% endif %}
 
-        <div class="liste-onglets">
-            <ul>
-                <h2><a href="">Simulateur</a></h2>
-                <h2><a href="">Suivi Financier</a></h2>
-                <h2><a href="">Bourse</a></h2>
-                <h2><a href="">Nova</a></h2>
-                <h2><a href="">Éducation Financière</a></h2>
-            </ul>
+
+<!--Menu du profil (bouton en haut à droite)-->
+    <lottie-player class="icon-profile" id="icon-profile" src="{% static 'json/dashboard-icon/User_custom_icon.json' %}"
+                       hover></lottie-player>
+    <div class="menu-profil menu-hide" id="menu-profil">
+        <div class="menu-profil-section1">
+            <img src="{% static 'images/dashboard-icon/profil-icon.svg' %}" alt="Icon de profil">
+            <h2>
+                {{ user.username }}
+            </h2>
+            <h3>{{ user.email }}</h3>
+
         </div>
-        <div class="menu-connexion">
-            {% if not user.is_authenticated %}
-                <a href="connexion">
-                    <button class="connexion">Connexion</button>
-                </a>
-                <a href="rejoindre">
-                    <button class="rejoindre">Rejoindre</button>
-                </a>
-            {% else %}
-                <a href="deconnexion">
-                    <button class="deconnexion">Se déconnecter</button>
-                </a>
-                <a href="tableau-bord/profil">
-                    <h3 class="tableau-bord">Tableau de bord</h3>
-                    <lottie-player src="{% static 'json/dashboard-icon/Arrow left_custom_icon.json' %}" loop
-                                   hover></lottie-player>
-                </a>
-            {% endif %}
-
+        <div class="menu-profil-section2">
+            <a href="profil" class="">
+                <img src="{% static 'images/dashboard-icon/profil.svg' %}" alt="Icon de profil">
+                <h2>Mon profil</h2>
+            </a>
+            <a href="/" class="">
+                <img src="{% static 'images/dashboard-icon/home_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg' %}"
+                     style="filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(180deg) brightness(100%) contrast(100%);"
+                     alt="Icon page d'accueil">
+                <h2>Page d'accueil</h2>
+            </a>
+        </div>
+        <div class="menu-profil-section3">
+            <a href="/deconnexion" class="">
+                <img src="{% static 'images/dashboard-icon/logout-svgrepo-com 1.svg' %}" alt="Icon de déconnexion">
+                <h2>Se déconnecter</h2>
+            </a>
         </div>
     </div>
-</header>
 
+<!--Menu à gauche-->
+
+    <section class="menu">
+        <div class="logoSite">
+          <a href="/"><img src="{% static 'images/Logo EcoNova.png' %}" alt="Logo ÉcoNova Finance"
+                                         class="logoSite"></a>
+          <h2 class="econova-text">EcoNova</h2>
+        </div>
+        <div class="onglets">
+            <a href="page-principale" class="page-principale onglet">
+                <lottie-player src="{% static 'json/dashboard-icon/Home_custom_icon.json' %}" hover></lottie-player>
+                <h2>Page principale</h2>
+            </a>
+            <div class="onglet-outils onglet">
+                <lottie-player src="{% static 'json/dashboard-icon/Wrench_custom_icon.json' %}" hover></lottie-player>
+                <h2 class="titre-outil">Outils Financiers</h2>
+                <img src="{% static 'images/dashboard-icon/triangle.svg' %}" class="triangle">
+            </div>
+
+            <div class="outils" id="outils">
+                <a href="suivi" class="onglet-suivi onglet">
+                    <h2>Suivi</h2>
+                </a>
+                <a href="bourse" class="onglet-bourse onglet">
+                    <h2>Bourse</h2>
+                </a>
+                <a href="simulation" class="onglet-simulation onglet">
+                    <h2>Simulation</h2>
+                </a>
+                <a href="chatbot" class="onglet-nova onglet">
+                    <h2>NOVA</h2>
+                </a>
+            </div>
+        </div>
+        <a href="/education" class="onglet-dictionnaire onglet">
+            <lottie-player src="{% static 'json/dashboard-icon/Arrow left_custom_icon.json' %}" hover></lottie-player>
+            <h2>Éducation Financière</h2>
+        </a>
+    </section>
 
 <div class="container">
+    <h1>Analyse financier</h1>
     <!-- Summary cards with full chart design and visible axes -->
     <div class="summary-cards">
       <div class="card title-card">
         <h2>Revenues</h2>
         <canvas id="chartRevenues"></canvas>
+          <hr>
+          <h1>1000$</h1>
       </div>
       <div class="card title-card">
         <h2>Valeur Nette</h2>
         <canvas id="chartValeurNette"></canvas>
+          <hr>
+          <h1>1000$</h1>
       </div>
       <div class="card title-card">
         <h2>Dépenses</h2>
         <canvas id="chartDepenses"></canvas>
+          <hr>
+          <h1>1000$</h1>
       </div>
     </div>
 
@@ -122,6 +183,7 @@
             </div>
         </div>
     </div>
+
 
     <!-- Bottom row: Table & Bar Chart side by side -->
     <div class="row-cards">
@@ -230,8 +292,7 @@
         menuslide.classList.toggle("menu_active");
         menubar.classList.toggle("x_active");
         console.log("ok");
-
-
     });</script>
+<script src="{% static 'js/tableau-bord.js' %}"></script>
 </body>
 </html>

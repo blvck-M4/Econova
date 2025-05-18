@@ -1,452 +1,249 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dashboard Revenus - EcoNova</title>
-  <link rel="stylesheet" href="revenus.css">
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <meta charset="UTF-8">
+    <title>Évaluation des Revenus</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root {
+            --bg-color: #111;
+            --text-color: #fff;
+            --accent-color: #ff69b4; /* Accent vert pour les revenus */
+            --card-bg: #1b1b1b;
+            --border-color: #333;
+            --hover-color: #66bb6a;
+        }
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+        }
+        .dashboard {
+            display: flex;
+            flex-direction: row-reverse;
+            padding: 2rem;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+        .left-panel, .right-panel {
+            flex: 1 1 45%;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+        canvas {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            padding: 1rem;
+            box-shadow: 0 0 10px rgba(0,0,0,0.3);
+        }
+        .revenues-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        .revenue-item {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: transform 0.2s;
+        }
+        .revenue-item:hover {
+            transform: scale(1.02);
+        }
+        .add-revenue {
+            background-color: var(--accent-color);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background 0.3s;
+            align-self: start;
+        }
+        .add-revenue:hover {
+            background-color: var(--hover-color);
+        }
+        .categories {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+        .category-card {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            padding: 1rem;
+            text-align: center;
+            box-shadow: 0 0 5px rgba(0,0,0,0.2);
+        }
+        .progress-bar {
+            background-color: #333;
+            border-radius: 10px;
+            height: 12px;
+            margin: 10px 0;
+            overflow: hidden;
+        }
+        .progress {
+            background-color: var(--accent-color);
+            height: 100%;
+            transition: width 0.5s;
+        }
+        .revenus-total {
+            grid-column: span 2;
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            padding: 2rem;
+            text-align: center;
+            margin-top: 1rem;
+        }
+        .revenus-total p {
+            font-size: 3rem;
+            margin: 0;
+        }
+        .progress-bar-total {
+            height: 20px;
+            background-color: #333;
+            border-radius: 10px;
+            margin: 1rem 0;
+            overflow: hidden;
+        }
+        .card.table {
+            max-width: 800px;
+            margin: 3rem auto;
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 0 10px rgba(0,0,0,0.3);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 1rem;
+            border-bottom: 1px solid var(--border-color);
+            text-align: left;
+        }
+        h1 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-top: 3rem;
+        }
+        h3 {
+            margin: 0.5rem 0;
+        }
+    </style>
 </head>
-<body class="revenus-page">
-<style>
-    /* Fichier: revenus.css */
-
-:root {
-  --bg-color: #000;
-  --text-color: #fff;
-  --accent-color: #ff69b4;
-  --card-bg: #111;
-  --border-color: #333;
-  --hover-color: #ff85c1;
-  --modal-bg: rgba(0, 0, 0, 0.8);
-}
-
-/* Global Reset */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Segoe UI', sans-serif;
-}
-
-body.revenus-page {
-  background-color: var(--bg-color);
-  color: var(--text-color);
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
-
-/* Header */
-.site-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 1rem 2rem;
-  background: var(--card-bg);
-  border-bottom: 1px solid var(--border-color);
-}
-.site-header .logo {
-  display: flex;
-  align-items: center;
-}
-.site-header img {
-  height: 40px;
-  margin-right: 0.5rem;
-}
-.site-title {
-  color: var(--accent-color);
-  font-size: 1.5rem;
-}
-
-/* Navigation */
-.main-nav ul {
-  list-style: none;
-  display: flex;
-  gap: 1.5rem;
-}
-.main-nav a {
-  color: var(--text-color);
-  text-decoration: none;
-  padding: 0.5rem;
-  border-radius: 4px;
-  transition: background 0.3s;
-}
-.main-nav a:hover,
-.main-nav a.active {
-  background: var(--hover-color);
-}
-
-/* Container */
-.container {
-  flex: 1;
-  width: 100%;
-  max-width: 1200px;
-  margin: 2rem auto;
-  padding: 0 1rem;
-}
-.page-title {
-  margin-bottom: 1.5rem;
-  color: var(--accent-color);
-}
-
-/* Stats & Actions section */
-.stats-actions {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 2rem;
-  flex-wrap: wrap;
-}
-.stats-cards {
-  display: flex;
-  gap: 1rem;
-  flex-wrap: wrap;
-}
-.stat-card {
-  background: var(--card-bg);
-  padding: 1rem 1.5rem;
-  border: 1px solid var(--border-color);
-  border-radius: 8px;
-  text-align: center;
-  min-width: 150px;
-}
-.stat-card h3 {
-  margin-bottom: 0.5rem;
-  font-size: 1rem;
-  color: var(--accent-color);
-}
-.stat-value {
-  font-size: 1.25rem;
-}
-.btn {
-  background: var(--accent-color);
-  color: #fff;
-  border: none;
-  padding: 0.75rem 1.25rem;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 1rem;
-  transition: background 0.3s;
-}
-.btn:hover {
-  background: var(--hover-color);
-}
-.btn.small {
-  padding: 0.4rem 0.8rem;
-  font-size: 0.85rem;
-}
-
-/* Modal */
-.modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: var(--modal-bg);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.3s;
-}
-.modal[aria-hidden="false"] {
-  opacity: 1;
-  pointer-events: auto;
-}
-.modal-content {
-  background: var(--card-bg);
-  padding: 2rem;
-  border-radius: 8px;
-  width: 90%;
-  max-width: 400px;
-  position: relative;
-}
-.close-btn {
-  position: absolute;
-  top: 0.5rem;
-  right: 0.75rem;
-  font-size: 1.5rem;
-  cursor: pointer;
-}
-.modal-content h3 {
-  margin-bottom: 1rem;
-  color: var(--accent-color);
-}
-.modal-content label {
-  display: block;
-  margin-bottom: 0.75rem;
-  color: var(--text-color);
-}
-.modal-content input {
-  width: 100%;
-  padding: 0.5rem;
-  margin-top: 0.25rem;
-  border: 1px solid var(--border-color);
-  border-radius: 4px;
-  background: var(--bg-color);
-  color: var(--text-color);
-}
-
-/* Chart & History */
-.row {
-  display: flex;
-  gap: 2rem;
-  flex-wrap: wrap;
-  margin-bottom: 2rem;
-}
-.flex-item {
-  flex: 1 1 45%;
-  min-width: 300px;
-}
-.chart-wrapper {
-  background: var(--card-bg);
-  padding: 1rem;
-  border-radius: 8px;
-  position: relative;
-  height: 300px;
-}
-.chart-controls {
-  position: absolute;
-  top: 0.75rem;
-  right: 0.75rem;
-  display: flex;
-  gap: 0.5rem;
-}
-.history-wrapper {
-  background: var(--card-bg);
-  padding: 1rem;
-  border-radius: 8px;
-}
-.history-wrapper h3 {
-  margin-bottom: 1rem;
-  color: var(--accent-color);
-}
-.history-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-bottom: 1rem;
-}
-.history-table th,
-.history-table td {
-  padding: 0.5rem;
-  border-bottom: 1px solid var(--border-color);
-  text-align: left;
-  font-size: 0.9rem;
-}
-
-/* Allocation doughnut chart */
-.allocation {
-  background: var(--card-bg);
-  padding: 1rem;
-  border-radius: 8px;
-  height: 500px;
-  max-width: 500px;
-  margin: 0 auto;
-}
-.allocation h3 {
-  text-align: center;
-  margin-bottom: 1rem;
-  color: var(--accent-color);
-}
-.allocation canvas {
-  width: 100% !important;
-  height: 100% !important;
-}
-
-</style>
-  <header class="site-header">
-    <div class="logo">
-      <a href="/">
-        <img src="/static/images/Logo%20EcoNova.png" alt="Logo ÉcoNova">
-      </a>
-      <h1 class="site-title">EcoNova</h1>
-    </div>
-    <nav class="main-nav">
-      <ul>
-        <li><a href="page-principale">Accueil</a></li>
-        <li><a href="suivi">Suivi</a></li>
-        <li><a href="revenus" class="active">Revenus</a></li>
-        <li><a href="dépenses">Dépenses</a></li>
-        <li><a href="paramètres">Paramètres</a></li>
-      </ul>
-    </nav>
-  </header>
-
-  <main class="container">
-    <h2 class="page-title">Tableau des Revenus</h2>
-
-    <!-- Résumé & Actions -->
-    <section class="stats-actions">
-      <div class="stats-cards">
-        <div class="card stat-card">
-          <h3>Total Revenus</h3>
-          <p class="stat-value" id="totalRevenus">$0</p>
+<body>
+    <section class="menu">
+        <!-- Menu identique à votre modèle, à adapter selon vos routes -->
+        <div class="logoSite">
+          <a href="/"><img src="{% static 'images/Logo EcoNova.png' %}" alt="Logo ÉcoNova Finance" class="logoSite"></a>
+          <h2 class="econova-text">EcoNova</h2>
         </div>
-        <div class="card stat-card">
-          <h3>Revenu Moyen</h3>
-          <p class="stat-value" id="revenuMoyen">$0</p>
-        </div>
-        <div class="card stat-card">
-          <h3>Objectif Mensuel</h3>
-          <p class="stat-value">$2 000</p>
-        </div>
-      </div>
-      <button class="btn" id="addEntryBtn">+ Nouvelle entrée</button>
+        <!-- ... vos onglets de navigation ... -->
     </section>
 
-    <!-- Formulaire modal -->
-    <div class="modal" id="entryModal" aria-hidden="true">
-      <div class="modal-content">
-        <span class="close-btn" id="closeModal">×</span>
-        <h3>Ajouter une entrée</h3>
-        <form id="entryForm">
-          <label>Date: <input type="date" id="entryDate" required></label>
-          <label>Source: <input type="text" id="entrySource" placeholder="Ex: Salaire" required></label>
-          <label>Montant: <input type="number" id="entryAmount" placeholder="Ex: 1500" required></label>
-          <button type="submit" class="btn">Ajouter</button>
-        </form>
-      </div>
+    <h1>Évaluation des Revenus</h1>
+    <div class="dashboard">
+        <!-- Colonne GAUCHE : Graphique + Liste de revenus -->
+        <div class="left-panel">
+            <canvas id="revenuChart"></canvas>
+
+            <div class="revenues-list">
+                <div class="revenue-item">
+                    <div class="date">05/2025</div>
+                    <div class="description">Salaire</div>
+                    <div class="amount">3000 $</div>
+                </div>
+                <div class="revenue-item">
+                    <div class="date">05/2025</div>
+                    <div class="description">Freelance</div>
+                    <div class="amount">800 $</div>
+                </div>
+            </div>
+
+            <button class="add-revenue">Ajouter un revenu</button>
+        </div>
+
+        <!-- Colonne DROITE : Catégories et Objectifs -->
+        <div class="right-panel">
+            <div class="categories">
+                <div class="category-card">
+                    <h3>Salaire</h3>
+                    <div class="progress-bar"><div class="progress" style="width: 70%;"></div></div>
+                    <span>70 %</span>
+                </div>
+                <div class="category-card">
+                    <h3>Freelance</h3>
+                    <div class="progress-bar"><div class="progress" style="width: 20%;"></div></div>
+                    <span>20 %</span>
+                </div>
+                <div class="category-card">
+                    <h3>Investissements</h3>
+                    <div class="progress-bar"><div class="progress" style="width: 5%;"></div></div>
+                    <span>5 %</span>
+                </div>
+                <div class="category-card">
+                    <h3>Autres</h3>
+                    <div class="progress-bar"><div class="progress" style="width: 5%;"></div></div>
+                    <span>5 %</span>
+                </div>
+                <div class="revenus-total">
+                    <p>3800 $</p>
+                    <div class="progress-bar-total"><div class="progress" style="width: 100%;"></div></div>
+                    <span>100 %</span>
+                </div>
+            </div>
+
+            <div class="card table">
+                <h1>Objectifs de Revenus</h1>
+                <table>
+                    <thead>
+                        <tr><th><h3>Source</h3></th><th><h3>Objectif Mensuel</h3></th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Salaire</td><td>3000 $</td></tr>
+                        <tr><td>Freelance</td><td>1000 $</td></tr>
+                        <tr><td>Investissements</td><td>500 $</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 
-    <!-- Graphique et historique -->
-    <section class="chart-history row">
-      <div class="chart-wrapper flex-item">
-        <div class="chart-controls">
-          <button class="btn small" data-type="bar">Barres</button>
-          <button class="btn small" data-type="line">Linéaire</button>
-        </div>
-        <canvas id="revenuChart"></canvas>
-      </div>
-      <div class="history-wrapper flex-item">
-        <h3>Historique des Revenus</h3>
-        <table class="history-table" id="historyTable">
-          <thead>
-            <tr><th>Date</th><th>Source</th><th>Montant</th></tr>
-          </thead>
-          <tbody></tbody>
-        </table>
-        <button class="btn small" id="exportCsv">Exporter CSV</button>
-      </div>
-    </section>
-
-    <!-- Allocation -->
-    <section class="allocation">
-      <h3>Allocation des Revenus à l'Épargne</h3>
-      <canvas id="allocationChart"></canvas>
-    </section>
-  </main>
-
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const ctx = document.getElementById('revenuChart').getContext('2d');
-      let chartType = 'bar';
-      const chart = new Chart(ctx, {
-        type: chartType,
-        data: { labels: [], datasets: [{ label: 'Revenus', data: [], backgroundColor: 'rgba(255,105,180,0.6)', borderColor: 'hotpink', borderWidth: 1, fill: chartType === 'line' }] },
-        options: { responsive: true, maintainAspectRatio: false, scales: { y: { beginAtZero: true } } }
-      });
-
-      const allocationCtx = document.getElementById('allocationChart').getContext('2d');
-      const allocationChart = new Chart(allocationCtx, {
-        type: 'doughnut', data:
-              { labels:
-                      [],
-                  datasets:
-                      [{ data:
-                              [],
-                          backgroundColor:
-                              ['rgba(255,105,180,0.6)',
-                                  'rgba(255,105,180,0.4)',
-                                  'rgba(255,105,180,0.8)'],
-                          borderColor: ['rgba(255,105,180,1)'],
-                          borderWidth: 1
-              }
-                      ]
-              }
-
-              ,
-        options: { plugins: { legend: { position: 'bottom', labels: { color: '#fff' } } } }
-      });
-
-      let entries = [];
-      const totalEl = document.getElementById('totalRevenus');
-      const meanEl = document.getElementById('revenuMoyen');
-      const tableBody = document.querySelector('#historyTable tbody');
-
-      function updateStats() {
-        const total = entries.reduce((sum, e) => sum + e.amount, 0);
-        totalEl.textContent = `$${total.toLocaleString()}`;
-        meanEl.textContent = `$${(entries.length ? (total/entries.length).toFixed(2) : 0)}`;
-      }
-      function updateHistory() {
-        tableBody.innerHTML = '';
-        entries.forEach(e => {
-          const tr = document.createElement('tr');
-          tr.innerHTML = `<td>${e.date}</td><td>${e.source}</td><td>$${e.amount.toLocaleString()}</td>`;
-          tableBody.appendChild(tr);
+    <script>
+        const ctx = document.getElementById('revenuChart');
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Jan', 'Fév', 'Mar', 'Avr', 'Mai'],
+                datasets: [{
+                    label: 'Revenus',
+                    data: [2800, 3000, 3200, 3500, 3800],
+                    borderColor: '#ff69b4',
+                    backgroundColor: 'rgb(117,33,75)',
+                    fill: true
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: { labels: { color: 'white' } }
+                },
+                scales: {
+                    x: { ticks: { color: 'white' } },
+                    y: { ticks: { color: 'white' } }
+                }
+            }
         });
-      }
-      function updateChart() {
-        chart.data.labels = entries.map(e => e.date);
-        chart.data.datasets[0].data = entries.map(e => e.amount);
-        chart.update();
-      }
-      function updateAllocation() {
-        const savings = entries.reduce((sum,e) => sum + (e.amount*0.2), 0);
-        const spending = entries.reduce((sum,e) => sum + (e.amount*0.5), 0);
-        const invest = entries.reduce((sum,e) => sum + (e.amount*0.3), 0);
-        allocationChart.data.labels = ['Épargne','Dépenses','Investissement'];
-        allocationChart.data.datasets[0].data = [savings, spending, invest];
-        allocationChart.update();
-      }
-      function refreshAll() {
-        updateStats(); updateHistory(); updateChart(); updateAllocation();
-      }
-
-      // Modal handling
-      const modal = document.getElementById('entryModal');
-      document.getElementById('addEntryBtn').addEventListener('click', () => { modal.setAttribute('aria-hidden','false'); });
-      document.getElementById('closeModal').addEventListener('click', () => { modal.setAttribute('aria-hidden','true'); });
-      document.getElementById('entryForm').addEventListener('submit', e => {
-        e.preventDefault();
-        const date = document.getElementById('entryDate').value;
-        const source = document.getElementById('entrySource').value;
-        const amount = parseFloat(document.getElementById('entryAmount').value);
-        entries.push({ date, source, amount });
-        refreshAll();
-        modal.setAttribute('aria-hidden','true');
-      });
-
-      // Chart type toggle
-      document.querySelectorAll('.chart-controls .btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-          chart.config.type = btn.dataset.type;
-          chart.config.data.datasets[0].fill = btn.dataset.type === 'line';
-          chart.update();
-        });
-      });
-
-      // CSV export
-      document.getElementById('exportCsv').addEventListener('click', () => {
-        let csv = 'Date,Source,Montant\n' + entries.map(e => `${e.date},${e.source},${e.amount}`).join('\n');
-        const blob = new Blob([csv], { type: 'text/csv' });
-        const link = document.createElement('a');
-        link.href = URL.createObjectURL(blob);
-        link.download = 'historiquerevenus.csv';
-        link.click();
-      });
-
-      // init with sample data
-      entries = [
-        { date: '2025-04-01', source: 'Salaire', amount: 2000 },
-        { date: '2025-04-15', source: 'Freelance', amount: 430 },
-        { date: '2025-05-01', source: 'Salaire', amount: 3000 }
-      ];
-      refreshAll();
-    });
-  </script>
+    </script>
 </body>
 </html>

@@ -441,3 +441,6 @@ def suivi(request):
     }
     return render(request, 'tableau-bord/suivi.html', context)
 
+def analyse(request):
+    return render(request, 'analyse.html')
+
