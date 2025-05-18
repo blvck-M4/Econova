@@ -9,6 +9,7 @@ from django.contrib.auth.models import User, auth
 from django.contrib import messages
 from django.http import HttpResponse
 from django.template import loader
+from idna.uts46data import uts46data
 
 from .forms import RevenueMensuelleForms
 from .models import Membre, RevenueMensuelle
