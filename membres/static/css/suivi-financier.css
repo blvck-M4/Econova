@@ -23,12 +23,13 @@ h1 {
 
 /* Form Styling */
 form {
-    background: #212121;
+    background: #611919;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.1);
     display: inline-block;
     margin-top: 20px;
+
 }
 
 form input, form button {
@@ -75,7 +76,7 @@ canvas {
 }
 
 .clear-button:hover {
-    background-color: #FE66F4;
+    background-color: #593756;
 }
 /* Center the chart container */
 .chart-container {
