@@ -352,7 +352,17 @@ def reponseBot(request):
 
     reponse = nova_ai.reponseBot(request, utilisateur)
     return JsonResponse({"response": reponse})
+import numpy as np
+@csrf_exempt
+def lancer_simulation(request):
+    if request.method == "POST":
+        symbole = request.POST.get('message').split(' - ')[0]
+        nbannees = int(request.POST.get('message').split(' - ')[1])
 
+        # Simulation qui retourne un tableau numpy
+        simulations = nova_sim.lancerSimulations(symbole, nbannees)
+
+    return JsonResponse({"response": simulations})
 def chart_view(request):
     # Récupérer l'instance du membre correspondant en utilisant le nom d'utilisateur.
     try:
@@ -430,3 +440,4 @@ def suivi(request):
         'members': members,
     }
     return render(request, 'tableau-bord/suivi.html', context)
+
