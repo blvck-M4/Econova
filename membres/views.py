@@ -320,6 +320,16 @@ def reponseBot(request):
 
     reponse = nova_ai.reponseBot(request, utilisateur)
     return JsonResponse({"response": reponse})
+@csrf_exempt
+def qstProfil(request):
+    if user_logged_in:
+        user = request.user
+        utilisateur = user.username
+    else:
+        utilisateur = 'anonyme'
+    print(utilisateur)
+    reponse = nova_ai.qstProfil(request, utilisateur)
+    return JsonResponse({"response": reponse})
 
 def chart_view(request):
     # Récupérer l'instance du membre correspondant en utilisant le nom d'utilisateur.
@@ -385,9 +395,11 @@ def chart_view(request):
 
 def education(request):
     utilisateurs = User.objects.all().values()
+
     context = {
         'utilisateurs': utilisateurs,
     }
+
     return render(request, 'education.html', context)
 
 def suivi(request):
