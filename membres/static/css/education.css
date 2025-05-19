@@ -294,8 +294,9 @@ div:target {
     border: none;
     cursor: pointer;
     transition: background-color 0.3s;
-    position: relative;
     animation: pulse 2s infinite;
+    display: block;
+    margin-left: auto;
 }
 
 .btnCommencer:hover {
