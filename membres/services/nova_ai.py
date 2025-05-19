@@ -136,7 +136,7 @@ def listeProduits(produit):
     if produit == 'actions':
         format = 'AAPL'
     elif produit == 'cryptomonnaies':
-        format = 'BTC-USD'
+        format = 'BTC-CAD'
     else:
         format = ''
     contents = [

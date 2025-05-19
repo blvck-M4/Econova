@@ -15,38 +15,24 @@ body {
     margin-top: 50px;
 }
 
+.actifs, .passifs {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    background-color: #2C2C2C;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(255, 177, 205, 0.67);
+    width: 40%;
+    max-width: 250px;
+    color: #FFC0CB;
+}
+
 .actifs {
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-    background-color: #2C2C2C;
-    padding: 20px; /* Réduction du padding pour diminuer la taille */
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(255, 177, 205, 0.67);
-    width: 40%; /* Réduction de la largeur */
-    max-width: 250px; /* Limite la largeur */
     margin-left: 175px;
-    color: #FFC0CB;
 }
 
-.passifs {
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-    background-color: #2C2C2C;
-    padding: 20px; /* Réduction du padding pour diminuer la taille */
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(255, 177, 205, 0.67);
-    width: 40%; /* Réduction de la largeur */
-    max-width: 250px; /* Limite la largeur */
-    color: #FFC0CB;
-}
-
-.actifs input {
-    width: 100%;
-}
-
-.passifs input {
+.actifs input, .passifs input {
     width: 100%;
 }
 
@@ -139,7 +125,8 @@ nav:hover h1 {
     margin-top: 10px;
 }
 
-.barre-separation {
+.barre-separation,
+.barre-separation-suggestion {
     width: 2px;
     height: 500px;
     background-color: #FFC0CB;
@@ -147,7 +134,11 @@ nav:hover h1 {
     margin-right: 50px;
 }
 
-.interets {
+.barre-separation-suggestion {
+    margin-left: 400px;
+}
+
+.interets, .revenus {
     background-color: #2C2C2C;
     color: #FFC0CB;
     text-align: center;
@@ -155,24 +146,17 @@ nav:hover h1 {
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(255, 177, 205, 0.67);
     width: 500px;
-    height: 650px;
     gap: 30px;
     display: flex;
     flex-direction: column;
 }
 
+.interets {
+    height: 650px;
+}
+
 .revenus {
-    background-color: #2C2C2C;
-    color: #FFC0CB;
-    text-align: center;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(255, 177, 205, 0.67);
-    width: 500px;
     height: 550px;
-    gap: 30px;
-    display: flex;
-    flex-direction: column;
 }
 
 .type-interet {
@@ -215,7 +199,7 @@ nav:hover h1 {
 
 .suggestion {
     display: flex;
-    gap: 50px; /* Réduit l’espace entre Actifs et Passifs */
+    gap: 50px;
     margin-top: 50px;
 }
 
@@ -265,12 +249,4 @@ nav:hover h1 {
     margin-top: 25px;
     margin-bottom: 25px;
     margin-right: 40px;
-}
-
-.barre-separation-suggestion {
-    width: 2px;
-    height: 500px;
-    background-color: #FFC0CB;
-    margin-left: 400px;
-    margin-right: 50px;
 }

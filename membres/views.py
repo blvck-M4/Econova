@@ -29,6 +29,7 @@ def membres(request):
         'utilisateurs': utilisateurs,
         'conditions_termes': conditions_termes,
     }
+
     return HttpResponse(template.render(context, request))
 
 def rejoindre(request):
@@ -363,7 +364,6 @@ def qstProfil(request):
     reponse = nova_ai.qstProfil(request, utilisateur)
     return JsonResponse({"response": reponse})
 
-import numpy as np
 @csrf_exempt
 def lancer_simulation(request):
     if request.method == "POST":

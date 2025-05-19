@@ -79,7 +79,7 @@ def lancerSimulations(symbole, nb_annees):
     for i in range(M):
         prices = [S0]
         for _ in range(1, N):
-            rand = np.random.normal()
+            rand = np.random.normal(0, 1)
             St = prices[-1] * np.exp((mu - 0.5 * sigma**2) * dt + sigma * np.sqrt(dt) * rand)
             prices.append(St)
             if len(prices) == N:
