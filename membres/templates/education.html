@@ -800,32 +800,10 @@
 
         setTimeout(function () {
             envoyerAI('Bonjour')
-            envoyerMessage("Salut, c'est Patate!", 'ordinateur');
+            envoyerMessage();
         }, 500);
     }
 
-
-    /**
-     function envoyerMessage(message = "", expediteur = "utilisateur") {
-     const champMessage = document.getElementById('saisieMessage');
-     const conteneurMessages = document.getElementById('conteneurMessages');
-
-     const texteMessage = message || champMessage.value.trim();
-     if (texteMessage !== "") {
-     const messageElement = document.createElement('div');
-     messageElement.classList.add(expediteur === 'ordinateur' ? 'messageOrdinateur' : 'messageUtilisateur');
-     messageElement.textContent = texteMessage;
-
-     conteneurMessages.appendChild(messageElement);
-
-     conteneurMessages.scrollTop = conteneurMessages.scrollHeight;
-
-     if (expediteur === 'utilisateur') {
-     champMessage.value = '';
-     }
-     }
-     }
-     **/
     function envoyerMessage() {
         /*Zone du chat*/
         chatBox = document.getElementById('conteneurMessages')
@@ -852,7 +830,6 @@
         chatBox.appendChild(message_element_bot)
         envoyerAI(message_utilisateur)
         scrollToBottom()
-
     }
     function envoyerAI(message) {
         $.ajax({
@@ -862,34 +839,38 @@
             success: function (reponse) {
                 message_element_bot.innerHTML = reponse.response
                 chatBox.appendChild(message_element_bot)
+                scrollToBottom();
             },
             error: function () {
                 chatBox.appendChild(message_element_erreur)
+                scrollToBottom();
             }
         })
     }
 
-    //fonctionne pas
+    //Scroll automatique à chaque message envoyé
     function scrollToBottom() {
-        let chatBox = document.getElementById("conteneurMessage");
+    let chatBox = document.getElementById("conteneurMessages");
+
+    if (chatBox) {
         setTimeout(() => {
             chatBox.scrollTo({
-                bottom: chatBox.scrollHeight,
+                top: chatBox.scrollHeight,
                 behavior: "smooth"
             });
         }, 100);
     }
+}
 
-    //fonctionne pas
+    //Enclencher bouton ENVOYER avec la touche enter
     function enter() {
-        document.getElementById("saisieMessage").addEventListener("keyup", function (event) {
-            event.preventDefault();
-            if (event.key === "Enter") {
-                document.getElementById("btnEnvoyer").click();
-                console.log('test')
-            }
-        });
-    }
+    document.getElementById("saisieMessage").addEventListener("keyup", function (event) {
+        if (event.key === "Enter") {
+            document.getElementById("envoyer-message").click();
+        }
+    });
+}
+
 </script>
 
 <!-- JS Menu -->
