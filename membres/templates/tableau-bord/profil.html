@@ -28,13 +28,11 @@
                 <img src="{% static 'images/dashboard-icon/profil.svg' %}" alt="Icon de profil">
                 <h2>Mon profil</h2>
             </a>
-            <a href="" class="">
-                <img src="{% static 'images/dashboard-icon/parametre.svg' %}" alt="Icon de parametre">
-                <h2>Paramètres</h2>
-            </a>
-            <a href="" class="">
-                <img src="{% static 'images/dashboard-icon/moon.svg' %}" alt="Icon de mode sombre">
-                <h2>Mode sombre</h2>
+            <a href="/" class="">
+                <img src="{% static 'images/dashboard-icon/home_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg' %}"
+                     style="filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(180deg) brightness(100%) contrast(100%);"
+                     alt="Icon page d'accueil">
+                <h2>Page d'accueil</h2>
             </a>
         </div>
         <div class="menu-profil-section3">
@@ -82,10 +80,6 @@
             <lottie-player src="{% static 'json/dashboard-icon/Arrow left_custom_icon.json' %}" hover></lottie-player>
             <h2>Éducation Financière</h2>
         </a>
-        <a href="" class="onglet-parametres onglet">
-            <lottie-player src="{% static 'json/dashboard-icon/Settings_custom_icon.json' %}" hover></lottie-player>
-            <h2>Paramètres</h2>
-        </a>
     </section>
 
     <!--Tableau de bord (SECTION DU MILIEU)-->
@@ -125,23 +119,22 @@
             </div>
             <div class="date-naissance">
                 <h1>Date de naissance</h1>
-                <h2>12/01/1999</h2>
-                <h3>Changer la date de naissance</h3>
+                <h2>{{ datenaissance }}</h2>
+                <h3 id="date-naissance">Changer la date de naissance</h3>
             </div>
-            <div class="adresse">
-                <h1>Adresse</h1>
-                <h2>1010 rue Pierrot, H5K 7G9, Montréal, Québec</h2>
-                <h3>Changer l'adresse</h3>
-            </div>
-            <div class="telephone">
-                <h1>Numéro de téléphone</h1>
-                <h2>999-999-9999</h2>
-                <h3>Changer la date de naissance</h3>
+            <div class="statut">
+                <h1>Statut matrimonial</h1>
+                <h2>{{ statut }}</h2>
+                <a href="/questionnaire"><h3>Refaire le questionnaire</h3></a>
             </div>
             <div class="sexe">
                 <h1>Genre</h1>
-                <h2>Non défini</h2>
-                <h3>Changer le genre</h3>
+                <h2>{{ genre }}</h2>
+                <h3 id="genre">Changer le genre</h3>
+            </div>
+            <div class="conditions">
+                <h1>Conditions d'utilisateur</h1>
+                <a href="/conditions"><h3>Voir les conditions</h3></a>
             </div>
         </div>
         <div class="mot-de-passe">
@@ -152,12 +145,12 @@
             <div class="profil-financier">
                 <h1>Profil financier</h1>
                 <h2>Conservateur</h2>
-                <a href="questionnaire"><h3>Refaire le questionnaire</h3></a>
+                <a href="/education"><h3>Refaire le profil</h3></a>
             </div>
             <div class="supprimer">
                 <h1>Compte</h1>
-                <a href="deconnexion" id="deconnexion"><h3>Se déconnecter</h3></a>
-                <a href="supprimer" id="supprimer"><h3>Supprimer le compte</h3></a>
+                <a href="/deconnexion" id="deconnexion"><h3>Se déconnecter</h3></a>
+                <a href="/supprimer" id="supprimer"><h3>Supprimer le compte</h3></a>
             </div>
         </div>
     </section>
@@ -217,6 +210,39 @@
                 <div class="btn-modifier-container">
                     <button class="annuler">Annuler</button>
                     <input type="submit" value="Modifier ton mot de passe" class="btn-modifier">
+                </div>
+            </div>
+            <div class="input-hide" id="input5">
+                <h1>Change ta date de naissance</h1>
+                <h2>Date de naissance</h2>
+                <input type="date" name="date_naissance" placeholder="">
+                <div class="checkbox-utilisateur-container">
+                    <h3>Es-tu sur de vouloir modifier ta date de naissance?</h3>
+                    <input type="checkbox" name="date_naissance2" class="checkbox-datenaissance">
+                </div>
+                <div class="btn-modifier-container">
+                    <button class="annuler">Annuler</button>
+                    <input type="submit" value="Modifier ta date de naissance" class="btn-modifier">
+                </div>
+            </div>
+            <div class="input-hide" id="input6">
+                <h1>Change ton genre</h1>
+                <h2>Genre</h2>
+                <div class="choix-genre">
+                    <select name="sexe">
+                      <option value="Homme">Homme</option>
+                      <option value="Femme">Femme</option>
+                      <option value="Autre">Autre</option>
+                    </select>
+
+                </div>
+                <div class="checkbox-utilisateur-container">
+                    <h3>Es-tu sur de vouloir modifier ton genre?</h3>
+                    <input type="checkbox" name="genre2" class="checkbox-genre">
+                </div>
+                <div class="btn-modifier-container">
+                    <button class="annuler">Annuler</button>
+                    <input type="submit" value="Modifier ton genre" class="btn-modifier">
                 </div>
             </div>
         </form>

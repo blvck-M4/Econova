@@ -1,0 +1,138 @@
+:root {
+      --bg-color: #000;
+      --text-color: #fff;
+      --accent-color: #ff69b4;
+      --card-bg: #111;
+      --border-color: #333;
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+    html {
+    background-color: #000000;
+}
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+    }
+
+
+    .search input {
+      padding: 0.5rem;
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 4px;
+      color: var(--text-color);
+    }
+
+
+
+    .container { padding: 20px;
+    margin-left: 300px}
+    .vertical-separator {
+    width: 1px;                /* line thickness */
+    background-color: #ccc;    /* line colour */
+    height: 100%;             /* or 100% (of parent) */
+    margin: 0 1rem;            /* spacing */
+    }
+    .summary-cards { display: flex; gap: 1rem; margin-bottom: 1rem; }
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 1rem;
+    }
+    .title-card {
+        display: flex;            /* ← enable flex layout */
+        flex-direction: column;   /* stack children vertically */
+        gap: 1rem;                /* ← space between h2, canvas, hr, h1 */
+        text-align: center;
+        flex: 1;
+}
+    .title-card h1 {
+      color: white;
+      margin-top: 1rem;
+    }
+    .title-card h2 {
+      color: var(--accent-color);
+      margin-bottom: 0.5rem;
+    }
+    /* Same design as main chart */
+    .title-card canvas {
+      width: 100% !important;
+      height: 200px !important;
+
+      background: var(--card-bg);
+      border-radius: 4px;
+    }
+
+    .main-flex {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+    .main-chart {
+      flex: 0 0 65%;
+    }
+    .main-chart canvas {
+      display: block;
+      width: 100% !important;
+      height: 400px !important;
+      background: var(--card-bg);
+      border-radius: 4px;
+    }
+    .main-chart button{
+            background-color: #ff69b4;
+        border: 1px solid var(--border-color);
+      border-radius: 8px;
+      color: white;
+      padding: 0.5rem;
+      cursor: pointer;
+    }
+    .chart-list {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+        justify-content: space-between;
+      gap: 1rem;
+    }
+    .chart-list button {
+  margin-bottom: 1rem;   /* or whatever space you like */
+}
+
+
+    .chart-list button {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      color: white;
+      padding: 0.5rem;
+      cursor: pointer;
+      width: 100%;
+      text-align: left;
+    }
+    .chart-item { display: flex; align-items: center; gap: 0.5rem; }
+    .chart-item img {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: 1px solid var(--border-color);
+    }
+
+    .row-cards { display: flex; ; }
+    .row-cards .card { flex: 1; }
+    .barchart canvas {
+      display: block;
+      width: 100% !important;
+      height: 400px !important;
+      background: var(--card-bg);
+      border-radius: 4px;
+
+    }
+    /* Table styling */
+    .table { overflow-x: auto; }
+    table { width: 100%; border-collapse: collapse; }
+    th, td { padding: 0.5rem; border-bottom: 1px solid var(--border-color); text-align: left; }

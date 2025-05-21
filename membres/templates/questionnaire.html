@@ -3,11 +3,13 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Questionnaire</title>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link rel="stylesheet" href="{% static 'css/questionnaire.css' %}">
     <link rel="icon" href="{% static 'images/Logo EcoNova.png' %}">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.12.2/lottie.min.js"></script>
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 </head>
 <body>
 <header class="header">
@@ -28,45 +30,41 @@
     <div class="menu-slide">
         {% if user.is_authenticated %}
             <h2 class="navigation">Bienvenue {{ user.username }}</h2>
+            <div class="liste-onglets">
+                <ul>
+                    <h2><a href="tableau-bord/simulation">Simulateur</a></h2>
+                    <h2><a href="tableau-bord/suivi">Suivi Financier</a></h2>
+                    <h2><a href="tableau-bord/bourse">Bourse</a></h2>
+                    <h2><a href="tableau-bord/chatbot">Nova</a></h2>
+                    <h2><a href="education">Éducation Financière</a></h2>
+                </ul>
+            </div>
+            <div class="menu-connexion">
+                <a href="deconnexion"><button class="deconnexion">Se déconnecter</button></a>
+                <a href="tableau-bord/page-principale">
+                    <h3 class="tableau-bord">Tableau de bord</h3>
+                    <lottie-player src="{% static 'json/dashboard-icon/Arrow left_custom_icon.json' %}"  loop hover></lottie-player>
+                </a>
+            </div>
         {% else %}
             <h2 class="navigation">NAVIGATION</h2>
+            <div class="liste-onglets">
+                <ul>
+                    <h2><a href="connexion">Simulateur</a></h2>
+                    <h2><a href="connexion">Suivi Financier</a></h2>
+                    <h2><a href="connexion">Bourse</a></h2>
+                    <h2><a href="connexion">Nova</a></h2>
+                    <h2><a href="education">Éducation Financière</a></h2>
+                </ul>
+            </div>
+            <div class="menu-connexion">
+                <a href="connexion"><button class="connexion">Connexion</button></a>
+                <a href="rejoindre"><button class="rejoindre">Rejoindre</button></a>
+            </div>
         {% endif %}
-
-        <div class="liste-onglets">
-            <ul>
-                <h2><a href="">Simulateur</a></h2>
-                <h2><a href="">Suivi Financier</a></h2>
-                <h2><a href="">Bourse</a></h2>
-                <h2><a href="">Nova</a></h2>
-                <h2><a href="">Éducation Financière</a></h2>
-            </ul>
-        </div>
-        <div class="menu-connexion">
-            {% if not user.is_authenticated %}
-                <a href="connexion">
-                    <button class="connexion">Connexion</button>
-                </a>
-                <a href="rejoindre">
-                    <button class="rejoindre">Rejoindre</button>
-                </a>
-            {% else %}
-                <a href="deconnexion">
-                    <button class="deconnexion">Se déconnecter</button>
-                </a>
-                <a href="tableau-bord/profil">
-                    <h3 class="tableau-bord">Tableau de bord</h3>
-                    <lottie-player src="{% static 'json/dashboard-icon/Arrow left_custom_icon.json' %}" loop
-                                   hover></lottie-player>
-                </a>
-            {% endif %}
-
-        </div>
-        <h3>Avec NOVA, Naviguez facilement entre outils de suivi et simulations, Optimisez vos finances, développez une
-            Vision stratégique et profitez d’un Accompagnement personnalisé. Budget, épargne, investissement : maîtrisez
-            votre avenir financier en toute confiance.</h3>
+        <h3>Avec NOVA, Naviguez facilement entre outils de suivi et simulations, Optimisez vos finances, développez une Vision stratégique et profitez d’un Accompagnement personnalisé. Budget, épargne, investissement : maîtrisez votre avenir financier en toute confiance.</h3>
         <div class="logoSite">
-            <a href=""><img src="{% static 'images/Logo EcoNova.png' %}" alt="Logo ÉcoNova Finance"
-                            class="logoSite"></a>
+            <a href=""><img src="{% static 'images/Logo EcoNova.png' %}" alt="Logo ÉcoNova Finance" class="logoSite"></a>
             <h2 class="econova-text">EcoNova</h2>
         </div>
     </div>
@@ -86,6 +84,7 @@
                 });
             </script>
         </div>
+
         <h2>Quel est votre profil financier ?</h2>
         <h3 class="infos-questionnaire">Avant de définir vos objectifs financiers, il est important de
             comprendre votre situation et vos attentes. Cela comprend votre capacité à accepter des
@@ -99,18 +98,19 @@
 
             <div class="question visible">
                 <h2>Quelle est votre date de naissance?</h2>
-                <input type="date" name="age">
+                <label for="dateNaissance"></label>
+                <input type="date" id="dateNaissance" name="dateNaissance" min="1900-01-01" max="2025-12-31">
             </div>
 
-
             <div class="question">
-                <h2>Quel est votre sexe?</h2>
+                <h2>Quel est votre genre?</h2>
                 <div><input type="radio" name="sexe" value="Homme">
                     <h3>Homme</h3></div>
                 <div><input type="radio" name="sexe" value="Femme">
                     <h3>Femme</h3></div>
-                <div><input type="radio" name="sexe" value="Autre"/>
-                    <h3>Autre: </h3><input type="text" name="sexe"/>
+                <div><input type="radio" name="sexe" value="Autre" id="autreSexe"/>
+                    <h3>Autre: </h3>
+                    <input type="text" name="autreSexe" id="textAutreSexe"/>
                 </div>
             </div>
 
@@ -124,9 +124,8 @@
                     <h3>Retraité(e)</h3></div>
                 <div><input type="radio" name="situation" value="Étudiant(e)">
                     <h3>Étudiant(e)</h3></div>
-                <div><input type="radio" name="situation" value="Autre"/>
-                    <h3>Autre: </h3><input type="text" name="situation"/>
-                </div>
+                <div><input type="radio" name="situation" value="Autre" id="autre-radio">
+                    <h3>Autre: </h3><input type="text" name="autreSituation" id="autre-text"></div>
             </div>
 
             <div class="question">
@@ -153,8 +152,8 @@
                     <h3>Divorcé(e) ou séparé(e)</h3></div>
                 <div><input type="radio" name="statut" value="Veuf(ve)">
                     <h3>Veuf(ve)</h3></div>
-                <div><input type="radio" name="statut" value="Autre"/>
-                    <h3>Autre: </h3><input type="text" name="statut"/>
+                <div><input type="radio" name="statut" value="Autre">
+                    <h3>Autre: </h3><input type="text" name="autreStatut"/>
                 </div>
             </div>
 
@@ -191,35 +190,33 @@
                 <div><input type="radio" name="habitation" value="Habitant chez un proche">
                     <h3>Habitant chez un proche</h3></div>
                 <div><input type="radio" name="habitation" value="Autre"/>
-                    <h3>Autre: </h3><input type="text" name="Autre:"/>
+                    <h3>Autre: </h3><input type="text" name="autreHabitation"/>
                 </div>
 
             </div>
 
             <div class="question">
                 <h2>Quels sont vos objectifs financiers?</h2>
-                <div><input type="checkbox" name="objectif" value="Acheter une maison">
+                <div><input type="checkbox" name="acheterMaison">
                     <h3>Acheter une maison</h3></div>
-                <div><input type="checkbox" name="objectif" value="Préparation à la retraite">
+                <div><input type="checkbox" name="preparationRetraite">
                     <h3>Préparation à la retaite</h3></div>
-                <div><input type="checkbox" name="objectif" value="Constituer un fond d'urgence">
+                <div><input type="checkbox" name="fondUrgence">
                     <h3>Constituer un fond d'urgence</h3></div>
-                <div><input type="checkbox" name="objectif" value="Remboursement de dettes">
+                <div><input type="checkbox" name="rembourserDette">
                     <h3>Remboursement de dettes</h3></div>
-                <div><input type="checkbox" name="objectif" value="Épargne pour les études">
+                <div><input type="checkbox" name="epargneEtude">
                     <h3>Épargne pour les études</h3></div>
-                <div><input type="checkbox" name="objectif" value="Générer des revenus passifs">
+                <div><input type="checkbox" name="revenuePassif">
                     <h3>Générer des revenus passifs</h3></div>
-                <div><input type="checkbox" name="objectif"
-                            value="Atteindre l’indépendance financière et/ou prendre ma retraite anticipée">
+                <div><input type="checkbox" name="independanceFinanciere">
                     <h3>Atteindre l’indépendance financière et/ou prendre ma retraite anticipée</h3></div>
-                <div><input type="checkbox" name="objectif"
-                            value="Investir (actions, obligations, immobilier, crypto, etc.) ">
+                <div><input type="checkbox" name="investir">
                     <h3>Investir (actions, obligations, immobilier, crypto, etc.) </h3></div>
-                <div><input type="checkbox" name="objectif" value="Je ne sais pas encore">
+                <div><input type="checkbox" name="aucun">
                     <h3>Je ne sais pas encore</h3></div>
-                <div><input type="checkbox" name="objectif" value="Autre"/>
-                    <h3>Autre: </h3><input type="text" name="objectif"/>
+                <div><input type="checkbox" name="autreObjectif"/>
+                    <h3>Autre: </h3><input type="text" name="autreObjectifSpecifique"/>
                 </div>
             </div>
 
@@ -248,16 +245,16 @@
                     <br>
                     <br>
                     <h2>Quelles sont vos types de dettes?</h2>
-                    <div><input type="checkbox" name="typeDette" value="Carte de crédit">
+                    <div><input type="checkbox" name="detteCredit" >
                         <h3>Carte de crédit</h3></div>
-                    <div><input type="checkbox" name="typeDette" value="Prêts étudiants">
+                    <div><input type="checkbox" name="detteEtudiant" >
                         <h3>Prêts étudiants</h3></div>
-                    <div><input type="checkbox" name="typeDette" value="Prêts automoniles">
+                    <div><input type="checkbox" name="detteAutomobile" >
                         <h3>Prêts automobiles</h3></div>
-                    <div><input type="checkbox" name="typeDette" value="Hypothèque">
+                    <div><input type="checkbox" name="detteHypotheque" >
                         <h3>Hypothèque</h3></div>
-                    <div><input type="checkbox" name="typeDette" value="Autre"/>
-                        <h3>Autre: </h3><input type="text" name="typeDette"/>
+                    <div><input type="checkbox" name="AutreDette"/>
+                        <h3>Autre: </h3><input type="text" name="typeAutreDette"/>
                     </div>
                 </div>
 
@@ -398,6 +395,8 @@
         menuslide.classList.toggle("menu_active");
         menubar.classList.toggle("x_active");
         console.log("ok");
+
+
     });</script>
 
 <script>
