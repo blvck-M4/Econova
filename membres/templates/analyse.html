@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link rel="icon" href="{% static 'images/Logo EcoNova.png' %}">
     <link rel="stylesheet" href="{% static 'css/tableau-bord/dashboard.css' %}">
-    <link rel="stylesheet" href="{% static 'css/analyse.css' %}">
+    <link rel="stylesheet" href="{% static 'css/tableau-bord/suivi/analyse.css' %}">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.12.2/lottie.min.js"></script>
     <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 
@@ -127,20 +127,20 @@
 <div class="container">
     <h1>Analyse financier</h1>
     <!-- Summary cards with full chart design and visible axes -->
-    <div class="summary-cards">
-      <div class="card title-card">
+    <div class="section-revenu-depense">
+      <div class="card mini-graphique">
         <h2>Revenues</h2>
         <canvas id="chartRevenues"></canvas>
           <hr>
           <h1>1000$</h1>
       </div>
-      <div class="card title-card">
+      <div class="card mini-graphique">
         <h2>Valeur Nette</h2>
         <canvas id="chartValeurNette"></canvas>
           <hr>
           <h1>1000$</h1>
       </div>
-      <div class="card title-card">
+      <div class="card mini-graphique">
         <h2>Dépenses</h2>
         <canvas id="chartDepenses"></canvas>
           <hr>
@@ -150,7 +150,7 @@
 
     <!-- Main Line Chart and user-list side by side -->
     <div class="main-flex">
-      <div class="card main-chart">
+      <div class="card graphique-principale">
           <div>
               <button id="btnObjectifs">Voir Objectifs</button>
               <button id="btnDettes">Voir Dettes</button>
@@ -159,23 +159,23 @@
       </div>
 
         <div class="row-cards">
-            <div class="card chart-list">
+            <div class="card list-graphiques">
         <h2>Objectifs</h2>
                 <div>
-        <button><div class="chart-item"><img src="{% static 'images/chart-icon.png' %}" alt="Mon icône" width="32" height="32"><div>Achat maison</div></div></button>
-        <button><div class="chart-item"><img src="{% static 'images/chart-icon.png' %}" alt="Mon icône" width="32" height="32"><div>Investissement</div></div></button>
-        <button><div class="chart-item"><img src="{% static 'images/chart-icon.png' %}" alt="Mon icône" width="32" height="32"><div>Épargne</div></div></button></div>
+        <button><div class="graphique-objectif-dette"><img src="{% static 'images/chart-icon.png' %}" alt="Mon icône" width="32" height="32"><div>Achat maison</div></div></button>
+        <button><div class="graphique-objectif-dette"><img src="{% static 'images/chart-icon.png' %}" alt="Mon icône" width="32" height="32"><div>Investissement</div></div></button>
+        <button><div class="graphique-objectif-dette"><img src="{% static 'images/chart-icon.png' %}" alt="Mon icône" width="32" height="32"><div>Épargne</div></div></button></div>
                 <div>
                     <button> Ajouter dépense</button>
                 </div>
             </div>
-            <div class="vertical-separator"></div>
-            <div class="card chart-list">
+            <div class="séparateur-verticale"></div>
+            <div class="card list-graphiques">
         <h2>Dépenses</h2>
                 <div>
-        <button><div class="chart-item"><img src="{% static 'images/chart-icon.png' %}" alt="Mon icône" width="32" height="32"><div>Achat maison</div></div></button>
-        <button><div class="chart-item"><img src="{% static 'images/chart-icon.png' %}" alt="Mon icône" width="32" height="32"><div>Investissement</div></div></button>
-        <button><div class="chart-item"><img src="{% static 'images/chart-icon.png' %}" alt="Mon icône" width="32" height="32"><div>Épargne</div></div></button>
+        <button><div class="graphique-objectif-dette"><img src="{% static 'images/chart-icon.png' %}" alt="Mon icône" width="32" height="32"><div>Achat maison</div></div></button>
+        <button><div class="graphique-objectif-dette"><img src="{% static 'images/chart-icon.png' %}" alt="Mon icône" width="32" height="32"><div>Investissement</div></div></button>
+        <button><div class="graphique-objectif-dette"><img src="{% static 'images/chart-icon.png' %}" alt="Mon icône" width="32" height="32"><div>Épargne</div></div></button>
                 </div>
                 <div>
                     <button> Ajouter dépense</button>
@@ -184,22 +184,6 @@
         </div>
     </div>
 
-
-    <!-- Bottom row: Table & Bar Chart side by side -->
-    <div class="row-cards">
-      <div class="card table">
-        <h2>Entrées</h2>
-        <table>
-          <thead><tr><th>Date</th><th>Type</th><th>Entrée</th></tr></thead>
-          <tbody>
-            <tr><td>01/01/01</td><td>Dépense</td><td>4321</td></tr>
-            <tr><td>01/01/01</td><td>Revenue</td><td>4033</td></tr>
-            <tr><td>01/01/01</td><td>Revenue</td><td>3128</td></tr>
-          </tbody>
-        </table>
-      </div>
-
-    </div>
   </div>
 
   <script>

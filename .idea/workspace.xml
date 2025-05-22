@@ -5,13 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="762bf436-e0f2-48da-9114-9583e32920ed" name="Changes" comment="Configuration du chart initiale finis">
+      <change afterPath="$PROJECT_DIR$/membres/static/css/tableau-bord/suivi/depenses.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/membres/templates/depenses.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/membres/static/css/analyse.css" beforeDir="false" afterPath="$PROJECT_DIR$/membres/static/css/analyse.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/membres/static/css/analyse.css" beforeDir="false" afterPath="$PROJECT_DIR$/membres/static/css/tableau-bord/suivi/analyse.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/membres/static/css/tableau-bord/suivi.css" beforeDir="false" afterPath="$PROJECT_DIR$/membres/static/css/tableau-bord/suivi/suivi.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/membres/templates/analyse.html" beforeDir="false" afterPath="$PROJECT_DIR$/membres/templates/analyse.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/membres/templates/depenses.html" beforeDir="false" afterPath="$PROJECT_DIR$/membres/templates/depenses.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/membres/templates/revenues.html" beforeDir="false" afterPath="$PROJECT_DIR$/membres/templates/revenues.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/membres/templates/tableau-bord/bourse.html" beforeDir="false" afterPath="$PROJECT_DIR$/membres/templates/tableau-bord/bourse.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/membres/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/membres/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/membres/templates/tableau-bord/suivi.html" beforeDir="false" afterPath="$PROJECT_DIR$/membres/templates/tableau-bord/suivi.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,8 +28,8 @@
       <list>
         <option value="Python Script" />
         <option value="JavaScript File" />
-        <option value="CSS File" />
         <option value="HTML File" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
@@ -73,7 +75,7 @@
     "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.pycharm.django.structure.promotion.once.per.project": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "Micheal",
+    "git-widget-placeholder": "master",
     "last_opened_file_path": "C:/Users/gabri/PycharmProjects/Econova",
     "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
@@ -87,11 +89,11 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Admin\Downloads\Econova\membres\static\css\tableau-bord\suivi" />
       <recent name="C:\Users\Admin\Downloads\Econova\membres\templates" />
       <recent name="C:\Users\Admin\Downloads\Econova\membres\templates\tableau-bord" />
       <recent name="C:\Users\Admin\Downloads\Econova\membres\static\images" />
       <recent name="C:\Users\gabri\OneDrive\Documents\GitHub\Econova\members\static\images\dashboard-icon" />
-      <recent name="C:\Users\gabri\OneDrive\Documents\GitHub\Econova\members\static\css\tableau-bord" />
     </key>
   </component>
   <component name="RunManager" selected="Django Server.djangoProject1">
@@ -193,6 +195,7 @@
       <workItem from="1747095297605" duration="92000" />
       <workItem from="1747352345760" duration="2455000" />
       <workItem from="1747566319283" duration="5344000" />
+      <workItem from="1747829333141" duration="7845000" />
     </task>
     <task id="LOCAL-00001" summary="Read me/  LICENSE.txt">
       <option name="closed" value="true" />
