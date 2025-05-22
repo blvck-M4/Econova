@@ -10,6 +10,9 @@
       <change beforePath="$PROJECT_DIR$/membres/static/css/tableau-bord/suivi/depenses.css" beforeDir="false" afterPath="$PROJECT_DIR$/membres/static/css/tableau-bord/suivi/depenses.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/membres/templates/depenses.html" beforeDir="false" afterPath="$PROJECT_DIR$/membres/templates/depenses.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/membres/templates/revenues.html" beforeDir="false" afterPath="$PROJECT_DIR$/membres/templates/revenues.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/membres/templates/suivi-financier.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/membres/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/membres/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/membres/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/membres/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,6 +27,7 @@
       <list>
         <option value="Python Script" />
         <option value="JavaScript File" />
+        <option value="CSS File" />
         <option value="HTML File" />
         <option value="CSS File" />
       </list>
@@ -82,7 +86,7 @@
     "settings.editor.selected.configurable": "org.jetbrains.plugins.github.ui.GithubSettingsConfigurable",
     "vue.rearranger.settings.migration": "true"
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Admin\Downloads\Econova\membres\templates" />
