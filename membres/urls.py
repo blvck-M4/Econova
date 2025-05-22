@@ -19,6 +19,9 @@ urlpatterns = [
     path('education', views.education, name='education'),
     path('qstProfil', views.qstProfil, name='qstProfil'),
     path('tableau-bord/suivi', views.suivi, name='suivi'),
-    path('analyse', views.analyse, name='analyse'),
     path('tableau-bord/lancer_simulation', views.lancer_simulation, name='lancer_simulation'),
+    path('tableau-bord/suivi/analyse', views.analyse, name='analyse'),
+    path('tableau-bord/suivi/revenues', views.revenues, name='revenues'),
+    path('tableau-bord/suivi/depenses', views.depenses, name='depenses'),
+
 ]

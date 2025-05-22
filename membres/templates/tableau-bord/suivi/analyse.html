@@ -9,6 +9,7 @@
     <link rel="icon" href="{% static 'images/Logo EcoNova.png' %}">
     <link rel="stylesheet" href="{% static 'css/tableau-bord/dashboard.css' %}">
     <link rel="stylesheet" href="{% static 'css/tableau-bord/suivi/analyse.css' %}">
+    <!-- animation des icones dans la barre de navigation-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.12.2/lottie.min.js"></script>
     <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 
@@ -85,7 +86,6 @@
     </div>
 
 <!--Menu à gauche-->
-
     <section class="menu">
         <div class="logoSite">
           <a href="/membres/static"><img src="{% static 'images/Logo EcoNova.png' %}" alt="Logo ÉcoNova Finance"
@@ -126,12 +126,12 @@
 
 <div class="container">
     <h1>Analyse financier</h1>
-    <!-- Summary cards with full chart design and visible axes -->
+    <!-- mini-graphiques pour les revenus, les dépenses et le capital de l'utilisateur -->
     <div class="section-revenu-depense">
       <div class="card mini-graphique">
         <h2>Revenues</h2>
         <canvas id="chartRevenues"></canvas>
-          <hr>
+          <hr> <!-- séparateur horizontale-->
           <h1>1000$</h1>
       </div>
       <div class="card mini-graphique">
@@ -158,6 +158,7 @@
         <canvas id="lineChart"></canvas>
       </div>
 
+        <!-- list des graphiques pour le suivi des objectifs spécifiques-->
         <div class="row-cards">
             <div class="card list-graphiques">
         <h2>Objectifs</h2>
@@ -166,19 +167,21 @@
         <button><div class="graphique-objectif-dette"><img src="{% static 'images/chart-icon.png' %}" alt="Mon icône" width="32" height="32"><div>Investissement</div></div></button>
         <button><div class="graphique-objectif-dette"><img src="{% static 'images/chart-icon.png' %}" alt="Mon icône" width="32" height="32"><div>Épargne</div></div></button></div>
                 <div>
-                    <button> Ajouter dépense</button>
+                    <button> Ajouter objectif</button>
                 </div>
             </div>
             <div class="séparateur-verticale"></div>
+
+            <!-- list des graphiques pour le suivi des dettes spécifiques-->
             <div class="card list-graphiques">
-        <h2>Dépenses</h2>
+        <h2>Dettes</h2>
                 <div>
-        <button><div class="graphique-objectif-dette"><img src="{% static 'images/chart-icon.png' %}" alt="Mon icône" width="32" height="32"><div>Achat maison</div></div></button>
-        <button><div class="graphique-objectif-dette"><img src="{% static 'images/chart-icon.png' %}" alt="Mon icône" width="32" height="32"><div>Investissement</div></div></button>
-        <button><div class="graphique-objectif-dette"><img src="{% static 'images/chart-icon.png' %}" alt="Mon icône" width="32" height="32"><div>Épargne</div></div></button>
+        <button><div class="graphique-objectif-dette"><img src="{% static 'images/chart-icon.png' %}" alt="Mon icône" width="32" height="32"><div>Dette credit</div></div></button>
+        <button><div class="graphique-objectif-dette"><img src="{% static 'images/chart-icon.png' %}" alt="Mon icône" width="32" height="32"><div>Dette étudiant</div></div></button>
+        <button><div class="graphique-objectif-dette"><img src="{% static 'images/chart-icon.png' %}" alt="Mon icône" width="32" height="32"><div>Dette automobile</div></div></button>
                 </div>
                 <div>
-                    <button> Ajouter dépense</button>
+                    <button>Ajouter dette</button>
                 </div>
             </div>
         </div>
@@ -186,11 +189,14 @@
 
   </div>
 
+  <!-- javascript des graphiques-->
   <script>
-    // Random line graphs for top 3 with axes and labels
+      // générateurs de valeurs aléatoires
     function randomData(n) { return Array.from({ length: n }, () => Math.floor(Math.random() * 100) + 1); }
+      //Dates pour l'axe des x des mini-graphiques
     const datesEntree = ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
 
+    //mini-graphique des revenus
     chartRevenues = new Chart(document.getElementById('chartRevenues').getContext('2d'), {
         type: 'line',
         data: { labels: datesEntree, datasets: [
@@ -206,7 +212,8 @@
             , plugins: { legend: { display: false } } }
       });
 
-    chartValeurNette = chartDepenses = new Chart(document.getElementById('chartValeurNette').getContext('2d'), {
+    //mini-graphique du capital de l'utlisateur
+    chartCapital = new Chart(document.getElementById('chartValeurNette').getContext('2d'), {
         type: 'line',
         data: { labels: datesEntree, datasets: [
             { label: 'Valeur Nette',
@@ -217,6 +224,7 @@
         options: { responsive: false, scales: { x: { display: true }, y: { display: true, beginAtZero: true } }, plugins: { legend: { display: false } } }
       });
 
+    // Mini-graphique des dépenses de l'utilisateur
     chartDepenses = new Chart(document.getElementById('chartDepenses').getContext('2d'), {
         type: 'line',
         data: { labels: datesEntree, datasets: [
@@ -230,7 +238,7 @@
             plugins: { legend: { display: false } } }
       });
 
-    // Main line chart
+    // Graphique des objectifs et des dettes
     const randomSeries = (min,max) =>
       Array.from({length: labels.length}, () => +(Math.random()*(max-min)+min).toFixed(2));
     const objectifsData = randomData(datesEntree.length)
@@ -250,6 +258,9 @@
       options:
           { responsive: false, scales: { y: { beginAtZero: true } } }
     });
+
+    // Configuration du changement entre le graphique des dettes et le graphique des objectifs
+
     document.getElementById('btnObjectifs').addEventListener('click', () => {
       chartObjectifsDettes.data.datasets[0].data = objectifsData;
       chartObjectifsDettes.data.datasets[0].label = 'Progression Objectifs';
@@ -261,22 +272,9 @@
       chartObjectifsDettes.data.datasets[0].label = 'Dettes';
       chartObjectifsDettes.update();
     });
-
-    // Main bar chart
-    new Chart(document.getElementById('barChart').getContext('2d'), {
-      type: 'bar', data: { labels: ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'], datasets: [{ label: 'Ventes Mensuelles', data: [50000,55000,52000,60000,62000,70000,65000,63000,60000,58000,54000,30000], backgroundColor: 'rgba(255,105,180,0.2)', borderColor: 'rgba(255,105,180,0.38)', borderWidth: 1 }] },
-      options: { responsive: false, scales: { y: { beginAtZero: true } } }
-    });
   </script>
 
-<script>
-    menubar = document.querySelector('.menu-btn');
-    menuslide = document.querySelector('.menu-slide');
-    menubar.addEventListener("click", () => {
-        menuslide.classList.toggle("menu_active");
-        menubar.classList.toggle("x_active");
-        console.log("ok");
-    });</script>
+
 <script src="{% static 'js/tableau-bord.js' %}"></script>
 </body>
 </html>

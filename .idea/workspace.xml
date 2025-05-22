@@ -4,13 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="762bf436-e0f2-48da-9114-9583e32920ed" name="Changes" comment="Configuration du chart initiale finis">
-      <change afterPath="$PROJECT_DIR$/membres/static/css/tableau-bord/suivi/revenues.css" afterDir="false" />
+    <list default="true" id="f9aebb3d-f84f-4f06-97d9-2e8beb6367aa" name="Changes" comment="fichiers pour le suivi html et css">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/membres/static/css/suivi-financier.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/membres/static/css/tableau-bord/suivi/analyse.css" beforeDir="false" afterPath="$PROJECT_DIR$/membres/static/css/tableau-bord/suivi/analyse.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/membres/static/css/tableau-bord/suivi/depenses.css" beforeDir="false" afterPath="$PROJECT_DIR$/membres/static/css/tableau-bord/suivi/depenses.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/membres/templates/depenses.html" beforeDir="false" afterPath="$PROJECT_DIR$/membres/templates/depenses.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/membres/templates/revenues.html" beforeDir="false" afterPath="$PROJECT_DIR$/membres/templates/revenues.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/membres/templates/suivi-financier.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/membres/static/css/tableau-bord/suivi/revenues.css" beforeDir="false" afterPath="$PROJECT_DIR$/membres/static/css/tableau-bord/suivi/revenues.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/membres/templates/tableau-bord/suivi/analyse.html" beforeDir="false" afterPath="$PROJECT_DIR$/membres/templates/tableau-bord/suivi/analyse.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/membres/templates/tableau-bord/suivi/depenses.html" beforeDir="false" afterPath="$PROJECT_DIR$/membres/templates/tableau-bord/suivi/depenses.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/membres/templates/tableau-bord/suivi/revenues.html" beforeDir="false" afterPath="$PROJECT_DIR$/membres/templates/tableau-bord/suivi/revenues.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/membres/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/membres/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/membres/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/membres/views.py" afterDir="false" />
     </list>
@@ -19,44 +21,25 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="DjangoConsoleOptions" custom-start-script="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)">
-    <option name="myCustomStartScript" value="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)" />
-  </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="Python Script" />
-        <option value="JavaScript File" />
-        <option value="CSS File" />
-        <option value="HTML File" />
-        <option value="CSS File" />
-      </list>
-    </option>
-  </component>
   <component name="Git.Settings">
-    <option name="RECENT_BRANCH_BY_REPOSITORY">
-      <map>
-        <entry key="$PROJECT_DIR$" value="Micheal" />
-      </map>
-    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory">{
-  &quot;lastFilter&quot;: {
-    &quot;state&quot;: &quot;OPEN&quot;,
-    &quot;assignee&quot;: &quot;blvck-M4&quot;
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "blvck-M4"
   }
-}</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/blvck-M4/Econova.git&quot;,
-    &quot;accountId&quot;: &quot;d13859bd-9431-4aa1-b7ee-774830cf58df&quot;
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/blvck-M4/Econova.git",
+    "accountId": "d13859bd-9431-4aa1-b7ee-774830cf58df"
   }
-}</component>
-  <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 1
-}</component>
-  <component name="ProjectId" id="2sJti45E0HmZkN9gB6YfImlkCeS" />
+}]]></component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 7
+}]]></component>
+  <component name="ProjectId" id="2xTKOsuLpFdCgeBeX9IlXsUWa4g" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -64,43 +47,26 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "DefaultHtmlFileTemplate": "HTML File",
-    "Django Server.djangoProject1.executor": "Run",
-    "JavaScript Debug.test.html.executor": "Run",
-    "Python.manage.executor": "Run",
-    "Python.settings.executor": "Run",
-    "Python.urls.executor": "Run",
+    "Django tests.Test: membres.executor": "Run",
+    "Python.views.executor": "Run",
     "RunOnceActivity.OpenDjangoStructureViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "RunOnceActivity.pycharm.django.structure.promotion.once.per.project": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "master",
-    "last_opened_file_path": "C:/Users/gabri/PycharmProjects/Econova",
-    "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "org.jetbrains.plugins.github.ui.GithubSettingsConfigurable",
     "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Admin\Downloads\Econova\membres\templates" />
-      <recent name="C:\Users\Admin\Downloads\Econova\membres\templates\tableau-bord" />
-      <recent name="C:\Users\Admin\Downloads\Econova\membres\static\images" />
-      <recent name="C:\Users\gabri\OneDrive\Documents\GitHub\Econova\members\static\images\dashboard-icon" />
-      <recent name="C:\Users\gabri\OneDrive\Documents\GitHub\Econova\members\static\css\tableau-bord" />
+      <recent name="C:\Users\Admin\Downloads\Econova\membres\templates\tableau-bord\suivi" />
     </key>
   </component>
-  <component name="RunManager" selected="Django Server.djangoProject1">
-    <configuration name="test.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/EcoNova/membres/templates/test.html" useBuiltInWebServerPort="true">
-      <method v="2" />
-    </configuration>
-    <configuration name="0001_initial" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+  <component name="RunManager">
+    <configuration name="Test: membres" type="DjangoTestsConfigurationType" temporary="true">
       <module name="EcoNova" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -109,53 +75,21 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/membres/migrations" />
+      <option name="WORKING_DIRECTORY" value="" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/membres/migrations/0001_initial.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="djangoProject1" type="Python.DjangoServer" factoryName="Django server">
-      <module name="EcoNova" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-        <env name="DJANGO_SETTINGS_MODULE" value="djangoProject1.settings" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="SDK_NAME" value="Python 3.13 (Econova)" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="launchJavascriptDebuger" value="false" />
-      <option name="port" value="8000" />
-      <option name="host" value="localhost" />
-      <option name="additionalOptions" value="" />
-      <option name="browserUrl" value="" />
-      <option name="runTestServer" value="false" />
-      <option name="runNoReload" value="false" />
-      <option name="useCustomRunCommand" value="false" />
-      <option name="customRunCommand" value="" />
+      <option name="TARGET" value="membres" />
+      <option name="SETTINGS_FILE" value="" />
+      <option name="CUSTOM_SETTINGS" value="false" />
+      <option name="USE_OPTIONS" value="false" />
+      <option name="OPTIONS" value="" />
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.0001_initial" />
-        <item itemvalue="JavaScript Debug.test.html" />
-        <item itemvalue="Python.0001_initial" />
-        <item itemvalue="JavaScript Debug.test.html" />
-        <item itemvalue="JavaScript Debug.test.html" />
+        <item itemvalue="Django tests.Test: membres" />
       </list>
     </recent_temporary>
   </component>
@@ -169,229 +103,35 @@
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
-    <task active="true" id="Default" summary="Default task">
-      <changelist id="762bf436-e0f2-48da-9114-9583e32920ed" name="Changes" comment="" />
-      <created>1738185629137</created>
-      <option name="number" value="Default" />
-      <option name="presentableId" value="Default" />
-      <updated>1738185629137</updated>
-      <workItem from="1738185630487" duration="1320000" />
-      <workItem from="1738187385962" duration="37000" />
-      <workItem from="1738187669466" duration="671000" />
-      <workItem from="1738189064197" duration="306000" />
-      <workItem from="1738636580860" duration="399000" />
-      <workItem from="1738637837357" duration="216000" />
-      <workItem from="1738638279722" duration="5434000" />
-      <workItem from="1738775742096" duration="94000" />
-      <workItem from="1738783232604" duration="1362000" />
-      <workItem from="1740599955996" duration="76444000" />
-      <workItem from="1741019099681" duration="40894000" />
-      <workItem from="1741135566788" duration="1879000" />
-      <workItem from="1741142929149" duration="42391000" />
-      <workItem from="1741615525854" duration="3191000" />
-      <workItem from="1741812134202" duration="3930000" />
-      <workItem from="1742418652635" duration="2376000" />
-      <workItem from="1746619538351" duration="24311000" />
-      <workItem from="1746830942704" duration="9848000" />
-      <workItem from="1747095297605" duration="92000" />
-      <workItem from="1747352345760" duration="2455000" />
-      <workItem from="1747566319283" duration="5344000" />
-    </task>
-    <task id="LOCAL-00001" summary="Read me/  LICENSE.txt">
+    <task id="LOCAL-00001" summary="fichiers pour le suivi html et css">
       <option name="closed" value="true" />
-      <created>1738187049137</created>
+      <created>1747952755269</created>
       <option name="number" value="00001" />
       <option name="presentableId" value="LOCAL-00001" />
       <option name="project" value="LOCAL" />
-      <updated>1738187049137</updated>
+      <updated>1747952755269</updated>
     </task>
-    <task id="LOCAL-00002" summary="Read me/  LICENSE.txt">
-      <option name="closed" value="true" />
-      <created>1738187408335</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1738187408335</updated>
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="f9aebb3d-f84f-4f06-97d9-2e8beb6367aa" name="Changes" comment="fichiers pour le suivi html et css" />
+      <created>1747956595840</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1747956595840</updated>
+      <workItem from="1747956598523" duration="1400000" />
     </task>
-    <task id="LOCAL-00003" summary="Templates">
-      <option name="closed" value="true" />
-      <created>1738189178170</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1738189178171</updated>
-    </task>
-    <task id="LOCAL-00004" summary="Fichier html et css setup&#10;-Gabriel">
-      <option name="closed" value="true" />
-      <created>1738643522778</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1738643522778</updated>
-    </task>
-    <task id="LOCAL-00005" summary="Fichier html et css setup&#10;-Gabriel">
-      <option name="closed" value="true" />
-      <created>1738643587063</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1738643587063</updated>
-    </task>
-    <task id="LOCAL-00006" summary="Fichier html et css setup&#10;-Gabriel">
-      <option name="closed" value="true" />
-      <created>1739394935822</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1739394935822</updated>
-    </task>
-    <task id="LOCAL-00007" summary="Fichier html et css setup&#10;-Gabriel">
-      <option name="closed" value="true" />
-      <created>1739395051737</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1739395051737</updated>
-    </task>
-    <task id="LOCAL-00008" summary="html et css&#10;-Gabriel">
-      <option name="closed" value="true" />
-      <created>1740603657605</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1740603657606</updated>
-    </task>
-    <task id="LOCAL-00009" summary="html et css&#10;-Gabriel">
-      <option name="closed" value="true" />
-      <created>1740604466051</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1740604466051</updated>
-    </task>
-    <task id="LOCAL-00010" summary="html et css&#10;-Gabriel">
-      <option name="closed" value="true" />
-      <created>1740606795571</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1740606795571</updated>
-    </task>
-    <task id="LOCAL-00011" summary="Questionnaire&#10;-Gabriel">
-      <option name="closed" value="true" />
-      <created>1740714706082</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1740714706082</updated>
-    </task>
-    <task id="LOCAL-00012" summary="Questionnaire&#10;-Gabriel">
-      <option name="closed" value="true" />
-      <created>1740781875591</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1740781875591</updated>
-    </task>
-    <task id="LOCAL-00013" summary="Dashboard et profil html, css&#10;-Gabriel">
-      <option name="closed" value="true" />
-      <created>1740926017668</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1740926017668</updated>
-    </task>
-    <task id="LOCAL-00014" summary="Dashboard et profil html, css, js">
-      <option name="closed" value="true" />
-      <created>1740985116180</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1740985116180</updated>
-    </task>
-    <task id="LOCAL-00015" summary="Menu de la page d'accueil">
-      <option name="closed" value="true" />
-      <created>1741030986990</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1741030986990</updated>
-    </task>
-    <task id="LOCAL-00016" summary="Page profil et chatbot (API et design html, css, js) dans le tableau de bord">
-      <option name="closed" value="true" />
-      <created>1741323567186</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1741323567186</updated>
-    </task>
-    <task id="LOCAL-00017" summary="Historique de conversation du chatbot">
-      <option name="closed" value="true" />
-      <created>1741474387915</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1741474387915</updated>
-    </task>
-    <task id="LOCAL-00018" summary="Historique de conversation du chatbot">
-      <option name="closed" value="true" />
-      <created>1741619398129</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1741619398129</updated>
-    </task>
-    <task id="LOCAL-00019" summary="Variables dans le model member">
-      <option name="closed" value="true" />
-      <created>1741815399842</created>
-      <option name="number" value="00019" />
-      <option name="presentableId" value="LOCAL-00019" />
-      <option name="project" value="LOCAL" />
-      <updated>1741815399842</updated>
-    </task>
-    <task id="LOCAL-00020" summary="Configuration du chart initiale finis">
-      <option name="closed" value="true" />
-      <created>1742431912348</created>
-      <option name="number" value="00020" />
-      <option name="presentableId" value="LOCAL-00020" />
-      <option name="project" value="LOCAL" />
-      <updated>1742431912348</updated>
-    </task>
-    <option name="localTasksCounter" value="21" />
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State />
-          </value>
-        </entry>
-      </map>
-    </option>
-  </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Read me/  LICENSE.txt" />
-    <MESSAGE value="Templates" />
-    <MESSAGE value="Fichier html et css setup&#10;-Gabriel" />
-    <MESSAGE value="html et css&#10;-Gabriel" />
-    <MESSAGE value="Questionnaire&#10;-Gabriel" />
-    <MESSAGE value="Dashboard et profil html, css&#10;-Gabriel" />
-    <MESSAGE value="Dashboard et profil html, css, js" />
-    <MESSAGE value="Menu de la page d'accueil" />
-    <MESSAGE value="Page profil et chatbot (API et design html, css, js) dans le tableau de bord" />
-    <MESSAGE value="Historique de conversation du chatbot" />
-    <MESSAGE value="Variables dans le model member" />
-    <MESSAGE value="Configuration du chart initiale finis" />
-    <option name="LAST_COMMIT_MESSAGE" value="Configuration du chart initiale finis" />
+    <MESSAGE value="J'ai enlever les fichiers de test" />
+    <MESSAGE value="fichiers pour le suivi html et css" />
+    <option name="LAST_COMMIT_MESSAGE" value="fichiers pour le suivi html et css" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/EcoNova$urls.coverage" NAME="urls Coverage Results" MODIFIED="1738637946628" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/djangoProject1" />
-    <SUITE FILE_PATH="coverage/EcoNova$manage.coverage" NAME="manage Coverage Results" MODIFIED="1738638318017" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/EcoNova$settings.coverage" NAME="settings Coverage Results" MODIFIED="1738637938825" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/djangoProject1" />
+    <SUITE FILE_PATH="coverage/EcoNova$views.coverage" NAME="views Coverage Results" MODIFIED="1747957331326" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/membres" />
+    <SUITE FILE_PATH="coverage/EcoNova$Test__membres.coverage" NAME="Test: membres Coverage Results" MODIFIED="1747957319880" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
   </component>
 </project>

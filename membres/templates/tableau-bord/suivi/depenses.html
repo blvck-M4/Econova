@@ -1,11 +1,11 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Page des Dépenses</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="depenses.css">
-
+    <title>Évaluation des Dépenses</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static '/css/tableau-bord/suivi/depenses.css' %}">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
@@ -55,20 +55,20 @@
     <h1>Évaluation des Depenses</h1>
     <div class="dashboard">
 
-    <!-- Graphique + Cartes -->
-    <div class="colonne-gauche">
+    <!-- Colonne gauche : Graphique + Cartes -->
+    <div class="colonne-droite">
         <canvas id="depenseChart"></canvas>
 
         <div class="depense-list">
             <div class="depense">
-                <div class="date">12/05/2025</div>
-                <div class="description">Épicerie</div>
-                <div class="amount">25,00 $</div>
+                <div>12/05/2025</div>
+                <div>Épicerie</div>
+                <div>25,00 $</div>
             </div>
             <div class="depense">
-                <div class="date">13/05/2025</div>
-                <div class="description">Transport</div>
-                <div class="amount">10,50 $</div>
+                <div>13/05/2025</div>
+                <div>Transport</div>
+                <div>10,50 $</div>
             </div>
         </div>
 
@@ -78,7 +78,7 @@
     </div>
 
     <!-- Liste des dépenses -->
-    <div class="colonne-droite">
+    <div class="colonne-gauche">
         <div class="categories">
             <div class="category-card">
                 <h3>Alimentation</h3>

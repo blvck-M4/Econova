@@ -1,26 +1,19 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <title>Évaluation des Revenus</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="revenues.css">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/tableau-bord/suivi/revenues.css' %}">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-    <section class="menu">
-        <!-- Menu identique à votre modèle, à adapter selon vos routes -->
-        <div class="logoSite">
-          <a href="/membres/static"><img src="{% static 'images/Logo EcoNova.png' %}" alt="Logo ÉcoNova Finance" class="logoSite"></a>
-          <h2 class="econova-text">EcoNova</h2>
-        </div>
-        <!-- ... vos onglets de navigation ... -->
-    </section>
 
     <h1>Évaluation des Revenus</h1>
     <div class="dashboard">
-        <!-- Colonne GAUCHE : Graphique + Liste de revenus -->
-        <div class="colonne-gauche">
+        <!-- Colonne droite : Graphique + Entrées de revenus -->
+        <div class="colonne-droite">
             <canvas id="revenuChart"></canvas>
 
             <div class="revenues-list">
@@ -39,8 +32,10 @@
             <button class="add-revenue">Ajouter un revenu</button>
         </div>
 
-        <!-- Colonne DROITE : Catégories et Objectifs -->
-        <div class="colonne-droite">
+        <!-- Colonne gauche : Catégories de revenus et Objectifs de revenus -->
+        <div class="colonne-gauche">
+
+            <!-- categories de revenues-->
             <div class="categories">
                 <div class="category-card">
                     <h3>Salaire</h3>
@@ -62,6 +57,8 @@
                     <div class="progress-bar"><div class="progress" style="width: 5%;"></div></div>
                     <span>5 %</span>
                 </div>
+
+                <!-- suivi du revenus totale dans une periode choisi-->
                 <div class="revenus-total">
                     <p>3800 $</p>
                     <div class="progress-bar-total"><div class="progress" style="width: 100%;"></div></div>
@@ -69,6 +66,7 @@
                 </div>
             </div>
 
+            <!-- tableau des objectifs de revenues-->
             <div class="card table">
                 <h1>Objectifs de Revenus</h1>
                 <table>
@@ -85,6 +83,7 @@
         </div>
     </div>
 
+    <!-- Graphique du revenu mensuelle-->
     <script>
         const ctx = document.getElementById('revenuChart');
         new Chart(ctx, {

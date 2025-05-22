@@ -393,4 +393,8 @@ def suivi(request):
 
 def analyse(request):
     return render(request, 'tableau-bord/suivi/analyse.html')
+def revenues(request):
+    return render(request, 'tableau-bord/suivi/revenues.html')
+def depenses(request):
+    return render(request, 'tableau-bord/suivi/depenses.html')
 
