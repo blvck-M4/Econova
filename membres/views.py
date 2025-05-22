@@ -389,8 +389,8 @@ def suivi(request):
         'utilisateurs': utilisateurs,
         'members': members,
     }
-    return render(request, 'tableau-bord/suivi.html', context)
+    return render(request, 'tableau-bord/suivi/suivi.html', context)
 
 def analyse(request):
-    return render(request, 'analyse.html')
+    return render(request, 'tableau-bord/suivi/analyse.html')
 
