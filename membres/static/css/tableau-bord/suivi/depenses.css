@@ -15,7 +15,7 @@ body {
 }
 
 /* Panels */
-.left-panel, .colonne-droite {
+.colonne-gauche, .colonne-droite {
     flex: 1 1 45%;
     display: flex;
     flex-direction: column;
