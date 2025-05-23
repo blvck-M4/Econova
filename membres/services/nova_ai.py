@@ -1,3 +1,4 @@
+#Code de l'intelligence artificielle utilisée dans le site internet
 import json
 
 from django.conf import settings
@@ -11,7 +12,7 @@ from google import genai
 from google.genai import types
 
 from membres.models import Membre
-
+#Code récupérer de google ai studio (https://aistudio.google.com/app/prompts/new_chat) et modifié selon nos besoins
 client = genai.Client(
     api_key=settings.GEMINI_API_KEY,
 )
@@ -46,7 +47,7 @@ generate_content_config = types.GenerateContentConfig(
     response_mime_type="text/plain",
 )
 
-
+#Génère la réponse du bot (Nova) lorsqu'il est questionné
 def reponseBot(request, utilisateur):
     historique = request.session.get('historique', [])
     utilisateur_infos = ''
@@ -66,12 +67,14 @@ def reponseBot(request, utilisateur):
     if request.method == "POST":
         user_message = request.POST.get("message")
         historique.append({"role": "user", "text": user_message})
+        # code google ai studio (modifié)
         contents = [
             types.Content(role=message["role"] if message["role"] == "user" else "model", parts=[types.Part.from_text(
                 text=message["text"])])
             for message in historique
 
         ]
+        # code google ai studio (modifié)
         generate_content_config.system_instruction = [
             types.Part.from_text(text="""Tu es NOVA, un conseiller financier virtuel intelligent conçu pour 
                                 accompagner """ + utilisateur + """, un utilisateur d’EcoNova dans la gestion et l’optimisation de ses 
@@ -83,6 +86,7 @@ def reponseBot(request, utilisateur):
                                 nécessaire et laisse des lignes entre différent point."""),
         ]
         reponse = ""
+        # code google ai studio
         for chunk in client.models.generate_content_stream(
                 model=model,
                 contents=contents,
@@ -98,38 +102,8 @@ def reponseBot(request, utilisateur):
         return reponse_finale
 
 
-def conseilActions(stock_data, profil):
-    nom = ''
-    if stock_data:
-        nom = stock_data['name']
-    contents = [
-        types.Content(
-            role="user",
-            parts=[
-                types.Part.from_text(text="""Donne moi des conseils financiers par rapport l'action 
-                """ + nom + """. Fait le sachant que j'ai un profil financier """ + profil),
-            ],
-        ),
 
-    ]
-    generate_content_config.system_instruction = [
-        types.Part.from_text(text="""Tu es NOVA, un conseiller financier virtuel intelligent conçu pour 
-                                    accompagner un utilisateur d’EcoNova dans la gestion et l’optimisation de ses 
-                                    finances personnelles. Ne donne pas des réponses trop longues, donc de plus de 500 
-                                    mots. Si tu rajoutes des points numérotés, fait le après les *.
-                                    """),
-    ]
-    reponse = ""
-    for chunk in client.models.generate_content_stream(
-            model=model,
-            contents=contents,
-            config=generate_content_config,
-    ):
-        reponse += chunk.text
-    reponse_finale = reponse.replace('*', '<br>')
-    return reponse_finale
-
-
+#Génère une liste de produits financier
 liste_actions = []
 liste_cryptos = []
 def listeProduits(produit):
@@ -139,17 +113,22 @@ def listeProduits(produit):
         format = 'BTC-CAD'
     else:
         format = ''
+
+    # code google ai studio (modifié)
     contents = [
         types.Content(
             role="user",
             parts=[
-                types.Part.from_text(text="""Génère le symbol du top 10 des """+produit+""" sous la forme {
+                types.Part.from_text(text="""Génère le symbol de 10 """+produit+""" aléatoires du top 100 
+                sous la 
+                forme {
                 """+format+""",
                 ...}"""),
             ],
         ),
 
     ]
+    # code google ai studio (modifié)
     generate_content_config.system_instruction = [
         types.Part.from_text(text="""Tu es un générateur de liste de """+produit+""" en français. Tu n'écris rien 
         d'autre que la 
@@ -166,6 +145,7 @@ def listeProduits(produit):
     else:
         liste_produits = []
     if len(liste_produits) == 0:
+        # code google ai studio
         for chunk in client.models.generate_content_stream(
                 model=model,
                 contents=contents,
@@ -180,53 +160,9 @@ def listeProduits(produit):
     return liste_produits
 
 
-import datetime
-liste_donnees = []
 
 
-def graphSimulation(action):
-    date = datetime.datetime.now().strftime("%Y-%m-%d")
-    contents = [
-        types.Content(
-            role="user",
-            parts=[
-                types.Part.from_text(text="""La date est """ + date + """. Génère une liste de données pour créer un graphique de prix par mois 
-                sur les 6 derniers mois de l'action """ + action['nom'] + """. sous 
-                ce format: [['2020-01-01',100.05];['2020-02-01',101.23]]). Fait le en considérant 
-                son prix initial (""" + action['prix'] + """)""",)
-            ],
-        ),
 
-    ]
-    generate_content_config.system_instruction = [
-        types.Part.from_text(text="""Tu es un générateur de liste de données de graphique. Tu n'écris rien d'autre 
-        que la liste. Sépare les liste par ; et l'intérieur des listes par une virgule sans 
-                utilisé rien d'autre pour que je puisse réutiliser la liste facilement. Ne me pas de signe $ sur le 
-                prix.
-                """),
-    ]
-    reponse = ""
-
-    global liste_donnees
-    for chunk in client.models.generate_content_stream(
-            model=model,
-            contents=contents,
-            config=generate_content_config,
-    ):
-        reponse += chunk.text
-    liste_donnees = reponse.split(';')
-
-    donnees = []
-    for donnee in liste_donnees:
-        date, prix = donnee.split(',')
-        date = date.strip("[]' \n\r\t")
-        prix = prix.strip("[]' \n\r\t")
-        donnees.append({"date": date, "prix": prix})
-    return donnees
-
-
-def simulationAI():
-    return ""
 
 
 
@@ -238,12 +174,14 @@ def qstProfil(request, utilisateur):
         user_message = request.POST.get("message")
         historique.append({"role": "user", "text": user_message})
 
+        # code google ai studio (modifié)
         contents = [
             types.Content(role=message["role"] if message["role"] == "user" else "model",
                           parts=[types.Part.from_text(text=message["text"])])
             for message in historique
         ]
 
+        # code google ai studio (modifié)
         generate_content_config.system_instruction = [
             types.Part.from_text(text="""Tu es Nova un conseiller financier virtuel conçu pour aider""" + utilisateur + """
             du site ECONOVA à déterminer leur profil d’investisseur à travers 10 questions basées sur des mises en situation 
@@ -264,6 +202,7 @@ def qstProfil(request, utilisateur):
         ]
 
         reponse = ""
+        # code google ai studio
         for chunk in client.models.generate_content_stream(
                 model=model,
                 contents=contents,
@@ -287,86 +226,3 @@ def qstProfil(request, utilisateur):
 
         return reponse_finale
 
-
-def build_profile(member):
-    """Construit un dict JSON du profil, avec timestamp pour varier le prompt."""
-    dettes = []
-    objectifs = []
-    if member.dette_credits:
-        dettes.append("Dettes de crédit")
-
-    if member.dette_pret_etudiant:
-        dettes.append("Dettes de pret etudiant")
-
-    if member.epargne_etudes:
-        dettes.append("Dettes de epargne")
-
-    if member.dette_pret_automobile:
-        dettes.append("Dettes de pret automobile")
-
-    if member.dette_hypotheque:
-        dettes.append("Dettes de hypotheque")
-
-    if member.dette_autre is not None:
-        dettes.append(member.dette_autre)
-
-    objectifs = []
-
-    return {
-        "nom": f"{member.prenom} {member.nom_de_famille}",
-        "revenu": member.revenu_mensuelle,
-        "dettes": {
-            "consommation": member.dette_credits,
-            "étudiant": member.dette_pret_etudiant,
-            "auto": member.dette_pret_automobile,
-            "hypothèque": member.dette_hypotheque,
-            "autre": member.dette_autre,
-        },
-        "objectifs": {
-            "maison": member.acheter_maison,
-            "retraite": member.preparation_retraite,
-            "urgence": member.fond_urgence,
-            "remboursement": member.rembourser_dettes,
-            "études": member.epargne_etudes,
-            "passif": member.revenue_passif,
-            "indépendance": member.independance_financier,
-            "investir": member.investir,
-            "autre": member.autre_objectif,
-        },
-        "tolérance_risque": member.tolerance_risque,
-    }
-
-
-def get_conseil(member):
-    profile_json = json.dumps(build_profile(member), ensure_ascii=False, indent=2)
-
-    contents = [
-        types.Content(
-            role="user",
-            parts=[
-                types.Part.from_text(text="""Parmi les données du """ + f"Profil :\n{profile_json}" + """ choisi à l'hazard UNE des objectifs spécifique ou une des dettes spécifique parmi celles qui s'applique à l'utilisateur augmantant la probabilité
-                de la génération d'une dettes et génère un conseil extêmement précise concernant cette dernière. Énumère pas les dettes de l'utilisateur. Le conseil ne doit pas dépasser plus de 100 mots. Elle soit est concise et pertinent
-                ne vous présentez pas, donne directement le conseil. Ne travail pas en fonction de priorité cependant si tu choisi quelque chose à priorisé souligne rapidement l'importance""")
-
-            ],
-        ),
-
-    ]
-    generate_content_config.system_instruction = [
-        types.Part.from_text(text="""
-            Vous êtes NOVA, un conseiller financier certifié. Qui génère des conseils objectives. Vos conseils sont fourit
-            à la troisième personne avec un ton neutre.
-
-            """.strip()),
-    ]
-    reponse = ""
-
-    global liste_donnees
-    for chunk in client.models.generate_content_stream(
-            model=model,
-            contents=contents,
-            config=generate_content_config,
-    ):
-        reponse += chunk.text
-
-    return reponse

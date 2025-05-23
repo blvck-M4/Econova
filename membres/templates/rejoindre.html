@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <title>Rejoindre</title>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <link rel="stylesheet" href="{% static 'css/rejoindre.css' %}">
+    <link rel="stylesheet" href="{% static 'css/formulaire-utilisateur.css' %}">
     <link rel="icon" href="{% static 'images/Logo EcoNova.png' %}">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.12.2/lottie.min.js"></script>
     <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
@@ -76,14 +76,14 @@
     </div>
 
 </header>
-    <section class="rejoindre-section">
+    <section class="form-section">
         <div class="form">
             <h1>Créer un compte</h1>
             <h3>Tu as déjà un compte? <a href="connexion" style="color: #0051FF">Connecte-toi</a></h3>
             {% for message in messages %}
                 <h3>{{ message }}</h3>
             {% endfor %}
-            <div id="lottie-container5" class="lottie-container-signup"></div>
+            <div id="lottie-container5" class="lottie-container-sign"></div>
             <script>
                 var animation = lottie.loadAnimation({
                     container: document.getElementById('lottie-container5'),
