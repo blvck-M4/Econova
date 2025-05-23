@@ -1,3 +1,5 @@
+/*Page de code CSS pour la section EDUCATION FINANCIERE du site web*/
+
 body {
     background: #252525;
     color: white;
@@ -7,33 +9,12 @@ body {
     align-items: center;
 }
 
-a {
-    color: white;
-    text-decoration: underline;
-}
-
-a:hover {
-    color: #ff65c4;
-}
-
-div:target {
-    animation: flashEffect 2s ease-in-out forwards;
-}
-
-@keyframes flashEffect {
-    0% {
-        background-color: rgba(255, 255, 0, 0.6);
-    }
-    100% {
-        background-color: transparent;
-    }
-}
-
 html {
     scroll-padding-top: 80px;
     scroll-behavior: smooth;
 }
 
+/*Boîte de contenu principale*/
 .container {
     background: #3a3a3a;
     width: 80%;
@@ -50,6 +31,7 @@ main {
     margin: auto;
 }
 
+/*Description de la section ÉDUCATION FINANCIÈRE*/
 .description {
     text-align: center;
     margin-bottom: 50px;
@@ -63,6 +45,7 @@ main {
     margin-bottom: 15px;
 }
 
+/*Section deux boutons Dictionnaire et Profil*/
 .sections {
     display: flex;
     justify-content: center;
@@ -123,6 +106,18 @@ main {
     margin-top: 10px;
 }
 
+.section.active {
+    background: #ff4081;
+    color: white;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
+}
+
+.section.active i,
+.section.active h3 {
+    color: white;
+}
+
+/*Boîtes cachées avec le contenu des deux sections*/
 .boite-texte {
     text-align: left;
     margin-top: 40px;
@@ -155,6 +150,29 @@ main {
     }
 }
 
+/*Remonter au haut de la page*/
+.upButton {
+    background-color: #FF65C4;
+    position: fixed;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    right: 50px;
+    bottom: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.upButton.show {
+    opacity: 1;
+    pointer-events: all;
+}
+
+/*Mots et définitions (Dictionnaire)*/
 .concept-item {
     display: flex;
     align-items: center;
@@ -172,17 +190,7 @@ main {
     color: #FF65C4;
 }
 
-.section.active {
-    background: #ff4081;
-    color: white;
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
-}
-
-.section.active i,
-.section.active h3 {
-    color: white;
-}
-
+/*Menu déroulant-> Saut de section (Dictionnaire)*/
 .dropdown {
     position: relative;
     display: inline-block;
@@ -255,27 +263,30 @@ main {
     transform: translateY(-2px) rotate(180deg);
 }
 
-.upButton {
-    background-color: #FF65C4;
-    position: fixed;
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
-    right: 50px;
-    bottom: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    opacity: 0;
-    pointer-events: none;
+/*Surlignage des mots ayant une définition (Dictionnaire)*/
+a {
+    color: white;
+    text-decoration: underline;
 }
 
-.upButton.show {
-    opacity: 1;
-    pointer-events: all;
+a:hover {
+    color: #ff65c4;
 }
 
+div:target {
+    animation: flashEffect 2s ease-in-out forwards;
+}
+
+@keyframes flashEffect {
+    0% {
+        background-color: rgba(255, 255, 0, 0.6);
+    }
+    100% {
+        background-color: transparent;
+    }
+}
+
+/*Bouton pour commencer le questionnaire (Profil)*/
 .btnCommencer {
     background-color: #ff65c4;
     color: white;
@@ -285,8 +296,9 @@ main {
     border: none;
     cursor: pointer;
     transition: background-color 0.3s;
-    position: relative;
     animation: pulse 2s infinite;
+    display: block;
+    margin-left: auto;
 }
 
 .btnCommencer:hover {
@@ -306,7 +318,7 @@ main {
     }
 }
 
-
+/*Section chatbox-questionnaire profil (Profil)*/
 .chatBox {
     height: 550px;
     background-color: white;
@@ -327,6 +339,7 @@ main {
     display: flex;
     flex-direction: column;
     margin-bottom: 8%;
+    max-height: 450px;
 }
 
 .messageUtilisateur {

@@ -271,18 +271,16 @@ def qstProfil(request, utilisateur):
         ):
             reponse += chunk.text
 
-        reponse = re.sub(r'<br\s*/?>', '', reponse)
-
-        reponse_finale = re.sub(r'(Question)( \d+.*\?)', lambda m: f'<strong>{m.group(1).upper()}{m.group(2)}</strong>', reponse)
-
-        reponse_finale = re.sub(r'(?<!<br>)\s*([a-d]\))', r'<br>\1', reponse_finale)
+        #Saut à la ligne pour chaque choix de réponses
+        reponse_finale = re.sub(r'(?<!<br>)\s*([a-d]\))', r'<br>\1', reponse)
+        #Remplace les doubles <br> par <br> simple
         reponse_finale = re.sub(r'(<br>\s*){2,}', r'<br>', reponse_finale)
+        #Remplace **  et * par <br>
         reponse_finale = re.sub(r'\*\*', r'<br>', reponse_finale)
         reponse_finale = re.sub(r'\*', r'<br>', reponse_finale)
-        reponse_finale = re.sub(r'(Question \d+:)(?!\s*(<br>|<br\s*/?>))', r'\1<br>', reponse_finale)
-
-        print("Contenu après modification:")
-        print(reponse_finale)
+        #Met les questions en gras (et majuscule)
+        reponse_finale = re.sub(r'(Question \d+.*?\?)', r'<strong>\1</strong>', reponse_finale, flags=re.DOTALL)
+        reponse_finale = re.sub(r'Question (\d+)', r'QUESTION \1', reponse_finale)
 
         historique.append({"role": "model", "text": reponse})
         request.session['historique2'] = historique
