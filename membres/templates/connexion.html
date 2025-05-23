@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <title>Connexion</title>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <link rel="stylesheet" href="{% static 'css/connexion.css' %}">
+    <link rel="stylesheet" href="{% static 'css/formulaire-utilisateur.css' %}">
     <link rel="icon" href="{% static 'images/Logo EcoNova.png' %}">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.12.2/lottie.min.js"></script>
     <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
@@ -69,14 +69,14 @@
         </div>
     </div>
 </header>
-    <section class="connexion-section">
+    <section class="form-section">
         <div class="form">
             <h1>Connecte-toi</h1>
             <h3>Tu n’as pas encore de compte? <a href="rejoindre" style="color: #0051FF">Crée un compte</a></h3>
             {% for message in messages %}
                 <h1>{{ message }}</h1>
             {% endfor %}
-            <div id="lottie-container6" class="lottie-container-signin"></div>
+            <div id="lottie-container6" class="lottie-container-sign"></div>
             <script>
                 var animation = lottie.loadAnimation({
                     container: document.getElementById('lottie-container6'),
@@ -95,16 +95,6 @@
                 <input type="submit" value="Se connecter">
             </form>
         </div>
-        <!--<div class="connexion-infos">
-            <div class="infos">
-                <h2>En vous inscrivant sur NOVA, vous accédez à des outils personnalisés pour gérer votre budget, suivre vos investissements et optimiser vos décisions financières. Profitez d’un suivi en temps réel, de conseils adaptés et d’une expérience sécurisée pour bâtir un avenir financier serein. Rejoignez-nous dès aujourd’hui !</h2>
-                <h1>Créez votre compte et prenez le contrôle de vos finances !</h1>
-            </div>
-            <div class="imgRejoindre" id="lottie">
-                <img src="{% static 'images/argentIMG.svg' %}" alt="">
-            </div>
-            <div class="shadow"></div>
-        </div>-->
     </section>
     <section class="copyrights">
         <h3>© 2025 NOVA. Tous droits réservés.</h3>

@@ -1,3 +1,5 @@
+/*Style général pour chaque page du tableau de bord*/
+
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Prompt:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
 * {
@@ -8,6 +10,7 @@
 html{
     background-color: #f4f4f4;
 }
+/*Font des pages du tableau de bord*/
 h1{
     font-family: "Ubuntu", serif;
     font-weight: bold;
@@ -24,7 +27,7 @@ h3, input::placeholder, textarea{
   font-weight: 300;
   font-style: normal;
 }
-
+/*Bouton en haut à droite pour avoir accès au menu profil*/
 .icon-profile{
     width: 40px;
     height: 40px;
@@ -36,6 +39,7 @@ h3, input::placeholder, textarea{
     background-color: #FE66F4;
     cursor: pointer;
 }
+/*MENU EN HAUT À DROITE*/
 .menu-profil{
     position: fixed;
     display: flex;

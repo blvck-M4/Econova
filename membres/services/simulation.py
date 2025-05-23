@@ -1,6 +1,8 @@
+#Code pour générer les informations nécessaires pour la simulation
 import yfinance as yf
 import numpy as np
-def listeActions(symbols):
+#Crer une liste de produit avec leurs infos comme la tendance à partir d'une liste de symbole
+def listeProduits(symbols):
     actions = []
     if len(actions) == 0:
         for symbol in symbols:
@@ -15,7 +17,7 @@ def listeActions(symbols):
                 historique = ticker.history(period="6mo")
                 prix_cloture = historique["Close"]
 
-                # Calcul du risque : volatilité annualisée
+                # Calcul du risque : volatilité annualisée (fait avec l'aide de chatgpt)
                 rendements_log = np.log(prix_cloture / prix_cloture.shift(1)).dropna()
                 risque = rendements_log.std() * np.sqrt(252)
                 tendance = rendements_log.mean() * 252
@@ -52,7 +54,7 @@ def graphProduit(action):
 
     return donnees
 
-#Simulation de Monte Carlo
+#Simulation de Monte Carlo (avec l'aide de chatgpt)
 def lancerSimulations(symbole, nb_annees):
     # Récupérer les données depuis yfinance
     ticker = yf.Ticker(symbole)  # Choisis ton symbole boursier

@@ -285,8 +285,8 @@ def chatbot(request):
     return render(request, 'tableau-bord/chatbot.html', context)
 def simulation(request):
     utilisateurs = User.objects.all().values()
-    liste_actions = nova_sim.listeActions(nova_ai.listeProduits('actions'))
-    liste_cryptos = nova_sim.listeActions(nova_ai.listeProduits('cryptomonnaies'))
+    liste_actions = nova_sim.listeProduits(nova_ai.listeProduits('actions'))
+    liste_cryptos = nova_sim.listeProduits(nova_ai.listeProduits('cryptomonnaies'))
     graph_actions = []
     for action in liste_actions:
         liste_donnees = nova_sim.graphProduit(action)
