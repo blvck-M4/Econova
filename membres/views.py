@@ -1,7 +1,4 @@
-import json
-from collections import defaultdict
 from datetime import datetime
-from os import utime
 
 from django.contrib.auth import user_logged_in
 from django.shortcuts import render, redirect
@@ -9,12 +6,11 @@ from django.contrib.auth.models import User, auth
 from django.contrib import messages
 from django.http import HttpResponse
 from django.template import loader
-from idna.uts46data import uts46data
 
-from .forms import RevenueMensuelleForms
-from .models import Membre, RevenueMensuelle
 from django.conf import settings
-import requests
+
+from .models import Membre
+
 conditions_termes = False
 
 from django.http import JsonResponse

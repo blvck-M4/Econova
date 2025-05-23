@@ -45,10 +45,4 @@ class Membre(models.Model):
     def __str__(self):
         return f"{self.utilisateur} - {self.prenom} {self.nom_de_famille}"
 
-class RevenueMensuelle(models.Model):
-    membre = models.ForeignKey(Membre, on_delete=models.CASCADE)
-    month = models.DateField()  # Store the month and year
-    revenue = models.DecimalField(max_digits=10, decimal_places=2)  # Store revenue as a float or decimal
 
-    def __str__(self):
-        return f"{self.membre} - {self.month} - {self.revenue}"
