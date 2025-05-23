@@ -5,6 +5,7 @@ html{
 body{
     background: linear-gradient(to top, black, #414141);
 }
+
 .tableau-bord{
     color: white;
 
@@ -16,6 +17,7 @@ body{
         "mot-de-passe mot-de-passe info2";
     grid-template-columns: 300px 2fr 1fr;
     gap: 5px;
+    /*logo de l'utilisateur (impossible de le modifier pour l'instant*/
     .logo-icon{
         width: 300px;
         height: 300px;
@@ -56,6 +58,7 @@ body{
     .modifier-logoIcon:hover{
         opacity: 1;
     }
+    /*Font de la page*/
     h1{
         font-size: 20px;
         margin-bottom: 10px;
@@ -125,7 +128,7 @@ body{
     }
 }
 
-
+/*Formulaire pour modifier une information du profil de l'utilisateur*/
 .form-modifier{
     width: 100vw;
     height: 100vh;

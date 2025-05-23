@@ -168,6 +168,7 @@
 
         </div>
 
+    <!--Portefeuille de l'utilisateur-->
         <div class="portefeuil" id="portefeuil">
             <div class="portefeuil-titre">
                 <img src="{% static 'images/dashboard-icon/triangle.svg' %}">
@@ -211,7 +212,7 @@
             action=false;
             crypto=true;
         }
-
+// --- Initialisation des éléments de l'interface ---
         // Sélectionne tous les éléments ayant la classe 'symbols'
         symbols = document.querySelectorAll('.symbols');
 
@@ -233,6 +234,14 @@
 
         produit_Qte = document.getElementById('quantite')
         popupTotal = document.getElementById('total');
+
+        commencer_simulation = document.getElementById('commencer_simulation')
+        nbannees_input = document.getElementById('nbannees')
+        nbannees = 1
+        let transactionHistorique = document.getElementById('transaction-history');
+        balance = document.getElementById('balance')
+        nb_transaction = document.getElementById('nb-transaction')
+        bouton_transaction = document.querySelector('.bouton-transaction')
 
         //Données pour les graphiques des produits
         var labels = [];
@@ -257,9 +266,7 @@
             {% endfor %}
         };
 
-        commencer_simulation = document.getElementById('commencer_simulation')
-        nbannees_input = document.getElementById('nbannees')
-        nbannees = 1
+    // --- Lancement de la simulation ---
         commencer_simulation.addEventListener('click', (e)=>{
             if (!nbannees_input.value) {
                 alert("Veuillez remplir le champ avant de lancer la simulation.");
@@ -270,7 +277,7 @@
             nbannees = nbannees_input.value
         })
 
-        // Ajoute un event listener sur chaque symbole
+        // --- Événement click sur un symbole (action ou crypto) ---
         symbols.forEach((symbol) => {
             symbol.addEventListener('click', () => {
                 bouton_action.textContent = 'Choisir une action';
@@ -280,12 +287,14 @@
                 produitPrix = ''
                 produitTendance = ''
                 {% for listeAction in  listeActions %}
+                    // Récupération des infos du produit sélectionné
                     if (symbolText === '{{ listeAction.symbole }}'){
                         produitNom = '{{ listeAction.nom }}'
                         produitRisque = '{{ listeAction.risque }}'
                         produitPrix = '{{ listeAction.prix }}'
                         produitTendance = '{{ listeAction.tendance }}'
                         const donnees = actionsGraph[produitNom];
+                        // Affichage du graphique et mise à jour
                         if (donnees) {
                             labels.length = 0;
                             prices.length = 0;
@@ -299,12 +308,14 @@
                     }
                 {% endfor %}
                 {% for listeCrypto in  listeCryptos %}
+                    // Récupération des infos du produit sélectionné
                     if (symbolText === '{{ listeCrypto.symbole }}'){
                         produitNom = '{{ listeCrypto.nom }}'
                         produitRisque = '{{ listeCrypto.risque }}'
                         produitPrix = '{{ listeCrypto.prix }}'
                         produitTendance = '{{ listeCrypto.tendance }}'
                         const donnees = cryptosGraph[produitNom];
+                        // Affichage du graphique et mise à jour
                         if (donnees) {
                             labels.length = 0;
                             prices.length = 0;
@@ -360,9 +371,10 @@
 
 
 
-
+        // --- Initialisation du graphique principal ---
         var ctx = document.getElementById('stockChart').getContext('2d');
         var stockChart = new Chart(ctx, {
+            // Configuration du graphique avec Chart.js
             type: 'line',
             data: {
                 labels: labels,
@@ -427,7 +439,9 @@
                 }
             }
         });
+        // --- Mise à jour des données du graphique ---
         function chargerGraphique(nom) {
+            // Récupère et affiche les données (labels, prices)
             let donnees
             if (crypto){
                 donnees = cryptosGraph[nom];
@@ -449,14 +463,13 @@
         }
 
 
-
+        // --- Gestion de l'affichage du menu dropdown transaction ---
         bouton_action.addEventListener('click', () => {
             options.style.display = options.style.display === 'block' ? 'none' : 'block';
         });
 
 
         // Fonction pour ajouter une transaction
-        let transactionHistorique = document.getElementById('transaction-history');
         function addTransaction(statut, prix, symbolText, produitNom) {
             let row = document.createElement('tr');
 
@@ -484,14 +497,11 @@
             }
         });
 
-        balance = document.getElementById('balance')
-        nb_transaction = document.getElementById('nb-transaction')
-        bouton_transaction = document.querySelector('.bouton-transaction')
+
+        // Fonction principale pour effectuer une transaction (fait à l'aide de chatgpt)
         function effectuerTransaction(){
             const quantite = parseInt(produit_Qte.value);
             if (quantite >= 1){
-
-
 
                 // Convert cleaned value to a number
                 let total_initial = cleanBalance();
@@ -548,6 +558,7 @@
 
         }
 
+    // --- Affiche le portefeuille dans le tableau dynamique ---
         function afficherPortefeuilleDansTableau(portefeuille) {
             const tbody = document.getElementById('tab-produit');
 
@@ -598,6 +609,7 @@
                 tbody.appendChild(ligne);
             });
         }
+        // --- Nettoyage du solde (supprime $ et espaces) ---
         function cleanBalance(){
             let cleanBalance = balance.textContent
                     .trim() // Removes any leading/trailing spaces
@@ -605,6 +617,8 @@
                     .replace(/\s+/g, ''); // Removes all spaces (including non-breaking ones)
             return parseFloat(cleanBalance);
         }
+
+        // --- Fonction bouton "Vendre" depuis le tableau ---
         function boutonVendrePortefeuille(quantite, item) {
             nouveau_total = parseFloat(document.getElementById(item.nom + '_prix').innerText)
             item.prix = nouveau_total;
@@ -647,12 +661,14 @@
         }
 
 
-        //Envoyer les infos du portefeuil au simulateur
+        // --- Simulation Monte Carlo : appel AJAX + affichage résultats ---
         lancerSimulation = document.getElementById('lancer')
         const lancerH2 = document.querySelector("#lancer h2");
         chargement = document.getElementById('chargement')
         let redemarrer = false
         lancerSimulation.addEventListener('click', () => {
+            // Prépare et envoie chaque produit pour simulation
+            // Affiche les graphiques de résultats dynamiques
             if (redemarrer === true){
                 location.reload()
                 return
@@ -701,6 +717,7 @@
                         pointRadius: 0
                       }));
 
+                      //Afficher le graphique
                       const ctx = document.getElementById(canvasId).getContext('2d');
                       new Chart(ctx, {
                         type: 'line',
@@ -727,11 +744,6 @@
                       montant_avant_sim += e.prix;
                       rendement_pourcentage = (rendement_total-montant_avant_sim)/montant_avant_sim*100
                       rendement.textContent = rendement_pourcentage.toFixed(2) + '%'
-                        console.log("Rendement total: "+rendement_total)
-                        console.log('Clean balance: '+cleanBalance())
-                        console.log('Montant avant simulation: '+montant_avant_sim)
-                        console.log('Rendement pourcentage: '+rendement_pourcentage)
-                        console.log('Rendement moyen: '+rendement_moyen)
                         document.getElementById(e.nom+'_prix').textContent = (moyenne1*e.transactions).toFixed(2)
                     }, error: function () {
                       console.log("Erreur lors de la simulation");

@@ -1,3 +1,5 @@
+/*Style du chatbot du tableau de bord*/
+
 html{
     background-color: white;
 }
@@ -31,6 +33,7 @@ html{
         flex-direction: column;
 
 }
+/*Style de la question de l'utilisateur*/
 .user-message {
         width: fit-content;
         min-width: 300px;
@@ -44,11 +47,13 @@ html{
         overflow-wrap: break-word;
         white-space: normal;
 }
+/*Style de la réponse du bot*/
 .bot-message {
         text-align: left;
         width: 80%;
         margin-bottom: 20px;
 }
+/*Style de la page de présentation du chatbot*/
 .bienvenue{
         display: flex;
         flex-direction: column;
@@ -81,7 +86,7 @@ html{
 
 
 
-
+/*Style de la barre de questionnement pour que l'utilisateur rentre son message*/
 .message-utilisateur{
         transform: translateY(-15px);
         width: 600px;

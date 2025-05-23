@@ -1,22 +1,23 @@
+/*Style du questionnaire du site internet après le formulaire pour s'inscrire*/
 
+/*Header*/
 .logoSite {
     .econova-text {
         color: rgba(0, 0, 0, 0.7);
     }
 }
-
 .menu-btn {
     .btn-line {
         background: black;
     }
 }
-
 .x_active {
     .btn-line {
         background: white;
     }
 }
 
+/*Questionnaire*/
 .questionnaire {
     display: flex;
     justify-content: center;
@@ -49,6 +50,7 @@
         display: none;
     }
 
+    /*Section de chaque question lorsqu'il sont visibles*/
     .visible {
         border-radius: 15px;
         display: flex;
@@ -107,6 +109,7 @@
         cursor: pointer;
     }
 
+    /*Bouton pour soumettre le questionnaire*/
     input[type="submit"] {
         background-color: #FE66C4;
         color: white;
@@ -121,11 +124,17 @@
         border: none;
     }
 
+    /*Font de la présentation*/
     h1 {
         font-size: 40px;
         margin-bottom: 10px;
     }
+    h2 {
+        font-size: 30px;
+        margin-bottom: 20px;
+    }
 
+    /*Lottie animation*/
     .form-animation {
         display: flex;
         justify-content: center;
@@ -139,16 +148,13 @@
         }
     }
 
-    h2 {
-        font-size: 30px;
-        margin-bottom: 20px;
-    }
 
     .infos-questionnaire {
         width: 100%;
         margin-bottom: 50px;
     }
 
+    /*Boutons de navigation*/
     .nav-questionnaire {
         margin-top: 20px;
         display: flex;
@@ -160,33 +166,33 @@
         button:nth-child(2) {
             margin-left: 15px;
         }
-    }
 
-    .nav-questionnaire button {
-        align-items: center;
-        background: #f5f5fa;
-        border: 0;
-        border-radius: 8px;
-        box-shadow: rgba(0, 0, 0, 0.25) 0 25px 50px -12px;
-        box-sizing: border-box;
-        cursor: pointer;
-        padding: 15px;
-        transition: 0.2s ease-in-out;
-    }
+        button {
+            align-items: center;
+            background: #f5f5fa;
+            border: 0;
+            border-radius: 8px;
+            box-shadow: rgba(0, 0, 0, 0.25) 0 25px 50px -12px;
+            box-sizing: border-box;
+            cursor: pointer;
+            padding: 15px;
+            transition: 0.2s ease-in-out;
+        }
 
-    .nav-questionnaire .suivant {
-        background-color: #FE66C4;
-        color: white;
-    }
+        .suivant {
+            background-color: #FE66C4;
+            color: white;
+        }
 
-    .nav-questionnaire .retour:hover {
-        background: #FE66C4;
-        color: white;
-    }
+        .retour:hover {
+            background: #FE66C4;
+            color: white;
+        }
 
-    .nav-questionnaire .suivant:hover {
-        background-color: #f5f5fa;
-        color: #2a1f62;
+        .suivant:hover {
+            background-color: #f5f5fa;
+            color: #2a1f62;
+        }
     }
 
 }

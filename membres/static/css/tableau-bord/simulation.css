@@ -1,8 +1,10 @@
+/*Style de la simulation*/
+
 body{
     background-color: white;
 }
 
-/* Style général de la page */
+/* PAGE D'INTRODUCTION du simulateur */
 .page-accueil {
     position: fixed;
     top: 0;
@@ -19,7 +21,7 @@ body{
     overflow: hidden;
 }
 
-/* Conteneur principal de la page d'introduction */
+    /* Conteneur principal de la page d'introduction */
 .intro-container {
     background-color: rgba(255, 255, 255, 0.2);
     backdrop-filter: blur(10px);
@@ -31,7 +33,7 @@ body{
     animation: fadeIn 1s ease-in-out;
 }
 
-/* Titres */
+    /* Titres */
 .intro-container h1 {
     font-size: 2.5em;
     margin-bottom: 20px;
@@ -46,7 +48,7 @@ body{
     margin-bottom: 30px;
 }
 
-/* Formulaire */
+    /* Formulaire du nombre d'année de la projection de la simulation */
 .intro-container input[type="number"] {
     padding: 10px;
     font-size: 1em;
@@ -71,7 +73,7 @@ body{
     background-color: #ff67c3;
 }
 
-/* Animation */
+    /* Animation */
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
@@ -81,7 +83,7 @@ body{
 
 
 
-
+/*SIMULATION*/
 
 .simulation{
     display: flex;
@@ -91,7 +93,7 @@ body{
     min-height: 100dvh;
 
 }
-
+    /*Barre en haut des informations du compte de l'utilisateur pour la simulation*/
 .compte{
     width: 100%;
     height: 120px;
@@ -119,6 +121,7 @@ body{
         }
     }
 }
+    /*Bouton pour lancer la simulation*/
 .lancer-simulation{
     width: 100%;
     height: 50px;
@@ -143,12 +146,14 @@ body{
         transform: scale(1.01);
         background-color: #b1b1b1;
 }
+/*Section des produits financiers*/
 .tableau-simulation{
     display: flex;
     flex-direction: column;
     justify-content: center;
     width: 100%;
     padding: 50px 100px;
+    /*Barre de recherche*/
     .recherche{
         width: 600px;
         height: 40px;
@@ -165,7 +170,7 @@ body{
     .recherche:focus{
         outline: none;
     }
-
+    /*Sélection du type de produit*/
     .type-produit{
         margin-top: 50px;
         display: flex;
@@ -200,6 +205,7 @@ body{
     }
 }
 
+/*Bouton du portefeuille de l'utilisateur*/
 .portefeuil{
     width: 100vw;
     height: 40px;
@@ -225,6 +231,7 @@ body{
     cursor: pointer;
 }
 
+/*Tableau avec une sélection de 10 produits pour chaque type de produit*/
 .tableau-produit{
     width: 100%;
     height: 1fr;
@@ -260,6 +267,8 @@ body{
         cursor: pointer;
     }
 }
+
+/*Historique des transactions*/
 .historique::-webkit-scrollbar {
     width: 10px;
     height: 10px;
@@ -335,7 +344,7 @@ body{
 
 }
 
-
+/*Cadre qui apparait lorsqu'un produit est sélectionné*/
 .produit-info {
     display: none; /* Caché par défaut */
     position: fixed;
@@ -490,7 +499,7 @@ body{
         }
     }
 }
-
+/*Bouton pour fermer la fenetre des infos du produits*/
 #fermer-produit {
     position: absolute;
     transform: translateX(-18vw) translateY(-36vh);
@@ -571,7 +580,7 @@ body{
   background: none;
 }
 
-
+/*Portefeuille de l'utilisateur*/
 .portefeuil-section{
     position: fixed;
     display: none;
@@ -656,7 +665,7 @@ body{
 
     }
 }
-
+/*Chargement lorsque la simulation est lancée avec l'aide de chatgpt*/
 .spinner {
   margin: 10px auto;
   border: 6px solid #ccc;
