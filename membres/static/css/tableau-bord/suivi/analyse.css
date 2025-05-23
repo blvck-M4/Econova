@@ -15,6 +15,7 @@
 
     .container { padding: 20px;
     margin-left: 300px}
+    /* séparateur verticale*/
     .séparateur-verticale {
     width: 1px;
     background-color: white;
@@ -23,6 +24,7 @@
     }
     .section-revenu-depense { display: flex; gap: 1rem; margin-bottom: 1rem; }
 
+    /* configuration des petites graphiques*/
     .mini-graphique {
         display: flex;
         flex-direction: column;
@@ -42,7 +44,7 @@
       color: var(--accent-color);
       margin-bottom: 0.5rem;
     }
-    /* Same design as main chart */
+    /* Configuration du canvas des mini graphiques*/
     .mini-graphique canvas {
       width: 100% !important;
       height: 200px !important;
@@ -50,11 +52,13 @@
       border-radius: 4px;
     }
 
-    .main-flex {
+/* section des objectifs et des dettes*/
+    .objectifs-dettes {
       display: flex;
       gap: 1rem;
       margin-bottom: 1rem;
     }
+    /* Graphique des objectifs et dettes*/
     .graphique-principale {
       flex: 0 0 65%;
         background: #111111FF;
@@ -77,6 +81,7 @@
       padding: 0.5rem;
       cursor: pointer;
     }
+    /*Options de graphiques spécifiques*/
     .list-graphiques {
       flex: 1;
       display: flex;
@@ -91,7 +96,6 @@
     .list-graphiques button {
   margin-bottom: 1rem;
 }
-
 
     .list-graphiques button {
       background: #111111FF;
@@ -110,14 +114,6 @@
       border-radius: 50%;
       border: 1px solid #353535FF;
     }
-
-    .row-cards { display: flex; ; }
-    .row-cards .budget { flex: 1; }
-    .barchart canvas {
-      display: block;
-      width: 100%;
-      height: 400px;
-      background: #111111FF;
-      border-radius: 4px;
-        border: 1px solid #353535FF;
-    }
+/* Fonction permettant de placer les éléments en colonnes*/
+    .colonne-cards { display: flex; ; }
+    .colonne-cards .budget { flex: 1; }

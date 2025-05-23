@@ -4,17 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f9aebb3d-f84f-4f06-97d9-2e8beb6367aa" name="Changes" comment="fichiers pour le suivi html et css">
+    <list default="true" id="f9aebb3d-f84f-4f06-97d9-2e8beb6367aa" name="Changes" comment="?">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/membres/static/css/suivi-financier.css" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/membres/static/css/tableau-bord/suivi/analyse.css" beforeDir="false" afterPath="$PROJECT_DIR$/membres/static/css/tableau-bord/suivi/analyse.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/membres/static/css/tableau-bord/suivi/depenses.css" beforeDir="false" afterPath="$PROJECT_DIR$/membres/static/css/tableau-bord/suivi/depenses.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/membres/static/css/tableau-bord/suivi/revenues.css" beforeDir="false" afterPath="$PROJECT_DIR$/membres/static/css/tableau-bord/suivi/revenues.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/membres/templates/tableau-bord/suivi/analyse.html" beforeDir="false" afterPath="$PROJECT_DIR$/membres/templates/tableau-bord/suivi/analyse.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/membres/templates/tableau-bord/suivi/depenses.html" beforeDir="false" afterPath="$PROJECT_DIR$/membres/templates/tableau-bord/suivi/depenses.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/membres/templates/tableau-bord/suivi/revenues.html" beforeDir="false" afterPath="$PROJECT_DIR$/membres/templates/tableau-bord/suivi/revenues.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/membres/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/membres/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/membres/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/membres/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,21 +20,21 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "blvck-M4"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;blvck-M4&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/blvck-M4/Econova.git",
-    "accountId": "d13859bd-9431-4aa1-b7ee-774830cf58df"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/blvck-M4/Econova.git&quot;,
+    &quot;accountId&quot;: &quot;d13859bd-9431-4aa1-b7ee-774830cf58df&quot;
   }
-}]]></component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 7
-}]]></component>
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 7
+}</component>
   <component name="ProjectId" id="2xTKOsuLpFdCgeBeX9IlXsUWa4g" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
@@ -52,7 +48,7 @@
     "RunOnceActivity.OpenDjangoStructureViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "master",
+    "git-widget-placeholder": "Micheal",
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
@@ -128,10 +124,14 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="J'ai enlever les fichiers de test" />
     <MESSAGE value="fichiers pour le suivi html et css" />
-    <option name="LAST_COMMIT_MESSAGE" value="fichiers pour le suivi html et css" />
+    <MESSAGE value="?" />
+    <option name="LAST_COMMIT_MESSAGE" value="?" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/EcoNova$settings.coverage" NAME="settings Coverage Results" MODIFIED="1738637938825" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/djangoProject1" />
     <SUITE FILE_PATH="coverage/EcoNova$views.coverage" NAME="views Coverage Results" MODIFIED="1747957331326" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/membres" />
+    <SUITE FILE_PATH="coverage/EcoNova$urls.coverage" NAME="urls Coverage Results" MODIFIED="1738637946628" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/djangoProject1" />
     <SUITE FILE_PATH="coverage/EcoNova$Test__membres.coverage" NAME="Test: membres Coverage Results" MODIFIED="1747957319880" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/EcoNova$manage.coverage" NAME="manage Coverage Results" MODIFIED="1738638318017" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

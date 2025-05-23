@@ -19,18 +19,22 @@
             gap: 2rem;
             flex-wrap: wrap;
         }
+        /* Colonnes */
         .colonne-droite, .colonne-gauche {
             flex: 1 1 45%;
             display: flex;
             flex-direction: column;
             gap: 2rem;
         }
+
+        /* Canvas */
         canvas {
             background-color: var(--card-bg);
             border-radius: 12px;
             padding: 1rem;
             box-shadow: 0 0 10px rgba(0,0,0,0.3);
         }
+        /* Liste des revenus */
         .revenues-list {
             display: flex;
             flex-direction: column;
@@ -49,7 +53,8 @@
         .revenue-item:hover {
             transform: scale(1.02);
         }
-        .add-revenue {
+        /* Ajout de revenu */
+        .btn-add-revenue {
             background-color: var(--accent-color);
             color: white;
             padding: 0.8rem 1.5rem;
@@ -60,9 +65,10 @@
             transition: background 0.3s;
             align-self: start;
         }
-        .add-revenue:hover {
+        .btn-add-revenue:hover {
             background-color: var(--hover-color);
         }
+        /* Catégories de revenus */
         .categories {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -87,6 +93,7 @@
             height: 100%;
             transition: width 0.5s;
         }
+        /* Affichage des revenus total*/
         .revenus-total {
             grid-column: span 2;
             background-color: var(--card-bg);
@@ -106,6 +113,7 @@
             margin: 1rem 0;
             overflow: hidden;
         }
+        /* Tableau d'entrée des revenues */
         .card.table {
             max-width: 800px;
             margin: 3rem auto;
