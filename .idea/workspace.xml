@@ -6,11 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="f9aebb3d-f84f-4f06-97d9-2e8beb6367aa" name="Changes" comment="?">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/membres/static/css/tableau-bord/suivi/analyse.css" beforeDir="false" afterPath="$PROJECT_DIR$/membres/static/css/tableau-bord/suivi/analyse.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/membres/static/css/tableau-bord/suivi/depenses.css" beforeDir="false" afterPath="$PROJECT_DIR$/membres/static/css/tableau-bord/suivi/depenses.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/membres/static/css/tableau-bord/suivi/revenues.css" beforeDir="false" afterPath="$PROJECT_DIR$/membres/static/css/tableau-bord/suivi/revenues.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/membres/templates/tableau-bord/suivi/analyse.html" beforeDir="false" afterPath="$PROJECT_DIR$/membres/templates/tableau-bord/suivi/analyse.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/membres/templates/tableau-bord/suivi/revenues.html" beforeDir="false" afterPath="$PROJECT_DIR$/membres/templates/tableau-bord/suivi/revenues.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/membres/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/membres/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/membres/static/css/questionnaire.css" beforeDir="false" afterPath="$PROJECT_DIR$/membres/static/css/questionnaire.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/membres/templates/questionnaire.html" beforeDir="false" afterPath="$PROJECT_DIR$/membres/templates/questionnaire.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,6 +16,11 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
@@ -43,7 +46,9 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Django Server.Unnamed.executor": "Run",
     "Django tests.Test: membres.executor": "Run",
+    "JavaScript Debug.questionnaire.html.executor": "Run",
     "Python.views.executor": "Run",
     "RunOnceActivity.OpenDjangoStructureViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
@@ -61,7 +66,7 @@
       <recent name="C:\Users\Admin\Downloads\Econova\membres\templates\tableau-bord\suivi" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Django Server.Unnamed">
     <configuration name="Test: membres" type="DjangoTestsConfigurationType" temporary="true">
       <module name="EcoNova" />
       <option name="ENV_FILES" value="" />
@@ -83,9 +88,69 @@
       <option name="OPTIONS" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="test.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/EcoNova/membres/templates/test.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
+    <configuration name="0001_initial" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="EcoNova" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/membres/migrations" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/membres/migrations/0001_initial.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Unnamed" type="Python.DjangoServer" factoryName="Django server" nameIsGenerated="true">
+      <module name="EcoNova" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+        <env name="DJANGO_SETTINGS_MODULE" value="djangoProject1.settings" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="SDK_NAME" value="Python 3.13 (Econova)" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="launchJavascriptDebuger" value="false" />
+      <option name="port" value="8000" />
+      <option name="host" value="" />
+      <option name="additionalOptions" value="" />
+      <option name="browserUrl" value="" />
+      <option name="runTestServer" value="false" />
+      <option name="runNoReload" value="false" />
+      <option name="useCustomRunCommand" value="false" />
+      <option name="customRunCommand" value="" />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Django Server.Unnamed" />
+      <item itemvalue="Django tests.Test: membres" />
+      <item itemvalue="JavaScript Debug.test.html" />
+      <item itemvalue="Python.0001_initial" />
+    </list>
     <recent_temporary>
       <list>
         <item itemvalue="Django tests.Test: membres" />
+        <item itemvalue="Python.0001_initial" />
+        <item itemvalue="JavaScript Debug.test.html" />
       </list>
     </recent_temporary>
   </component>
@@ -115,7 +180,15 @@
       <updated>1747956595840</updated>
       <workItem from="1747956598523" duration="1400000" />
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Commentaire du css du page d'analyse, de revenues et de dépenses">
+      <option name="closed" value="true" />
+      <created>1747959803586</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1747959803586</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -131,7 +204,7 @@
     <SUITE FILE_PATH="coverage/EcoNova$settings.coverage" NAME="settings Coverage Results" MODIFIED="1738637938825" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/djangoProject1" />
     <SUITE FILE_PATH="coverage/EcoNova$views.coverage" NAME="views Coverage Results" MODIFIED="1747957331326" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/membres" />
     <SUITE FILE_PATH="coverage/EcoNova$urls.coverage" NAME="urls Coverage Results" MODIFIED="1738637946628" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/djangoProject1" />
-    <SUITE FILE_PATH="coverage/EcoNova$Test__membres.coverage" NAME="Test: membres Coverage Results" MODIFIED="1747957319880" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/EcoNova$manage.coverage" NAME="manage Coverage Results" MODIFIED="1738638318017" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/EcoNova$Test__membres.coverage" NAME="Test: membres Coverage Results" MODIFIED="1747973605696" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
   </component>
 </project>

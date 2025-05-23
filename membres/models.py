@@ -40,9 +40,6 @@ class Membre(models.Model):
     investir = models.BooleanField(default=False)
     autre_objectif = models.CharField(max_length=255, null=True)
 
-
-
-
     tolerance_risque = models.CharField(max_length=255, null=True, blank=True)
 
     def __str__(self):

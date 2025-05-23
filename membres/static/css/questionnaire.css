@@ -4,7 +4,7 @@
         color: rgba(0, 0, 0, 0.7);
     }
 }
-
+/* Bouton pour accéder le menu */
 .menu-btn {
     .btn-line {
         background: black;
@@ -27,6 +27,7 @@
     padding: 200px;
     background-color: #f4f4f4;
 
+
     .questions {
         padding: 100px;
         background-color: #ffffff;
@@ -45,9 +46,11 @@
         }
     }
 
+    /* Section de question */
     .question {
         display: none;
     }
+
 
     .visible {
         border-radius: 15px;

@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link rel="stylesheet" href="{% static 'css/questionnaire.css' %}">
     <link rel="icon" href="{% static 'images/Logo EcoNova.png' %}">
+    <!-- Outils pour l'animation-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.12.2/lottie.min.js"></script>
     <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 </head>
@@ -19,6 +20,7 @@
         <h2 class="econova-text">EcoNova</h2>
     </div>
 
+    <!-- Menu caché-->
     <div class="menu">
         <div class="menu-btn">
             <div class="btn-line" id="btn-line1"></div>
@@ -27,7 +29,9 @@
         </div>
     </div>
 
+    <!-- Menu ouvert-->
     <div class="menu-slide">
+        <!-- vérification de l'utilisateur-->
         {% if user.is_authenticated %}
             <h2 class="navigation">Bienvenue {{ user.username }}</h2>
             <div class="liste-onglets">
@@ -39,6 +43,7 @@
                     <h2><a href="education">Éducation Financière</a></h2>
                 </ul>
             </div>
+            <!-- Option de déconnection-->
             <div class="menu-connexion">
                 <a href="deconnexion"><button class="deconnexion">Se déconnecter</button></a>
                 <a href="tableau-bord/page-principale">
@@ -47,6 +52,7 @@
                 </a>
             </div>
         {% else %}
+            <!-- Affichage du navaigation pour les utilisateurs-->
             <h2 class="navigation">NAVIGATION</h2>
             <div class="liste-onglets">
                 <ul>
@@ -57,6 +63,7 @@
                     <h2><a href="education">Éducation Financière</a></h2>
                 </ul>
             </div>
+            <!-- Options de connections pour les visiteurs-->
             <div class="menu-connexion">
                 <a href="connexion"><button class="connexion">Connexion</button></a>
                 <a href="rejoindre"><button class="rejoindre">Rejoindre</button></a>
@@ -69,9 +76,11 @@
         </div>
     </div>
 </header>
+<!-- Questionnaire-->
 <section class="questionnaire">
     <div class="questions">
         <h1>Bienvenue, {{ user.username }}, dans le questionnaire de profil financier !</h1>
+        <!-- Animation de l'image-->
         <div class="form-animation">
             <div id="lottie-container7" class="lottie-container-form"></div>
             <script>
@@ -85,6 +94,7 @@
             </script>
         </div>
 
+        <!-- Renseignement sur l'utilité du questionnaire-->
         <h2>Quel est votre profil financier ?</h2>
         <h3 class="infos-questionnaire">Avant de définir vos objectifs financiers, il est important de
             comprendre votre situation et vos attentes. Cela comprend votre capacité à accepter des
@@ -96,12 +106,14 @@
         <form action="" method="post">
             {% csrf_token %}
 
+            <!-- Question concernant l'âge de l'utilisateur-->
             <div class="question visible">
                 <h2>Quelle est votre date de naissance?</h2>
                 <label for="dateNaissance"></label>
                 <input type="date" id="dateNaissance" name="dateNaissance" min="1900-01-01" max="2025-12-31">
             </div>
 
+            <!-- Question concernant le genre de l'utilisateur-->
             <div class="question">
                 <h2>Quel est votre genre?</h2>
                 <div><input type="radio" name="sexe" value="Homme">
@@ -114,6 +126,7 @@
                 </div>
             </div>
 
+            <!-- Question concernant la situation professionnel de l'utilisateur-->
             <div class="question">
                 <h2>Quelle est votre situation professionnelle actuelle?</h2>
                 <div><input type="radio" name="situation" value="Salarié(e)">
@@ -128,6 +141,7 @@
                     <h3>Autre: </h3><input type="text" name="autreSituation" id="autre-text"></div>
             </div>
 
+            <!-- Question concernant le revenue mensuelle moyen de l'utilisateur-->
             <div class="question">
                 <h2>Quel est votre revenu mensuel moyen?</h2>
                 <div><input type="radio" name="revenu" value="Moins de 1500$">
@@ -140,6 +154,7 @@
                     <h3>Plus de 7000$</h3></div>
             </div>
 
+            <!-- Question concernant le statut maritl de l'utlilisater-->
             <div class="question">
                 <h2>Quel est votre statut matrimonial?</h2>
                 <div><input type="radio" name="statut" value="Célibataire">
@@ -157,6 +172,7 @@
                 </div>
             </div>
 
+            <!-- Question concernant le nombre d'enfant des utilisaterus-->
             <div class="question">
                 <h2>Avez-vous des enfants?</h2>
                 <div><input type="radio" name="enfant" value="Oui" onclick="show1();"/>
@@ -179,6 +195,7 @@
                 </div>
             </div>
 
+            <!-- Question concernant la situation d'habitation de l'utilisateur-->
             <div class="question">
                 <h2>Quelle est votre situation d'habitation actuelle?</h2>
                 <div><input type="radio" name="habitation" value="Propriétaire (avec hypothèque)">
@@ -195,6 +212,7 @@
 
             </div>
 
+            <!-- Question concernant les objectifs de l'utilisateur-->
             <div class="question">
                 <h2>Quels sont vos objectifs financiers?</h2>
                 <div><input type="checkbox" name="acheterMaison">
@@ -221,6 +239,7 @@
             </div>
 
 
+            <!-- Question concernant les dettes de l'utilisateur-->
             <div class="question">
                 <h2>Êtes-vous actuellement endetté?</h2>
                 <div><input type="radio" name="dettes" value="Oui" onclick="show3();"/>
@@ -229,8 +248,7 @@
                     <h3>Non</h3></div>
 
                 <div id="div2">
-                    <br>
-                    <br>
+                    <br><br>
                     <h2>À combien s'élève le montant de vos dettes?</h2>
                     <div><input type="radio" name="montantDette" value="Moins de 10 000$">
                         <h3>Moins de 10 000$</h3></div>
@@ -261,6 +279,7 @@
             </div>
 
 
+            <!--Affichage des termes et conditions-->
             <div class="question">
 
                 <h2>Termes et conditions</h2>
@@ -368,7 +387,7 @@
                     </section>
                 </div1>
 
-
+                <!-- Acceptation des termes et conditons-->
                 <div><input type="checkbox" name="conditions" required>
                     <h3>J'ai lu et j'accepte l'ensemble des termes et conditions ainsi que la politique de
                         confidentialité.</h3>
