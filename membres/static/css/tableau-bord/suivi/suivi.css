@@ -1,10 +1,11 @@
 body {
     background: #1b1b1b;
     color: white;
+    overflow-x: hidden;
 }
 
 .corp {
-    height: 1750px;
+    height: 100%;
 }
 
 .suivi-sections {
@@ -13,6 +14,8 @@ body {
     align-items: flex-start; /* Aligne les sections en haut */
     gap: 50px; /* Réduit l’espace entre Actifs et Passifs */
     margin-top: 50px;
+    padding-left: 320px;
+    padding-right: 20px;
 }
 
 .actifs, .passifs {
@@ -28,28 +31,26 @@ body {
     color: #FFC0CB;
 }
 
-.actifs {
-    margin-left: 175px;
-}
+
 
 .actifs input, .passifs input {
     width: 100%;
 }
 
 .sous-titre {
-    font-size: 25px;
+    font-size: 20px;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     color: #ffb1cd;
 }
 
 .sous-sous-titre {
-    font-size: 20px;
+    font-size: 15px;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     color: #FFC0CB;
 }
 
 .sous-sous-sous-titre {
-    font-size: 16px;
+    font-size: 14px;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     color: #ffb1cd;
 }
@@ -100,7 +101,7 @@ nav h1 {
     font-size: 22px;
     font-weight: bold;
     margin: 0;
-    margin-left: 200px;
+    margin-left: 300px;
 }
 
 nav:hover h1 {
@@ -135,7 +136,7 @@ nav:hover h1 {
 }
 
 .barre-separation-suggestion {
-    margin-left: 400px;
+    margin-left: 375px;
 }
 
 .interets, .revenus {
@@ -199,7 +200,6 @@ nav:hover h1 {
 
 .suggestion {
     display: flex;
-    gap: 50px;
     margin-top: 50px;
 }
 
@@ -227,7 +227,7 @@ nav:hover h1 {
     height: 325px;
     gap: 45px;
     margin-top: 30px;
-    margin-left: 350px;
+    margin-left: 320px;
 }
 
 .info-compte {
