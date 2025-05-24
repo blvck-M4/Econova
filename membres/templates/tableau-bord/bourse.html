@@ -1,8 +1,10 @@
-<!-- Classe html de la page bourse et JavaScript entièrement par Samy Baouche
+<!-- Classe html de la page bourse et JavaScript entièrement par Samy Baouche-->
 
+{% extends 'tableau-bord/master.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="fr">
+
+<!-- Bloc <head> : liens vers les fichiers CSS et scripts nécessaires -->
+{% block head %}
 <head>
     <meta charset="UTF-8">
     <title>Bourse - Recherche D'Actions</title>
@@ -14,78 +16,9 @@
     <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
-<body>
-<!-- Menu du profil (bouton en haut à droite)-->
-    <lottie-player class="icon-profile" id="icon-profile" src="{% static 'json/dashboard-icon/User_custom_icon.json' %}"
-                       hover></lottie-player>
-    <div class="menu-profil menu-hide" id="menu-profil">
-        <div class="menu-profil-section1">
-            <img src="{% static 'images/dashboard-icon/profil-icon.svg' %}" alt="Icon de profil">
-            <h2>
-                {{ user.username }}
-            </h2>
-            <h3>{{ user.email }}</h3>
+{% endblock %}
 
-        </div>
-        <div class="menu-profil-section2">
-            <a href="profil" class="">
-                <img src="{% static 'images/dashboard-icon/profil.svg' %}" alt="Icon de profil">
-                <h2>Mon profil</h2>
-            </a>
-            <a href="/" class="">
-                <img src="{% static 'images/dashboard-icon/home_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg' %}"
-                     style="filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(180deg) brightness(100%) contrast(100%);"
-                     alt="Icon page d'accueil">
-                <h2>Page d'accueil</h2>
-            </a>
-        </div>
-        <div class="menu-profil-section3">
-            <a href="/deconnexion" class="">
-                <img src="{% static 'images/dashboard-icon/logout-svgrepo-com 1.svg' %}" alt="Icon de déconnexion">
-                <h2>Se déconnecter</h2>
-            </a>
-        </div>
-    </div>
-
-<!--Menu à gauche-->
-    <section class="menu">
-        <div class="logoSite">
-          <a href="/"><img src="{% static 'images/Logo EcoNova.png' %}" alt="Logo ÉcoNova Finance"
-                                         class="logoSite"></a>
-          <h2 class="econova-text">EcoNova</h2>
-        </div>
-        <div class="onglets">
-            <a href="page-principale" class="page-principale onglet">
-                <lottie-player src="{% static 'json/dashboard-icon/Home_custom_icon.json' %}" hover></lottie-player>
-                <h2>Page principale</h2>
-            </a>
-            <div class="onglet-outils onglet">
-                <lottie-player src="{% static 'json/dashboard-icon/Wrench_custom_icon.json' %}" hover></lottie-player>
-                <h2 class="titre-outil">Outils Financiers</h2>
-                <img src="{% static 'images/dashboard-icon/triangle.svg' %}" class="triangle">
-            </div>
-
-            <div class="outils" id="outils">
-                <a href="suivi" class="onglet-suivi onglet">
-                    <h2>Suivi</h2>
-                </a>
-                <a href="bourse" class="onglet-bourse onglet">
-                    <h2>Bourse</h2>
-                </a>
-                <a href="simulation" class="onglet-simulation onglet">
-                    <h2>Simulation</h2>
-                </a>
-                <a href="chatbot" class="onglet-nova onglet">
-                    <h2>NOVA</h2>
-                </a>
-            </div>
-        </div>
-        <a href="/education" class="onglet-dictionnaire onglet">
-            <lottie-player src="{% static 'json/dashboard-icon/Arrow left_custom_icon.json' %}" hover></lottie-player>
-            <h2>Éducation Financière</h2>
-        </a>
-    </section>
-
+{% block content %}
     <section class="tableau-bord bourse">
     <nav>
         <a href="{% url 'bourse' %}" class="active">NovaStocks</a>
@@ -270,9 +203,4 @@ var stockChart = new Chart(ctx, {
 });
     {% endif %}
 </script>
-<script src="{% static 'js/tableau-bord.js' %}"></script>
-
-
-
-</body>
-</html>
+{% endblock %}

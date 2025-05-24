@@ -11,8 +11,7 @@ from django.http import HttpResponse
 from django.template import loader
 from idna.uts46data import uts46data
 
-from .forms import RevenueMensuelleForms
-from .models import Membre, RevenueMensuelle
+from .models import Membre
 from django.conf import settings
 import requests
 conditions_termes = False
@@ -21,7 +20,7 @@ from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from .services import nova_ai, bourse_data, simulation as nova_sim
 
-
+# Affiche la page d'accueil avec la liste des utilisateurs
 def membres(request):
     utilisateurs = User.objects.all().values()
     template = loader.get_template('home.html')
@@ -31,6 +30,7 @@ def membres(request):
     }
     return HttpResponse(template.render(context, request))
 
+# Gère l'inscription d'un nouvel utilisateur (vérifie les champs, crée un User et un Membre)
 def rejoindre(request):
     membres = Membre.objects.all().values()
     if request.method == 'POST':
@@ -68,7 +68,7 @@ def rejoindre(request):
 
     return render(request, 'rejoindre.html')
 
-
+# Gère la connexion d'un utilisateur avec authentification
 def connexion(request):
     if request.method == 'POST':
         utilisateur = request.POST['utilisateur']
@@ -88,7 +88,7 @@ def connexion(request):
 
     return render(request, 'connexion.html')
 
-
+# Gère le questionnaire rempli après l'inscription (met à jour les infos du Membre)
 def questionnaire(request):
     membres = Membre.objects.all()
     utilisateurs = User.objects.all().values()
@@ -202,7 +202,7 @@ def questionnaire(request):
             return redirect('questionnaire')
 
     return HttpResponse(template.render(context, request))
-
+# Affiche les conditions d'utilisation
 def conditions(request):
     utilisateurs = User.objects.all().values()
     template = loader.get_template('conditions.html')
@@ -211,7 +211,7 @@ def conditions(request):
     }
     return HttpResponse(template.render(context, request))
 
-#Pages du Tableau de bord
+# Affiche la page principale du tableau de bord
 def page_principale(request):
     utilisateurs = User.objects.all()
     members = Membre.objects.all()
@@ -222,7 +222,7 @@ def page_principale(request):
 
     return render(request, 'tableau-bord/page-principale.html',context)
 
-
+# Affiche et permet de modifier le profil de l'utilisateur
 def profil(request):
     utilisateurs = User.objects.all().values()
     membres = Membre.objects.all()
@@ -276,12 +276,15 @@ def profil(request):
     }
     return render(request, 'tableau-bord/profil.html', context)
 
+# Affiche la page du chatbot Nova dans le tableau de bord
 def chatbot(request):
     utilisateurs = User.objects.all().values()
     context = {
         'utilisateurs': utilisateurs,
     }
     return render(request, 'tableau-bord/chatbot.html', context)
+
+# Affiche la page de simulation et prépare les données pour les graphiques (actions, cryptos)
 def simulation(request):
     utilisateurs = User.objects.all().values()
     liste_actions = nova_sim.listeProduits(nova_ai.listeProduits('actions'))
@@ -313,6 +316,7 @@ def simulation(request):
 
 # Clé API Alpha Vantage (ajoute ta clé API dans settings.py)
 ALPHA_VANTAGE_API_KEY = settings.ALPHA_VANTAGE_API_KEY
+# Affiche la page bourse avec les données récupérées depuis l'API
 def bourse(request):
     utilisateurs = User.objects.all().values()
     membre = Membre.objects.all()
@@ -326,12 +330,42 @@ def bourse(request):
     return render(request, "tableau-bord/bourse.html", context)
 
 
+
+# Affiche la page d’éducation financière
+def education(request):
+    utilisateurs = User.objects.all().values()
+    context = {
+        'utilisateurs': utilisateurs,
+    }
+    return render(request, 'education.html', context)
+
+# Affiche la page de suivi général dans le tableau de bord
+def suivi(request):
+    utilisateurs = User.objects.all().values()
+    members = Membre.objects.all()
+    context = {
+        'utilisateurs': utilisateurs,
+        'members': members,
+    }
+    return render(request, 'tableau-bord/suivi/suivi.html', context)
+# Affiche la sous-page d’analyse dans la section Suivi
+def analyse(request):
+    return render(request, 'tableau-bord/suivi/analyse.html')
+# Affiche la sous-page de revenus dans la section Suivi
+def revenues(request):
+    return render(request, 'tableau-bord/suivi/revenues.html')
+# Affiche la sous-page de dépenses dans la section Suivi
+def depenses(request):
+    return render(request, 'tableau-bord/suivi/depenses.html')
+
 #Fonctionnalités
+
+# Déconnecte l'utilisateur
 def deconnexion(request):
     auth.logout(request)
     return redirect('membres')
 
-
+# Supprime le compte et les données du Membre associé
 def supprimer(request):
     membres = Membre.objects.all()
     for membre in membres:
@@ -340,6 +374,7 @@ def supprimer(request):
     auth.get_user(request).delete()
     return redirect('membres')
 
+# Reçoit un message utilisateur et retourne une réponse du chatbot Nova
 @csrf_exempt
 def reponseBot(request):
     if request.user.is_authenticated:
@@ -352,6 +387,8 @@ def reponseBot(request):
 
     reponse = nova_ai.reponseBot(request, utilisateur)
     return JsonResponse({"response": reponse})
+
+# Fournit des questions de profil personnalisées pour Nova
 @csrf_exempt
 def qstProfil(request):
     if user_logged_in:
@@ -363,6 +400,7 @@ def qstProfil(request):
     reponse = nova_ai.qstProfil(request, utilisateur)
     return JsonResponse({"response": reponse})
 
+# Lance la simulation Monte Carlo pour un symbole et un nombre d'années donné
 @csrf_exempt
 def lancer_simulation(request):
     if request.method == "POST":
@@ -373,28 +411,3 @@ def lancer_simulation(request):
         simulations = nova_sim.lancerSimulations(symbole, nbannees)
 
     return JsonResponse({"response": simulations})
-
-
-def education(request):
-    utilisateurs = User.objects.all().values()
-    context = {
-        'utilisateurs': utilisateurs,
-    }
-    return render(request, 'education.html', context)
-
-def suivi(request):
-    utilisateurs = User.objects.all().values()
-    members = Membre.objects.all()
-    context = {
-        'utilisateurs': utilisateurs,
-        'members': members,
-    }
-    return render(request, 'tableau-bord/suivi/suivi.html', context)
-
-def analyse(request):
-    return render(request, 'tableau-bord/suivi/analyse.html')
-def revenues(request):
-    return render(request, 'tableau-bord/suivi/revenues.html')
-def depenses(request):
-    return render(request, 'tableau-bord/suivi/depenses.html')
-
