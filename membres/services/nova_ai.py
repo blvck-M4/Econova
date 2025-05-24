@@ -210,6 +210,8 @@ def qstProfil(request, utilisateur):
         ):
             reponse += chunk.text
 
+
+    #Code de restrictions généré sur Copilot
         #Saut à la ligne pour chaque choix de réponses
         reponse_finale = re.sub(r'(?<!<br>)\s*([a-d]\))', r'<br>\1', reponse)
         #Remplace les doubles <br> par <br> simple
