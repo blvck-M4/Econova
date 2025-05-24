@@ -1,4 +1,4 @@
-# Classe python de la page entièrement par Samy
+# Classe python de la page entièrement par Samy Baouche et légèrement aidé par chat gpt
 
 from datetime import timedelta
 
