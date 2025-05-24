@@ -1,0 +1,174 @@
+{% extends 'tableau-bord/master.html' %}
+{% load static %}
+{% block head %}
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="icon" href="{% static 'images/Logo EcoNova.png' %}">
+    <link rel="stylesheet" href="{% static 'css/tableau-bord/dashboard.css' %}">
+    <link rel="stylesheet" href="{% static 'css/tableau-bord/suivi/analyse.css' %}">
+    <!-- animation des icones dans la barre de navigation-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.12.2/lottie.min.js"></script>
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+
+  <title>Dashboard App</title>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>Analyse financier</h1>
+    <!-- mini-graphiques pour les revenus, les dépenses et le capital de l'utilisateur -->
+    <div class="section-revenu-depense">
+      <div class="card mini-graphique">
+        <h2>Revenues</h2>
+        <canvas id="chartRevenues"></canvas>
+          <hr> <!-- séparateur horizontale-->
+          <h1>1000$</h1>
+      </div>
+      <div class="card mini-graphique">
+        <h2>Valeur Nette</h2>
+        <canvas id="chartValeurNette"></canvas>
+          <hr>
+          <h1>1000$</h1>
+      </div>
+      <div class="card mini-graphique">
+        <h2>Dépenses</h2>
+        <canvas id="chartDepenses"></canvas>
+          <hr>
+          <h1>1000$</h1>
+      </div>
+    </div>
+
+    <!-- Main Line Chart and user-list side by side -->
+    <div class="objectifs-dettes">
+      <div class="card graphique-principale">
+          <div>
+              <button id="btnObjectifs">Voir Objectifs</button>
+              <button id="btnDettes">Voir Dettes</button>
+          </div>
+        <canvas id="graphique-principale"></canvas>
+      </div>
+
+        <!-- list des graphiques pour le suivi des objectifs spécifiques-->
+        <div class="colonne-cards">
+            <div class="card list-graphiques">
+        <h2>Objectifs</h2>
+                <div>
+        <button><div class="graphique-objectif-dette"><img src="{% static 'images/chart-icon.png' %}" alt="Mon icône" width="32" height="32"><div>Achat maison</div></div></button>
+        <button><div class="graphique-objectif-dette"><img src="{% static 'images/chart-icon.png' %}" alt="Mon icône" width="32" height="32"><div>Investissement</div></div></button>
+        <button><div class="graphique-objectif-dette"><img src="{% static 'images/chart-icon.png' %}" alt="Mon icône" width="32" height="32"><div>Épargne</div></div></button></div>
+                <div>
+                    <button> Ajouter objectif</button>
+                </div>
+            </div>
+            <div class="séparateur-verticale"></div>
+
+            <!-- list des graphiques pour le suivi des dettes spécifiques-->
+            <div class="card list-graphiques">
+        <h2>Dettes</h2>
+                <div>
+        <button><div class="graphique-objectif-dette"><img src="{% static 'images/chart-icon.png' %}" alt="Mon icône" width="32" height="32"><div>Dette credit</div></div></button>
+        <button><div class="graphique-objectif-dette"><img src="{% static 'images/chart-icon.png' %}" alt="Mon icône" width="32" height="32"><div>Dette étudiant</div></div></button>
+        <button><div class="graphique-objectif-dette"><img src="{% static 'images/chart-icon.png' %}" alt="Mon icône" width="32" height="32"><div>Dette automobile</div></div></button>
+                </div>
+                <div>
+                    <button>Ajouter dette</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+  </div>
+
+  <!-- javascript des graphiques-->
+  <script>
+      // générateurs de valeurs aléatoires
+    function randomData(n) { return Array.from({ length: n }, () => Math.floor(Math.random() * 100) + 1); }
+      //Dates pour l'axe des x des mini-graphiques
+    const datesEntree = ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
+
+    //mini-graphique des revenus
+    chartRevenues = new Chart(document.getElementById('chartRevenues').getContext('2d'), {
+        type: 'line',
+        data: { labels: datesEntree, datasets: [
+            { label: 'Revenues',
+                data: randomData(datesEntree.length),
+                borderColor: 'hotpink',
+                backgroundColor: 'rgba(255,105,180,0.2)',
+                fill: true, tension: 0.3 }] },
+        options: { responsive: false,
+            scales:
+                { x: { display: true },
+                    y: { display: true, beginAtZero: true }}
+            , plugins: { legend: { display: false } } }
+      });
+
+    //mini-graphique du capital de l'utlisateur
+    chartCapital = new Chart(document.getElementById('chartValeurNette').getContext('2d'), {
+        type: 'line',
+        data: { labels: datesEntree, datasets: [
+            { label: 'Valeur Nette',
+                data: randomData(datesEntree.length),
+                borderColor: 'hotpink',
+                backgroundColor: 'rgba(255,105,180,0.2)',
+                fill: true, tension: 0.3 }] },
+        options: { responsive: false, scales: { x: { display: true }, y: { display: true, beginAtZero: true } }, plugins: { legend: { display: false } } }
+      });
+
+    // Mini-graphique des dépenses de l'utilisateur
+    chartDepenses = new Chart(document.getElementById('chartDepenses').getContext('2d'), {
+        type: 'line',
+        data: { labels: datesEntree, datasets: [
+            { label: 'Dépenses',
+                data: randomData(datesEntree.length),
+                borderColor: 'hotpink',
+                backgroundColor: 'rgba(255,105,180,0.2)',
+                fill: true, tension: 0.3 }] },
+        options: { responsive: false,
+            scales: { x: { display: true }, y: { display: true, beginAtZero: true } },
+            plugins: { legend: { display: false } } }
+      });
+
+    // Graphique des objectifs et des dettes
+    const randomSeries = (min,max) =>
+      Array.from({length: labels.length}, () => +(Math.random()*(max-min)+min).toFixed(2));
+    const objectifsData = randomData(datesEntree.length)
+    const dettesData = randomData(datesEntree.length);
+
+    const chartObjectifsDettes = new Chart(document.getElementById('lineChart').getContext('2d'), {
+      type: 'line',
+        data: { labels: datesEntree,
+            datasets: [{
+          label: 'Progression Objectifs',
+                data: objectifsData,
+                backgroundColor: 'rgba(255,105,180,0.2)',
+                borderColor: 'hotpink',
+                borderWidth: 1,
+                fill: true,
+                tension: 0.1 }] },
+      options:
+          { responsive: false, scales: { y: { beginAtZero: true } } }
+    });
+
+    // Configuration du changement entre le graphique des dettes et le graphique des objectifs
+
+    document.getElementById('btnObjectifs').addEventListener('click', () => {
+      chartObjectifsDettes.data.datasets[0].data = objectifsData;
+      chartObjectifsDettes.data.datasets[0].label = 'Progression Objectifs';
+      chartObjectifsDettes.update();
+    });
+
+    document.getElementById('btnDettes').addEventListener('click', () => {
+      chartObjectifsDettes.data.datasets[0].data = dettesData;
+      chartObjectifsDettes.data.datasets[0].label = 'Dettes';
+      chartObjectifsDettes.update();
+    });
+  </script>
+
+
+{% endblock %}

@@ -1,0 +1,141 @@
+:root {
+            --bg-color: #111;
+            --text-color: #fff;
+            --accent-color: #ff69b4; /* Accent vert pour les revenus */
+            --card-bg: #1b1b1b;
+            --border-color: #333;
+            --hover-color: #66bb6a;
+        }
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+        }
+        .dashboard {
+            display: flex;
+            flex-direction: row-reverse;
+            padding: 2rem;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+        /* Colonnes */
+        .colonne-droite, .colonne-gauche {
+            flex: 1 1 45%;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        /* Canvas */
+        canvas {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            padding: 1rem;
+            box-shadow: 0 0 10px rgba(0,0,0,0.3);
+        }
+        /* Liste des revenus */
+        .revenues-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        .revenue-item {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: transform 0.2s;
+        }
+        .revenue-item:hover {
+            transform: scale(1.02);
+        }
+        /* Ajout de revenu */
+        .btn-add-revenue {
+            background-color: var(--accent-color);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background 0.3s;
+            align-self: start;
+        }
+        .btn-add-revenue:hover {
+            background-color: var(--hover-color);
+        }
+        /* Catégories de revenus */
+        .categories {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+        .category-card {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            padding: 1rem;
+            text-align: center;
+            box-shadow: 0 0 5px rgba(0,0,0,0.2);
+        }
+        .progress-bar {
+            background-color: #333;
+            border-radius: 10px;
+            height: 12px;
+            margin: 10px 0;
+            overflow: hidden;
+        }
+        .progress {
+            background-color: var(--accent-color);
+            height: 100%;
+            transition: width 0.5s;
+        }
+        /* Affichage des revenus total*/
+        .revenus-total {
+            grid-column: span 2;
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            padding: 2rem;
+            text-align: center;
+            margin-top: 1rem;
+        }
+        .revenus-total p {
+            font-size: 3rem;
+            margin: 0;
+        }
+        .progress-bar-total {
+            height: 20px;
+            background-color: #333;
+            border-radius: 10px;
+            margin: 1rem 0;
+            overflow: hidden;
+        }
+        /* Tableau d'entrée des revenues */
+        .card.table {
+            max-width: 800px;
+            margin: 3rem auto;
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 0 10px rgba(0,0,0,0.3);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 1rem;
+            border-bottom: 1px solid var(--border-color);
+            text-align: left;
+        }
+        h1 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-top: 3rem;
+        }
+        h3 {
+            margin: 0.5rem 0;
+        }

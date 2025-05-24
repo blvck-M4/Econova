@@ -1,3 +1,5 @@
+/*Style de la page home.html*/
+
 body {
     background: #1b1b1b;
     color: white;
@@ -5,6 +7,7 @@ body {
 
 
 /*PAGE DE PRÉSENTATION*/
+/*Style de l'animation de la page de présentation*/
 .lottie-container-presentation{
     width: 700px;
 }
@@ -30,27 +33,7 @@ body {
     overflow: hidden;
 
 }
-.logoSlogan{
-    width: 70vw;
-    height: auto;
-    position: absolute;
-    right: 0;
-    top: 60px;
-    -moz-user-select: none;
-    -webkit-user-select: none;
-    user-select: none;
-    animation: Apparait 1s ease;
-}
-@keyframes Apparait {
-    from {
-        opacity: 0;
-        transform: translateX(140%);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(00%);
-    }
-}
+
 .slogan {
     width: 600px; /* Réduit la largeur */
     text-align: left; /* Alignement à gauche */
@@ -417,20 +400,6 @@ footer {
     margin-bottom: 10px;
 }
 
-.liste-onglets {
-    .connexion {
-        padding: 7px 20px; /* Ajoute de l'espace à l'intérieur du bouton */
-        margin-top: 20px;
-        border: 2px solid white; /* Bordure blanche */
-        background-color: #FE66F4; /* Fond rose */
-        color: white; /* Texte blanc */
-        font-size: 16px; /* Taille de la police */
-        cursor: pointer; /* Change le curseur en main */
-        border-radius: 25px; /* Arrondir les bords */
-        transition: background-color 0.3s ease; /* Transition douce pour l'effet de survol */
-    }
-}
-
 .connexion:hover {
     background-color: rgb(43, 43, 43); /* Couleur de fond sur hover */
 }
@@ -441,6 +410,7 @@ footer {
     filter: blur(300px);
     background-color: rgba(254, 102, 196, 0.78);
 }
+
 /*COPYRIGHTS*/
 .copyrights {
     a {

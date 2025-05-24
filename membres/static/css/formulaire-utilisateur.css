@@ -1,0 +1,110 @@
+/*Style de la page rejoindre.html et connexion.html étant donné que les deux sont des formulaire similaires pour l'utilisateur*/
+
+html{
+    width: 100%;
+}
+/*Style du menu*/
+.logoSite{
+    .econova-text {
+        color: rgba(0, 0, 0, 0.7);
+    }
+}
+.menu-btn{
+    .btn-line {
+        background: black;
+    }
+}
+.x_active {
+    .btn-line {
+        background: white;
+    }
+}
+.form-section{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 1fr;
+    padding: 100px 0;
+    background-color: #f4f4f4;
+}
+
+
+.lottie-container-sign{
+    width: 100px;
+}
+/*Style du form pour se créer un compte*/
+.form{
+    background-color: white;
+    width: 700px;
+    height: 1fr;
+    z-index: 2;
+    box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
+    padding: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border-radius: 15px;
+    h1{
+        font-size: 25px;
+        margin-bottom: 20px;
+    }
+    h3{
+        margin-bottom: 20px;
+    }
+    form{
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        h2{
+           align-self: flex-start;
+           font-size: 14px;
+            margin-bottom: 0;
+        }
+        div{
+            display: flex;
+            width: 100%;
+            input:first-child{
+                margin-right: 5px;
+            }
+            input:last-child{
+                margin-left: 5px;
+            }
+        }
+        input{
+            font-size: 13px;
+            width: 100%;
+            margin: 15px 0;
+            padding: 10px 20px;
+            background-color: rgba(240, 240, 240, 0.8);
+            border: none;
+            font-family: "Prompt", serif;
+            font-weight: 300;
+            font-style: normal;
+            border-radius: 10px;
+        }
+        input[type="submit"]{
+            background-color: #FE66C4;
+            color: white;
+            cursor: pointer;
+            transition: 0.2s ease-in-out;
+            margin-top: 30px;
+            width: 150px;
+            font-size: 15px;
+        }
+        input[type="submit"]:hover{
+            background-color: #FE66F4;
+        }
+        [type="checkbox"]
+    }
+
+    img{
+        width: 150px;
+    }
+
+}
+

@@ -1,0 +1,114 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Évaluation des Revenus</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/tableau-bord/suivi/revenues.css' %}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+    <h1>Évaluation des Revenus</h1>
+    <div class="dashboard">
+        <!-- Colonne droite : Graphique + Entrées de revenus -->
+        <div class="colonne-droite">
+            <canvas id="revenuChart"></canvas>
+
+            <div class="revenues-list">
+                <div class="revenue-item">
+                    <div class="date">05/2025</div>
+                    <div class="description">Salaire</div>
+                    <div class="amount">3000 $</div>
+                </div>
+                <div class="revenue-item">
+                    <div class="date">05/2025</div>
+                    <div class="description">Freelance</div>
+                    <div class="amount">800 $</div>
+                </div>
+            </div>
+
+            <button class="btn-add-revenue">Ajouter un revenu</button>
+        </div>
+
+        <!-- Colonne gauche : Catégories de revenus et Objectifs de revenus -->
+        <div class="colonne-gauche">
+
+            <!-- categories de revenues-->
+            <div class="categories">
+                <div class="category-card">
+                    <h3>Salaire</h3>
+                    <div class="progress-bar"><div class="progress" style="width: 70%;"></div></div>
+                    <span>70 %</span>
+                </div>
+                <div class="category-card">
+                    <h3>Freelance</h3>
+                    <div class="progress-bar"><div class="progress" style="width: 20%;"></div></div>
+                    <span>20 %</span>
+                </div>
+                <div class="category-card">
+                    <h3>Investissements</h3>
+                    <div class="progress-bar"><div class="progress" style="width: 5%;"></div></div>
+                    <span>5 %</span>
+                </div>
+                <div class="category-card">
+                    <h3>Autres</h3>
+                    <div class="progress-bar"><div class="progress" style="width: 5%;"></div></div>
+                    <span>5 %</span>
+                </div>
+
+                <!-- suivi du revenus totale dans une periode choisi-->
+                <div class="revenus-total">
+                    <p>3800 $</p>
+                    <div class="progress-bar-total"><div class="progress" style="width: 100%;"></div></div>
+                    <span>100 %</span>
+                </div>
+            </div>
+
+            <!-- tableau des objectifs de revenues-->
+            <div class="card table">
+                <h1>Objectifs de Revenus</h1>
+                <table>
+                    <thead>
+                        <tr><th><h3>Source</h3></th><th><h3>Objectif Mensuel</h3></th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Salaire</td><td>3000 $</td></tr>
+                        <tr><td>Freelance</td><td>1000 $</td></tr>
+                        <tr><td>Investissements</td><td>500 $</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Graphique du revenu mensuelle-->
+    <script>
+        const ctx = document.getElementById('revenuChart');
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Jan', 'Fév', 'Mar', 'Avr', 'Mai'],
+                datasets: [{
+                    label: 'Revenus',
+                    data: [2800, 3000, 3200, 3500, 3800],
+                    borderColor: '#ff69b4',
+                    backgroundColor: 'rgb(117,33,75)',
+                    fill: true
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: { labels: { color: 'white' } }
+                },
+                scales: {
+                    x: { ticks: { color: 'white' } },
+                    y: { ticks: { color: 'white' } }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

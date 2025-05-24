@@ -29,7 +29,6 @@ def membres(request):
         'utilisateurs': utilisateurs,
         'conditions_termes': conditions_termes,
     }
-
     return HttpResponse(template.render(context, request))
 
 def rejoindre(request):
@@ -285,8 +284,8 @@ def chatbot(request):
     return render(request, 'tableau-bord/chatbot.html', context)
 def simulation(request):
     utilisateurs = User.objects.all().values()
-    liste_actions = nova_sim.listeActions(nova_ai.listeProduits('actions'))
-    liste_cryptos = nova_sim.listeActions(nova_ai.listeProduits('cryptomonnaies'))
+    liste_actions = nova_sim.listeProduits(nova_ai.listeProduits('actions'))
+    liste_cryptos = nova_sim.listeProduits(nova_ai.listeProduits('cryptomonnaies'))
     graph_actions = []
     for action in liste_actions:
         liste_donnees = nova_sim.graphProduit(action)
@@ -374,75 +373,13 @@ def lancer_simulation(request):
         simulations = nova_sim.lancerSimulations(symbole, nbannees)
 
     return JsonResponse({"response": simulations})
-def chart_view(request):
-    # Récupérer l'instance du membre correspondant en utilisant le nom d'utilisateur.
-    try:
-        membre = Membre.objects.get(utilisateur=request.user.username)
-    except Membre.DoesNotExist:
-        membre = None
-
-    context = {}
-
-    # Vérifier si l'utilisateur veut effacer les revenus
-    if request.method == "GET" and request.GET.get("clear_revenue") == "true" and membre is not None:
-        RevenueMensuelle.objects.filter(membre=membre).delete()
-        return redirect('suivi-financier')  # Redirection pour rafraîchir la page
-
-    if request.method == "POST":
-        form = RevenueMensuelleForms(request.POST)
-        if form.is_valid() and membre is not None:
-            # Extraire les données nettoyées
-            mois = form.cleaned_data['month']
-            revenue = form.cleaned_data['revenue']
-
-            # Mettre à jour ou créer l'enregistrement MonthlyRevenue pour le mois et le membre donnés.
-            RevenueMensuelle.objects.update_or_create(
-                membre=membre,
-                month=mois,
-                defaults={'revenue': revenue}
-            )
-            # Rediriger pour éviter la resoumission lors du rafraîchissement.
-            return redirect('suivi-financier')
-        else:
-            # Si le formulaire n'est pas valide, passez le formulaire au contexte.
-            context['form'] = form
-    else:
-        form = RevenueMensuelleForms()
-        context['form'] = form
-
-    # Filtrer les entrées de revenus pour le membre actuel (si elles existent)
-    revenue_ajouter = RevenueMensuelle.objects.filter(membre=membre) if membre else []
-
-    # Agréger les revenus par mois
-    revenue_par_mois = defaultdict(float)
-    for ajout in revenue_ajouter:
-        mois_str = ajout.month.strftime('%Y-%m')
-        revenue_par_mois[mois_str] += float(ajout.revenue)
-
-    sorted_months = sorted(revenue_par_mois.keys())
-    # If there are no revenue entries, ensure we have at least one entry with 0 value
-    if not revenue_par_mois:
-        revenue_par_mois['No Data'] = 0  # Adding a default label and value for empty data
-    mois_trier = sorted(revenue_par_mois.keys())
-    labels = mois_trier
-    values = [revenue_par_mois[month] for month in mois_trier]
-
-    chart_data = {
-        "labels": labels,
-        "values": values,
-    }
-
-    context['chart_data'] = json.dumps(chart_data)
-    return render(request, 'suivi-financier.html', context)
 
 
 def education(request):
     utilisateurs = User.objects.all().values()
-
     context = {
         'utilisateurs': utilisateurs,
     }
-
     return render(request, 'education.html', context)
 
 def suivi(request):
@@ -452,7 +389,12 @@ def suivi(request):
         'utilisateurs': utilisateurs,
         'members': members,
     }
-    return render(request, 'tableau-bord/suivi.html', context)
+    return render(request, 'tableau-bord/suivi/suivi.html', context)
 
 def analyse(request):
-    return render(request, 'analyse.html')
+    return render(request, 'tableau-bord/suivi/analyse.html')
+def revenues(request):
+    return render(request, 'tableau-bord/suivi/revenues.html')
+def depenses(request):
+    return render(request, 'tableau-bord/suivi/depenses.html')
+

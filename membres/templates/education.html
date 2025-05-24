@@ -1,3 +1,5 @@
+<!--Page HTML de code pour la section EDUCATION FINANCIERE  du site-->
+
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -112,6 +114,7 @@
   </div>
 </div>
 
+<!--Mots et définitions générés par ChatGPT pour s'assurer de tout englober-->
 <h1 id='Concepts financiers'>CONCEPTS FINANCIERS</h1>
 
 <h2>Termes de base</h2>
@@ -668,6 +671,7 @@
 
 <h3 id='explication' style='max-width: 950px; margin: auto; background: rgba(0,0,0,0.34); border-left: 4px solid #fe66c4; padding: 16px; border-radius: 6px;'>
 
+<!--Consignes générées par ChatGPT pour s'assurer de la bonne compréhension de l'utilisateur-->
     <strong>Salut, c'est Nova !</strong>
     <br>
         Vous allez répondre à <strong>10 questions</strong> sous forme de mises en situation, chacune proposant <strong>3 à 4 choix</strong>.
@@ -731,6 +735,9 @@
     <h3> Créé par Micheal Gyan, Gabriel-Ngoma Riendeau, Samy Baouche, Mohammed El Ouaabani et Nancy Bechara.</h3>
 </section>
 
+
+
+<!--Code JS pour la section EDUCATION FINANCIERE-->
 <script>
     let lastClicked = null;
 
@@ -798,32 +805,10 @@
 
         setTimeout(function () {
             envoyerAI('Bonjour')
-            envoyerMessage("Salut, c'est Patate!", 'ordinateur');
-        }, 500);
+            envoyerMessage();
+        }, 800);
     }
 
-
-    /**
-     function envoyerMessage(message = "", expediteur = "utilisateur") {
-     const champMessage = document.getElementById('saisieMessage');
-     const conteneurMessages = document.getElementById('conteneurMessages');
-
-     const texteMessage = message || champMessage.value.trim();
-     if (texteMessage !== "") {
-     const messageElement = document.createElement('div');
-     messageElement.classList.add(expediteur === 'ordinateur' ? 'messageOrdinateur' : 'messageUtilisateur');
-     messageElement.textContent = texteMessage;
-
-     conteneurMessages.appendChild(messageElement);
-
-     conteneurMessages.scrollTop = conteneurMessages.scrollHeight;
-
-     if (expediteur === 'utilisateur') {
-     champMessage.value = '';
-     }
-     }
-     }
-     **/
     function envoyerMessage() {
         /*Zone du chat*/
         chatBox = document.getElementById('conteneurMessages')
@@ -850,7 +835,6 @@
         chatBox.appendChild(message_element_bot)
         envoyerAI(message_utilisateur)
         scrollToBottom()
-
     }
     function envoyerAI(message) {
         $.ajax({
@@ -860,34 +844,38 @@
             success: function (reponse) {
                 message_element_bot.innerHTML = reponse.response
                 chatBox.appendChild(message_element_bot)
+                scrollToBottom();
             },
             error: function () {
                 chatBox.appendChild(message_element_erreur)
+                scrollToBottom();
             }
         })
     }
 
-    //fonctionne pas
+    //Scroll automatique à chaque message envoyé
     function scrollToBottom() {
-        let chatBox = document.getElementById("conteneurMessage");
+    let chatBox = document.getElementById("conteneurMessages");
+
+    if (chatBox) {
         setTimeout(() => {
             chatBox.scrollTo({
-                bottom: chatBox.scrollHeight,
+                top: chatBox.scrollHeight,
                 behavior: "smooth"
             });
         }, 100);
     }
+}
 
-    //fonctionne pas
+    //Enclencher bouton ENVOYER avec la touche enter
     function enter() {
-        document.getElementById("saisieMessage").addEventListener("keyup", function (event) {
-            event.preventDefault();
-            if (event.key === "Enter") {
-                document.getElementById("btnEnvoyer").click();
-                console.log('test')
-            }
-        });
-    }
+    document.getElementById("saisieMessage").addEventListener("keyup", function (event) {
+        if (event.key === "Enter") {
+            document.getElementById("envoyer-message").click();
+        }
+    });
+}
+
 </script>
 
 <!-- JS Menu -->
