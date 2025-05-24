@@ -1,3 +1,5 @@
+# Classe python de la page entièrement par Samy
+
 from datetime import timedelta
 
 from django.conf import settings

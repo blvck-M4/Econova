@@ -1,3 +1,5 @@
+/* Classe css de la page suivi entièrement par Mohammed El Ouaabani */
+
 body {
     background: #1b1b1b;
     color: white;
@@ -9,9 +11,9 @@ body {
 
 .suivi-sections {
     display: flex;
-    justify-content: center; /* Centre les sections horizontalement */
-    align-items: flex-start; /* Aligne les sections en haut */
-    gap: 50px; /* Réduit l’espace entre Actifs et Passifs */
+    justify-content: center;
+    align-items: flex-start;
+    gap: 50px;
     margin-top: 50px;
 }
 
