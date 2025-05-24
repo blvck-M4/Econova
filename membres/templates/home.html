@@ -4,6 +4,7 @@
 
 
 <head>
+        <!-- Informations de base et ressources externes (styles, scripts, icônes, police) -->
     <meta charset="UTF-8">
     <title>ÉcoNova Finance</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet"> <!-- Importation de la police Poppins -->
@@ -18,13 +19,15 @@
 </head>
 
 <body>
+<!-- EN-TÊTE DU SITE -->
 
   <header class="header">
+  <!-- Logo et nom du site -->
       <div class="logoSite">
           <a href=""><img src="{% static 'images/Logo EcoNova.png' %}" alt="Logo ÉcoNova Finance" class="logoSite"></a>
           <h2 class="econova-text">EcoNova</h2>
       </div>
-
+    <!-- Menu principal (connexion, déconnexion, navigation mobile) -->
         <div class="menu">
             {% if not user.is_authenticated %}
             	<a href="connexion"><button class="connexion">Connexion</button></a>
@@ -39,7 +42,7 @@
                 <div class="btn-line" id="btn-line3"></div>
             </div>
         </div>
-
+    <!-- Menu latéral déroulant avec les liens selon l'état de connexion -->
     <div class="menu-slide">
         {% if user.is_authenticated %}
             <h2 class="navigation">Bienvenue {{ user.username }}</h2>
@@ -84,10 +87,11 @@
 
   </header>
 
-
+<!--CHATBOT ACCESSIBLE EN BAS À DROITE -->
   <div id="nova-bouton" class="chatbot" onclick="envoyerMessage()">
       <img src="{% static 'images/chatbot2.png' %}" alt="Logo ÉcoNova Finance">
   </div>
+<!-- Fenêtre de discussion avec Nova -->
   <section class="chat-section" id="chat-section">
       <div id="chat-box" class="chat-box">
           {% if user.is_authenticated %}
@@ -105,6 +109,8 @@
             <button id="envoyer-message" onclick="envoyerMessage()"><img src="{% static 'images/dashboard-icon/Arrow right.svg' %}"></button>
         </div>
   </section>
+
+<!-- SECTION DE PRÉSENTATION -->
   <section class="presentation">
     <div class="slogan">
         <h1>Votre gestion financière, aussi simple qu'un clic !</h1>
@@ -130,6 +136,7 @@
       <div class="shadow" id="shadow2"></div>
   </section>
 
+    <!--SECTION NOVA (présentation du chatbot)-->
     <section class="nova">
         <h1> NOVA </h1>
         <div class="nova-infos">
@@ -157,6 +164,7 @@
     </section>
 
 
+    <!--SECTION EDUCATION FINANCIERE (présentation)-->
    <section class="education">
     <div class="education-infos">
         <div class="education-text">
@@ -169,12 +177,14 @@
         </div>
     </div>
     <img src="{% static 'images/educationIMG.png' %}" alt="Logo Graphique Page2">
-</section>
+   </section>
 
-
+<!--OUTILS FINANCIERS (présentation)-->
     <section class="outils">
         <h1>OUTILS FINANCIERS</h1>
         <div class="outils-infos">
+            <!-- Trois blocs d’outils : simulateur, suivi, bourse -->
+            <!-- Chacun avec une animation Lottie -->
             <div class="info" id="info1">
                 <h2>Simulateur</h2>
                 <h2>Financier Anticipez Vos Finances</h2>
@@ -225,8 +235,9 @@
     </section>
 
   <footer>
-
+<!-- PIED DE PAGE -->
     <div class="footer-logoNova">
+        <!-- Texte de marque / présentation + logo -->
         <div>
             <a href=""><img src="{% static 'images/Logo EcoNova.png' %}" alt="Logo ÉcoNova Finance"
                             class="logoFooter"></a>
@@ -237,7 +248,7 @@
             développez une Vision stratégique et profitez d’un Accompagnement personnalisé.
             Budget, épargne, investissement : maîtrisez votre avenir financier en toute confiance.</h3>
     </div>
-    <!-- Liste verticale alignée à droite -->
+    <!-- Liens selon utilisateur connecté ou non -->
     {% if user.is_authenticated %}
             <div class="liste-onglets">
                 <ul>
@@ -266,6 +277,7 @@
   </footer>
 
 
+<!-- COPYRIGHT ET SOURCES -->
     <section class="copyrights">
         <h3>© 2025 NOVA. Tous droits réservés.</h3>
         <h3> Créé par Micheal Gyan, Gabriel-Ngoma Riendeau, Samy Baouche, Mohammed El Ouaabani et Nancy Bechara.</h3>

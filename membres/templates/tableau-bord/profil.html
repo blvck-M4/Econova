@@ -1,5 +1,6 @@
 {% extends 'tableau-bord/master.html' %}
 {% load static %}
+<!-- Bloc head : métadonnées, styles et scripts -->
 {% block head %}
 <head>
     <meta charset="UTF-8">
@@ -12,8 +13,9 @@
 </head>
 {% endblock %}
 {% block content %}
-    <!--Tableau de bord (SECTION DU MILIEU)-->
+<!-- Section principale du tableau de bord : affichage du profil utilisateur -->
     <section class="tableau-bord">
+        <!-- Logo et bouton modifier -->
         <div class="logo-profil">
             <div class="logo-icon"><img src="{% static 'images/dashboard-icon/profil-icon.svg' %}" alt="Icon de profil"></div>
             <div class="modifier-logoIcon">
@@ -25,6 +27,7 @@
             </h1>
             <h3 class="modifier-utilisateur" id="utilisateur">Changer le nom d'utilisateur</h3>
         </div>
+        <!-- Animation de profil -->
         <div id="animation-profil" class="animation-profil"></div>
         <script>
             var animation = lottie.loadAnimation({
@@ -35,7 +38,7 @@
                 path: "{% static 'json/Animation-profil.json' %}"
             });
         </script>
-
+    <!-- Infos utilisateur affichées -->
         <div class="infos1">
             <div class="nom">
                 <h1>Nom Complet</h1>
@@ -67,10 +70,12 @@
                 <a href="/conditions"><h3>Voir les conditions</h3></a>
             </div>
         </div>
+            <!-- Mot de passe -->
         <div class="mot-de-passe">
             <h1>Mot de passe</h1>
             <h3 id="motdepasse">Changer le mot de passe</h3>
         </div>
+            <!-- Profil financier et options de compte -->
         <div class="infos2">
             <div class="profil-financier">
                 <h1>Profil financier</h1>
@@ -84,7 +89,7 @@
             </div>
         </div>
     </section>
-
+<!-- Formulaire de modification (masqué par défaut, affiché dynamiquement) -->
     <section class="form-modifier form-hide">
         <form action="" method="post">
             {% csrf_token %}
@@ -101,6 +106,7 @@
                     <input type="submit" value="Modifier ton nom d'utilisateur" class="btn-modifier">
                 </div>
             </div>
+            <!-- Changement nom et prénom -->
             <div class="input-hide" id="input2">
                 <h1>Change ton nom</h1>
                 <h2>Prénom</h2>
@@ -116,6 +122,8 @@
                     <input type="submit" value="Modifier ton nom" class="btn-modifier">
                 </div>
             </div>
+
+            <!-- Changement courriel -->
             <div class="input-hide" id="input3">
                 <h1>Change ton courriel</h1>
                 <h2>Courriel</h2>
@@ -129,6 +137,8 @@
                     <input type="submit" value="Modifier ton courriel" class="btn-modifier">
                 </div>
             </div>
+
+            <!-- Changement mot de passe -->
             <div class="input-hide" id="input4">
                 <h1>Change ton mot de passe</h1>
                 <h2>Mot de passe</h2>
@@ -142,6 +152,8 @@
                     <input type="submit" value="Modifier ton mot de passe" class="btn-modifier">
                 </div>
             </div>
+
+            <!-- Changement date de naissance -->
             <div class="input-hide" id="input5">
                 <h1>Change ta date de naissance</h1>
                 <h2>Date de naissance</h2>
@@ -155,6 +167,8 @@
                     <input type="submit" value="Modifier ta date de naissance" class="btn-modifier">
                 </div>
             </div>
+
+            <!-- Changement genre -->
             <div class="input-hide" id="input6">
                 <h1>Change ton genre</h1>
                 <h2>Genre</h2>

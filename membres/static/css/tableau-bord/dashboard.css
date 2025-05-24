@@ -120,6 +120,7 @@ h3, input::placeholder, textarea{
     transform: translateY(-100%) translateX(100%) scale(0);
     transition: 0.2s ease-in-out;
 }
+/*Menu sur le côté à gauche*/
 .menu{
     width: 300px;
     background-color: #212121;
@@ -212,7 +213,7 @@ h3, input::placeholder, textarea{
         }
     }
 }
-
+/*Style générale de la partie du milieu du tableau de bord*/
 .tableau-bord{
     padding-left: 300px;
     width: 100%;
